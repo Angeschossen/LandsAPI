@@ -1,7 +1,9 @@
 package me.angeschossen.lands.api.role.enums;
 
 
-public enum ManagementSetting {
+import me.angeschossen.lands.internal.api.roles.settings.SettingType;
+
+public enum ManagementSetting implements me.angeschossen.lands.internal.api.roles.settings.ManagementSetting {
 
     PLAYER_TRUST,
     PLAYER_UNTRUST,
@@ -20,7 +22,27 @@ public enum ManagementSetting {
     WAR_MANAGE;
 
 
+    @Override
+    public int getId() {
+        return 0;
+    }
+
     public String getBypassPermission() {
+        return null;
+    }
+
+    @Override
+    public SettingType getType() {
+        return null;
+    }
+
+    @Override
+    public String getTogglePermission() {
+        return null;
+    }
+
+    @Override
+    public String getMessageKey() {
         return null;
     }
 
