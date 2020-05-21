@@ -1,6 +1,6 @@
 package me.angeschossen.lands.api.role.enums;
 
-public enum RoleSetting  {
+public enum RoleSetting {
     BLOCK_BREAK,
     BLOCK_PLACE,
     ATTACK_PLAYER,
@@ -17,8 +17,16 @@ public enum RoleSetting  {
     VEHICLE_USE;
 
 
-
     public String getBypassPermission() {
+        return null;
+    }
+
+    public String getTogglePermission() {
+        return null;
+    }
+
+
+    public String getMessageKey() {
         return null;
     }
 }

@@ -1,8 +1,6 @@
 package me.angeschossen.lands.api.nation;
 
 
-
-
 public enum NationManagementSetting {
     WAR_MANAGE(0), TAXES_EDIT(2), LAND_TRUST(3), LAND_UNTRUST(4), BANK_WITHDRAW(5), DELETE(6);
 

@@ -170,6 +170,7 @@ public interface Land extends BalanceHolder {
 
     /**
      * Check has land setting
+     *
      * @param landSetting
      * @return
      */
@@ -230,7 +231,6 @@ public interface Land extends BalanceHolder {
      * @return boolean
      */
     boolean exists();
-
 
 
     /**

@@ -13,7 +13,7 @@ public class AreaTrustPlayerEvent extends PlayerAreaEvent implements Cancellable
     private boolean cancelled;
 
 
-    public AreaTrustPlayerEvent(LandArea area,UUID target) {
+    public AreaTrustPlayerEvent(LandArea area, UUID target) {
         super(area, target);
 
     }

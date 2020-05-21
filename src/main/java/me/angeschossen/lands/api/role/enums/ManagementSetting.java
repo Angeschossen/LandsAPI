@@ -19,14 +19,16 @@ public enum ManagementSetting {
     PLAYER_BAN,
     WAR_MANAGE;
 
-
-
-
-
-
-
-
     public String getBypassPermission() {
+        return null;
+    }
+
+    public String getTogglePermission() {
+        return null;
+    }
+
+
+    public String getMessageKey() {
         return null;
     }
 
