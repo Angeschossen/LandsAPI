@@ -5,5 +5,5 @@ public enum ActionType {
     BLOCK,
     ENTITY,
     MANAGEMENT,
-    OTHER //s
+    OTHER
 }
