@@ -6,6 +6,7 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.NationInvite;
 import me.angeschossen.lands.api.war.War;
+import me.angeschossen.lands.database.objects.land.ILand;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -63,6 +64,15 @@ public interface Nation extends BalanceHolder {
     Collection<? extends Land> getLands();
 
     @NotNull Collection<? extends NationInvite> getSentInvites();
+
+    /**
+     * Send invite to land.
+     *
+     * @param target Land to join.
+     * @return Invite
+     * @throws LandAlreadyInNationException If the target is already part of a nation.
+     */
+    @NotNull NationInvite sendInvite(ILand target) throws LandAlreadyInNationException;
 
     double getBalance();
 

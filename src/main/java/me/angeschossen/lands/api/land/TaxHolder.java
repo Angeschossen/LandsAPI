@@ -10,6 +10,7 @@ public interface TaxHolder {
 
     double addTax(double value);
 
+
     double getTax();
 
     double getEstimatedTaxRevenue(@Nullable UUID playerUID);

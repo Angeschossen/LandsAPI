@@ -18,7 +18,7 @@ public interface NationInvite {
      *
      * @return Receiver
      */
-    Land getReceiver();
+     Land getReceiver();
 
     /**
      * Accept invite
