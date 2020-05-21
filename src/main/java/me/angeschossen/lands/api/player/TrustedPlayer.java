@@ -22,8 +22,6 @@ public interface TrustedPlayer {
     @NotNull
     boolean isTrustedWholeLand();
 
-    int getTrustedSize();
-
     /**
      * Get player UID
      */

@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.integration;
 
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
-import me.angeschossen.lands.api.land.LandChunk;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
@@ -56,16 +55,6 @@ public interface LandsIntegrator {
      * @return true if claimed
      */
     boolean isClaimed(@NotNull World world, int chunkX, int chunkZ);
-
-    /**
-     * This method is not supported anymore. Please use getLand or getArea instead.
-     *
-     * @param location Location
-     * @return null
-     */
-    @Deprecated
-    @Nullable
-    LandChunk getLandChunk(@NotNull Location location);
 
     /**
      * Get land.

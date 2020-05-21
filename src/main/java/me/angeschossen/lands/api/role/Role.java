@@ -1,47 +1,48 @@
 package me.angeschossen.lands.api.role;
 
-
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
 import org.bukkit.inventory.ItemStack;
-import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public interface Role {
 
-    boolean isDeleteable();
+    List<UUID> getPlayers();
 
-    boolean isDefault();
+    void setIcon(ItemStack itemStack);
 
-    boolean isEntryRole();
+    ItemStack getIcon();
 
-    boolean isVisitorRole();
+    Set<RoleSetting> getSettings();
 
-    @NotNull ItemStack getIcon();
+    void setName(String name);
 
-    void setIcon(@NotNull ItemStack icon);
-
-    @NotNull String getPlainName();
-
-    @NotNull String getName();
-
-    void setName(@NotNull String name);
+    String getName();
 
     int getId();
 
-    boolean addSetting(@NotNull RoleSetting roleSetting);
+    int getPriority();
 
-    boolean addManagementSetting(@NotNull ManagementSetting managementSetting);
+    boolean addSetting(RoleSetting roleSetting);
 
-    boolean removeSetting(@NotNull RoleSetting roleSetting);
+    boolean addManagementSetting(ManagementSetting managementSetting);
 
-    boolean removeManagementSetting(@NotNull ManagementSetting managementSetting);
+    boolean removeSetting(RoleSetting roleSetting);
 
-    boolean toggleSetting(@NotNull RoleSetting roleSetting);
+    boolean removeManagementSetting(ManagementSetting managementSetting);
 
-    boolean toggleManagementSetting(@NotNull ManagementSetting managementSetting);
+    boolean toggleSetting(RoleSetting roleSetting);
 
-    boolean hasSetting(@NotNull RoleSetting roleSetting);
+    boolean toggleManagementSetting(ManagementSetting managementSetting);
 
-    boolean hasManagementSetting(@NotNull ManagementSetting managementSetting);
+    boolean hasSetting(RoleSetting roleSetting);
+
+    boolean hasManagementSetting(ManagementSetting managementSetting);
+
+    Role getPromote();
+
+    Role getDemote();
 }

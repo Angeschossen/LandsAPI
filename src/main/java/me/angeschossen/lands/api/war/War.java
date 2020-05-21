@@ -1,32 +1,36 @@
 package me.angeschossen.lands.api.war;
 
+import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
 import me.angeschossen.lands.api.war.enums.WarSetting;
-import org.bukkit.Material;
+import me.angeschossen.lands.api.war.enums.WarTeam;
 import org.bukkit.entity.Player;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
 public interface War {
 
-    boolean canAction(Player player, RoleSetting landsAction, @Nullable Material material, boolean sendMessage);
+    boolean canAction(Player player, RoleSetting landsAction, boolean sendMessage);
 
     boolean toggleRoleAction(RoleSetting landsAction);
 
     boolean toggleSetting(WarSetting warSetting);
 
-    int getId();
+    int getID();
+
+    void start();
+
+    Land getInitialAttacker();
 
     Set<RoleSetting> getRoleActions();
 
-    boolean isParticipating(WarEntity entity);
+    boolean isParticipating(Land land);
 
     boolean isEndingSoon();
 
     boolean attackersWin();
 
-    WarEntity getWinner();
+    WarTeam getWinner();
 
     WarStats getAttackerStats();
 

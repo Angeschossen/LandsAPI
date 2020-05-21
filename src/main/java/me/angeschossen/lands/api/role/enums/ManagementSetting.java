@@ -1,35 +1,36 @@
 package me.angeschossen.lands.api.role.enums;
 
-import me.angeschossen.lands.api.land.enums.SettingMode;
+import me.angeschossen.lands.api.land.enums.SettingType;
 
-public enum ManagementSetting {
+public enum ManagementSetting implements SettingRole {
 
-    PLAYER_TRUST(1, "", true, SettingMode.MIXED),
-    PLAYER_UNTRUST(2, "", true, SettingMode.MIXED),
-    PLAYER_SETROLE(3, "", true, SettingMode.MIXED),
-    LAND_CLAIM(4, "", true, SettingMode.GLOBAL),
-    LAND_CLAIM_BORDER(5, "", true, SettingMode.GLOBAL),
-    SPAWN_SET(6, "", true, SettingMode.GLOBAL),
-    LAND_RENAME(8, "", true, SettingMode.GLOBAL),
-    SETTING_EDIT_LAND(9, "", true, SettingMode.MIXED),
-    SETTING_EDIT_ROLE(10, "", true, SettingMode.MIXED),
-    SETTING_EDIT_TAXES(12, "", true, SettingMode.MIXED),
-    SETTING_EDIT_VARIOUS(13, "", true, SettingMode.MIXED),
-    BALANCE_WITHDRAW(14, "", true, SettingMode.MIXED),
-    AREA_ASSIGN(15, "", true, SettingMode.GLOBAL),
-    PLAYER_BAN(16, "", true, SettingMode.MIXED),
-    WAR_MANAGE(17, "", true, SettingMode.GLOBAL);
+    PLAYER_TRUST(1, "", true, SettingType.MIXED),
+    PLAYER_UNTRUST(2, "", true, SettingType.MIXED),
+    PLAYER_SETROLE(3, "", true, SettingType.MIXED),
+    LAND_CLAIM(4, "", true, SettingType.GLOBAL),
+    LAND_CLAIM_BORDER(5, "", true, SettingType.GLOBAL),
+    SPAWN_SET(6, "", true, SettingType.GLOBAL),
+    SPAWN_TELEPORT(7, "", false, SettingType.GLOBAL),
+    LAND_RENAME(8, "", true, SettingType.GLOBAL),
+    SETTING_EDIT_LAND(9, "", true, SettingType.MIXED),
+    SETTING_EDIT_ROLE(10, "", true, SettingType.MIXED),
+    SETTING_EDIT_ADVANCED(11, "", true, SettingType.MIXED),
+    SETTING_EDIT_TAXES(12, "", true, SettingType.MIXED),
+    SETTING_EDIT_VARIOUS(13, "", true, SettingType.MIXED),
+    BALANCE_WITHDRAW(14, "", true, SettingType.MIXED),
+    CHUNK_ASSIGN(15, "", true, SettingType.GLOBAL);
 
-    private final int id;
+
     public String iD;
+    private final int id;
     public String message;
     private String bypassPermission;
-    private SettingMode settingMode;
+    private SettingType settingType;
 
-    ManagementSetting(int id, String message, boolean isAdmin, SettingMode settingMode) {
+    ManagementSetting(int id, String message, boolean isAdmin, SettingType settingType) {
         this.iD = name().toLowerCase();
         this.id = id;
-        this.settingMode = settingMode;
+        this.settingType = settingType;
         this.message = message;
 
         if (!isAdmin)
@@ -66,22 +67,18 @@ public enum ManagementSetting {
         return id;
     }
 
-    public SettingMode getSettingMode() {
-        return settingMode;
+    public SettingType getSettingType() {
+        return settingType;
     }
 
 
+    @Override
     public String getBypassPermission() {
         return bypassPermission;
     }
 
-
-    public String getTogglePermission() {
-        return "lands.role.setting." + toString();
+    @Override
+    public me.angeschossen.lands.api.role.enums.SettingType getType() {
+        return me.angeschossen.lands.api.role.enums.SettingType.MANAGEMENT;
     }
-
-    public String getMessageKey() {
-        return message;
-    }
-
 }
