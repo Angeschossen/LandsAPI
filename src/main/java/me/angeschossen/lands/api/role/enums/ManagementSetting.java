@@ -18,7 +18,7 @@ public enum ManagementSetting {
     AREA_ASSIGN,
     PLAYER_BAN,
     WAR_MANAGE;
-
+//s
     public String getBypassPermission() {
         return null;
     }
