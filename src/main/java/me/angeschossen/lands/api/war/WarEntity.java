@@ -4,7 +4,6 @@ import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.war.enums.WarEntityType;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 
-
 import java.util.UUID;
 
 public interface WarEntity extends BalanceHolder {

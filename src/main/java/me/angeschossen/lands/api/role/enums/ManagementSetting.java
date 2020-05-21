@@ -1,7 +1,5 @@
 package me.angeschossen.lands.api.role.enums;
 
-import me.angeschossen.lands.api.land.enums.SettingMode;
-import me.angeschossen.lands.api.land.enums.SettingType;
 
 public enum ManagementSetting {
 
