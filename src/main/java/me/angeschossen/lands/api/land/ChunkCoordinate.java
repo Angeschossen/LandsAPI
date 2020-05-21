@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 public interface ChunkCoordinate {
 
     /**
-     * Get worlds
+     * Get world
      *
      * @return World
      */

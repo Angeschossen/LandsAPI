@@ -1,13 +1,16 @@
-package me.angeschossen.lands.api.role;
+package me.angeschossen.lands.internal.api.roles;
 
-
-import me.angeschossen.lands.api.role.enums.ManagementSetting;
-import me.angeschossen.lands.api.role.enums.RoleSetting;
+import me.angeschossen.lands.api.role.Role;
+import me.angeschossen.lands.internal.api.roles.enums.RoleType;
+import me.angeschossen.lands.internal.api.roles.settings.ManagementSetting;
+import me.angeschossen.lands.internal.api.roles.settings.RoleSetting;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import javax.management.openmbean.KeyAlreadyExistsException;
 
-public interface Role {
+public interface RoleInternal {
 
     boolean isDeleteable();
 
@@ -16,6 +19,8 @@ public interface Role {
     boolean isEntryRole();
 
     boolean isVisitorRole();
+
+    RoleType getType();
 
     @NotNull ItemStack getIcon();
 
@@ -26,8 +31,6 @@ public interface Role {
     @NotNull String getName();
 
     void setName(@NotNull String name);
-
-    int getId();
 
     boolean addSetting(@NotNull RoleSetting roleSetting);
 
@@ -42,6 +45,12 @@ public interface Role {
     boolean toggleManagementSetting(@NotNull ManagementSetting managementSetting);
 
     boolean hasSetting(@NotNull RoleSetting roleSetting);
+
+    @Nullable Role getPromote();
+
+    boolean isOwnerRole();
+
+    @Nullable Role getDemote(boolean allowVisitor);
 
     boolean hasManagementSetting(@NotNull ManagementSetting managementSetting);
 }

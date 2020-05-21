@@ -3,8 +3,10 @@ package me.angeschossen.lands.api.integration;
 
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
+import me.angeschossen.lands.api.land.LandChunk;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.player.LandPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
@@ -17,34 +19,28 @@ import java.util.concurrent.CompletableFuture;
 
 public class LandsIntegration implements LandsIntegrator {
 
+
     @Deprecated
     public LandsIntegration(@NotNull String name, boolean isPublic) {
     }
 
     @Deprecated
     public LandsIntegration(@NotNull Plugin plugin, boolean isPublic) {
+
     }
 
-    public LandsIntegration(@NotNull String name) {
-    }
 
     public LandsIntegration(@NotNull Plugin plugin) {
     }
 
 
     @Override
-    public LandPlayer getLandPlayer(@NotNull UUID playerUUID) {
+    public @Nullable LandPlayer getLandPlayer(@NotNull UUID playerUUID) {
         return null;
     }
 
     @Override
-    @Deprecated
-    public LandWorld getLandWorld(@NotNull String worldName) {
-        return null;
-    }
-
-    @Override
-    public LandWorld getLandWorld(@NotNull World world) {
+    public @Nullable LandWorld getLandWorld(@NotNull World world) {
         return null;
     }
 
@@ -53,57 +49,58 @@ public class LandsIntegration implements LandsIntegrator {
         return false;
     }
 
+    @Override
+    public CompletableFuture<Boolean> isClaimed(@NotNull String worldName, int chunkX, int chunkZ) {
+        return null;
+    }
 
     @Override
-    public boolean isClaimed(@NotNull World world, int x, int z) {
+    public boolean isClaimed(@NotNull World world, int chunkX, int chunkZ) {
         return false;
     }
 
     @Override
-    @Deprecated
-    public CompletableFuture<Boolean> isClaimed(@NotNull String worldName, int x, int z) {
+    public @Nullable LandChunk getLandChunk(@NotNull Location location) {
         return null;
     }
 
     @Override
-    @Deprecated
-    public Land getLand(@NotNull String worldName, @NotNull String name) {
+    public Land getLand(@NotNull String worldName, @NotNull String landName) {
         return null;
     }
 
     @Override
-    @Nullable
+    public LandWorld getLandWorld(@NotNull String worldName) {
+        return null;
+    }
+
+    @Override
     public Land getLand(@NotNull String name) {
         return null;
     }
 
     @Override
-    @Nullable
-    public Land getLand(@NotNull Location location) {
+    public @Nullable Land getLand(@NotNull Location location) {
         return null;
     }
 
     @Override
-    @Nullable
-    public Land getLand(@NotNull World world, int x, int z) {
+    public @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ) {
         return null;
     }
 
     @Override
-    @Nullable
-    public LandArea getArea(@NotNull Location location) {
+    public @Nullable LandArea getArea(@NotNull Location location) {
         return null;
     }
 
     @Override
-    @Nullable
-    public Plugin getPlugin() {
+    public @Nullable Plugin getPlugin() {
         return null;
     }
 
     @Override
-    @NotNull
-    public String getName() {
+    public @NotNull String getName() {
         return null;
     }
 
@@ -113,14 +110,12 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    @Deprecated
     public void disable(@Nullable String hookKey) {
+
     }
 
-    @NotNull
     @Override
-    @Deprecated
-    public String initialize() {
+    public @NotNull String initialize() {
         return null;
     }
 
@@ -130,13 +125,11 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    @Deprecated
     public boolean getAccess(@NotNull String hookKey) {
         return false;
     }
 
     @Override
-    @Deprecated
     public boolean isPublic() {
         return false;
     }

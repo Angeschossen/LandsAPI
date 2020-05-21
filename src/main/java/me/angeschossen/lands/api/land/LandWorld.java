@@ -89,7 +89,7 @@ public interface LandWorld {
     Land getLand(@NotNull int iD);
 
     /**
-     * Is landChunks loaded?
+     * Is landChunk loaded?
      *
      * @param x X identifier
      * @param z Z identifier

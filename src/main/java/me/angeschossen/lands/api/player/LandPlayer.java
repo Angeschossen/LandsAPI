@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.player;
 
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.land.enums.LandGetMode;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.entity.Player;
@@ -35,14 +36,6 @@ public interface LandPlayer {
      */
     @Nullable
     Selection getSelection();
-
-    /**
-     * Get max claims per land.
-     *
-     * @return Max claims
-     */
-    @NotNull
-    int getMaxClaimsPerLand();
 
     /**
      * Get support claims per land. Permission: lands.chunks.support.NUMBER
@@ -86,6 +79,8 @@ public interface LandPlayer {
     Land getLand(@NotNull String landName);
 
     Land getAccessActionLand(ManagementSetting landsAction);
+
+    Land getAccessActionLand(ManagementSetting landsAction, LandGetMode landGetMode, boolean sendMessage);
 
     /**
      * Set edit land

@@ -6,9 +6,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 public interface Invite {
+
+    boolean isWholeLand();
 
     /**
      * Get UUID of sender
@@ -38,8 +39,7 @@ public interface Invite {
      *
      * @return Will return false if invite fails because of max members permission (lands.members.NUMBER).
      */
-    @NotNull
-    CompletableFuture<Boolean> accept(Player player);
+    boolean accept(Player player);
 
     /**
      * Deny invite

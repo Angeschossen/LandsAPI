@@ -1,6 +1,6 @@
 package me.angeschossen.lands.api.integration;
 
-import me.angeschossen.lands.api.land.LandArea;
+import me.angeschossen.lands.api.land.Land;
 import org.bukkit.Location;
 import org.bukkit.plugin.Plugin;
 
@@ -22,7 +22,7 @@ public class IntegrationExample {
 
     //Just a test
     private void test(Location location) {
-        final LandArea area = landsAddon.getArea(location);
+        final Land land = landsAddon.getLand("Test");
         //Do some stuff.
     }
 }

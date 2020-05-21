@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.player;
 
+import me.angeschossen.lands.api.blockworks.BlockCoordinate;
 import me.angeschossen.lands.api.land.ChunkCoordinate;
 import org.bukkit.Location;
 import org.jetbrains.annotations.NotNull;
@@ -22,16 +23,14 @@ public interface Selection {
      *
      * @return Location of pos 1
      */
-    @Nullable
-    Location getPos1();
+    BlockCoordinate getPos1();
 
     /**
      * Get pos 2
      *
      * @return Location of pos 2
      */
-    @Nullable
-    Location getPos2();
+    BlockCoordinate getPos2();
 
     /**
      * Set pos 1

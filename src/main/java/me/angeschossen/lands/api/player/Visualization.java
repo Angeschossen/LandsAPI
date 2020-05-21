@@ -1,25 +1,27 @@
 package me.angeschossen.lands.api.player;
 
-import org.jetbrains.annotations.NotNull;
-
 public interface Visualization {
 
     /**
      * Show the visualization for the player.
      */
-    void show();
+    void show(int timeOver);
+
+    /**
+     * Is permanent?
+     */
+    boolean isPermanent();
 
     /**
      * Re-calculate the visualization.
      */
-    void calculate();
+    void calculate(boolean force);
 
     /**
      * Check if visualization has more time until it stops.
      *
      * @return Will return false if the visualization is about to stop.
      */
-    @NotNull
     boolean hasNext();
 
     /**
