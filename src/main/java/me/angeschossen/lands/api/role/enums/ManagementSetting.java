@@ -2,7 +2,7 @@ package me.angeschossen.lands.api.role.enums;
 
 
 public enum ManagementSetting  {
-//s
+
     PLAYER_TRUST,
     PLAYER_UNTRUST,
     PLAYER_SETROLE,
