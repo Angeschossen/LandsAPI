@@ -1,8 +1,7 @@
 package me.angeschossen.lands.api.war;
 
 import me.angeschossen.lands.api.war.enums.WarTeam;
-import me.angeschossen.lands.database.objects.war.declaration.IWarDeclaration;
-import org.bukkit.entity.Player;
+
 
 public interface WarDeclaration {
 
@@ -17,8 +16,4 @@ public interface WarDeclaration {
     boolean isValid();
 
     boolean startsSoon();
-
-    IWarDeclaration send(Player sender);
-
-    War start();
 }

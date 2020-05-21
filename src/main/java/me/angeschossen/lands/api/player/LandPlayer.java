@@ -4,7 +4,6 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.enums.LandGetMode;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.war.War;
-import me.angeschossen.lands.database.objects.land.ILand;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -81,7 +80,7 @@ public interface LandPlayer {
 
     Land getAccessActionLand(ManagementSetting landsAction);
 
-    ILand getAccessActionLand(ManagementSetting landsAction, LandGetMode landGetMode, boolean sendMessage);
+    Land getAccessActionLand(ManagementSetting landsAction, LandGetMode landGetMode, boolean sendMessage);
 
     /**
      * Set edit land

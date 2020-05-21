@@ -6,7 +6,6 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.NationInvite;
 import me.angeschossen.lands.api.war.War;
-import me.angeschossen.lands.database.objects.land.ILand;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -29,24 +28,6 @@ public interface Nation extends BalanceHolder {
     @NotNull UUID getLeaderUID();
 
     /**
-     * Let a land join a nation.
-     *
-     * @param land Land to join this nation
-     * @return Will return false, if the land can join the nation.
-     * @throws LandAlreadyInNationException When land is already member of a nation.
-     */
-    boolean addLand(@NotNull Land land);
-
-    /**
-     * Let a land leave this nation.
-     *
-     * @param land Land to remove
-     * @return Will return false if the land could not be removed.
-     */
-    boolean removeLand(@NotNull Land land);
-
-
-    /**
      * Check if a land is member of this nation.
      *
      * @return Will return false if land is not member of this nation.
@@ -64,15 +45,6 @@ public interface Nation extends BalanceHolder {
     Collection<? extends Land> getLands();
 
     @NotNull Collection<? extends NationInvite> getSentInvites();
-
-    /**
-     * Send invite to land.
-     *
-     * @param target Land to join.
-     * @return Invite
-     * @throws LandAlreadyInNationException If the target is already part of a nation.
-     */
-    @NotNull NationInvite sendInvite(ILand target) throws LandAlreadyInNationException;
 
     double getBalance();
 

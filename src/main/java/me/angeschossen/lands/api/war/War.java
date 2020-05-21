@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.war;
 
 import me.angeschossen.lands.api.role.enums.RoleSetting;
 import me.angeschossen.lands.api.war.enums.WarSetting;
-import me.angeschossen.lands.database.objects.war.WarEntity;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;

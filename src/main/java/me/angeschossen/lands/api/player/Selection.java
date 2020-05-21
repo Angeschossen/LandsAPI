@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.player;
 
+import me.angeschossen.lands.api.blockworks.BlockCoordinate;
 import me.angeschossen.lands.api.land.ChunkCoordinate;
-import me.angeschossen.lands.database.objects.blockworks.BlockCoordinate;
 import org.bukkit.Location;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

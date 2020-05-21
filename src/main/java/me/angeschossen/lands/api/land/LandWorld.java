@@ -3,7 +3,6 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
-import me.angeschossen.lands.database.objects.land.Container;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -88,17 +87,6 @@ public interface LandWorld {
      */
     @Nullable
     Land getLand(@NotNull int iD);
-
-    /**
-     * Get loaded landChunk
-     *
-     * @param chunkX X identifier
-     * @param chunkZ Z identifier
-     * @return Land or null, if not cached
-     */
-    @Deprecated
-    @Nullable
-    Container getLandChunk(@NotNull int chunkX, @NotNull int chunkZ);
 
     /**
      * Is landChunk loaded?
