@@ -4,8 +4,8 @@ import me.angeschossen.lands.api.exceptions.PlayerTrustedException;
 import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;
-import me.angeschossen.lands.internal.api.roles.settings.RoleSetting;
-import me.angeschossen.lands.internal.api.roles.settings.ManagementSetting;
+import me.angeschossen.lands.api.role.enums.ManagementSetting;
+import me.angeschossen.lands.api.role.enums.RoleSetting;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -45,6 +45,7 @@ public interface LandArea {
     boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
     void setTax(double rent);
+
 
     @Nullable Invite getInvite(@NotNull UUID receiverUUID);
 
