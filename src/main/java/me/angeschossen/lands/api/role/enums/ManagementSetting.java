@@ -1,8 +1,7 @@
 package me.angeschossen.lands.api.role.enums;
 
 
-
-public enum ManagementSetting{
+public enum ManagementSetting {
 
     PLAYER_TRUST,
     PLAYER_UNTRUST,
@@ -23,18 +22,11 @@ public enum ManagementSetting{
 
 
 
+
+
+
+
     public String getBypassPermission() {
-        return null;
-    }
-
-
-
-
-    public String getTogglePermission() {
-        return null;
-    }
-
-    public String getMessageKey() {
         return null;
     }
 

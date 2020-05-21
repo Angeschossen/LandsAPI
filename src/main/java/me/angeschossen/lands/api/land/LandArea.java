@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+
 import java.util.UUID;
 
 public interface LandArea {
@@ -45,7 +46,6 @@ public interface LandArea {
     boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
     void setTax(double rent);
-
 
     @Nullable Invite getInvite(@NotNull UUID receiverUUID);
 

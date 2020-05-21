@@ -1,6 +1,5 @@
 package me.angeschossen.lands.api.role.enums;
 
-
 public enum RoleSetting  {
     BLOCK_BREAK,
     BLOCK_PLACE,
@@ -12,24 +11,14 @@ public enum RoleSetting  {
     INTERACT_CONTAINER,
     INTERACT_DOOR,
     INTERACT_VILLAGER,
-    FLY,
-    SPAWN_TELEPORT;
+    FLYER,
+    SPAWN_TELEPORT,
+    LAND_ENTER,
+    VEHICLE_USE;
 
 
 
     public String getBypassPermission() {
         return null;
     }
-
-
-
-    public String getTogglePermission() {
-        return null;
-    }
-
-
-    public String getMessageKey() {
-        return null;
-    }
-
 }
