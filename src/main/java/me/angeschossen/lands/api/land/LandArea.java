@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public interface LandArea {
 
-    void banPlayer(UUID uuid) throws PlayerTrustedException;
+    void banPlayer(UUID uuid)throws PlayerTrustedException;
 
     void unBanPlayer(UUID playerUID);
 

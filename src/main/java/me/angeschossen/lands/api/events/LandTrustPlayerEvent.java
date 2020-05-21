@@ -23,9 +23,7 @@ public class LandTrustPlayerEvent extends Event implements Cancellable {
         return land;
     }
 
-    public UUID getTargetUUID() {
-        return targetUUID;
-    }
+    public UUID getTargetUUID(){return targetUUID;}
 
     public static HandlerList getHandlerList() {
         return handlerList;

@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.role.enums;
 
 
-public enum ManagementSetting {
+public enum ManagementSetting  {
 
     PLAYER_TRUST,
     PLAYER_UNTRUST,
@@ -18,10 +18,14 @@ public enum ManagementSetting {
     AREA_ASSIGN,
     PLAYER_BAN,
     WAR_MANAGE;
-//s
+
+
+
     public String getBypassPermission() {
         return null;
     }
+
+
 
     public String getTogglePermission() {
         return null;
