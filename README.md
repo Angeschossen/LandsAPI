@@ -15,7 +15,7 @@ How to include the API with Maven:
     <dependency>
         <groupId>com.github.Angeschossen</groupId>
         <artifactId>LandsAPI</artifactId>
-        <version>4.5.9.3</version>
+        <version>4.5.9.9</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
