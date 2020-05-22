@@ -50,7 +50,7 @@ Examble:
         to prevent that other developers can
         access your addon.
          */
-        landsAddon = new LandsIntegration(yourPlugin, false);
+        landsAddon = new LandsIntegration(yourPlugin);
     }
 
     //Just a test
