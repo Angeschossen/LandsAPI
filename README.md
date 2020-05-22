@@ -27,7 +27,7 @@ repositories {
 	maven { url 'https://jitpack.io' }
 }
 dependencies {
-    compileOnly "com.github.Angeschossen:LandsAPI:4.5.2.0"
+    compileOnly "com.github.Angeschossen:LandsAPI:4.5.9.9"
 }
 ```
 
