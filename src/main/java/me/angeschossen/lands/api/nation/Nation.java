@@ -1,6 +1,5 @@
 package me.angeschossen.lands.api.nation;
 
-import me.angeschossen.lands.api.exceptions.LandAlreadyInNationException;
 import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;

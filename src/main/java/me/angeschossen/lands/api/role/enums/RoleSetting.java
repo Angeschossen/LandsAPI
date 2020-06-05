@@ -1,13 +1,5 @@
 package me.angeschossen.lands.api.role.enums;
 
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.data.BlockData;
-import org.bukkit.block.data.Openable;
-import org.bukkit.block.data.type.EnderChest;
-import org.bukkit.block.data.type.Switch;
-import org.bukkit.inventory.InventoryHolder;
-
 public enum RoleSetting  {
 
     BLOCK_BREAK,

@@ -10,7 +10,6 @@
     <name>LandsAPI</name>
 
 
-
     <repositories>
         <!-- Adds the Spigot Maven repository to the build -->
         <repository>
