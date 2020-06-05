@@ -56,23 +56,6 @@
                 <artifactId>maven-source-plugin</artifactId>
                 <version>3.0.1</version>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <show>public</show>
-                    <windowtitle>Lands</windowtitle>
-                    <verbose>false</verbose>
-                    <author>true</author>
-                    <version>true</version>
-                    <linksource>true</linksource>
-                    <notimestamp>true</notimestamp>
-                    <bottom><![CDATA[<b>Angeschossen, 2019</b>]]></bottom>
-                    <reportOutputDirectory>${project.build.directory}</reportOutputDirectory>
-                    <destDir>javadoc-latest</destDir>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
