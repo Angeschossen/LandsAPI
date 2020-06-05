@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.integration;
 
+import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
@@ -105,12 +106,21 @@ public interface LandsIntegrator {
     @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ);
 
     /**
-     * Will return the area located in a land.
+     * Get the sub area of the land at this location. This does not include the default area.
+     * It is recommended to use {@link #getAreaByLoc(Location)} instead, if you want to cover the default area too.
      *
-     * @param location Location to check
-     * @return null if not claimed
+     * @param location Location
+     * @return null, if not claimed or the area is not a sub area (default area)
      */
+    @Deprecated
     @Nullable LandArea getArea(@NotNull Location location);
+
+    /**
+     * Get the sub or default area of the land at this location. It is recommended to use this instead of {@link #getArea(Location)}
+     * @param location Location
+     * @return null, if not claimed.
+     */
+    @Nullable Area getAreaByLoc(@NotNull Location location);
 
     /**
      * Get's lands wich hooks Lands.

@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.integration;
 
 
+import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
@@ -82,7 +83,13 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    @Deprecated
     public @Nullable LandArea getArea(@NotNull Location location) {
+        return null;
+    }
+
+    @Override
+    public @Nullable Area getAreaByLoc(@NotNull Location location) {
         return null;
     }
 

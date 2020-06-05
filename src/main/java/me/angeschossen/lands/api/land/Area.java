@@ -11,15 +11,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public interface LandArea extends Area{
+public interface Area {
 
     void banPlayer(UUID uuid);
 
     void unbanPlayer(UUID playerUID);
 
     boolean isBanned(@NotNull UUID playerUID);
-
-    boolean setName(@NotNull String name);
 
     boolean hasLandSetting(LandSetting naturalFlags);
 
