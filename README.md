@@ -38,31 +38,23 @@ You can also download the jar file from here: https://github.com/Angeschossen/La
 ## Implementing Lands
 Examble:
 
-```public class IntegrationExample {
+```
+    private final LandsIntegration landsIntegration;
 
-    private final LandsIntegration landsAddon;
+    public IntegrationExample(Plugin yourPlugin) {
 
-    private IntegrationExample(Plugin yourPlugin) {
-
-        /*
-        Initialize LandsAddon
-        Set isPulic to false, if you want
-        to prevent that other developers can
-        access your addon.
-         */
-        landsAddon = new LandsIntegration(yourPlugin);
+        // init
+        this.landsIntegration = new LandsIntegration(yourPlugin);
     }
 
-    //Just a test
-    private void test(Location location) {
-   	//Get a land area from a location
-        final LandArea landArea = landsAddon.getArea(location);
+    // Just a test
+    void test(Location location) {
+
+   	// Get a land area from a location
+        final Area area = landsIntegration.getAreaByLoc(location);
 	
-	//Get a land from a location
-	final Land land = landsAddon.getLand(location);
-	
-	
-        //Do some stuff.
+	// Get a land from a location
+	final Land land = landsIntegration.getLand(location);
     }
-}
+
 ```
