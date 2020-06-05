@@ -1,30 +1,19 @@
 package me.angeschossen.lands.api.events;
 
+import me.angeschossen.lands.api.events.internal.PlayerEditEvent;
+import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class PlayerLeaveLandEvent extends Event implements Cancellable {
+public class PlayerLeaveLandEvent extends PlayerEditEvent {
 
     public static HandlerList handlerList = new HandlerList();
-    private boolean cancelled;
 
-    private LandPlayer landPlayer;
-    private Land land;
-
-    public PlayerLeaveLandEvent(LandPlayer landPlayer, Land land) {
-        this.land = land;
-        this.landPlayer = landPlayer;
-    }
-
-    public Land getLand() {
-        return land;
-    }
-
-    public LandPlayer getLandPlayer() {
-        return landPlayer;
+    public PlayerLeaveLandEvent(Land land, @Nullable Area area, LandPlayer landPlayer) {
+        super(land, area, landPlayer);
     }
 
     public static HandlerList getHandlerList() {
@@ -32,17 +21,7 @@ public class PlayerLeaveLandEvent extends Event implements Cancellable {
     }
 
     @Override
-    public boolean isCancelled() {
-        return this.cancelled;
-    }
-
-    @Override
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
-    }
-
-    @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return handlerList;
     }
 }
