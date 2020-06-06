@@ -1,13 +1,10 @@
 package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.events.LandChatEvent;
-import me.angeschossen.lands.api.exceptions.PlayerTrustedException;
+import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.holders.BalanceHolder;
-import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.TrustedPlayer;
-import me.angeschossen.lands.api.role.Role;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
-import me.angeschossen.lands.api.role.enums.RoleSetting;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -20,11 +17,13 @@ import java.util.UUID;
 
 public interface Land extends BalanceHolder {
 
+    @NotNull Area getDefaultArea();
+
     boolean hasArea(@NotNull String name);
 
-    void banPlayer(@NotNull UUID playerUID) throws PlayerTrustedException;
+    void banPlayer(@NotNull UUID playerUID);
 
-    void unBanPlayer(@NotNull UUID playerUID);
+    void unbanPlayer(@NotNull UUID playerUID);
 
     War getWar();
 
@@ -46,7 +45,12 @@ public interface Land extends BalanceHolder {
     @NotNull
     String getName();
 
-    Role getRole(UUID playerUID);
+    /**
+     * Set name of land
+     *
+     * @param name New name
+     */
+    void setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
 
     /**
      * Send message to online players of this land.
@@ -57,21 +61,20 @@ public interface Land extends BalanceHolder {
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 
     /**
-     * Get id of land.
-     *
-     * @return Id
-     */
-    int getId();
-
-    boolean untrustMember(@NotNull UUID playerUID);
-
-    /**
      * Get owner UUID of land
      *
      * @return UUID of owner
      */
     @NotNull
     UUID getOwnerUID();
+
+    /**
+     * Untrust a player in the whole land.
+     *
+     * @param playerUID Player UID
+     * @return Change
+     */
+    boolean untrustPlayer(@NotNull UUID playerUID);
 
     /**
      * Get spawn
@@ -82,26 +85,31 @@ public interface Land extends BalanceHolder {
     Location getSpawn();
 
     /**
+     * Set spawn location of land
+     *
+     * @param location Location of spawn
+     */
+    void setSpawn(@Nullable Location location);
+
+    /**
      * Get the size of an land
      *
      * @return Size of land
      */
-    @NotNull
     int getSize();
 
     /**
      * Trust a player to the whole land, including areas.
      *
-     * @return
+     * @return Change
      */
-    boolean trustPlayer(UUID playerUID);
+    boolean trustPlayer(@NotNull UUID playerUID);
 
     /**
      * Get max members.
      *
      * @return Max members
      */
-    @NotNull
     int getMaxMembers();
 
     /**
@@ -109,7 +117,6 @@ public interface Land extends BalanceHolder {
      *
      * @return Max chunk claims
      */
-    @NotNull
     int getMaxChunks(boolean countNation);
 
     /**
@@ -121,12 +128,12 @@ public interface Land extends BalanceHolder {
     Collection<UUID> getTrustedPlayers();
 
     /**
-     * Check is land loaded
+     * Get title mesasage.
      *
-     * @return Boolean
+     * @return Title message.
      */
     @NotNull
-    boolean isLoaded();
+    String getTitleMessage();
 
     /**
      * Set title message.
@@ -134,14 +141,6 @@ public interface Land extends BalanceHolder {
      * @param title Message
      */
     void setTitleMessage(@NotNull String title);
-
-    /**
-     * Get title mesasage.
-     *
-     * @return Title message.
-     */
-    @NotNull
-    String getTitleMessage();
 
     /**
      * Set an new owner for land
@@ -160,28 +159,7 @@ public interface Land extends BalanceHolder {
      */
     boolean hasChunk(@NotNull World world, int x, int z);
 
-    /**
-     * Set name of land
-     *
-     * @param name New name
-     * @return
-     */
-    boolean setName(@NotNull String name);
-
-    /**
-     * Check has land setting
-     * @param landSetting
-     * @return
-     */
-    boolean hasLandSetting(LandSetting landSetting);
-
-    /**
-     * Check if player is trusted in whole land.
-     *
-     * @param playerUUID UUID of player
-     * @return true if is
-     */
-    boolean isTrustedInLand(@NotNull UUID playerUUID);
+    boolean isTrusted(@NotNull UUID playerUID);
 
     /**
      * Get a collection of all online land members
@@ -191,27 +169,7 @@ public interface Land extends BalanceHolder {
     @NotNull
     Collection<Player> getOnlinePlayers();
 
-    /**
-     * Check if player can action
-     *
-     * @param playerUUID UUID of player
-     * @param action     Action
-     * @return Result
-     */
-    boolean canSetting(@NotNull UUID playerUUID, @NotNull RoleSetting action);
-
     boolean canManagement(UUID playerUUID, ManagementSetting managementSetting);
-
-    /**
-     * Check if player can action with checking bypass permission
-     * This will send a message to the player if he can't access the action and has no required bypass permission.
-     *
-     * @param player      Player
-     * @param action      Action
-     * @param sendMessage Send message?
-     * @return Will return false if player has no access and has no bypass permission
-     */
-    boolean canSetting(@NotNull Player player, @NotNull RoleSetting action, @NotNull boolean sendMessage);
 
     boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
@@ -231,22 +189,11 @@ public interface Land extends BalanceHolder {
      */
     boolean exists();
 
-
-
-    /**
-     * Set spawn location of land
-     *
-     * @param location Location of spawn
-     */
-    void setSpawn(@Nullable Location location);
-
-
     /**
      * Get land balance
      *
      * @return Balance
      */
-    @NotNull
     double getBalance();
 
     /**
@@ -261,7 +208,7 @@ public interface Land extends BalanceHolder {
      * to remove money.
      *
      * @param value Value
-     * @return
+     * @return If value was negative and result smaller then 0, false.
      */
     boolean addBalance(double value);
 

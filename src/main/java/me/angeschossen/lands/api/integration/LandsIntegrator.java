@@ -4,6 +4,7 @@ import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
+import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -11,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
@@ -121,6 +123,14 @@ public interface LandsIntegrator {
      * @return null, if not claimed.
      */
     @Nullable Area getAreaByLoc(@NotNull Location location);
+
+    @NotNull List<Land> getTopLands(SortMode sortMode);
+
+    @NotNull List<Land> getTopLands(@NotNull SortMode sortMode, int page);
+
+    @NotNull List<Land> getTopLand(@NotNull SortMode sortMode, int place);
+
+    @NotNull List<String> printTopLands(SortMode sortMode, int page);
 
     /**
      * Get's lands wich hooks Lands.

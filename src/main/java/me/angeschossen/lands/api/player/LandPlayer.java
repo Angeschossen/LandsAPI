@@ -18,7 +18,6 @@ public interface LandPlayer {
      *
      * @return true, if player is in war.
      */
-    @NotNull
     boolean isInWar();
 
     /**
@@ -42,7 +41,6 @@ public interface LandPlayer {
      *
      * @return Max support claims
      */
-    @NotNull
     int getSupportClaimsPerLand();
 
     /**
@@ -128,7 +126,6 @@ public interface LandPlayer {
      * @param landName Name of land
      * @return Will return false if no invite from land found.
      */
-    @NotNull
     boolean hasInvite(@NotNull String landName);
 
     /**
@@ -136,7 +133,6 @@ public interface LandPlayer {
      *
      * @return Will return false if players doesn't own land.
      */
-    @NotNull
     boolean ownsLand();
 
     /**
@@ -144,15 +140,5 @@ public interface LandPlayer {
      *
      * @return Array
      */
-    @NotNull
     String[] getLandNames();
-
-    /**
-     * Check is player in land
-     *
-     * @param iD Id of land
-     * @return Boolean
-     */
-    @NotNull
-    boolean isInLand(@NotNull int iD);
 }

@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.land.enums.LandSetting;
-import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,19 +9,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
-
 public interface LandWorld {
 
-    @NotNull List<String> printTopLands(int page, SortMode sortMode);
 
-    @NotNull List<String> printTopLands(int page);
-
-    @Nullable Land getOwner(int x, int z);
-
-    @NotNull List<? extends Land> getTopLands(SortMode sortMode);
-
-    @NotNull List<? extends Land> getTopLands();
+    @Nullable Land getLand(int x, int z);
 
     /**
      * Check can execute action in wilderness
@@ -43,11 +33,11 @@ public interface LandWorld {
      */
     boolean canActionWithResponse(@NotNull Player player, @NotNull Location location, RoleSetting landsAction);
 
-    @Nullable LandArea getArea(Location location);
+    @Nullable Area getArea(Location location);
 
     boolean canActionWithResponse(@NotNull Player player, @NotNull Location location, @Nullable Material material, RoleSetting landsAction);
 
-    boolean hasLandSetting(@NotNull Location location, @NotNull LandSetting landSetting);
+    boolean hasLandSetting(@NotNull Location location, @NotNull LandSetting naturalFlags);
 
     boolean canAction(@NotNull Player player, @NotNull Location location, @NotNull RoleSetting landsAction);
 
@@ -77,16 +67,8 @@ public interface LandWorld {
     @NotNull
     World getWorld();
 
-    Land getLand(String name);
-
-    /**
-     * Get land by iD
-     *
-     * @param iD Id of land.
-     * @return Will return null if this land does not exist.
-     */
     @Nullable
-    Land getLand(@NotNull int iD);
+    Land getLand(String name);
 
     /**
      * Is landChunk loaded?
@@ -95,6 +77,5 @@ public interface LandWorld {
      * @param z Z identifier
      * @return Loaded
      */
-    @NotNull
-    boolean isChunkLoaded(@NotNull int x, @NotNull int z);
+    boolean isChunkLoaded( int x, int z);
 }
