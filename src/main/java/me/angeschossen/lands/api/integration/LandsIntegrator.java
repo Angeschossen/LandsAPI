@@ -98,13 +98,15 @@ public interface LandsIntegrator {
     @Nullable Land getLand(@NotNull Location location);
 
     /**
-     * Get land
+     * Do not use this. World parameter is no longer valid.
+     * Use {@link #getLand(Location)} instead.
      *
      * @param world  World
      * @param chunkX Chunk x
      * @param chunkZ Chunk z
      * @return Land or null if wilderness
      */
+    @Deprecated
     @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ);
 
     /**
