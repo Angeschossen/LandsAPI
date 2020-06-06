@@ -98,15 +98,13 @@ public interface LandsIntegrator {
     @Nullable Land getLand(@NotNull Location location);
 
     /**
-     * Do not use this. World parameter is no longer valid.
-     * Use {@link #getLand(Location)} instead.
+     * Get land
      *
      * @param world  World
      * @param chunkX Chunk x
      * @param chunkZ Chunk z
      * @return Land or null if wilderness
      */
-    @Deprecated
     @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ);
 
     /**
@@ -126,12 +124,35 @@ public interface LandsIntegrator {
      */
     @Nullable Area getAreaByLoc(@NotNull Location location);
 
+    /**
+     * Get top lands by sorting.
+     * @param sortMode Sortmode
+     * @return Top lands in order
+     */
     @NotNull List<Land> getTopLands(SortMode sortMode);
 
+    /**
+     * Get top lands by sorting.
+     * @param sortMode Sortmode
+     * @param page Same as /Lands top
+     * @return Top lands in order
+     */
     @NotNull List<Land> getTopLands(@NotNull SortMode sortMode, int page);
 
+    /**
+     * Get top land by sorting and place.
+     * @param sortMode Sortmode
+     * @param place Place
+     * @return Top lands in order
+     */
     @NotNull List<Land> getTopLand(@NotNull SortMode sortMode, int place);
 
+    /**
+     * Print top lands, same as /Lands top.
+     * @param sortMode Sortmode
+     * @param page Page
+     * @return Top lands in order and message
+     */
     @NotNull List<String> printTopLands(SortMode sortMode, int page);
 
     /**
