@@ -51,10 +51,7 @@ Examble:
     void test(Location location) {
 
    	// Get a land area from a location
-        final Area area = landsIntegration.getAreaByLoc(location);
-	
-	// Get a land from a location
-	final Land land = landsIntegration.getLand(location);
-    }
+    final Area area = landsIntegration.getAreaByLoc(location);
+	}
 
 ```
