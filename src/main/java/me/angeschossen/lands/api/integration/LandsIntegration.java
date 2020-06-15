@@ -15,23 +15,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 
 public class LandsIntegration implements LandsIntegrator {
 
-    @Deprecated
-    public LandsIntegration(@NotNull String name, boolean isPublic) {
-    }
-
-    @Deprecated
-    public LandsIntegration(@NotNull Plugin plugin, boolean isPublic) {
-    }
-
-
     public LandsIntegration(@NotNull Plugin plugin) {
     }
-
 
     @Override
     public @Nullable LandPlayer getLandPlayer(@NotNull UUID playerUUID) {
@@ -49,23 +38,8 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    public CompletableFuture<Boolean> isClaimed(@NotNull String worldName, int chunkX, int chunkZ) {
-        return null;
-    }
-
-    @Override
     public boolean isClaimed(@NotNull World world, int chunkX, int chunkZ) {
         return false;
-    }
-
-    @Override
-    public Land getLand(@NotNull String worldName, @NotNull String landName) {
-        return null;
-    }
-
-    @Override
-    public LandWorld getLandWorld(@NotNull String worldName) {
-        return null;
     }
 
     @Override
@@ -80,12 +54,6 @@ public class LandsIntegration implements LandsIntegrator {
 
     @Override
     public @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ) {
-        return null;
-    }
-
-    @Override
-    @Deprecated
-    public @Nullable LandArea getArea(@NotNull Location location) {
         return null;
     }
 
@@ -127,30 +95,5 @@ public class LandsIntegration implements LandsIntegrator {
     @Override
     public void disable() {
 
-    }
-
-    @Override
-    public void disable(@Nullable String hookKey) {
-
-    }
-
-    @Override
-    public @NotNull String initialize() {
-        return null;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
-    @Override
-    public boolean getAccess(@NotNull String hookKey) {
-        return false;
-    }
-
-    @Override
-    public boolean isPublic() {
-        return false;
     }
 }
