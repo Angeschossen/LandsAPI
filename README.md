@@ -15,7 +15,7 @@ How to include the API with Maven:
     <dependency>
         <groupId>com.github.Angeschossen</groupId>
         <artifactId>LandsAPI</artifactId>
-        <version>4.6.8</version>
+        <version>4.6.19</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -27,7 +27,7 @@ repositories {
 	maven { url 'https://jitpack.io' }
 }
 dependencies {
-    compileOnly "com.github.Angeschossen:LandsAPI:4.6.8"
+    compileOnly "com.github.Angeschossen:LandsAPI:4.6.19"
 }
 ```
 
@@ -43,15 +43,15 @@ Examble:
 
     public IntegrationExample(Plugin yourPlugin) {
 
-        // init
+        // You should save this instance somewhere.
         this.landsIntegration = new LandsIntegration(yourPlugin);
     }
 
     // Just a test
     void test(Location location) {
 
-   	// Get a land area from a location
+    // Get a land area from a location
     final Area area = landsIntegration.getAreaByLoc(location);
-	}
+    }
 
 ```

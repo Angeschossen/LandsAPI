@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.Angeschossen</groupId>
+    <groupId>com.github.angeschossen</groupId>
     <artifactId>LandsAPI</artifactId>
     <version>4.6.19</version>
     <name>LandsAPI</name>
