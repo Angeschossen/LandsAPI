@@ -6,46 +6,32 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 public class LandRenameEvent extends Event implements Cancellable {
-    public static final HandlerList handlerList = new HandlerList();
-    private boolean cancelled = false;
 
-    private final Land land;
-    private final String oldName;
-    private final String newName;
 
-    public LandRenameEvent(Land land, String oldName, String newName) {
-        this.land = land;
-        this.oldName = oldName;
-        this.newName = newName;
-    }
 
     public Land getLand() {
-        return land;
+        return null;
     }
 
     public String getCurrentName() {
-        return oldName;
+        return null;
     }
 
     public String getNewName() {
-        return newName;
+        return null;
     }
 
-    public static HandlerList getHandlerList() {
-        return handlerList;
-    }
 
     @Override
     public HandlerList getHandlers() {
-        return handlerList;
+        return null;
     }
 
     @Override
     public boolean isCancelled() {
-        return cancelled;
+        return false;
     }
     @Override
     public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
     }
 }

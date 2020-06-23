@@ -14,33 +14,19 @@ import java.util.UUID;
 
 
 public class LandChatEvent extends Event implements Cancellable {
-    public static HandlerList handlerList = new HandlerList();
-    private boolean cancelled;
 
-    private final String message;
-    private final UUID playerUID;
-    private final Land land;
-    private final Collection<UUID> recipients;
-    private final MessageSource messageSource;
 
-    public LandChatEvent(Land land, UUID playerUID, Collection<UUID> recipients, String message, MessageSource messageSource) {
-        this.land = land;
-        this.playerUID = playerUID;
-        this.message = message;
-        this.recipients = recipients;
-        this.messageSource = messageSource;
-    }
 
     public Collection<UUID> getRecipients() {
-        return recipients;
+        return null;
     }
 
     public Land getLand() {
-        return land;
+        return null;
     }
 
     public MessageSource getSource() {
-        return messageSource;
+        return null;
     }
 
     public enum MessageSource {
@@ -49,34 +35,32 @@ public class LandChatEvent extends Event implements Cancellable {
 
     @NotNull
     public UUID getSenderUID() {
-        return playerUID;
+        return null;
     }
 
     @Nullable
     public Player getSender() {
-        return Bukkit.getPlayer(playerUID);
+        return null;
     }
 
+    @NotNull
     public String getMessage() {
-        return message;
+        return null;
     }
 
-    public static HandlerList getHandlerList() {
-        return handlerList;
-    }
 
     @Override
     public boolean isCancelled() {
-        return this.cancelled;
+        return false;
     }
 
     @Override
     public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+
     }
 
     @Override
     public HandlerList getHandlers() {
-        return handlerList;
+        return null;
     }
 }

@@ -10,39 +10,33 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class PlayerEditEvent extends Event implements Cancellable {
 
-    private boolean cancelled;
-    private final Area area;
-    private final Land land;
-    private final LandPlayer landPlayer;
 
     public PlayerEditEvent(Land land, @Nullable Area area, LandPlayer landPlayer) {
-        this.land = land;
-        this.area = area;
-        this.landPlayer = landPlayer;
+
     }
 
     @Nullable
     public Area getArea() {
-        return area;
+        return null;
     }
 
     @NotNull
     public LandPlayer getLandPlayer() {
-        return landPlayer;
+        return null;
     }
 
     @NotNull
     public Land getLand() {
-        return land;
+        return null;
     }
 
     @Override
     public boolean isCancelled() {
-        return cancelled;
+        return false;
     }
 
     @Override
     public void setCancelled(boolean b) {
-        this.cancelled = b;
+
     }
 }

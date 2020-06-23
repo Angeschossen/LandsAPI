@@ -10,18 +10,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class PlayerLeaveLandEvent extends PlayerEditEvent {
 
-    public static HandlerList handlerList = new HandlerList();
 
     public PlayerLeaveLandEvent(Land land, @Nullable Area area, LandPlayer landPlayer) {
         super(land, area, landPlayer);
     }
 
-    public static HandlerList getHandlerList() {
-        return handlerList;
-    }
-
     @Override
     public @NotNull HandlerList getHandlers() {
-        return handlerList;
+        return null;
     }
 }

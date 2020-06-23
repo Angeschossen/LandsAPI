@@ -9,19 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.UUID;
 
 public class LandTrustPlayerEvent extends LandMemberEditEvent {
-    public static HandlerList handlerList = new HandlerList();
 
 
-    public LandTrustPlayerEvent(Land land, Area area, UUID initiator, UUID targetUUID) {
-        super(land, area, initiator, targetUUID);
-    }
-
-    public static HandlerList getHandlerList() {
-        return handlerList;
-    }
 
     @Override
     public @NotNull HandlerList getHandlers() {
-        return handlerList;
+        return null;
     }
 }
