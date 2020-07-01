@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.integration;
 
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -14,7 +13,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.CompletableFuture;
 
 
 public interface LandsIntegrator {
@@ -85,7 +83,7 @@ public interface LandsIntegrator {
     @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ);
 
     /**
-     * Get the sub or default area of the land at this location. It is recommended to use this instead of {@link #getArea(Location)}
+     * Get the sub or default area of the land at this location.
      * @param location Location
      * @return null, if not claimed.
      */

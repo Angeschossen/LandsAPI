@@ -3,7 +3,6 @@ package me.angeschossen.lands.api.integration;
 
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
