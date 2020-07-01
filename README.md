@@ -2,7 +2,7 @@
 [![](https://jitpack.io/v/Angeschossen/LandsAPI.svg)](https://jitpack.io/#Angeschossen/LandsAPI)
 
 
-How to include the API with Maven: 
+Include the API with Maven: 
 ```xml
 <repositories>
 	<repository>
@@ -21,7 +21,7 @@ How to include the API with Maven:
 </dependencies>
 ```
 
-How to include the API with Gradle:
+Include the API with Gradle:
 ```groovy
 repositories {
 	maven { url 'https://jitpack.io' }
@@ -32,7 +32,7 @@ dependencies {
 ```
 
 
-You can also download the jar file from here: https://github.com/Angeschossen/LandsAPI/releases
+Alternatively you can download the jar file from here: https://github.com/Angeschossen/LandsAPI/releases
 
 
 ## Implementing Lands
