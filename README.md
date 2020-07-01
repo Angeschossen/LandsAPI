@@ -2,7 +2,7 @@
 [![](https://jitpack.io/v/Angeschossen/LandsAPI.svg)](https://jitpack.io/#Angeschossen/LandsAPI)
 
 
-Include the API with Maven: 
+Include the API with Mavenw: 
 ```xml
 <repositories>
 	<repository>
