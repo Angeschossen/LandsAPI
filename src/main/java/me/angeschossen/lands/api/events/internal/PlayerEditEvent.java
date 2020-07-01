@@ -10,11 +10,6 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class PlayerEditEvent extends Event implements Cancellable {
 
-
-    public PlayerEditEvent(Land land, @Nullable Area area, LandPlayer landPlayer) {
-
-    }
-
     @Nullable
     public Area getArea() {
         return null;

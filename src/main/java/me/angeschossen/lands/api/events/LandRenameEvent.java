@@ -8,7 +8,6 @@ import org.bukkit.event.HandlerList;
 public class LandRenameEvent extends Event implements Cancellable {
 
 
-
     public Land getLand() {
         return null;
     }
@@ -31,6 +30,7 @@ public class LandRenameEvent extends Event implements Cancellable {
     public boolean isCancelled() {
         return false;
     }
+
     @Override
     public void setCancelled(boolean cancelled) {
     }

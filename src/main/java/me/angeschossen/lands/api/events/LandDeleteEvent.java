@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.events;
 
 import me.angeschossen.lands.api.land.Land;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
