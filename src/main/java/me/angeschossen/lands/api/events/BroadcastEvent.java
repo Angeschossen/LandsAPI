@@ -2,24 +2,36 @@ package me.angeschossen.lands.api.events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.NotNull;
 
 
 public class BroadcastEvent extends Event {
+    public static HandlerList handlerList = new HandlerList();
 
-    @NotNull
-    public String getMessageKey() {
-        return null;
+    private final String message;
+    private final String messageKey;
+
+    public BroadcastEvent(String messageKey, String message) {
+        super(true);
+
+        this.message = message;
+        this.messageKey = messageKey;
     }
 
-    @NotNull
+    public String getMessageKey() {
+        return messageKey;
+    }
+
     public String getMessage() {
-        return null;
+        return message;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlerList;
     }
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlerList;
     }
 }
 

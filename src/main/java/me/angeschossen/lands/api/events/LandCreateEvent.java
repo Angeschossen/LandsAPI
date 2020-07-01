@@ -8,29 +8,41 @@ import org.bukkit.event.HandlerList;
 
 public class LandCreateEvent extends Event implements Cancellable {
 
+    public static HandlerList handlerList = new HandlerList();
+    private boolean cancelled;
 
+    private LandPlayer landPlayer;
+    private Land land;
+
+    public LandCreateEvent(LandPlayer landPlayer, Land land) {
+        this.land = land;
+        this.landPlayer = landPlayer;
+    }
 
     public Land getLand() {
-        return null;
+        return land;
     }
 
     public LandPlayer getLandPlayer() {
-        return null;
+        return landPlayer;
     }
 
-
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
 
     @Override
     public boolean isCancelled() {
-        return false;
+        return this.cancelled;
     }
 
     @Override
     public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
     }
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlerList;
     }
 }

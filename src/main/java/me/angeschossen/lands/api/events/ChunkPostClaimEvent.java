@@ -4,32 +4,46 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.NotNull;
 
 public class ChunkPostClaimEvent extends Event {
 
+    public static HandlerList handlerList = new HandlerList();
 
+    private LandPlayer landPlayer;
+    private final int x, z;
+    private final Land land;
 
-    @NotNull
+    public ChunkPostClaimEvent(LandPlayer landPlayer, Land land, int x, int z) {
+        super(true);
+
+        this.landPlayer = landPlayer;
+        this.land = land;
+        this.x = x;
+        this.z = z;
+    }
+
     public Land getLand() {
-        return null;
+        return land;
     }
 
     public int getZ() {
-        return 0;
+        return z;
     }
 
     public int getX() {
-        return 0;
+        return x;
     }
 
-    @NotNull
     public LandPlayer getLandPlayer() {
-        return null;
+        return landPlayer;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlerList;
     }
 
     @Override
     public HandlerList getHandlers() {
-        return null;
+        return handlerList;
     }
 }

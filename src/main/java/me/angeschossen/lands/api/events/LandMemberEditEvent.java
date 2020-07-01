@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.events.internal;
+package me.angeschossen.lands.api.events;
 
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
