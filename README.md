@@ -36,7 +36,7 @@ Alternatively you can download the jar file from here: https://github.com/Angesc
 
 
 ## Implementing Lands
-Examble:
+Example:
 
 ```
     private final LandsIntegration landsIntegration;
