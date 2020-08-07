@@ -36,6 +36,8 @@ Alternatively you can download the jar file from here: https://github.com/Angesc
 
 
 ## Implementing Lands
+Please make sure to add softdepend: [Lands] to your plugin.yml.
+
 Example:
 
 ```
