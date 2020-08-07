@@ -45,15 +45,18 @@ Example:
 
     public IntegrationExample(Plugin yourPlugin) {
 
-        // You should save this instance somewhere.
+        // you should save this instance somewhere.
         this.landsIntegration = new LandsIntegration(yourPlugin);
     }
 
-    // Just a test
+    // just a test
     void test(Location location) {
 
-    // Get a land area from a location
+    // get a land area from a location
     final Area area = landsIntegration.getAreaByLoc(location);
+    
+    // check is a location claimed
+    final boolean isClaimed = landsIntegration.isClaimed(location);
     }
 
 ```
