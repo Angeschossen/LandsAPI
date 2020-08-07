@@ -57,6 +57,7 @@ Example:
     
     // check is a location claimed
     final boolean isClaimed = landsIntegration.isClaimed(location);
+    
     }
 
 ```
