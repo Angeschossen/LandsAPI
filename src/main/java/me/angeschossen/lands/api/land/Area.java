@@ -42,4 +42,10 @@ public interface Area {
     double addTax(double tax);
 
     double getTax();
+
+    @NotNull
+    String getName();
+
+    @NotNull
+    String getColorName();
 }
