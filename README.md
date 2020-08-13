@@ -15,7 +15,7 @@ Include the API with Maven:
     <dependency>
         <groupId>com.github.angeschossen</groupId>
         <artifactId>LandsAPI</artifactId>
-        <version>4.7.3</version>
+        <version>INSERT VERSION HERE</version>
         <scope>provided</scope>
     </dependency>
 </dependencies>
@@ -27,7 +27,7 @@ repositories {
 	maven { url 'https://jitpack.io' }
 }
 dependencies {
-    compileOnly "com.github.angeschossen:LandsAPI:4.7.3"
+    compileOnly "com.github.angeschossen:LandsAPI:INSERT VERSION HERE"
 }
 ```
 
