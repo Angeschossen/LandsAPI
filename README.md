@@ -45,7 +45,7 @@ Example:
 
     public IntegrationExample(Plugin yourPlugin) {
 
-        // you should save this instance somewhere.
+        // view methods of this class: https://github.com/Angeschossen/LandsAPI/blob/4.8.17/src/main/java/me/angeschossen/lands/api/integration/LandsIntegrator.java
         this.landsIntegration = new LandsIntegration(yourPlugin);
     }
 
