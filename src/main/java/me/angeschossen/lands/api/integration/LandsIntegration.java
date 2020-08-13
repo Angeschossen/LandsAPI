@@ -8,6 +8,7 @@ import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -92,7 +93,13 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    @Deprecated
     public void disable() {
 
+    }
+
+    @Override
+    public boolean canPvP(@NotNull Player attacker, @NotNull Player target, @NotNull Location location, boolean setCombatTag, boolean sendMessage) {
+        return false;
     }
 }

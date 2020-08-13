@@ -7,6 +7,7 @@ import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -139,5 +140,20 @@ public interface LandsIntegrator {
     /**
      * Removes the hook
      */
+    @Deprecated
     void disable();
+
+    /**
+     * Check if two players can attack each other at the given location.
+     *
+     * @param attacker     The attacker
+     * @param target       The defender
+     * @param location     Location of the fight
+     * @param setCombatTag Should Lands set a combat tag at these two players, if they are allowed to fight at the given location?
+     *                     Depending on the servers configuration this will result in players beeing allowed to fight for a configured period, even if they move into a safe claim.
+     *                     This prevents players running away into their claim to escape a fight, which they have started.
+     * @param sendMessage  Should Lands send a deny message if result is false?
+     * @return This will return true, if the world is not a Lands world or the players are allowed to fight at the given location.
+     */
+    boolean canPvP(@NotNull Player attacker, @NotNull Player target, @NotNull Location location, boolean setCombatTag, boolean sendMessage);
 }
