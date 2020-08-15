@@ -8,5 +8,8 @@ public enum LandSetting {
     MONSTER_SPAWN,
     ANIMAL_SPAWN,
     WATERFLOW_ALLOW,
-    TITLE_HIDE
+    TITLE_HIDE,
+    FIRE_SPREAD,
+    LEAF_DECAY,
+    PLANT_GROWTH
 }
