@@ -5,13 +5,14 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.NationInvite;
 import me.angeschossen.lands.api.war.War;
+import me.angeschossen.lands.api.war.WarEntity;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.UUID;
 
-public interface Nation extends BalanceHolder {
+public interface Nation extends BalanceHolder, WarEntity {
 
     @NotNull String getName();
 

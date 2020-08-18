@@ -6,6 +6,7 @@ import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.player.TrustedPlayer;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.war.War;
+import me.angeschossen.lands.api.war.WarEntity;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -15,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public interface Land extends BalanceHolder {
+public interface Land extends BalanceHolder, WarEntity {
 
     @NotNull Area getDefaultArea();
 
