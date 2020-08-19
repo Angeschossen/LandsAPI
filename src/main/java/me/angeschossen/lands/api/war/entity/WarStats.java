@@ -1,7 +1,6 @@
-package me.angeschossen.lands.api.war;
+package me.angeschossen.lands.api.war.entity;
 
 public interface WarStats {
-
 
     int getWon();
 

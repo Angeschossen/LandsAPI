@@ -1,6 +1,6 @@
 package me.angeschossen.lands.api.events.war;
 
-import me.angeschossen.lands.api.war.WarEntity;
+import me.angeschossen.lands.api.war.entity.WarEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

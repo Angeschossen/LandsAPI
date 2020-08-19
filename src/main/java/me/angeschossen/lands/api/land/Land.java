@@ -6,7 +6,7 @@ import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.player.TrustedPlayer;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.war.War;
-import me.angeschossen.lands.api.war.WarEntity;
+import me.angeschossen.lands.api.war.entity.WarEntity;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -172,7 +172,7 @@ public interface Land extends BalanceHolder, WarEntity {
 
     boolean canManagement(UUID playerUUID, ManagementSetting managementSetting);
 
-    boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
+    boolean canManagement(Player player, @NotNull ManagementSetting managementSetting, boolean sendMessage);
 
     /**
      * Get trusted player.
