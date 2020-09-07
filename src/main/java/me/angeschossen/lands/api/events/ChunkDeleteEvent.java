@@ -1,26 +1,30 @@
 package me.angeschossen.lands.api.events;
 
 import me.angeschossen.lands.api.land.Land;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 public class ChunkDeleteEvent extends Event {
     public static HandlerList handlerList = new HandlerList();
-    private boolean cancelled;
-
     private final int x, z;
-    private final String world;
+    private final World world;
     private final Land land;
 
-    public ChunkDeleteEvent(String world, Land land, int x, int z) {
-        super(true);
-
+    public ChunkDeleteEvent(World world, Land land, int x, int z) {
         this.world = world;
         this.x = x;
         this.z = z;
         this.land = land;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
+    @NotNull
     public Land getLand() {
         return land;
     }
@@ -33,12 +37,14 @@ public class ChunkDeleteEvent extends Event {
         return z;
     }
 
+    @Deprecated
     public String getWorldName() {
-        return world;
+        return world.getName();
     }
 
-    public static HandlerList getHandlerList() {
-        return handlerList;
+    @NotNull
+    public World getWorld() {
+        return world;
     }
 
     @Override

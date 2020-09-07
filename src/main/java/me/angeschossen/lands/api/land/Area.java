@@ -33,15 +33,17 @@ public interface Area {
 
     boolean canSetting(Player player, RoleSetting action, boolean sendMessage);
 
-    boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
+    Land getLand();
 
-    void setTax(double rent);
+    boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
     @Nullable Invite getInvite(@NotNull UUID receiverUUID);
 
     double addTax(double tax);
 
     double getTax();
+
+    void setTax(double rent);
 
     @NotNull
     String getName();
