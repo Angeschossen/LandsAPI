@@ -11,9 +11,10 @@ public class ChunkPreClaimEvent extends Event implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private boolean cancelled;
 
-    private LandPlayer landPlayer;
-    private int x, z;
-    private String worldName;
+    private final LandPlayer landPlayer;
+    private final int x;
+    private final int z;
+    private final String worldName;
 
     public ChunkPreClaimEvent(LandPlayer landPlayer, String worldName, int x, int z) {
         super(!Bukkit.isPrimaryThread());

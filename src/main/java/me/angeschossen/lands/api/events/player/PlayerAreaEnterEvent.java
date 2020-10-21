@@ -3,7 +3,9 @@ package me.angeschossen.lands.api.events.player;
 import me.angeschossen.lands.api.events.internal.PlayerLocationAreaEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.player.LandPlayer;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -11,20 +13,24 @@ import org.jetbrains.annotations.Nullable;
  * Please note that the player must not enter from wilderness.
  * They can also enter from a different area of the same or a different land.
  */
-public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent {
+public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
-
     private final Area from;
-
+    private boolean cancelled;
     public PlayerAreaEnterEvent(@Nullable Area from, Area area, LandPlayer landPlayer) {
         super(area, landPlayer);
 
         this.from = from;
     }
 
+    public static HandlerList getHandlerList() {
+        return handlerList;
+    }
+
     /**
      * Get the area from which the player is entering from.
      * This area can be from the same or from a different land as {@link #getArea}
+     *
      * @return This method will return null if the player is entering from the wilderness.
      */
     @Nullable
@@ -32,8 +38,19 @@ public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent {
         return from;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlerList;
+    }
+
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
+    }
+
+    @Override
+    public void setCancelled(boolean b) {
+        this.cancelled = b;
     }
 }

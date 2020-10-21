@@ -73,7 +73,7 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    public @NotNull List<Land> getTopLand(@NotNull SortMode sortMode, int place) {
+    public @NotNull Land getTopLand(@NotNull SortMode sortMode, int place) {
         return null;
     }
 

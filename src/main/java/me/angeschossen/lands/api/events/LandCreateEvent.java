@@ -11,8 +11,8 @@ public class LandCreateEvent extends Event implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private boolean cancelled;
 
-    private LandPlayer landPlayer;
-    private Land land;
+    private final LandPlayer landPlayer;
+    private final Land land;
 
     public LandCreateEvent(LandPlayer landPlayer, Land land) {
         this.land = land;

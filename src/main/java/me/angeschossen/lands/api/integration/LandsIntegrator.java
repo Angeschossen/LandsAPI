@@ -109,9 +109,9 @@ public interface LandsIntegrator {
      * Get top land by sorting and place.
      * @param sortMode Sortmode
      * @param place Place
-     * @return Top lands in order
+     * @return Top land
      */
-    @NotNull List<Land> getTopLand(@NotNull SortMode sortMode, int place);
+    @NotNull Land getTopLand(@NotNull SortMode sortMode, int place);
 
     /**
      * Print top lands, same as /Lands top.
@@ -122,7 +122,7 @@ public interface LandsIntegrator {
     @NotNull List<String> printTopLands(SortMode sortMode, int page);
 
     /**
-     * Get's lands wich hooks Lands.
+     * Get's lands which hooks Lands.
      *
      * @return Plugin
      */
