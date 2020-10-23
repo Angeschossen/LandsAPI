@@ -33,6 +33,11 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    public Land getLand(int id) {
+        return null;
+    }
+
+    @Override
     public boolean isClaimed(@NotNull Location location) {
         return false;
     }

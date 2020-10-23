@@ -14,7 +14,6 @@ import org.jetbrains.annotations.Nullable;
  * They can also enter from a different area of the same or a different land.
  */
 public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent implements Cancellable {
-    public static HandlerList handlerList = new HandlerList();
     private final Area from;
     private boolean cancelled;
     public PlayerAreaEnterEvent(@Nullable Area from, Area area, LandPlayer landPlayer) {
@@ -23,9 +22,6 @@ public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent implements Can
         this.from = from;
     }
 
-    public static HandlerList getHandlerList() {
-        return handlerList;
-    }
 
     /**
      * Get the area from which the player is entering from.
@@ -36,12 +32,6 @@ public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent implements Can
     @Nullable
     public Area getFrom() {
         return from;
-    }
-
-    @NotNull
-    @Override
-    public HandlerList getHandlers() {
-        return handlerList;
     }
 
     @Override

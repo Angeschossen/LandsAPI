@@ -26,6 +26,8 @@ public interface Land extends BalanceHolder, WarEntity {
 
     void unbanPlayer(@NotNull UUID playerUID);
 
+    int getId();
+
     War getWar();
 
     /**

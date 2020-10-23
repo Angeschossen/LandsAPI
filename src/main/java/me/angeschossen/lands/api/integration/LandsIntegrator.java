@@ -37,6 +37,8 @@ public interface LandsIntegrator {
     @Nullable
     LandWorld getLandWorld(@NotNull World world);
 
+    Land getLand(int id);
+
     /**
      * Is claimed land?
      *
