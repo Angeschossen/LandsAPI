@@ -15,7 +15,8 @@ public enum RoleSetting  {
     FLY,
     SPAWN_TELEPORT,
     LAND_ENTER,
-    VEHICLE_USE;
+    VEHICLE_USE,
+    ITEM_PICKUP;
 
 
 
