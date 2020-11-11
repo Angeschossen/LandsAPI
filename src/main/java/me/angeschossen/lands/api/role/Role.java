@@ -8,23 +8,16 @@ import org.jetbrains.annotations.NotNull;
 
 public interface Role {
 
-    boolean isDeleteable();
+    @NotNull
+    ItemStack getIcon();
 
-    boolean isDefault();
+    @NotNull
+    String getName();
 
-    boolean isEntryRole();
+    @NotNull
+    String getColorName();
 
     boolean isVisitorRole();
-
-    @NotNull ItemStack getIcon();
-
-    void setIcon(@NotNull ItemStack icon);
-
-    @NotNull String getPlainName();
-
-    @NotNull String getName();
-
-    void setName(@NotNull String name);
 
     boolean toggleSetting(@NotNull RoleSetting roleSetting);
 
