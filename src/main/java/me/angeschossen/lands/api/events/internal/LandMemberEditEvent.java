@@ -13,7 +13,8 @@ import java.util.UUID;
 public abstract class LandMemberEditEvent extends Event implements Cancellable {
     private final UUID initiator, target;
     private final Land land;
-    private final @Nullable Area area;
+    private final @Nullable
+    Area area;
     private boolean cancelled;
 
     public LandMemberEditEvent(Land land, @Nullable Area area, UUID initiator, UUID target) {
@@ -47,7 +48,13 @@ public abstract class LandMemberEditEvent extends Event implements Cancellable {
     }
 
     @NotNull
+    @Deprecated
     public UUID getTruster() {
+        return getInitiator();
+    }
+
+    @NotNull
+    public UUID getInitiator() {
         return initiator;
     }
 

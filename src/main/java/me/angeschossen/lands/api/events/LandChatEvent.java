@@ -12,7 +12,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.UUID;
 
 
@@ -39,7 +38,9 @@ public class LandChatEvent extends Event implements Cancellable {
 
     @Deprecated
     public Collection<UUID> getRecipients() {
-        return Collections.emptyList();
+        Collection<UUID> uuids = new ArrayList<>();
+        recipients.forEach(r -> uuids.add(r.getUID()));
+        return uuids;
     }
 
     @NotNull
@@ -47,12 +48,10 @@ public class LandChatEvent extends Event implements Cancellable {
         return recipients;
     }
 
-    @NotNull
     public Land getLand() {
         return land;
     }
 
-    @NotNull
     public MessageSource getSource() {
         return messageSource;
     }
@@ -67,7 +66,6 @@ public class LandChatEvent extends Event implements Cancellable {
         return Bukkit.getPlayer(playerUID);
     }
 
-    @NotNull
     public String getMessage() {
         return message;
     }

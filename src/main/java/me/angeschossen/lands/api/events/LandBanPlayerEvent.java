@@ -9,10 +9,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class LandInvitePlayerEvent extends LandMemberEditEvent {
+public class LandBanPlayerEvent extends LandMemberEditEvent {
+
     public static HandlerList handlerList = new HandlerList();
 
-    public LandInvitePlayerEvent(Land land, @Nullable Area area,UUID initiator, UUID targetUUID) {
+    public LandBanPlayerEvent(Land land, @Nullable Area area, UUID initiator, UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 

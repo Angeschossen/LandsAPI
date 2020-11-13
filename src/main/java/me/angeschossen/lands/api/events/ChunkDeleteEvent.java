@@ -14,6 +14,8 @@ public class ChunkDeleteEvent extends Event {
     private final Land land;
 
     public ChunkDeleteEvent(World world, Land land, int x, int z) {
+        super(!Bukkit.isPrimaryThread());
+
         this.world = world;
         this.x = x;
         this.z = z;
