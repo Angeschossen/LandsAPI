@@ -87,13 +87,18 @@ public interface LandsIntegrator {
 
     /**
      * Get the sub or default area of the land at this location.
+     *
      * @param location Location
      * @return null, if not claimed.
      */
     @Nullable Area getAreaByLoc(@NotNull Location location);
 
+    @Nullable
+    Area getArea(@NotNull World world, int x, int y, int z);
+
     /**
      * Get top lands by sorting.
+     *
      * @param sortMode Sortmode
      * @return Top lands in order
      */
@@ -101,24 +106,27 @@ public interface LandsIntegrator {
 
     /**
      * Get top lands by sorting.
+     *
      * @param sortMode Sortmode
-     * @param page Same as /Lands top
+     * @param page     Same as /Lands top
      * @return Top lands in order
      */
     @NotNull List<Land> getTopLands(@NotNull SortMode sortMode, int page);
 
     /**
      * Get top land by sorting and place.
+     *
      * @param sortMode Sortmode
-     * @param place Place
+     * @param place    Place
      * @return Top land
      */
     @NotNull Land getTopLand(@NotNull SortMode sortMode, int place);
 
     /**
      * Print top lands, same as /Lands top.
+     *
      * @param sortMode Sortmode
-     * @param page Page
+     * @param page     Page
      * @return Top lands in order and message
      */
     @NotNull List<String> printTopLands(SortMode sortMode, int page);
