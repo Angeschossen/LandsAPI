@@ -68,6 +68,11 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    public @Nullable Area getArea(@NotNull World world, int x, int y, int z) {
+        return null;
+    }
+
+    @Override
     public @NotNull List<Land> getTopLands(SortMode sortMode) {
         return null;
     }
