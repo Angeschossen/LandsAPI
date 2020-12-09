@@ -14,22 +14,15 @@ import java.util.UUID;
 
 public interface Area {
 
-    void banPlayer(UUID uuid);
+    boolean banPlayer(UUID uuid);
 
     void unbanPlayer(UUID playerUID);
 
     boolean isBanned(@NotNull UUID playerUID);
 
+    boolean isDefault();
+
     boolean hasLandSetting(LandSetting naturalFlags);
-
-    boolean toggleLandSetting(LandSetting naturalFlags);
-
-    boolean isTrusted(UUID playerUID);
-
-    boolean canSetting(UUID playerUUID, RoleSetting roleSetting);
-
-    @NotNull
-    Role getEntryRole();
 
     @NotNull
     Role getRole(@NotNull UUID playerUID);
@@ -37,17 +30,30 @@ public interface Area {
     @NotNull
     Role getRole(@NotNull String name);
 
+    Land getLand();
+
+    @NotNull
+    Role getEntryRole();
+
+    @NotNull
+    Role getVisitorRole();
+
+    boolean toggleLandSetting(LandSetting naturalFlags);
+
+    boolean isTrusted(UUID playerUID);
+
+    boolean canSetting(UUID playerUUID, RoleSetting roleSetting);
+
     boolean canManagement(UUID playerUUID, ManagementSetting managementSetting);
 
     boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
 
     boolean canSetting(Player player, RoleSetting action, boolean sendMessage);
 
-    Land getLand();
-
     boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
-    @Nullable Invite getInvite(@NotNull UUID receiverUUID);
+    @Nullable
+    Invite getInvite(@NotNull UUID receiverUUID);
 
     double addTax(double tax);
 
