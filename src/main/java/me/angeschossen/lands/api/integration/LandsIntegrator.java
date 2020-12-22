@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -84,6 +85,9 @@ public interface LandsIntegrator {
      * @return Land or null if wilderness
      */
     @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ);
+
+    @NotNull
+    Collection<Land> getLands();
 
     /**
      * Get the sub or default area of the land at this location.

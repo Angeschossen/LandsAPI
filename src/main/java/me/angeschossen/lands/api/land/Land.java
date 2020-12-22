@@ -30,6 +30,12 @@ public interface Land extends BalanceHolder, WarEntity {
 
     War getWar();
 
+    @Nullable
+    Collection<ChunkCoordinate> getChunks(@NotNull World world);
+
+    @Nullable
+    Collection<LandArea> getSubAreas(@NotNull World world);
+
     /**
      * Get upkeep costs
      *

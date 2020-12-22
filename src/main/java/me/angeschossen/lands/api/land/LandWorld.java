@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
+
 public interface LandWorld {
 
 
@@ -23,6 +25,9 @@ public interface LandWorld {
      * @return Result
      */
     boolean canWildernessSetting(@NotNull Player player, @NotNull RoleSetting roleSetting, boolean sendMessage);
+
+    @NotNull
+    Collection<Land> getLands();
 
     /**
      * Check can execute action in wilderness

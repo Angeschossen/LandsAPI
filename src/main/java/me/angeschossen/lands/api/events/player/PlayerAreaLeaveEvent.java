@@ -4,7 +4,6 @@ import me.angeschossen.lands.api.events.internal.PlayerLocationAreaEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.HandlerList;
 
 /**
  * This event is called when a player leaves a area into wilderness.

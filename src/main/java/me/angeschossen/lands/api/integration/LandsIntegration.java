@@ -13,6 +13,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -59,6 +60,11 @@ public class LandsIntegration implements LandsIntegrator {
 
     @Override
     public @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ) {
+        return null;
+    }
+
+    @Override
+    public @NotNull Collection<Land> getLands() {
         return null;
     }
 
