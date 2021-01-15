@@ -24,6 +24,14 @@ public interface Land extends BalanceHolder, WarEntity {
 
     void banPlayer(@NotNull UUID playerUID);
 
+    /**
+     * Delete this land
+     *
+     * @param deleter If you provide the deleter of the land, Lands will send the bank balance
+     *                and cashback (from config) to the deleters economy account.
+     */
+    void delete(@Nullable Player deleter);
+
     void unbanPlayer(@NotNull UUID playerUID);
 
     int getId();
