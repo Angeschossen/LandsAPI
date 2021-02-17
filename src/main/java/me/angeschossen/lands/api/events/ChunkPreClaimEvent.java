@@ -1,25 +1,27 @@
 package me.angeschossen.lands.api.events;
 
+import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 public class ChunkPreClaimEvent extends Event implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
+    private final LandPlayer landPlayer;
+    private final int x;
+    private final int z;
+    private final LandWorld world;
     private boolean cancelled;
 
-    private LandPlayer landPlayer;
-    private int x, z;
-    private String worldName;
-
-    public ChunkPreClaimEvent(LandPlayer landPlayer, String worldName, int x, int z) {
+    public ChunkPreClaimEvent(LandPlayer landPlayer, LandWorld world, int x, int z) {
         super(!Bukkit.isPrimaryThread());
 
         this.landPlayer = landPlayer;
-        this.worldName = worldName;
+        this.world = world;
         this.x = x;
         this.z = z;
     }
@@ -36,10 +38,17 @@ public class ChunkPreClaimEvent extends Event implements Cancellable {
         return z;
     }
 
+    @NotNull
     public String getWorldName() {
-        return worldName;
+        return world.getName();
     }
 
+    @NotNull
+    public LandWorld getWorld() {
+        return world;
+    }
+
+    @NotNull
     public LandPlayer getLandPlayer() {
         return landPlayer;
     }
