@@ -3,8 +3,10 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.holders.BalanceHolder;
+import me.angeschossen.lands.api.inbox.InboxMessage;
 import me.angeschossen.lands.api.player.TrustedPlayer;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
+import me.angeschossen.lands.api.role.enums.RoleSetting;
 import me.angeschossen.lands.api.war.War;
 import me.angeschossen.lands.api.war.entity.WarEntity;
 import org.bukkit.Location;
@@ -14,15 +16,16 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public interface Land extends BalanceHolder, WarEntity {
 
-    @NotNull Area getDefaultArea();
+    @NotNull
+    List<? extends InboxMessage> getInbox();
 
-    boolean hasArea(@NotNull String name);
-
-    void banPlayer(@NotNull UUID playerUID);
+    @NotNull
+    Area getDefaultArea();
 
     /**
      * Delete this land
@@ -32,26 +35,43 @@ public interface Land extends BalanceHolder, WarEntity {
      */
     void delete(@Nullable Player deleter);
 
-    void unbanPlayer(@NotNull UUID playerUID);
-
-    int getId();
-
-    War getWar();
-
     @Nullable
     Collection<ChunkCoordinate> getChunks(@NotNull World world);
 
     @Nullable
     Collection<LandArea> getSubAreas(@NotNull World world);
 
+    boolean hasArea(@NotNull String name);
+
+    boolean banPlayer(@NotNull UUID playerUID);
+
+    void unbanPlayer(@NotNull UUID playerUID);
+
+    @Deprecated
+    boolean canSetting(Player player, RoleSetting roleSetting);
+
+    /**
+     * Get the identification of this land.
+     * This is independent of the land name.
+     *
+     * @return Numerical ID
+     */
+    int getId();
+
+    @Deprecated
+    boolean canSetting(UUID uuid, RoleSetting roleSetting);
+
+    War getWar();
+
     /**
      * Get upkeep costs
      *
      * @return Upkeep costs
      */
-    double getUpkeepCosts(boolean countNation);
+    double getUpkeepCosts();
 
-    @NotNull String getColorName();
+    @NotNull
+    String getColorName();
 
     /**
      * Get name of the land
@@ -66,8 +86,9 @@ public interface Land extends BalanceHolder, WarEntity {
      * Set name of land
      *
      * @param name New name
+     * @return
      */
-    void setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
+    boolean setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
 
     /**
      * Send message to online players of this land.
@@ -155,9 +176,9 @@ public interface Land extends BalanceHolder, WarEntity {
     /**
      * Set title message.
      *
-     * @param title Message
+     * @param title If title is null, it will set the default title instead.
      */
-    void setTitleMessage(@NotNull String title);
+    void setTitleMessage(@Nullable String title);
 
     /**
      * Set an new owner for land
@@ -176,6 +197,7 @@ public interface Land extends BalanceHolder, WarEntity {
      */
     boolean hasChunk(@NotNull World world, int x, int z);
 
+    @Deprecated
     boolean isTrusted(@NotNull UUID playerUID);
 
     /**
@@ -188,7 +210,7 @@ public interface Land extends BalanceHolder, WarEntity {
 
     boolean canManagement(UUID playerUUID, ManagementSetting managementSetting);
 
-    boolean canManagement(Player player, @NotNull ManagementSetting managementSetting, boolean sendMessage);
+    boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
     /**
      * Get trusted player.
