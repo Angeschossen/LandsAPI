@@ -86,6 +86,8 @@ public interface LandsIntegrator {
      */
     @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ);
 
+    @NotNull SortMode getDefaultTopSortMode();
+
     @NotNull
     Collection<Land> getLands();
 

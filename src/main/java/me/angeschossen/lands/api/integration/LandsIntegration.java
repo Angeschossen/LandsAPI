@@ -64,6 +64,12 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    @NotNull
+    public SortMode getDefaultTopSortMode() {
+        return null;
+    }
+
+    @Override
     public @NotNull Collection<Land> getLands() {
         return null;
     }
@@ -94,6 +100,7 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    @Deprecated
     public @NotNull List<String> printTopLands(SortMode sortMode, int page) {
         return null;
     }
