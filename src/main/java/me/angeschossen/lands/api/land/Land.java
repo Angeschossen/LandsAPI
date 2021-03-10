@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.holders.BalanceHolder;
+import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;
 import me.angeschossen.lands.api.player.TrustedPlayer;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
@@ -23,6 +24,9 @@ public interface Land extends BalanceHolder, WarEntity {
 
     @NotNull
     List<? extends InboxMessage> getInbox();
+
+    @NotNull
+    List<? extends InboxMessage> getInbox(InboxCategory category);
 
     @NotNull
     Area getDefaultArea();
