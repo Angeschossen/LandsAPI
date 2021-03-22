@@ -5,6 +5,7 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
+import me.angeschossen.lands.api.player.OfflinePlayer;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -14,7 +15,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 
 public interface LandsIntegrator {
@@ -75,6 +78,15 @@ public interface LandsIntegrator {
      * @return Land or null if wilderness
      */
     @Nullable Land getLand(@NotNull Location location);
+
+    /**
+     * Get data of players that are offline.
+     * If the target is online, it will return the online player dataset instead.
+     * @param playerUID UID of the target.
+     * @return null, if the player does not have any saved data.
+     */
+    @NotNull
+    CompletableFuture<OfflinePlayer> getOfflineLandPlayer(@NotNull UUID playerUID);
 
     /**
      * Get land
