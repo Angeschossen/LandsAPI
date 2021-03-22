@@ -6,6 +6,7 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
+import me.angeschossen.lands.api.player.OfflinePlayer;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -16,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 
 public class LandsIntegration implements LandsIntegrator {
@@ -55,6 +57,11 @@ public class LandsIntegration implements LandsIntegrator {
 
     @Override
     public @Nullable Land getLand(@NotNull Location location) {
+        return null;
+    }
+
+    @Override
+    public @NotNull CompletableFuture<OfflinePlayer> getOfflineLandPlayer(@NotNull UUID playerUID) {
         return null;
     }
 
