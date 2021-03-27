@@ -212,8 +212,10 @@ public interface Land extends BalanceHolder, WarEntity {
     @NotNull
     Collection<Player> getOnlinePlayers();
 
+    @Deprecated
     boolean canManagement(UUID playerUUID, ManagementSetting managementSetting);
 
+    @Deprecated
     boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
     /**

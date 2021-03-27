@@ -10,8 +10,11 @@ public interface LandArea extends Area {
     @Nullable
     World getWorld();
 
+    boolean contains(int x, int y, int z);
+
     /**
      * Get the bounding box of the sub area.
+     *
      * @return Will return null if the area is not setup {@link #isSetup()}.
      */
     @Nullable

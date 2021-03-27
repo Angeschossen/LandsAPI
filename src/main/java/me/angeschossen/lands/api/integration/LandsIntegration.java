@@ -1,8 +1,12 @@
 package me.angeschossen.lands.api.integration;
 
 
+import me.angeschossen.lands.api.exceptions.FlagConflictException;
+import me.angeschossen.lands.api.flags.Flag;
+import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -26,6 +30,16 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    public @NotNull FlagRegistry getFlagRegistry() {
+        return null;
+    }
+
+    @Override
+    public Flag registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException {
+        return null;
+    }
+
+    @Override
     public @Nullable LandPlayer getLandPlayer(@NotNull UUID playerUUID) {
         return null;
     }
@@ -46,8 +60,23 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    public CompletableFuture<Boolean> isClaimed(@NotNull String worldName, int chunkX, int chunkZ) {
+        return null;
+    }
+
+    @Override
     public boolean isClaimed(@NotNull World world, int chunkX, int chunkZ) {
         return false;
+    }
+
+    @Override
+    public Land getLand(@NotNull String worldName, @NotNull String landName) {
+        return null;
+    }
+
+    @Override
+    public LandWorld getLandWorld(@NotNull String worldName) {
+        return null;
     }
 
     @Override
@@ -78,6 +107,11 @@ public class LandsIntegration implements LandsIntegrator {
 
     @Override
     public @NotNull Collection<Land> getLands() {
+        return null;
+    }
+
+    @Override
+    public @Nullable LandArea getArea(@NotNull Location location) {
         return null;
     }
 
@@ -126,6 +160,31 @@ public class LandsIntegration implements LandsIntegrator {
     @Deprecated
     public void disable() {
 
+    }
+
+    @Override
+    public void disable(@Nullable String hookKey) {
+
+    }
+
+    @Override
+    public @NotNull String initialize() {
+        return null;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
+
+    @Override
+    public boolean getAccess(@NotNull String hookKey) {
+        return false;
+    }
+
+    @Override
+    public boolean isPublic() {
+        return false;
     }
 
     @Override

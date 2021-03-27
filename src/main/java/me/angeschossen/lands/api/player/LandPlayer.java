@@ -48,7 +48,7 @@ public interface LandPlayer {
      *
      * @return Will return null if player is offline.
      */
-    @Nullable
+    @NotNull
     Player getPlayer();
 
     /**
@@ -76,8 +76,10 @@ public interface LandPlayer {
     @Nullable
     Land getLand(@NotNull String landName);
 
+    @Deprecated
     Land getAccessActionLand(ManagementSetting landsAction);
 
+    @Deprecated
     Land getAccessActionLand(ManagementSetting landsAction, LandGetMode landGetMode, boolean sendMessage);
 
     /**

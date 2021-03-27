@@ -2,18 +2,18 @@ package me.angeschossen.lands.api.land;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.util.UUID;
-
 public interface TaxHolder {
 
-    void setTax(double tax);
+    void setTax(double taxes);
 
     double addTax(double value);
 
 
     double getTax();
 
-    double getEstimatedTaxRevenue(@Nullable UUID playerUID);
-
     String getName();
+
+    String getColorName();
+
+    double getEstimatedTaxRevenue(@Nullable Object self,boolean assumeTrusted, boolean before);
 }

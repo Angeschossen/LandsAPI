@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 
 public interface ChunkCoordinate {
 
+    boolean equals(int x, int z);
+
     /**
      * Get world
      *
@@ -18,7 +20,6 @@ public interface ChunkCoordinate {
      *
      * @return Block x
      */
-    @NotNull
     int getBlockX();
 
 
@@ -27,7 +28,6 @@ public interface ChunkCoordinate {
      *
      * @return Block z
      */
-    @NotNull
     int getBlockZ();
 
     /**
@@ -35,7 +35,6 @@ public interface ChunkCoordinate {
      *
      * @return Chunk x
      */
-    @NotNull
     int getX();
 
     /**
@@ -43,7 +42,6 @@ public interface ChunkCoordinate {
      *
      * @return Chunk z
      */
-    @NotNull
     int getZ();
 
     /**
@@ -54,6 +52,5 @@ public interface ChunkCoordinate {
      * @param z         Chunk z
      * @return Will return false if not all parameters match.
      */
-    @NotNull
-    boolean equals(@NotNull String worldName, @NotNull int x, @NotNull int z);
+    boolean equals(@NotNull String worldName,  int x, int z);
 }

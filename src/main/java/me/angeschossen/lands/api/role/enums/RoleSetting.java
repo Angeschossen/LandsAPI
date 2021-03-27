@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.role.enums;
 
-public enum RoleSetting  {
+@Deprecated
+public enum RoleSetting {
 
     BLOCK_BREAK,
     BLOCK_PLACE,
@@ -17,9 +18,6 @@ public enum RoleSetting  {
     LAND_ENTER,
     VEHICLE_USE,
     ITEM_PICKUP;
-
-
-
 
 
     public String getBypassPermission() {

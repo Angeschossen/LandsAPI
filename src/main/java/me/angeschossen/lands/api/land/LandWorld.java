@@ -1,5 +1,7 @@
 package me.angeschossen.lands.api.land;
 
+import me.angeschossen.lands.api.flags.types.LandFlag;
+import me.angeschossen.lands.api.flags.types.RoleFlag;
 import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
 import org.bukkit.Location;
@@ -9,12 +11,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collection;
-
 public interface LandWorld {
-
-
-    @Nullable Land getLand(int x, int z);
 
     /**
      * Check can execute action in wilderness
@@ -24,10 +21,10 @@ public interface LandWorld {
      * @param sendMessage Send deny message?
      * @return Result
      */
-    boolean canWildernessSetting(@NotNull Player player, @NotNull RoleSetting roleSetting, boolean sendMessage);
+    @Deprecated
+    boolean canWildernessSetting(@NotNull Player player, @NotNull Location location, @NotNull RoleSetting roleSetting, boolean sendMessage);
 
-    @NotNull
-    Collection<Land> getLands();
+    boolean hasWildernessFlag(@NotNull Player player, @NotNull Location location, @NotNull RoleFlag roleFlag, boolean sendMessage);
 
     /**
      * Check can execute action in wilderness
@@ -36,14 +33,27 @@ public interface LandWorld {
      * @param landsAction Setting
      * @return Result
      */
+    @Deprecated
     boolean canActionWithResponse(@NotNull Player player, @NotNull Location location, RoleSetting landsAction);
 
-    @Nullable Area getArea(Location location);
+    @Nullable
+    Area getArea(Location location);
 
+    @Nullable
+    Land getLand(int x, int z);
+
+    @Nullable
+    Area getArea(int x, int y, int z);
+
+    @Deprecated
     boolean canActionWithResponse(@NotNull Player player, @NotNull Location location, @Nullable Material material, RoleSetting landsAction);
 
+    @Deprecated
     boolean hasLandSetting(@NotNull Location location, @NotNull LandSetting naturalFlags);
 
+    boolean hasFlag(@NotNull Location location, @NotNull LandFlag flag);
+
+    @Deprecated
     boolean canAction(@NotNull Player player, @NotNull Location location, @NotNull RoleSetting landsAction);
 
     /**
@@ -54,7 +64,10 @@ public interface LandWorld {
      * @param landsAction Action
      * @return Will return false if he can't do this.
      */
+    @Deprecated
     boolean canAction(@NotNull Player player, @NotNull Location location, @Nullable Material material, @NotNull RoleSetting landsAction);
+
+    boolean hasFlag(@NotNull Player player, @NotNull Location location, @Nullable Material material, @NotNull RoleFlag flag, boolean sendMessage);
 
     /**
      * Get name of world.
@@ -72,9 +85,6 @@ public interface LandWorld {
     @NotNull
     World getWorld();
 
-    @Nullable
-    Land getLand(String name);
-
     /**
      * Is landChunk loaded?
      *
@@ -82,5 +92,5 @@ public interface LandWorld {
      * @param z Z identifier
      * @return Loaded
      */
-    boolean isChunkLoaded( int x, int z);
+    boolean isChunkLoaded(int x, int z);
 }

@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.land.enums;
 
 
+@Deprecated
 public enum LandSetting {
     ENTITY_GRIEFING,
     TNT_GRIEFING,
