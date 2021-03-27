@@ -57,11 +57,6 @@ public abstract class Flag {
     }
 
     @NotNull
-    public Flag setDisplay(boolean display) {
-        return this;
-    }
-
-    @NotNull
     public String getDisplayName() {
         return null;
     }
