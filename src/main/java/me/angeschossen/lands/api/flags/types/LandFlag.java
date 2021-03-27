@@ -6,6 +6,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class LandFlag extends Flag {
 
+    /**
+     *
+     * @param plugin Your plugin.
+     * @param name The name of the flag.
+     * @param applyInSubAreas Should this flag also be available in sub areas, not just the land in general?
+     * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
+     */
     public LandFlag(@NotNull Plugin plugin, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
         super(plugin, name, applyInSubAreas, alwaysAllowInWilderness);
     }
