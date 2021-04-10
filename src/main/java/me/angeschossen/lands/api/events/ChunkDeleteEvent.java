@@ -21,7 +21,7 @@ public class ChunkDeleteEvent extends Event implements Cancellable {
     LandPlayer landPlayer;
     private boolean cancelled;
 
-    public ChunkDeleteEvent(@Nullable LandPlayer landPlayer, DeleteReason reason, World world, Land land, int x, int z) {
+    public ChunkDeleteEvent(@Nullable LandPlayer landPlayer,@NotNull DeleteReason reason,@NotNull World world,@NotNull Land land, int x, int z) {
         super(!Bukkit.isPrimaryThread());
 
         this.world = world;
