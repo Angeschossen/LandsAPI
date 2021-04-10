@@ -1,6 +1,8 @@
 package me.angeschossen.lands.api.events;
 
+import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
@@ -13,13 +15,13 @@ public class LandDeleteEvent extends Event implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
     private final Land land;
-    private final Reason reason;
+    private final DeleteReason reason;
     private final @Nullable
-    CommandSender deleter;
+    LandPlayer deleter;
     private boolean cancelled;
 
 
-    public LandDeleteEvent(Land land, Reason reason, @Nullable CommandSender deleter) {
+    public LandDeleteEvent(Land land, DeleteReason reason, @Nullable LandPlayer deleter) {
         super(!Bukkit.isPrimaryThread());
 
         this.land = land;
@@ -37,7 +39,7 @@ public class LandDeleteEvent extends Event implements Cancellable {
     }
 
     @NotNull
-    public Reason getReason() {
+    public DeleteReason getReason() {
         return reason;
     }
 
@@ -47,12 +49,21 @@ public class LandDeleteEvent extends Event implements Cancellable {
     }
 
     @Override
-    public void setCancelled(boolean cancelled) {
+    public void setCancelled(boolean cancelled) throws IllegalStateException {
+        if (cancelled && reason == DeleteReason.ADMIN) {
+            throw new IllegalStateException("Can't cancel event with reason 'ADMIN'");
+        }
+
         this.cancelled = cancelled;
     }
 
     @Nullable
     public CommandSender getDeleter() {
+        return deleter == null ? null : deleter.getPlayer();
+    }
+
+    @Nullable
+    public LandPlayer getLandPlayer() {
         return deleter;
     }
 
@@ -61,7 +72,4 @@ public class LandDeleteEvent extends Event implements Cancellable {
         return handlerList;
     }
 
-    public enum Reason {
-        COMMAND, INACTIVITY
-    }
 }
