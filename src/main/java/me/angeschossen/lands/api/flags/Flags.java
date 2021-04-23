@@ -54,9 +54,6 @@ public  class Flags {
     public static  LandFlag PLANT_GROWTH;
     public static  LandFlag SNOW_MELT;
 
-    // nation
-    public static  RoleFlag NATION_EDIT;
-
     private Flags() {
     }
 

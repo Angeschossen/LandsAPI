@@ -1,15 +1,14 @@
 package me.angeschossen.lands.api.land;
 
+import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
-import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;
 import me.angeschossen.lands.api.player.TrustedPlayer;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
 import me.angeschossen.lands.api.war.War;
-import me.angeschossen.lands.api.war.entity.WarEntity;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -20,7 +19,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-public interface Land extends BalanceHolder, WarEntity {
+public interface Land extends MemberHolder {
 
     @NotNull
     List<? extends InboxMessage> getInbox();

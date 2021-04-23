@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events;
 
+import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Bukkit;
@@ -19,13 +20,13 @@ public class LandChatEvent extends Event implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private final String message;
     private final UUID playerUID;
-    private final Land land;
     private final Collection<LandPlayer> recipients;
     private final MessageSource messageSource;
+    private final MemberHolder memberHolder;
     private boolean cancelled;
 
-    public LandChatEvent(Land land, UUID playerUID, Collection<LandPlayer> recipients, String message, MessageSource messageSource) {
-        this.land = land;
+    public LandChatEvent(MemberHolder memberHolder, UUID playerUID, Collection<LandPlayer> recipients, String message, MessageSource messageSource) {
+        this.memberHolder = memberHolder;
         this.playerUID = playerUID;
         this.message = message;
         this.recipients = recipients;
@@ -48,8 +49,15 @@ public class LandChatEvent extends Event implements Cancellable {
         return recipients;
     }
 
+    @Deprecated
+    @Nullable
     public Land getLand() {
-        return land;
+        return memberHolder instanceof Land ? (Land) memberHolder : null;
+    }
+
+    @NotNull
+    public MemberHolder getMemberHolder() {
+        return memberHolder;
     }
 
     public MessageSource getSource() {
@@ -87,7 +95,7 @@ public class LandChatEvent extends Event implements Cancellable {
 
     @Override
     public String toString() {
-        return "Sender: " + getSenderUID().toString() + " Land: " + land.getName();
+        return "Sender: " + getSenderUID() + " MemberHolder: " + memberHolder.getName();
     }
 
     public enum MessageSource {
