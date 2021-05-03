@@ -6,7 +6,9 @@ public interface InboxMessage {
 
     long getTime();
 
-    String getMessage();
+    String getText();
+
+    String getTextWithDate();
 
     boolean appliesToFilter(InboxCategory type);
 }
