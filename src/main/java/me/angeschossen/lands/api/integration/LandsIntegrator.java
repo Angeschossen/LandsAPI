@@ -8,6 +8,7 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
+import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
 import org.bukkit.Location;
@@ -30,6 +31,10 @@ public interface LandsIntegrator {
      * @return The flag registry
      */
     @NotNull FlagRegistry getFlagRegistry();
+
+    @Nullable Nation getNation(String name);
+
+    @Nullable Nation getNation(int id);
 
     /**
      * Register your owns flags into Lands. They will also be toggleable in the GUI menus if you set display to true.

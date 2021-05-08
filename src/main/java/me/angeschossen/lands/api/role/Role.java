@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.role;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
+import me.angeschossen.lands.api.role.enums.RoleType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
@@ -13,6 +14,8 @@ public interface Role {
     ItemStack getIcon();
 
     void setIcon(@NotNull ItemStack icon);
+
+    RoleType getType();
 
     @NotNull
     String getName();

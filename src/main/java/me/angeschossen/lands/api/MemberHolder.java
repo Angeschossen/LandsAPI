@@ -2,7 +2,10 @@ package me.angeschossen.lands.api;
 
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.holders.BalanceHolder;
+import me.angeschossen.lands.api.inbox.InboxCategory;
+import me.angeschossen.lands.api.inbox.InboxMessage;
 import me.angeschossen.lands.api.player.LandPlayer;
+import me.angeschossen.lands.api.war.War;
 import me.angeschossen.lands.api.war.entity.WarStats;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 import org.bukkit.entity.Player;
@@ -11,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public interface MemberHolder extends BalanceHolder {
@@ -19,6 +23,23 @@ public interface MemberHolder extends BalanceHolder {
 
     @NotNull
     String getColorName();
+
+    @NotNull
+    java.util.List<? extends InboxMessage> getInbox();
+
+    @NotNull
+    List<? extends InboxMessage> getInbox(InboxCategory category);
+
+    /**
+     * Get all trusted players
+     *
+     * @return Trusted players
+     */
+    @NotNull
+    Collection<UUID> getTrustedPlayers();
+
+    @Nullable
+    War getWar();
 
     @Nullable
     Color getWebMapColor();
@@ -36,21 +57,6 @@ public interface MemberHolder extends BalanceHolder {
 
     int getId();
 
-    HolderType getType();
-
-    @Nullable
-    WarTeam getWarTeam();
-
-    boolean leaveWar();
-
-    void addWarShield(long seconds);
-
-    boolean hasWarShield();
-
-    long getWarShield();
-
-    boolean hasWarEntity(@NotNull MemberHolder entity);
-
     boolean exists();
 
     /**
@@ -60,6 +66,21 @@ public interface MemberHolder extends BalanceHolder {
      * @param message    Message
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
+
+    HolderType getType();
+
+    @Nullable
+    WarTeam getWarTeam();
+
+    boolean leaveWar();
+
+    void addWarshield(long seconds);
+
+    boolean hasWarshield();
+
+    long getWarshield();
+
+    boolean hasWarEntity(@NotNull MemberHolder entity);
 
     boolean isInWar();
 

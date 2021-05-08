@@ -3,8 +3,6 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
-import me.angeschossen.lands.api.inbox.InboxCategory;
-import me.angeschossen.lands.api.inbox.InboxMessage;
 import me.angeschossen.lands.api.player.TrustedPlayer;
 import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.role.enums.RoleSetting;
@@ -16,16 +14,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
 public interface Land extends MemberHolder {
-
-    @NotNull
-    List<? extends InboxMessage> getInbox();
-
-    @NotNull
-    List<? extends InboxMessage> getInbox(InboxCategory category);
 
     @NotNull
     Area getDefaultArea();

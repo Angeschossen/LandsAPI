@@ -9,6 +9,7 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
+import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
 import org.bukkit.Location;
@@ -31,6 +32,18 @@ public class LandsIntegration implements LandsIntegrator {
 
     @Override
     public @NotNull FlagRegistry getFlagRegistry() {
+        return null;
+    }
+
+    @Nullable
+    @Override
+    public Nation getNation(@NotNull String name) {
+return null;
+    }
+
+    @Override
+    @Nullable
+    public Nation getNation(int id) {
         return null;
     }
 
