@@ -5,7 +5,6 @@ import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.nation.Nation;
@@ -70,9 +69,6 @@ public interface LandsIntegrator {
      */
     boolean isClaimed(@NotNull Location location);
 
-    @Deprecated
-    CompletableFuture<Boolean> isClaimed(@NotNull String worldName, int chunkX, int chunkZ);
-
     /**
      * Is claimed?
      *
@@ -83,28 +79,8 @@ public interface LandsIntegrator {
      */
     boolean isClaimed(@NotNull World world, int chunkX, int chunkZ);
 
-    /**
-     * Get land.
-     *
-     * @param worldName Name of world, where land is located
-     * @param landName  Name or displayname of land
-     * @return Land or null, if not exists.
-     * @since 2.5.7
-     */
-    @Deprecated
-    Land getLand(@NotNull String worldName, @NotNull String landName);
-
     @NotNull
     CompletableFuture<OfflinePlayer> getOfflineLandPlayer(@NotNull UUID playerUID);
-
-    /**
-     * Get landWorld.
-     *
-     * @param worldName Name of world.
-     * @return LandWorld or null, if it's not an landWorld.
-     */
-    @Deprecated
-    LandWorld getLandWorld(@NotNull String worldName);
 
     Land getLand(int id);
 
@@ -144,17 +120,6 @@ public interface LandsIntegrator {
 
     @NotNull
     Collection<Land> getLands();
-
-    /**
-     * Get the sub area of the land at this location. This does not include the default area.
-     * It is recommended to use {@link #getAreaByLoc(Location)} instead, if you want to cover the default area too.
-     *
-     * @param location Location
-     * @return null, if not claimed or the area is not a sub area (default area)
-     */
-    @Deprecated
-    @Nullable
-    LandArea getArea(@NotNull Location location);
 
     @Nullable
     Area getArea(@NotNull World world, int x, int y, int z);
@@ -229,36 +194,11 @@ public interface LandsIntegrator {
     void disable();
 
     /**
-     * Not needed anymore.
-     */
-    @Deprecated
-    void disable(@Nullable String hookKey);
-
-    /**
-     * This method is not longer needed.
-     */
-    @NotNull
-    @Deprecated
-    String initialize();
-
-    /**
      * Check if hook is enabled.
      *
      * @return Status
      */
     boolean isEnabled();
-
-    /**
-     * This method is no longer needed.
-     */
-    @Deprecated
-    boolean getAccess(@NotNull String hookKey);
-
-    /**
-     * This method is no longer needed.
-     */
-    @Deprecated
-    boolean isPublic();
 
     @NotNull
     SortMode getDefaultTopSortMode();

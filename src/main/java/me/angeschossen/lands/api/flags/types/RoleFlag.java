@@ -26,11 +26,6 @@ public class RoleFlag extends Flag {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
     }
 
-    @Deprecated
-    public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
-        super(plugin, Target.PLAYER, name, applyInSubAreas, alwaysAllowInWilderness);
-    }
-
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
         this(plugin, Target.PLAYER, category, name, applyInSubAreas, alwaysAllowInWilderness, role -> true);
     }

@@ -17,11 +17,6 @@ public class LandFlag extends Flag {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
     }
 
-    @Deprecated
-    public LandFlag(@NotNull Plugin plugin, @NotNull String name, boolean applyInSubAreas) {
-        this(plugin, Target.PLAYER, name, applyInSubAreas, false);
-    }
-
     public LandFlag(@NotNull Plugin plugin, @NotNull String name) {
         this(plugin, Target.PLAYER, name, true, false);
     }

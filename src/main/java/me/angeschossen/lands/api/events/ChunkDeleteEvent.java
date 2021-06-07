@@ -59,11 +59,6 @@ public class ChunkDeleteEvent extends Event implements Cancellable {
         return z;
     }
 
-    @Deprecated
-    public String getWorldName() {
-        return world.getName();
-    }
-
     @NotNull
     public World getWorld() {
         return world;

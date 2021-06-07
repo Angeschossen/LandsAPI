@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.flags.types.LandFlag;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
-import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.Role;
@@ -26,9 +25,6 @@ public interface Area {
 
     boolean isDefault();
 
-    @Deprecated
-    boolean hasLandSetting(LandSetting naturalFlags);
-
     boolean hasFlag(@NotNull LandFlag flag);
 
     @NotNull
@@ -44,9 +40,6 @@ public interface Area {
 
     @NotNull
     Role getVisitorRole();
-
-    @Deprecated
-    boolean toggleLandSetting(LandSetting naturalFlags);
 
     boolean isTrusted(UUID playerUID);
 

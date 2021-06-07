@@ -171,9 +171,6 @@ public interface Land extends MemberHolder {
      */
     boolean hasChunk(@NotNull World world, int x, int z);
 
-    @Deprecated
-    boolean isTrusted(@NotNull UUID playerUID);
-
     /**
      * Get a collection of all online land members
      *
