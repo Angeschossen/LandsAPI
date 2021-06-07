@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent implements Cancellable {
     private final Area from;
     private boolean cancelled;
+
     public PlayerAreaEnterEvent(@Nullable Area from, Area area, LandPlayer landPlayer) {
         super(area, landPlayer);
 
@@ -40,5 +41,10 @@ public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent implements Can
     @Override
     public void setCancelled(boolean b) {
         this.cancelled = b;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerAreaEnterEvent{player=" + landPlayer.getPlayer() + "}";
     }
 }

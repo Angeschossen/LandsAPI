@@ -7,8 +7,7 @@ public interface TaxHolder {
     void setTax(double taxes);
 
     double addTax(double value);
-
-
+    
     double getTax();
 
     String getName();

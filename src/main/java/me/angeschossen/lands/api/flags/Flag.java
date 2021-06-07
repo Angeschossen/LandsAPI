@@ -10,8 +10,7 @@ import java.util.List;
 public abstract class Flag {
 
 
-    public Flag(@NotNull Plugin plugin, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
-
+    public Flag(@NotNull Plugin plugin, @NotNull Flag.Target target, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
     }
 
     @NotNull
@@ -19,14 +18,19 @@ public abstract class Flag {
         return null;
     }
 
-    @Nullable
+    @NotNull
     public final ItemStack getIcon() {
         return null;
     }
 
     @NotNull
-    public Flag setIcon(@NotNull ItemStack icon) {
+    public Flag setIcon(@Nullable ItemStack icon) {
         return this;
+    }
+
+    @NotNull
+    public final ItemStack getIconEnabled() {
+        return null;
     }
 
     public final boolean isDisplayInWild() {
@@ -41,10 +45,14 @@ public abstract class Flag {
         return false;
     }
 
-
     @Nullable
     public final List<String> getDescription() {
         return null;
+    }
+
+    @NotNull
+    public Flag setDescription(@Nullable List<String> description) {
+        return this;
     }
 
     @NotNull
@@ -54,6 +62,11 @@ public abstract class Flag {
 
     public boolean isDisplay() {
         return false;
+    }
+
+    @NotNull
+    public Flag setDisplay(boolean display) {
+        return this;
     }
 
     @NotNull
@@ -86,14 +99,15 @@ public abstract class Flag {
     @NotNull
     public abstract Module getModule();
 
-    @NotNull
-    public abstract Type getType();
+    public final @NotNull Target getTarget() {
+        return null;
+    }
+
+    public enum Target {
+        PLAYER, ADMIN
+    }
 
     public enum Module {
         LAND, WAR, NATION
-    }
-
-    public enum Type {
-        ROLE, LAND
     }
 }

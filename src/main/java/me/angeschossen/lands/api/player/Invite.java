@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.player;
 
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.land.LandArea;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,7 +36,7 @@ public interface Invite {
     /**
      * Accept invite
      *
-     * @return Will return false if invite fails because of max members permission (lands.members.NUMBER).
+     * @return Will return false if invite fails because of max members permission (lands.members.<number>).
      */
     boolean accept(Player player);
 
@@ -53,6 +52,4 @@ public interface Invite {
      */
     @NotNull
     Land getLand();
-
-    LandArea getArea();
 }

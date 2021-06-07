@@ -6,53 +6,61 @@ import org.bukkit.block.Block;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public  class Flags {
+public final class Flags {
 
 
     // land
-    public static  RoleFlag BLOCK_BREAK;
-    public static  RoleFlag BLOCK_PLACE;
-    public static  RoleFlag ATTACK_PLAYER;
-    public static  RoleFlag ATTACK_ANIMAL;
-    public static  RoleFlag ATTACK_MONSTER;
-    public static  RoleFlag BLOCK_IGNITE;
-    public static  RoleFlag INTERACT_GENERAL;
-    public static  RoleFlag INTERACT_MECHANISM;
-    public static  RoleFlag INTERACT_CONTAINER;
-    public static  RoleFlag INTERACT_DOOR;
-    public static  RoleFlag INTERACT_VILLAGER;
-    public static  RoleFlag FLY;
-    public static  RoleFlag SPAWN_TELEPORT;
-    public static  RoleFlag LAND_ENTER;
-    public static  RoleFlag VEHICLE_USE;
-    public static  RoleFlag ITEM_PICKUP;
-    public static  RoleFlag ENDER_PEARL;
-    public static  RoleFlag PLAYER_TRUST;
-    public static  RoleFlag PLAYER_UNTRUST;
-    public static  RoleFlag PLAYER_SETROLE;
-    public static  RoleFlag LAND_CLAIM;
-    public static  RoleFlag LAND_CLAIM_BORDER;
-    public static  RoleFlag SPAWN_SET;
-    public static  RoleFlag SETTING_EDIT_LAND;
-    public static  RoleFlag SETTING_EDIT_ROLE;
-    public static  RoleFlag SETTING_EDIT_TAXES;
-    public static  RoleFlag SETTING_EDIT_VARIOUS;
-    public static  RoleFlag BALANCE_WITHDRAW;
-    public static  RoleFlag AREA_ASSIGN;
-    public static  RoleFlag PLAYER_BAN;
-    public static  RoleFlag WAR_MANAGE;
+    public static final RoleFlag BLOCK_BREAK = null;
+    public static final RoleFlag BLOCK_PLACE = null;
+    public static final RoleFlag ATTACK_PLAYER = null;
+    public static final RoleFlag ATTACK_ANIMAL = null;
+    public static final RoleFlag ATTACK_MONSTER = null;
+    public static final RoleFlag BLOCK_IGNITE = null;
+    public static final RoleFlag INTERACT_GENERAL = null;
+    public static final RoleFlag INTERACT_MECHANISM = null;
+    public static final RoleFlag INTERACT_CONTAINER = null;
+    public static final RoleFlag INTERACT_DOOR = null;
+    public static final RoleFlag INTERACT_TRAPDOOR = null;
+    public static final RoleFlag INTERACT_VILLAGER = null;
+    public static final RoleFlag FLY = null;
+    public static final RoleFlag SPAWN_TELEPORT = null;
+    public static final RoleFlag LAND_ENTER = null;
+    public static final RoleFlag VEHICLE_USE = null;
+    public static final RoleFlag ITEM_PICKUP = null;
+    public static final RoleFlag ENDER_PEARL = null;
+    public static final RoleFlag TRAMPLE_FARMLAND = null;
 
-    public static  LandFlag ENTITY_GRIEFING;
-    public static  LandFlag TNT_GRIEFING;
-    public static  LandFlag PISTON_GRIEFING;
-    public static  LandFlag MONSTER_SPAWN;
-    public static  LandFlag ANIMAL_SPAWN;
-    public static  LandFlag WATERFLOW_ALLOW;
-    public static  LandFlag TITLE_HIDE;
-    public static  LandFlag FIRE_SPREAD;
-    public static  LandFlag LEAF_DECAY;
-    public static  LandFlag PLANT_GROWTH;
-    public static  LandFlag SNOW_MELT;
+    public static final RoleFlag PLAYER_TRUST = null;
+    public static final RoleFlag PLAYER_UNTRUST = null;
+    public static final RoleFlag PLAYER_SETROLE = null;
+    public static final RoleFlag LAND_CLAIM = null;
+    public static final RoleFlag LAND_CLAIM_BORDER = null;
+    public static final RoleFlag SPAWN_SET = null;
+    public static final RoleFlag SETTING_EDIT_LAND = null;
+    public static final RoleFlag SETTING_EDIT_ROLE = null;
+    public static final RoleFlag SETTING_EDIT_TAXES = null;
+    public static final RoleFlag SETTING_EDIT_VARIOUS = null;
+    public static final RoleFlag BALANCE_WITHDRAW = null;
+    public static final RoleFlag AREA_ASSIGN = null;
+    public static final RoleFlag PLAYER_BAN = null;
+    public static final RoleFlag WAR_MANAGE = null;
+
+    public static final RoleFlag NO_DAMAGE = null;
+
+    public static final LandFlag ENTITY_GRIEFING = null;
+    public static final LandFlag TNT_GRIEFING = null;
+    public static final LandFlag PISTON_GRIEFING = null;
+    public static final LandFlag MONSTER_SPAWN = null;
+    public static final LandFlag ANIMAL_SPAWN = null;
+    public static final LandFlag WATERFLOW_ALLOW = null;
+    public static final LandFlag TITLE_HIDE = null;
+    public static final LandFlag FIRE_SPREAD = null;
+    public static final LandFlag LEAF_DECAY = null;
+    public static final LandFlag PLANT_GROWTH = null;
+    public static final LandFlag SNOW_MELT = null;
+
+    // nation
+    public static final RoleFlag NATION_EDIT = null;
 
     private Flags() {
     }

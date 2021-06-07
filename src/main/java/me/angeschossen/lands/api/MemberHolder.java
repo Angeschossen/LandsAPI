@@ -6,7 +6,7 @@ import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.War;
-import me.angeschossen.lands.api.war.entity.WarStats;
+import me.angeschossen.lands.api.war.WarStats;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -23,20 +23,6 @@ public interface MemberHolder extends BalanceHolder {
 
     @NotNull
     String getColorName();
-
-    @NotNull
-    java.util.List<? extends InboxMessage> getInbox();
-
-    @NotNull
-    List<? extends InboxMessage> getInbox(InboxCategory category);
-
-    /**
-     * Get all trusted players
-     *
-     * @return Trusted players
-     */
-    @NotNull
-    Collection<UUID> getTrustedPlayers();
 
     @Nullable
     War getWar();
@@ -86,7 +72,21 @@ public interface MemberHolder extends BalanceHolder {
 
     boolean isWarField();
 
+    /**
+     * Get all trusted players
+     *
+     * @return Trusted players
+     */
+    @NotNull
+    Collection<UUID> getTrustedPlayers();
+
     String getWarName();
+
+    @NotNull
+    List<? extends InboxMessage> getInbox();
+
+    @NotNull
+    List<? extends InboxMessage> getInbox(InboxCategory category);
 
     @NotNull
     WarStats getStats();

@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 public class RoleFlag extends Flag {
 
+
     /**
      * This flag needs to be used for actions that involve players.
      *
@@ -19,22 +20,23 @@ public class RoleFlag extends Flag {
      * @param name                    Name of the flag.
      * @param applyInSubAreas         Should this flag also be available in sub areas, not just the land in general?
      * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
-     * @param predicate               You can specify to which roles this flag should be applied for already existing lands. The role will be null if the target is the wilderness.
+     * @param predicate               You can specifiy to which roles this flag should be applied for already existing lands. The role will be null if the target is wilderness.
      */
+    public RoleFlag(@NotNull Plugin plugin, @NotNull Flag.Target target, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
+        super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
+    }
+
+    @Deprecated
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
-        super(plugin, name, applyInSubAreas, alwaysAllowInWilderness);
+        super(plugin, Target.PLAYER, name, applyInSubAreas, alwaysAllowInWilderness);
     }
 
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
-        this(plugin, category, name, applyInSubAreas, alwaysAllowInWilderness, role -> true);
-    }
-
-    public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas) {
-        this(plugin, category, name, applyInSubAreas, false);
+        this(plugin, Target.PLAYER, category, name, applyInSubAreas, alwaysAllowInWilderness, role -> true);
     }
 
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name) {
-        this(plugin, category, name, true, false);
+        this(plugin, Target.PLAYER, category, name, true, false, role -> true);
     }
 
     @NotNull
@@ -42,15 +44,9 @@ public class RoleFlag extends Flag {
         return null;
     }
 
-
     @Override
     public @NotNull String getTogglePerm() {
         return null;
-    }
-
-    @Override
-    public @NotNull Type getType() {
-        return Type.ROLE;
     }
 
     @NotNull

@@ -6,23 +6,24 @@ import org.jetbrains.annotations.NotNull;
 
 public class LandFlag extends Flag {
 
+
     /**
-     *
-     * @param plugin Your plugin.
-     * @param name The name of the flag.
-     * @param applyInSubAreas Should this flag also be available in sub areas, not just the land in general?
+     * @param plugin                  Your plugin.
+     * @param name                    The name of the flag.
+     * @param applyInSubAreas         Should this flag also be available in sub areas, not just the land in general?
      * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
      */
-    public LandFlag(@NotNull Plugin plugin, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
-        super(plugin, name, applyInSubAreas, alwaysAllowInWilderness);
+    public LandFlag(@NotNull Plugin plugin, @NotNull Target target, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
+        super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
     }
 
+    @Deprecated
     public LandFlag(@NotNull Plugin plugin, @NotNull String name, boolean applyInSubAreas) {
-        this(plugin, name, applyInSubAreas, false);
+        this(plugin, Target.PLAYER, name, applyInSubAreas, false);
     }
 
     public LandFlag(@NotNull Plugin plugin, @NotNull String name) {
-        this(plugin, name, true, false);
+        this(plugin, Target.PLAYER, name, true, false);
     }
 
     public boolean getDefaultState() {
@@ -36,16 +37,11 @@ public class LandFlag extends Flag {
     @NotNull
     @Override
     public final Module getModule() {
-        return Module.LAND;
+        return null;
     }
 
     @Override
     public final @NotNull String getTogglePerm() {
         return null;
-    }
-
-    @Override
-    public @NotNull Type getType() {
-        return Type.LAND;
     }
 }

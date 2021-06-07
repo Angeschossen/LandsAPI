@@ -6,8 +6,6 @@ import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.Role;
-import me.angeschossen.lands.api.role.enums.ManagementSetting;
-import me.angeschossen.lands.api.role.enums.RoleSetting;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +20,9 @@ public interface Area {
     void unbanPlayer(UUID playerUID);
 
     boolean isBanned(@NotNull UUID playerUID);
+
+    @NotNull
+    UUID getOwnerUID();
 
     boolean isDefault();
 
@@ -49,28 +50,13 @@ public interface Area {
 
     boolean isTrusted(UUID playerUID);
 
-    @Deprecated
-    boolean canSetting(UUID playerUUID, RoleSetting roleSetting);
-
     boolean hasFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
 
-    @Deprecated
-    boolean canManagement(UUID playerUUID, ManagementSetting managementSetting);
-
     boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
-
-    @Deprecated
-    boolean canSetting(Player player, RoleSetting action, boolean sendMessage);
-
-    @Deprecated
-    boolean canSetting(Player player, RoleSetting action, @Nullable Material material, boolean sendMessage);
 
     boolean hasFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
 
     boolean hasFlag(@NotNull Player player, @NotNull RoleFlag roleFlag, boolean sendMessage);
-
-    @Deprecated
-    boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
     @Nullable
     Invite getInvite(@NotNull UUID receiverUUID);

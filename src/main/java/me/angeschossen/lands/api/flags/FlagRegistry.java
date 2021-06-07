@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 public interface FlagRegistry {
+
     @NotNull
     Flag register(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException;
 

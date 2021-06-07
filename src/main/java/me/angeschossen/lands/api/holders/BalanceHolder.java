@@ -8,6 +8,10 @@ public interface BalanceHolder {
 
     boolean addBalance(double add);
 
+    String getName();
+
+    String getWarName();
+
     String getBalanceDisplay();
 
 }

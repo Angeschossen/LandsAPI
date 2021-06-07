@@ -1,8 +1,6 @@
 package me.angeschossen.lands.api.player;
 
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.land.enums.LandGetMode;
-import me.angeschossen.lands.api.role.enums.ManagementSetting;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +35,7 @@ public interface LandPlayer {
     Selection getSelection();
 
     /**
-     * Get support claims per land. Permission: lands.chunks.support.NUMBER
+     * Get support claims per land. Permission: lands.chunks.support.<number>
      *
      * @return Max support claims
      */
@@ -75,12 +73,6 @@ public interface LandPlayer {
      */
     @Nullable
     Land getLand(@NotNull String landName);
-
-    @Deprecated
-    Land getAccessActionLand(ManagementSetting landsAction);
-
-    @Deprecated
-    Land getAccessActionLand(ManagementSetting landsAction, LandGetMode landGetMode, boolean sendMessage);
 
     /**
      * Set edit land

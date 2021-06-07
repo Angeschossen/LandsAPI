@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.war;
 
+import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
-import me.angeschossen.lands.api.war.entity.WarEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -12,11 +12,11 @@ public class WarDeclareEvent extends Event implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
     private final @NotNull
-    WarEntity attacker, defender;
+    MemberHolder attacker, defender;
     private final LandPlayer sender;
     private boolean cancelled;
 
-    public WarDeclareEvent(@NotNull WarEntity attacker,@NotNull LandPlayer sender, @NotNull WarEntity defender) {
+    public WarDeclareEvent(@NotNull MemberHolder attacker, @NotNull LandPlayer sender, @NotNull MemberHolder defender) {
         super(!Bukkit.isPrimaryThread());
 
         this.attacker = attacker;
@@ -34,12 +34,12 @@ public class WarDeclareEvent extends Event implements Cancellable {
     }
 
     @NotNull
-    public WarEntity getAttacker() {
+    public MemberHolder getAttacker() {
         return attacker;
     }
 
     @NotNull
-    public WarEntity getDefender() {
+    public MemberHolder getDefender() {
         return defender;
     }
 

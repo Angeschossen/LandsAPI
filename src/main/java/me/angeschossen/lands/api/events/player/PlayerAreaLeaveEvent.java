@@ -24,4 +24,9 @@ public class PlayerAreaLeaveEvent extends PlayerLocationAreaEvent implements Can
     public void setCancelled(boolean b) {
         this.cancelled = b;
     }
+
+    @Override
+    public String toString() {
+        return "PlayerAreaLeaveEvent{player=" + landPlayer.getPlayer() + "}";
+    }
 }

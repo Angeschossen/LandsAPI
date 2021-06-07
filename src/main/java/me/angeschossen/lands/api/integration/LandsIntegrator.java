@@ -32,10 +32,6 @@ public interface LandsIntegrator {
      */
     @NotNull FlagRegistry getFlagRegistry();
 
-    @Nullable Nation getNation(String name);
-
-    @Nullable Nation getNation(int id);
-
     /**
      * Register your owns flags into Lands. They will also be toggleable in the GUI menus if you set display to true.
      * @param flag RoleFlag or LandFlag
@@ -111,6 +107,10 @@ public interface LandsIntegrator {
     LandWorld getLandWorld(@NotNull String worldName);
 
     Land getLand(int id);
+
+    @Nullable Nation getNation(int id);
+
+    @Nullable Nation getNation(@NotNull String name);
 
     /**
      * Get land by name

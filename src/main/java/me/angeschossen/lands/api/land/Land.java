@@ -1,11 +1,10 @@
 package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.MemberHolder;
-import me.angeschossen.lands.api.events.LandChatEvent;
+import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
+import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.TrustedPlayer;
-import me.angeschossen.lands.api.role.enums.ManagementSetting;
-import me.angeschossen.lands.api.role.enums.RoleSetting;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -15,11 +14,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public interface Land extends MemberHolder {
 
     @NotNull
     Area getDefaultArea();
+
+    CompletableFuture<Boolean> delete(@Nullable LandPlayer landPlayer, @NotNull DeleteReason reason);
 
     /**
      * Delete this land
@@ -41,9 +43,6 @@ public interface Land extends MemberHolder {
 
     void unbanPlayer(@NotNull UUID playerUID);
 
-    @Deprecated
-    boolean canSetting(Player player, RoleSetting roleSetting);
-
     /**
      * Get the identification of this land.
      * This is independent of the land name.
@@ -51,9 +50,6 @@ public interface Land extends MemberHolder {
      * @return Numerical ID
      */
     int getId();
-
-    @Deprecated
-    boolean canSetting(UUID uuid, RoleSetting roleSetting);
 
     War getWar();
 
@@ -83,14 +79,6 @@ public interface Land extends MemberHolder {
      * @return
      */
     boolean setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
-
-    /**
-     * Send message to online players of this land.
-     *
-     * @param playerUUID Sender
-     * @param message    Message
-     */
-    void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 
     /**
      * Get owner UUID of land
@@ -152,14 +140,6 @@ public interface Land extends MemberHolder {
     int getMaxChunks(boolean countNation);
 
     /**
-     * Get all trusted players
-     *
-     * @return Trusted players
-     */
-    @NotNull
-    Collection<UUID> getTrustedPlayers();
-
-    /**
      * Get title mesasage.
      *
      * @return Title message.
@@ -201,12 +181,6 @@ public interface Land extends MemberHolder {
      */
     @NotNull
     Collection<Player> getOnlinePlayers();
-
-    @Deprecated
-    boolean canManagement(UUID playerUUID, ManagementSetting managementSetting);
-
-    @Deprecated
-    boolean canManagement(Player player, ManagementSetting managementSetting, boolean sendMessage);
 
     /**
      * Get trusted player.

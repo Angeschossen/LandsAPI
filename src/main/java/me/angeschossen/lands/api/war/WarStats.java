@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.war.entity;
+package me.angeschossen.lands.api.war;
 
 public interface WarStats {
 

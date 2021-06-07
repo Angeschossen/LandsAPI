@@ -9,8 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 public abstract class PlayerLocationAreaEvent extends Event {
     public static HandlerList handlerList = new HandlerList();
-    private final Area area;
-    private final LandPlayer landPlayer;
+    protected final Area area;
+    protected final LandPlayer landPlayer;
 
     public PlayerLocationAreaEvent(Area area, LandPlayer landPlayer) {
         super(!Bukkit.isPrimaryThread());
