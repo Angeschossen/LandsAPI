@@ -1,14 +1,16 @@
 package me.angeschossen.lands.api.flags.types;
 
 import me.angeschossen.lands.api.flags.Flag;
+import me.angeschossen.lands.api.land.Area;
+import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.Role;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Predicate;
 
 public class RoleFlag extends Flag {
-
 
     /**
      * This flag needs to be used for actions that involve players.
@@ -32,6 +34,10 @@ public class RoleFlag extends Flag {
 
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name) {
         this(plugin, Target.PLAYER, category, name, true, false, role -> true);
+    }
+
+    public void sendDenied(@NotNull LandPlayer landPlayer, @Nullable Area area) {
+
     }
 
     @NotNull

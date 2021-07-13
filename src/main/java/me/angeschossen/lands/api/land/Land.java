@@ -44,6 +44,15 @@ public interface Land extends MemberHolder {
     void unbanPlayer(@NotNull UUID playerUID);
 
     /**
+     * Get the enter title that would be sent to a entering player.
+     *
+     * @param player The player that enters the land.
+     * @return Messages with placeholders replaced with the values.
+     */
+    @NotNull
+    String getTitleMessage(@Nullable Player player);
+
+    /**
      * Get the identification of this land.
      * This is independent of the land name.
      *
@@ -140,10 +149,9 @@ public interface Land extends MemberHolder {
     int getMaxChunks(boolean countNation);
 
     /**
-     * Get title mesasage.
-     *
-     * @return Title message.
+     * Use getTitleMessage(player) instead.
      */
+    @Deprecated
     @NotNull
     String getTitleMessage();
 
@@ -170,6 +178,9 @@ public interface Land extends MemberHolder {
      * @return true if has
      */
     boolean hasChunk(@NotNull World world, int x, int z);
+
+    @Deprecated
+    boolean isTrusted(@NotNull UUID playerUID);
 
     /**
      * Get a collection of all online land members
