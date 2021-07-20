@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
@@ -25,6 +26,8 @@ public interface LandPlayer {
      * @return true, if they're participating in the war.
      */
     boolean isInWar(@NotNull War war);
+
+    @NotNull Set<? extends War> getWars();
 
     /**
      * Get current selection.
@@ -76,7 +79,7 @@ public interface LandPlayer {
 
     /**
      * Set edit land
-     * /Lands edit
+     * /lands edit
      *
      * @param land Land to select
      */
@@ -105,9 +108,11 @@ public interface LandPlayer {
     @Nullable
     Land getOwningLand();
 
+    @NotNull Collection<? extends Invite> getInvites();
+
     /**
      * Get the land wich the player set
-     * through /Lands edit or random one or null if
+     * through /lands edit or random one or null if
      * he has no lands
      *
      * @return Land or null, if no match found
