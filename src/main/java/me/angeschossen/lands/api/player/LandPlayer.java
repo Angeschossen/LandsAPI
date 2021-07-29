@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
-public interface LandPlayer {
+public interface LandPlayer extends OfflinePlayer {
 
     /**
      * Is the player participating in a war?
@@ -59,14 +59,6 @@ public interface LandPlayer {
      * @return Invite
      */
     Invite getInvite(@NotNull String landName);
-
-    /**
-     * Get UID of player
-     *
-     * @return UUID
-     */
-    @NotNull
-    UUID getUID();
 
     /**
      * Get land where the player is member in

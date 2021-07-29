@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
+import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.TrustedPlayer;
 import me.angeschossen.lands.api.war.War;
@@ -22,6 +23,8 @@ public interface Land extends MemberHolder {
     Area getDefaultArea();
 
     CompletableFuture<Boolean> delete(@Nullable LandPlayer landPlayer, @NotNull DeleteReason reason);
+
+    @Nullable Nation getNation();
 
     /**
      * Delete this land
