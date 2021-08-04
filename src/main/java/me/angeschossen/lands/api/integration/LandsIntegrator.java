@@ -31,16 +31,17 @@ public interface LandsIntegrator {
      */
     @NotNull FlagRegistry getFlagRegistry();
 
+    void onLoad(@NotNull Runnable r);
+
     /**
      * Register your owns flags into Lands. They will also be toggleable in the GUI menus if you set display to true.
      * @param flag RoleFlag or LandFlag
      *             RoleFlags are "playerflags" and LandFlags are natural flags.
      *             For roleflags you need to specify the Category type ACTION or MANAGEMENT.
-     * @return Your registered flag.
      * @throws FlagConflictException A flag with this name already exists.
      * @throws IllegalArgumentException The name is invalid. It contains illegal characters or is too long (> 20 chars).
      */
-    Flag registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException;
+    void registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException;
 
     /**
      * Get cached landPlayer

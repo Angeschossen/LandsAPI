@@ -36,8 +36,12 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    public Flag registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException {
-        return null;
+    public void onLoad(@NotNull Runnable r) {
+
+    }
+
+    @Override
+    public void registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException {
     }
 
     @Override
@@ -131,7 +135,7 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    public @Nullable Plugin getPlugin() {
+    public @NotNull Plugin getPlugin() {
         return null;
     }
 
