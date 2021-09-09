@@ -17,6 +17,8 @@ public interface War {
     @Nullable
     MemberHolder getWinner();
 
+    void end(@NotNull MemberHolder winner, boolean surrendered, double reward);
+
     @NotNull
     WarStats getAttackerStats();
 

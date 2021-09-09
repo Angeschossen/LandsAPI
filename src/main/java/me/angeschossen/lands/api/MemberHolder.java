@@ -4,6 +4,7 @@ import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;
+import me.angeschossen.lands.api.levels.Level;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.War;
 import me.angeschossen.lands.api.war.WarStats;
@@ -16,6 +17,7 @@ import java.awt.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 public interface MemberHolder extends BalanceHolder {
     @NotNull
@@ -23,6 +25,8 @@ public interface MemberHolder extends BalanceHolder {
 
     @NotNull
     String getColorName();
+
+    int getChunksAmount();
 
     @Nullable
     War getWar();
@@ -55,6 +59,17 @@ public interface MemberHolder extends BalanceHolder {
 
     HolderType getType();
 
+    @NotNull
+    Level getLevel();
+
+    CompletableFuture<Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
+
+    boolean isRequirementCached(@NotNull String requirement);
+
+    float getCachedRequirement(@NotNull String requirement);
+
+    void markLevelUpdate();
+
     @Nullable
     WarTeam getWarTeam();
 
@@ -82,12 +97,16 @@ public interface MemberHolder extends BalanceHolder {
 
     String getWarName();
 
+    int getMembersAmount();
+
     @NotNull
-    List<? extends InboxMessage> getInbox();
+    java.util.List<? extends InboxMessage> getInbox();
 
     @NotNull
     List<? extends InboxMessage> getInbox(InboxCategory category);
 
     @NotNull
     WarStats getStats();
+
+    void updateRequirementCache(@NotNull String requirement, float val, boolean levelCalc) throws IllegalArgumentException;
 }

@@ -8,6 +8,7 @@ import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
+import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
@@ -100,6 +101,11 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    public void wild(@NotNull LandPlayer landPlayer, @NotNull World world) {
+
+    }
+
+    @Override
     public @NotNull Collection<Land> getLands() {
         return null;
     }
@@ -116,6 +122,11 @@ public class LandsIntegration implements LandsIntegrator {
 
     @Override
     public @NotNull List<Land> getTopLands(SortMode sortMode) {
+        return null;
+    }
+
+    @Override
+    public @NotNull LevelsHandler getLevelsHandler() {
         return null;
     }
 

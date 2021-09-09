@@ -7,6 +7,7 @@ import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
+import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
@@ -27,6 +28,7 @@ public interface LandsIntegrator {
 
     /**
      * The flag registry allows you to make some more specific actions than in the Flags class.
+     *
      * @return The flag registry
      */
     @NotNull FlagRegistry getFlagRegistry();
@@ -35,10 +37,11 @@ public interface LandsIntegrator {
 
     /**
      * Register your owns flags into Lands. They will also be toggleable in the GUI menus if you set display to true.
+     *
      * @param flag RoleFlag or LandFlag
      *             RoleFlags are "playerflags" and LandFlags are natural flags.
      *             For roleflags you need to specify the Category type ACTION or MANAGEMENT.
-     * @throws FlagConflictException A flag with this name already exists.
+     * @throws FlagConflictException    A flag with this name already exists.
      * @throws IllegalArgumentException The name is invalid. It contains illegal characters or is too long (> 20 chars).
      */
     void registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException;
@@ -118,6 +121,12 @@ public interface LandsIntegrator {
      */
     @Nullable
     Land getLand(@NotNull World world, int chunkX, int chunkZ);
+    /**
+     * Randomly teleport a player in the given world.
+     * @param landPlayer The player
+     * @param world The destination world
+     */
+    void wild(@NotNull LandPlayer landPlayer, @NotNull World world);
 
     @NotNull
     Collection<Land> getLands();
@@ -126,7 +135,7 @@ public interface LandsIntegrator {
     Area getArea(@NotNull World world, int x, int y, int z);
 
     /**
-     * Get the sub or default area of the land at this location. It is recommended to use this instead of {@link #getArea(Location)}
+     * Get the sub or default area of the land at this location.
      *
      * @param location Location
      * @return null, if not claimed.
@@ -142,6 +151,14 @@ public interface LandsIntegrator {
      */
     @NotNull
     List<Land> getTopLands(SortMode sortMode);
+
+    /**
+     * Add requirements to levels.
+     *
+     * @return LevelsHandler
+     * @since 5.14.0
+     */
+    @NotNull LevelsHandler getLevelsHandler();
 
     /**
      * Get top lands by sorting.
