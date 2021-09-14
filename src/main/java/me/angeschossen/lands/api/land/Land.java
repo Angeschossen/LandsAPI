@@ -26,6 +26,9 @@ public interface Land extends MemberHolder {
 
     @Nullable Nation getNation();
 
+    @Nullable
+    Area getArea(Location location);
+
     /**
      * Delete this land
      *
