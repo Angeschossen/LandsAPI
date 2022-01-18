@@ -54,6 +54,7 @@ public interface MemberHolder extends BalanceHolder {
      *
      * @param playerUUID Sender
      * @param message    Message
+     * @param messageSource Either MINECRAFT or DISCORD
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 

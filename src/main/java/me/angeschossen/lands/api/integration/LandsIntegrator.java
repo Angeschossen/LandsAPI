@@ -42,7 +42,7 @@ public interface LandsIntegrator {
      *             RoleFlags are "playerflags" and LandFlags are natural flags.
      *             For roleflags you need to specify the Category type ACTION or MANAGEMENT.
      * @throws FlagConflictException    A flag with this name already exists.
-     * @throws IllegalArgumentException The name is invalid. It contains illegal characters or is too long (> 20 chars).
+     * @throws IllegalArgumentException The name is invalid. It contains illegal characters or is too long (greater than 20 chars).
      */
     void registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException;
 

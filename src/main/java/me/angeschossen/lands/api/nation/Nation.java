@@ -14,7 +14,7 @@ public interface Nation extends MemberHolder {
 
     /**
      * Check if a land is member of this nation.
-     *
+     * @param land The land to check
      * @return Will return false if land is not member of this nation.
      */
     boolean isMember(Land land);

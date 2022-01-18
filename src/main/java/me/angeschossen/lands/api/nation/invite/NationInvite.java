@@ -24,7 +24,7 @@ public interface NationInvite {
      * Accept invite
      *
      * @return Will return false if land or nation does not exist anymore.
-     * @throws LandAlreadyInNationException
+     * @throws LandAlreadyInNationException If the land is already part of a nation
      */
     boolean accept() throws LandAlreadyInNationException;
 

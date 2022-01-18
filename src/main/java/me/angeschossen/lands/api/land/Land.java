@@ -91,7 +91,7 @@ public interface Land extends MemberHolder {
      * Set name of land
      *
      * @param name New name
-     * @return
+     * @return false, if the name change event has been cancelled by a 3rd party plugin
      */
     boolean setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
 
@@ -135,7 +135,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Trust a player to the whole land, including areas.
-     *
+     * @param playerUID The player
      * @return Change
      */
     boolean trustPlayer(@NotNull UUID playerUID);
@@ -149,13 +149,14 @@ public interface Land extends MemberHolder {
 
     /**
      * Get max chunk claims.
-     *
+     * @param countNation Add nation claim benefit on top?
      * @return Max chunk claims
      */
     int getMaxChunks(boolean countNation);
 
     /**
      * Use getTitleMessage(player) instead.
+     * @return The plain title message. Use the new {{@link #getTitleMessage(Player)}} method instead.
      */
     @Deprecated
     @NotNull

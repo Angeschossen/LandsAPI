@@ -26,6 +26,7 @@ public interface TrustedPlayer {
 
     /**
      * Get player UID
+     * @return The UUID of the player
      */
     @NotNull
     UUID getUID();

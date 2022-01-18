@@ -7,13 +7,17 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 
 public interface Level {
-    @Nullable Level getPrevious();
+    void addRequirement(@NotNull Requirement requirement) throws IllegalArgumentException, IllegalStateException;
 
-    boolean matches(@NotNull MemberHolder memberHolder);
-
-    @NotNull Collection<? extends Requirement> getRequirements();
+    @NotNull
+    String getName();
 
     @Nullable Level getNext();
 
-    void addRequirement( @NotNull Requirement requirement) throws IllegalArgumentException, IllegalStateException;
-}
+    @Nullable Level getPrevious();
+
+    float getProgress(@NotNull MemberHolder memberHolder);
+
+    @NotNull Collection<? extends Requirement> getRequirements();
+
+    boolean matches(@NotNull MemberHolder memberHolder);}

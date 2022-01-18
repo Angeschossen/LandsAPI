@@ -38,7 +38,7 @@ public interface LandPlayer extends OfflinePlayer {
     Selection getSelection();
 
     /**
-     * Get support claims per land. Permission: lands.chunks.support.<number>
+     * Get support claims per land.
      *
      * @return Max support claims
      */
