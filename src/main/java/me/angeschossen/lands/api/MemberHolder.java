@@ -58,6 +58,7 @@ public interface MemberHolder extends BalanceHolder {
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 
+    @NotNull
     HolderType getType();
 
     @NotNull
