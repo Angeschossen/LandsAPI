@@ -23,6 +23,7 @@ public class RoleFlag extends Flag {
      * @param applyInSubAreas         Should this flag also be available in sub areas, not just the land in general?
      * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
      * @param predicate               You can specifiy to which roles this flag should be applied for already existing lands. The role will be null if the target is wilderness.
+     * @param target Admin flags won't show up in the flags menu or normal lands so normal lands can't toggle them.
      */
     public RoleFlag(@NotNull Plugin plugin, @NotNull Flag.Target target, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
