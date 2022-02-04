@@ -14,18 +14,28 @@ import java.util.UUID;
 
 public interface Area {
 
+    double addTax(double tax);
+
     boolean banPlayer(UUID uuid);
 
-    void unbanPlayer(UUID playerUID);
+    boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
 
-    boolean isBanned(@NotNull UUID playerUID);
+    @NotNull
+    String getColorName();
+
+    @NotNull
+    Role getEntryRole();
+
+    @Nullable
+    Invite getInvite(@NotNull UUID receiverUUID);
+
+    Land getLand();
+
+    @NotNull
+    String getName();
 
     @NotNull
     UUID getOwnerUID();
-
-    boolean isDefault();
-
-    boolean hasFlag(@NotNull LandFlag flag);
 
     @NotNull
     Role getRole(@NotNull UUID playerUID);
@@ -33,36 +43,28 @@ public interface Area {
     @NotNull
     Role getRole(@NotNull String name);
 
-    Land getLand();
-
-    @NotNull
-    Role getEntryRole();
-
-    @NotNull
-    Role getVisitorRole();
-
-    boolean isTrusted(UUID playerUID);
-
-    boolean hasFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
-
-    boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
-
-    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
-
-    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag roleFlag, boolean sendMessage);
-
-    @Nullable
-    Invite getInvite(@NotNull UUID receiverUUID);
-
-    double addTax(double tax);
-
     double getTax();
 
     void setTax(double rent);
 
     @NotNull
-    String getName();
+    Role getVisitorRole();
 
-    @NotNull
-    String getColorName();
+    boolean hasFlag(@NotNull LandFlag flag);
+
+    boolean hasFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
+
+    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
+
+    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag roleFlag, boolean sendMessage);
+
+    boolean isBanned(@NotNull UUID playerUID);
+
+    boolean isDefault();
+
+    boolean isTrusted(UUID playerUID);
+
+    boolean toggleFlag(@NotNull LandFlag flag);
+
+    void unbanPlayer(UUID playerUID);
 }
