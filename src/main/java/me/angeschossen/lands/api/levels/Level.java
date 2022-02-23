@@ -16,8 +16,11 @@ public interface Level {
 
     @Nullable Level getPrevious();
 
+    int getPosition();
+
     float getProgress(@NotNull MemberHolder memberHolder);
 
     @NotNull Collection<? extends Requirement> getRequirements();
 
-    boolean matches(@NotNull MemberHolder memberHolder);}
+    boolean matches(@NotNull MemberHolder memberHolder);
+}
