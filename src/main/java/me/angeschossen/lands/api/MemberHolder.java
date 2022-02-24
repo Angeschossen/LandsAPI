@@ -52,8 +52,8 @@ public interface MemberHolder extends BalanceHolder {
     /**
      * Send message to online players of this land.
      *
-     * @param playerUUID Sender
-     * @param message    Message
+     * @param playerUUID    Sender
+     * @param message       Message
      * @param messageSource Specify if the message is sent from in-game or Discord for example.
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);

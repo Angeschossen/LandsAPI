@@ -134,6 +134,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Trust a player to the whole land, including areas.
+     *
      * @param playerUID The target player
      * @return Change
      */
@@ -148,6 +149,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get max chunk claims.
+     *
      * @param countNation Should level bonuses from the nation be added to the value?
      * @return Max chunk claims
      */

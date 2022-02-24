@@ -12,7 +12,7 @@ public class LandFlag extends Flag {
      * @param name                    The name of the flag.
      * @param applyInSubAreas         Should this flag also be available in sub areas, not just the land in general?
      * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
-     * @param target Specify if this flag should only be accessible to admin lands.
+     * @param target                  Specify if this flag should only be accessible to admin lands.
      */
     public LandFlag(@NotNull Plugin plugin, @NotNull Target target, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
