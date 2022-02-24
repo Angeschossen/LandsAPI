@@ -11,7 +11,6 @@ import java.util.UUID;
 
 /**
  * Called when a land member needs to pay taxes to the land.
- * At the time of this event, it is not known if the player has enough to pay the taxes.
  */
 public class PlayerTaxEvent extends Event implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();

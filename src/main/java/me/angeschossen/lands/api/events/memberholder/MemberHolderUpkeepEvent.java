@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Called when a land or nation needs to pay upkeep.
- * At the time of this event, it is not know if they have enough to pay the upkeep.
  */
 public class MemberHolderUpkeepEvent extends Event implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
