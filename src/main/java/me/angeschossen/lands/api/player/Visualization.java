@@ -3,8 +3,7 @@ package me.angeschossen.lands.api.player;
 public interface Visualization {
 
     /**
-     * Is permanent?
-     * @return If true, the visualization never expires as long as the player is online
+     * @return Whether the visualization is permanent or not.
      */
     boolean isPermanent();
 

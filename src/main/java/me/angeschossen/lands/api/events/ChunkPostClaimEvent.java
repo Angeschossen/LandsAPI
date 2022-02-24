@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.events;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.player.LandPlayer;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
@@ -17,7 +18,7 @@ public class ChunkPostClaimEvent extends Event {
     private final LandWorld world;
 
     public ChunkPostClaimEvent(LandPlayer landPlayer, Land land, LandWorld landWorld, int x, int z) {
-        super(true);
+        super(!Bukkit.isPrimaryThread());
 
         this.landPlayer = landPlayer;
         this.land = land;

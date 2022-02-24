@@ -52,5 +52,5 @@ public interface ChunkCoordinate {
      * @param z         Chunk z
      * @return Will return false if not all parameters match.
      */
-    boolean equals(@NotNull String worldName,  int x, int z);
+    boolean equals(@NotNull String worldName, int x, int z);
 }

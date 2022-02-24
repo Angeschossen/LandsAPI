@@ -5,6 +5,7 @@ import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.levels.LevelsHandler;
@@ -27,13 +28,28 @@ import java.util.concurrent.CompletableFuture;
 public interface LandsIntegrator {
 
     /**
+     * Add requirements to levels.
+     *
+     * @return LevelsHandler
+     * @since 5.14.0
+     */
+    @NotNull LevelsHandler getLevelsHandler();
+
+    /**
+     * Execute actions once Lands is loaded.
+     * This is not needed in most use cases.
+     *
+     * @param runnable The runnable that will be executed.
+     * @since 5.13.0
+     */
+    void onLoad(@NotNull Runnable runnable);
+
+    /**
      * The flag registry allows you to make some more specific actions than in the Flags class.
      *
      * @return The flag registry
      */
     @NotNull FlagRegistry getFlagRegistry();
-
-    void onLoad(@NotNull Runnable r);
 
     /**
      * Register your owns flags into Lands. They will also be toggleable in the GUI menus if you set display to true.
@@ -69,9 +85,13 @@ public interface LandsIntegrator {
      * Is claimed land?
      *
      * @param location Location
-     * @return Is claimed
+     * @return true, if the chunk of the location is claimed.
+     * Works also in unloaded regions.
      */
     boolean isClaimed(@NotNull Location location);
+
+    @Deprecated
+    CompletableFuture<Boolean> isClaimed(@NotNull String worldName, int chunkX, int chunkZ);
 
     /**
      * Is claimed?
@@ -79,18 +99,47 @@ public interface LandsIntegrator {
      * @param world  World
      * @param chunkX Chunk x
      * @param chunkZ Chunk z
-     * @return true if claimed
+     * @return true, if the chunk of the location is claimed.
+     * Works also in unloaded regions.
      */
     boolean isClaimed(@NotNull World world, int chunkX, int chunkZ);
 
+    /**
+     * Get land.
+     *
+     * @param worldName Name of world, where land is located
+     * @param landName  Name or displayname of land
+     * @return Land or null, if not exists.
+     * @since 2.5.7
+     */
+    @Deprecated
+    Land getLand(@NotNull String worldName, @NotNull String landName);
+
     @NotNull
     CompletableFuture<OfflinePlayer> getOfflineLandPlayer(@NotNull UUID playerUID);
+
+    /**
+     * Get landWorld.
+     *
+     * @param worldName Name of world.
+     * @return LandWorld or null, if it's not an landWorld.
+     */
+    @Deprecated
+    LandWorld getLandWorld(@NotNull String worldName);
 
     Land getLand(int id);
 
     @Nullable Nation getNation(int id);
 
     @Nullable Nation getNation(@NotNull String name);
+
+    /**
+     * Randomly teleport a player in the given world.
+     *
+     * @param landPlayer The player
+     * @param world      The destination world
+     */
+    void wild(@NotNull LandPlayer landPlayer, @NotNull World world);
 
     /**
      * Get land by name
@@ -121,24 +170,39 @@ public interface LandsIntegrator {
      */
     @Nullable
     Land getLand(@NotNull World world, int chunkX, int chunkZ);
-    /**
-     * Randomly teleport a player in the given world.
-     * @param landPlayer The player
-     * @param world The destination world
-     */
-    void wild(@NotNull LandPlayer landPlayer, @NotNull World world);
 
     @NotNull
     Collection<Land> getLands();
 
+    /**
+     * Use {@link #getArea(World, int, int, int)} or {@link #getAreaByLoc(Location)} instead.
+     * Get the sub area of the land at this location. This does not include the default area.
+     * It is recommended to use {@link #getAreaByLoc(Location)} instead, if you want to cover the default area too.
+     *
+     * @param location Location
+     * @return null, if not claimed or the area is not a sub area (default area)
+     */
+    @Deprecated
+    @Nullable
+    LandArea getArea(@NotNull Location location);
+
+    /**
+     * Get area at the specified coordinate.
+     *
+     * @param world World
+     * @param x     Block x
+     * @param y     Block y
+     * @param z     Block z
+     * @return The area at the specific coordinate. Might return null, if the coordinate is unloaded.
+     */
     @Nullable
     Area getArea(@NotNull World world, int x, int y, int z);
 
     /**
-     * Get the sub or default area of the land at this location.
+     * Get the sub or default area of the land at this location. It is recommended to use this instead of {@link #getArea(Location)}
      *
      * @param location Location
-     * @return null, if not claimed.
+     * @return Will return null if the location is not claimed or the location is unloaded.
      */
     @Nullable
     Area getAreaByLoc(@NotNull Location location);
@@ -153,18 +217,10 @@ public interface LandsIntegrator {
     List<Land> getTopLands(SortMode sortMode);
 
     /**
-     * Add requirements to levels.
-     *
-     * @return LevelsHandler
-     * @since 5.14.0
-     */
-    @NotNull LevelsHandler getLevelsHandler();
-
-    /**
      * Get top lands by sorting.
      *
      * @param sortMode Sortmode
-     * @param page     Same as /Lands top
+     * @param page     Same as /lands top
      * @return Top lands in order
      */
     @NotNull
@@ -181,7 +237,7 @@ public interface LandsIntegrator {
     Land getTopLand(@NotNull SortMode sortMode, int place);
 
     /**
-     * Print top lands, same as /Lands top.
+     * Print top lands, same as /lands top.
      *
      * @param sortMode Sortmode
      * @param page     Page
@@ -206,17 +262,24 @@ public interface LandsIntegrator {
     @NotNull
     String getName();
 
-    /**
-     * Disables the APIHook
-     */
+    @Deprecated
     void disable();
 
-    /**
-     * Check if hook is enabled.
-     *
-     * @return Status
-     */
+    @Deprecated
+    void disable(@Nullable String hookKey);
+
+    @NotNull
+    @Deprecated
+    String initialize();
+
+    @Deprecated
     boolean isEnabled();
+
+    @Deprecated
+    boolean getAccess(@NotNull String hookKey);
+
+    @Deprecated
+    boolean isPublic();
 
     @NotNull
     SortMode getDefaultTopSortMode();

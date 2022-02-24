@@ -24,11 +24,6 @@ public interface Land extends MemberHolder {
 
     CompletableFuture<Boolean> delete(@Nullable LandPlayer landPlayer, @NotNull DeleteReason reason);
 
-    @Nullable Nation getNation();
-
-    @Nullable
-    Area getArea(Location location);
-
     /**
      * Delete this land
      *
@@ -38,10 +33,12 @@ public interface Land extends MemberHolder {
     void delete(@Nullable Player deleter);
 
     @Nullable
-    Collection<ChunkCoordinate> getChunks(@NotNull World world);
+    Area getArea(Location location);
 
     @Nullable
-    Collection<LandArea> getSubAreas(@NotNull World world);
+    Collection<ChunkCoordinate> getChunks(@NotNull World world);
+
+    Collection<? extends LandArea> getSubAreas(@NotNull World world);
 
     boolean hasArea(@NotNull String name);
 
@@ -68,6 +65,8 @@ public interface Land extends MemberHolder {
 
     War getWar();
 
+    @Nullable Nation getNation();
+
     /**
      * Get upkeep costs
      *
@@ -91,7 +90,7 @@ public interface Land extends MemberHolder {
      * Set name of land
      *
      * @param name New name
-     * @return false, if the name change event has been cancelled by a 3rd party plugin
+     * @return Will return false, if a 3rd party plugin cancelled it.
      */
     boolean setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
 
@@ -135,7 +134,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Trust a player to the whole land, including areas.
-     * @param playerUID The player
+     * @param playerUID The target player
      * @return Change
      */
     boolean trustPlayer(@NotNull UUID playerUID);
@@ -149,18 +148,10 @@ public interface Land extends MemberHolder {
 
     /**
      * Get max chunk claims.
-     * @param countNation Add nation claim benefit on top?
+     * @param countNation Should level bonuses from the nation be added to the value?
      * @return Max chunk claims
      */
     int getMaxChunks(boolean countNation);
-
-    /**
-     * Use getTitleMessage(player) instead.
-     * @return The plain title message. Use the new {{@link #getTitleMessage(Player)}} method instead.
-     */
-    @Deprecated
-    @NotNull
-    String getTitleMessage();
 
     /**
      * Set title message.

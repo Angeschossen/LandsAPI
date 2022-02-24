@@ -1,66 +1,75 @@
 package me.angeschossen.lands.api.flags;
 
+import com.google.common.base.Preconditions;
 import me.angeschossen.lands.api.flags.types.LandFlag;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
+import org.bukkit.Material;
+import org.bukkit.Tag;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Openable;
+import org.bukkit.block.data.Powerable;
+import org.bukkit.inventory.BlockInventoryHolder;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.PressureSensor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public final class Flags {
+public class Flags {
 
+    public static RoleFlag BLOCK_BREAK;
+    public static RoleFlag BLOCK_PLACE;
+    public static RoleFlag ATTACK_PLAYER;
+    public static RoleFlag ATTACK_ANIMAL;
+    public static RoleFlag ATTACK_MONSTER;
+    public static RoleFlag BLOCK_IGNITE;
+    public static RoleFlag INTERACT_GENERAL;
+    public static RoleFlag INTERACT_MECHANISM;
+    public static RoleFlag INTERACT_CONTAINER;
+    public static RoleFlag INTERACT_DOOR;
+    public static RoleFlag INTERACT_TRAPDOOR;
+    public static RoleFlag INTERACT_VILLAGER;
+    public static RoleFlag FLY;
+    public static RoleFlag SPAWN_TELEPORT;
+    public static RoleFlag LAND_ENTER;
+    public static RoleFlag VEHICLE_USE;
+    public static RoleFlag ITEM_PICKUP;
+    public static RoleFlag ENDER_PEARL;
+    public static RoleFlag TRAMPLE_FARMLAND;
+    public static RoleFlag HARVEST;
 
-    // land
-    public static final RoleFlag BLOCK_BREAK = null;
-    public static final RoleFlag BLOCK_PLACE = null;
-    public static final RoleFlag ATTACK_PLAYER = null;
-    public static final RoleFlag ATTACK_ANIMAL = null;
-    public static final RoleFlag ATTACK_MONSTER = null;
-    public static final RoleFlag BLOCK_IGNITE = null;
-    public static final RoleFlag INTERACT_GENERAL = null;
-    public static final RoleFlag INTERACT_MECHANISM = null;
-    public static final RoleFlag INTERACT_CONTAINER = null;
-    public static final RoleFlag INTERACT_DOOR = null;
-    public static final RoleFlag INTERACT_TRAPDOOR = null;
-    public static final RoleFlag INTERACT_VILLAGER = null;
-    public static final RoleFlag FLY = null;
-    public static final RoleFlag SPAWN_TELEPORT = null;
-    public static final RoleFlag LAND_ENTER = null;
-    public static final RoleFlag VEHICLE_USE = null;
-    public static final RoleFlag ITEM_PICKUP = null;
-    public static final RoleFlag ENDER_PEARL = null;
-    public static final RoleFlag TRAMPLE_FARMLAND = null;
+    public static RoleFlag PLAYER_TRUST;
+    public static RoleFlag PLAYER_UNTRUST;
+    public static RoleFlag PLAYER_SETROLE;
+    public static RoleFlag LAND_CLAIM;
+    public static RoleFlag LAND_CLAIM_BORDER;
+    public static RoleFlag SPAWN_SET;
+    public static RoleFlag SETTING_EDIT_LAND;
+    public static RoleFlag SETTING_EDIT_ROLE;
+    public static RoleFlag SETTING_EDIT_TAXES;
+    public static RoleFlag SETTING_EDIT_VARIOUS;
+    public static RoleFlag BALANCE_WITHDRAW;
+    public static RoleFlag AREA_ASSIGN;
+    public static RoleFlag PLAYER_BAN;
+    public static RoleFlag WAR_MANAGE;
 
-    public static final RoleFlag PLAYER_TRUST = null;
-    public static final RoleFlag PLAYER_UNTRUST = null;
-    public static final RoleFlag PLAYER_SETROLE = null;
-    public static final RoleFlag LAND_CLAIM = null;
-    public static final RoleFlag LAND_CLAIM_BORDER = null;
-    public static final RoleFlag SPAWN_SET = null;
-    public static final RoleFlag SETTING_EDIT_LAND = null;
-    public static final RoleFlag SETTING_EDIT_ROLE = null;
-    public static final RoleFlag SETTING_EDIT_TAXES = null;
-    public static final RoleFlag SETTING_EDIT_VARIOUS = null;
-    public static final RoleFlag BALANCE_WITHDRAW = null;
-    public static final RoleFlag AREA_ASSIGN = null;
-    public static final RoleFlag PLAYER_BAN = null;
-    public static final RoleFlag WAR_MANAGE = null;
+    public static RoleFlag NO_DAMAGE;
 
-    public static final RoleFlag NO_DAMAGE = null;
-
-    public static final LandFlag ENTITY_GRIEFING = null;
-    public static final LandFlag TNT_GRIEFING = null;
-    public static final LandFlag PISTON_GRIEFING = null;
-    public static final LandFlag MONSTER_SPAWN = null;
-    public static final LandFlag ANIMAL_SPAWN = null;
-    public static final LandFlag WATERFLOW_ALLOW = null;
-    public static final LandFlag TITLE_HIDE = null;
-    public static final LandFlag FIRE_SPREAD = null;
-    public static final LandFlag LEAF_DECAY = null;
-    public static final LandFlag PLANT_GROWTH = null;
-    public static final LandFlag SNOW_MELT = null;
+    public static LandFlag ENTITY_GRIEFING;
+    public static LandFlag TNT_GRIEFING;
+    public static LandFlag PISTON_GRIEFING;
+    public static LandFlag MONSTER_SPAWN;
+    public static LandFlag ANIMAL_SPAWN;
+    public static LandFlag WATERFLOW_ALLOW;
+    public static LandFlag TITLE_HIDE;
+    public static LandFlag FIRE_SPREAD;
+    public static LandFlag LEAF_DECAY;
+    public static LandFlag PLANT_GROWTH;
+    public static LandFlag SNOW_MELT;
 
     // nation
-    public static final RoleFlag NATION_EDIT = null;
+    public static RoleFlag NATION_EDIT;
+
 
     private Flags() {
     }
@@ -70,11 +79,49 @@ public final class Flags {
 
     @Nullable
     public static Flag get(@NotNull String name) {
+        Preconditions.checkNotNull(name, "Name cannot be null");
         return null;
     }
 
     @Nullable
     public static RoleFlag getInteract(@NotNull Block block) {
-        return null;
+        return getInteract(block, null);
+    }
+
+    @Nullable
+    public static RoleFlag getInteract(@NotNull Block block, @Nullable ItemStack item) {
+        Preconditions.checkNotNull(block, "Block cannot be null");
+
+        BlockData blockData = block.getBlockData();
+        if (blockData instanceof Openable) {
+            return Tag.TRAPDOORS.isTagged(block.getType()) ? INTERACT_TRAPDOOR : INTERACT_DOOR;
+        } else if (block.getState() instanceof BlockInventoryHolder) {
+            return INTERACT_CONTAINER;
+        } else if (blockData instanceof Powerable || blockData instanceof PressureSensor) {
+            return block.getType() == Material.LECTERN ? null : INTERACT_MECHANISM;
+        } else {
+            Material material = block.getType();
+            switch (material) {
+                case COMPOSTER: {
+                    return item == null ? BLOCK_BREAK : BLOCK_PLACE;
+                }
+
+                case NOTE_BLOCK: {
+                    return INTERACT_GENERAL;
+                }
+
+                case FLOWER_POT: {
+                    return item == null ? null : BLOCK_PLACE;
+                }
+
+                case JUKEBOX: {
+                    return INTERACT_CONTAINER;
+                }
+
+                default: {
+                    return null;
+                }
+            }
+        }
     }
 }

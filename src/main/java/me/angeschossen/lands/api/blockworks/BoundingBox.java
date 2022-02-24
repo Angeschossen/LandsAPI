@@ -14,6 +14,7 @@ public interface BoundingBox {
 
     /**
      * Same as {@link #contains(int, int, int)}, but ignores y values.
+     *
      * @param x Block coordinate X
      * @param z Block coordinate Z
      * @return true, if the boundingBox contains these coordinates.

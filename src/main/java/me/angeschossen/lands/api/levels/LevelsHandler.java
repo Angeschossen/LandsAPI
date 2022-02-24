@@ -13,8 +13,6 @@ public interface LevelsHandler {
 
     @NotNull List<? extends Level> getNationLevels();
 
-
-
     @Nullable Map<Level, ConfigurationSection> getLandSection();
 
     @Nullable Map<Level, ConfigurationSection> getNationSection();

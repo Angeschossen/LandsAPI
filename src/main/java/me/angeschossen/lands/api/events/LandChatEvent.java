@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.events;
 
 import me.angeschossen.lands.api.MemberHolder;
+import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -10,6 +11,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -35,9 +37,22 @@ public class LandChatEvent extends Event implements Cancellable {
         return handlerList;
     }
 
+    @Deprecated
+    public Collection<UUID> getRecipients() {
+        Collection<UUID> uuids = new ArrayList<>();
+        recipients.forEach(r -> uuids.add(r.getUID()));
+        return uuids;
+    }
+
     @NotNull
     public Collection<LandPlayer> getReceivers() {
         return recipients;
+    }
+
+    @Deprecated
+    @Nullable
+    public Land getLand() {
+        return memberHolder instanceof Land ? (Land) memberHolder : null;
     }
 
     @NotNull
@@ -84,6 +99,6 @@ public class LandChatEvent extends Event implements Cancellable {
     }
 
     public enum MessageSource {
-        MINECRAFT, DISCORD
+        MINECRAFT, DISCORD, SYSTEM
     }
 }

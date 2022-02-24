@@ -12,7 +12,7 @@ import java.util.UUID;
 public class LandInvitePlayerEvent extends LandMemberEditCancellableEvent {
     public static HandlerList handlerList = new HandlerList();
 
-    public LandInvitePlayerEvent(Land land, @Nullable Area area,UUID initiator, UUID targetUUID) {
+    public LandInvitePlayerEvent(Land land, @Nullable Area area, UUID initiator, UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 

@@ -17,5 +17,5 @@ public interface BlockCoordinate {
 
     int getChunkZ();
 
-    double getDistance(Player player);
+    double getDistance(@NotNull Player player);
 }

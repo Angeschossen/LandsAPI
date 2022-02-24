@@ -12,10 +12,15 @@ public class LandFlag extends Flag {
      * @param name                    The name of the flag.
      * @param applyInSubAreas         Should this flag also be available in sub areas, not just the land in general?
      * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
-     * @param target Admin flags won't show up in the flags menu or normal lands so normal lands can't toggle them.
+     * @param target Specify if this flag should only be accessible to admin lands.
      */
     public LandFlag(@NotNull Plugin plugin, @NotNull Target target, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
+    }
+
+    @Deprecated
+    public LandFlag(@NotNull Plugin plugin, @NotNull String name, boolean applyInSubAreas) {
+        this(plugin, Target.PLAYER, name, applyInSubAreas, false);
     }
 
     public LandFlag(@NotNull Plugin plugin, @NotNull String name) {

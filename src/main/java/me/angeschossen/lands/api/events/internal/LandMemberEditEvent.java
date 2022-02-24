@@ -35,8 +35,20 @@ public abstract class LandMemberEditEvent extends Event {
     }
 
     @NotNull
+    @Deprecated
+    public UUID getTargetUUID() {
+        return target;
+    }
+
+    @NotNull
     public UUID getTarget() {
         return target;
+    }
+
+    @NotNull
+    @Deprecated
+    public UUID getTruster() {
+        return getInitiator();
     }
 
     @NotNull

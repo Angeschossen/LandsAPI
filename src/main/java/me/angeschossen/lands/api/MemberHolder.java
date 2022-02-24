@@ -54,11 +54,10 @@ public interface MemberHolder extends BalanceHolder {
      *
      * @param playerUUID Sender
      * @param message    Message
-     * @param messageSource Either MINECRAFT or DISCORD
+     * @param messageSource Specify if the message is sent from in-game or Discord for example.
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 
-    @NotNull
     HolderType getType();
 
     @NotNull
@@ -102,7 +101,7 @@ public interface MemberHolder extends BalanceHolder {
     int getMembersAmount();
 
     @NotNull
-    java.util.List<? extends InboxMessage> getInbox();
+    List<? extends InboxMessage> getInbox();
 
     @NotNull
     List<? extends InboxMessage> getInbox(InboxCategory category);

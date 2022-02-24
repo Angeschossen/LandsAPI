@@ -2,6 +2,7 @@ package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.flags.types.LandFlag;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
+import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.Role;
@@ -14,28 +15,21 @@ import java.util.UUID;
 
 public interface Area {
 
-    double addTax(double tax);
-
     boolean banPlayer(UUID uuid);
 
-    boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
+    void unbanPlayer(UUID playerUID);
 
-    @NotNull
-    String getColorName();
-
-    @NotNull
-    Role getEntryRole();
-
-    @Nullable
-    Invite getInvite(@NotNull UUID receiverUUID);
-
-    Land getLand();
-
-    @NotNull
-    String getName();
+    boolean isBanned(@NotNull UUID playerUID);
 
     @NotNull
     UUID getOwnerUID();
+
+    boolean isDefault();
+
+    @Deprecated
+    boolean hasLandSetting(LandSetting naturalFlags);
+
+    boolean hasFlag(@NotNull LandFlag flag);
 
     @NotNull
     Role getRole(@NotNull UUID playerUID);
@@ -43,28 +37,41 @@ public interface Area {
     @NotNull
     Role getRole(@NotNull String name);
 
-    double getTax();
+    Land getLand();
 
-    void setTax(double rent);
+    @NotNull
+    Role getEntryRole();
 
     @NotNull
     Role getVisitorRole();
 
-    boolean hasFlag(@NotNull LandFlag flag);
+    boolean toggleFlag(@NotNull LandFlag flag);
+
+    @Deprecated
+    boolean toggleLandSetting(LandSetting naturalFlags);
+
+    boolean isTrusted(UUID playerUID);
 
     boolean hasFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
+
+    boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
 
     boolean hasFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
 
     boolean hasFlag(@NotNull Player player, @NotNull RoleFlag roleFlag, boolean sendMessage);
 
-    boolean isBanned(@NotNull UUID playerUID);
+    @Nullable
+    Invite getInvite(@NotNull UUID receiverUUID);
 
-    boolean isDefault();
+    double addTax(double tax);
 
-    boolean isTrusted(UUID playerUID);
+    double getTax();
 
-    boolean toggleFlag(@NotNull LandFlag flag);
+    void setTax(double rent);
 
-    void unbanPlayer(UUID playerUID);
+    @NotNull
+    String getName();
+
+    @NotNull
+    String getColorName();
 }

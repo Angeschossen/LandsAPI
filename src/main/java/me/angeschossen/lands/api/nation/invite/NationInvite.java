@@ -18,13 +18,13 @@ public interface NationInvite {
      *
      * @return Receiver
      */
-     Land getReceiver();
+    Land getReceiver();
 
     /**
      * Accept invite
      *
      * @return Will return false if land or nation does not exist anymore.
-     * @throws LandAlreadyInNationException If the land is already part of a nation
+     * @throws LandAlreadyInNationException If the target land is already part of a nation.
      */
     boolean accept() throws LandAlreadyInNationException;
 

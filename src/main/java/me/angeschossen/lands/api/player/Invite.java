@@ -35,8 +35,8 @@ public interface Invite {
 
     /**
      * Accept invite
-     * @param player Player that accepts it (to receive the messages)
-     * @return Will return false if invite fails because of max members permission
+     * @param player Messages will be send to this player.
+     * @return Will return false if invite fails because of max members permission (example: lands.members.10).
      */
     boolean accept(Player player);
 

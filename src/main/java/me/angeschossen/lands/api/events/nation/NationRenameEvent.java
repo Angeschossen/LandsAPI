@@ -44,6 +44,7 @@ public class NationRenameEvent extends Event implements Cancellable {
     public boolean isCancelled() {
         return cancelled;
     }
+
     @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;

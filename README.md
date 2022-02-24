@@ -1,27 +1,30 @@
 # LandsAPI - Integrate Lands into your Plugin
+
 [![](https://jitpack.io/v/Angeschossen/LandsAPI.svg)](https://jitpack.io/#Angeschossen/LandsAPI)
 
+Include the API with Maven:
 
-Include the API with Maven: 
 ```xml
+
 <repositories>
-	<repository>
-		<id>jitpack.io</id>
-		<url>https://jitpack.io</url>
-	</repository>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
 </repositories>
 
 <dependencies>
-    <dependency>
-        <groupId>com.github.angeschossen</groupId>
-        <artifactId>LandsAPI</artifactId>
-        <version>INSERT VERSION HERE</version>
-        <scope>provided</scope>
-    </dependency>
+<dependency>
+    <groupId>com.github.angeschossen</groupId>
+    <artifactId>LandsAPI</artifactId>
+    <version>INSERT VERSION HERE</version>
+    <scope>provided</scope>
+</dependency>
 </dependencies>
 ```
 
 Include the API with Gradle:
+
 ```groovy
 repositories {
 	maven { url 'https://jitpack.io' }
@@ -31,11 +34,10 @@ dependencies {
 }
 ```
 
-
 Alternatively you can download the jar file from here: https://github.com/Angeschossen/LandsAPI/releases
 
-
 ## Implementing Lands
+
 Please make sure to add softdepend: [Lands] to your plugin.yml.
 
 Example:

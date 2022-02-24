@@ -2,7 +2,9 @@ package me.angeschossen.lands.api.land.enums;
 
 
 public enum LandType {
-    PLAYER(0), SERVER(1);
+    LAND(0), ADMIN(1), CAMP(2);
+
+    private static final LandType[] map = new LandType[]{LAND, ADMIN, CAMP};
 
     public final int id;
 
@@ -10,12 +12,15 @@ public enum LandType {
         this.id = id;
     }
 
-    public static LandType getByID(int iD) {
-        for (LandType landType : values()) {
-            if (landType.id == iD)
-                return landType;
+    public static LandType getById(int id) {
+        if (id >= map.length) {
+            return LAND;
         }
 
-        return LandType.PLAYER;
+        return map[id];
+    }
+
+    public boolean isSelectable() {
+        return this != CAMP;
     }
 }

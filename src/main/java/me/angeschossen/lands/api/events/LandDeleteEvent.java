@@ -21,7 +21,7 @@ public class LandDeleteEvent extends Event implements Cancellable {
     private boolean cancelled;
 
 
-    public LandDeleteEvent(@NotNull Land land,@NotNull DeleteReason reason, @Nullable LandPlayer deleter) {
+    public LandDeleteEvent(@NotNull Land land, @NotNull DeleteReason reason, @Nullable LandPlayer deleter) {
         super(!Bukkit.isPrimaryThread());
 
         this.land = land;

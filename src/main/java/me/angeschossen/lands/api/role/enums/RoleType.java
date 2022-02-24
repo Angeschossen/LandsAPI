@@ -36,7 +36,7 @@ public enum RoleType {
         return this == NATION;
     }
 
-    public boolean shouldCountOnNextFreePriority(){
+    public boolean shouldCountOnNextFreePriority() {
         return this != NATION && this != VISITOR;
     }
 

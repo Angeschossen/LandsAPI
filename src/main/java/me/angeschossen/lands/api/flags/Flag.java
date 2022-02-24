@@ -9,7 +9,6 @@ import java.util.List;
 
 public abstract class Flag {
 
-
     public Flag(@NotNull Plugin plugin, @NotNull Flag.Target target, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
     }
 
@@ -26,11 +25,6 @@ public abstract class Flag {
     @NotNull
     public Flag setIcon(@Nullable ItemStack icon) {
         return this;
-    }
-
-    @NotNull
-    public final ItemStack getIconEnabled() {
-        return null;
     }
 
     public final boolean isDisplayInWild() {

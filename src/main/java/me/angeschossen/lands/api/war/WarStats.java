@@ -9,4 +9,6 @@ public interface WarStats {
     int getKills();
 
     int getDeaths();
+
+    int getCaptures();
 }

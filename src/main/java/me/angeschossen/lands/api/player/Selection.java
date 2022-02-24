@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.function.BiPredicate;
 
 public interface Selection {
 
@@ -53,23 +54,23 @@ public interface Selection {
      * @return Will return false if selection is not complete, positions are not in the same world
      * or the selection is too big.
      */
-    @NotNull
-    boolean isValid(@NotNull boolean sendMessage);
+    boolean isValid(boolean sendMessage);
 
     /**
      * Get chunks in this selection.
      *
      * @return Chunks in this selection
      */
-    Collection<ChunkCoordinate> getChunks();
+    Collection<? extends ChunkCoordinate> getChunks();
 
     /**
      * Get size.
      *
      * @return Size
      */
-    @NotNull
     int getSize();
+
+    Collection<? extends ChunkCoordinate> getChunks(@NotNull BiPredicate<Integer, Integer> predicate);
 
     /**
      * Disable selection
