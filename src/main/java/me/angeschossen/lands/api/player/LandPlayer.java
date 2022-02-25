@@ -57,7 +57,7 @@ public interface LandPlayer extends OfflinePlayer {
      * @param sendMessage true: the player will receive a message, if they're not part of a land.
      * @return The current /lands edit land
      */
-    @NotNull Land getEditLand(boolean sendMessage);
+    @Nullable Land getEditLand(boolean sendMessage);
 
     /**
      * Get invite of land
