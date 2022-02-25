@@ -12,6 +12,8 @@ public interface OfflinePlayer {
 
     Collection<? extends Land> getLands();
 
+    int getSize();
+
     /**
      * Get UID of player
      *
@@ -19,6 +21,4 @@ public interface OfflinePlayer {
      */
     @NotNull
     UUID getUID();
-
-    int getSize();
 }

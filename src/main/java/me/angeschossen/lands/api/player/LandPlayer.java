@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.player;
 
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.land.enums.LandGetMode;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -37,7 +38,7 @@ public interface LandPlayer extends OfflinePlayer {
     Selection getSelection();
 
     /**
-     * Get support claims per land. Example permission: lands.chunks.support.10
+     * Get support claims per land. Permission: lands.chunks.support.<number>
      *
      * @return Max support claims
      */
@@ -50,6 +51,13 @@ public interface LandPlayer extends OfflinePlayer {
      */
     @NotNull
     Player getPlayer();
+
+    /**
+     * Get a players /lands edit land.
+     * @param sendMessage true: the player will receive a message, if they're not part of a land.
+     * @return The current /lands edit land
+     */
+    @NotNull Land getEditLand(boolean sendMessage);
 
     /**
      * Get invite of land
@@ -100,15 +108,6 @@ public interface LandPlayer extends OfflinePlayer {
     Land getOwningLand();
 
     @NotNull Collection<? extends Invite> getInvites();
-
-    /**
-     * Get the land wich the player set
-     * through /lands edit or random one or null if
-     * he has no lands
-     *
-     * @return Land or null, if no match found
-     */
-    Land getEditLand();
 
     /**
      * Check if player invited from land
