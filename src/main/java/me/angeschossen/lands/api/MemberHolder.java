@@ -20,73 +20,67 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public interface MemberHolder extends BalanceHolder {
+    void addWarshield(long seconds);
+
+    boolean exists();
+
+    /**
+     * Get all allies.
+     *
+     * @return Current allies
+     */
     @NotNull
-    String getName();
+    Collection<? extends MemberHolder> getAllies();
+
+    float getCachedRequirement(@NotNull String requirement);
+
+    int getChunksAmount();
 
     @NotNull
     String getColorName();
 
-    int getChunksAmount();
+    /**
+     * Get the creation timestamp.
+     *
+     * @return Time milliseconds
+     */
+    long getCreationTime();
 
-    @Nullable
-    War getWar();
+    /**
+     * Get all enemies.
+     *
+     * @return Current enemies
+     */
+    @NotNull
+    Collection<? extends MemberHolder> getEnemies();
 
-    @Nullable
-    Color getWebMapColor();
+    int getId();
+
+    @NotNull
+    java.util.List<? extends InboxMessage> getInbox();
+
+    @NotNull
+    List<? extends InboxMessage> getInbox(InboxCategory category);
+
+    @NotNull
+    Level getLevel();
+
+    int getMembersAmount();
+
+    @NotNull
+    String getName();
 
     @NotNull
     Collection<? extends LandPlayer> getOnlineLandPlayers();
 
     @NotNull
+    Collection<Player> getOnlinePlayers();
+
+    @NotNull
     UUID getOwnerUID();
 
     @NotNull
-    Collection<Player> getOnlinePlayers();
-
-    boolean isTrusted(@NotNull UUID uuid);
-
-    int getId();
-
-    boolean exists();
-
-    /**
-     * Send message to online players of this land.
-     *
-     * @param playerUUID    Sender
-     * @param message       Message
-     * @param messageSource Specify if the message is sent from in-game or Discord for example.
-     */
-    void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
-
-    HolderType getType();
-
-    @NotNull
-    Level getLevel();
-
-    CompletableFuture<Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
-
-    boolean isRequirementCached(@NotNull String requirement);
-
-    float getCachedRequirement(@NotNull String requirement);
-
-    void markLevelUpdate();
-
-    @Nullable
-    WarTeam getWarTeam();
-
-    boolean leaveWar();
-
-    void addWarshield(long seconds);
-
-    boolean hasWarshield();
-
-    long getWarshield();
-
-    boolean hasWarEntity(@NotNull MemberHolder entity);
-
-    boolean isInWar();
-
-    boolean isWarField();
+    WarStats getStats();
 
     /**
      * Get all trusted players
@@ -96,18 +90,64 @@ public interface MemberHolder extends BalanceHolder {
     @NotNull
     Collection<UUID> getTrustedPlayers();
 
+    HolderType getType();
+
+    @Nullable
+    War getWar();
+
     String getWarName();
 
-    int getMembersAmount();
+    @Nullable
+    WarTeam getWarTeam();
 
-    @NotNull
-    List<? extends InboxMessage> getInbox();
+    long getWarshield();
 
-    @NotNull
-    List<? extends InboxMessage> getInbox(InboxCategory category);
+    @Nullable
+    Color getWebMapColor();
 
-    @NotNull
-    WarStats getStats();
+    boolean hasWarEntity(@NotNull MemberHolder entity);
+
+    boolean hasWarshield();
+
+    /**
+     * Check if memberHolder has alliance with this once.
+     *
+     * @param memberHolder The target
+     * @return true, if they're in an alliance.
+     */
+    boolean isAlly(@NotNull MemberHolder memberHolder);
+
+    /**
+     * Check if memberHolder is an enemy to this one.
+     *
+     * @param memberHolder The target
+     * @return true, if they're enemies.
+     */
+    boolean isEnemy(@NotNull MemberHolder memberHolder);
+
+    boolean isInWar();
+
+    boolean isRequirementCached(@NotNull String requirement);
+
+    boolean isTrusted(@NotNull UUID uuid);
+
+    boolean isWarField();
+
+    boolean leaveWar();
+
+    void markLevelUpdate();
+
+    CompletableFuture<Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
+
+    /**
+     * Send message to online players of this land.
+     *
+     * @param playerUUID Sender
+     * @param message    Message
+     */
+    void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
+
+    void setWarShield(long seconds);
 
     void updateRequirementCache(@NotNull String requirement, float val, boolean levelCalc) throws IllegalArgumentException;
 }
