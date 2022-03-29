@@ -144,6 +144,7 @@ public interface MemberHolder extends BalanceHolder {
      *
      * @param playerUUID Sender
      * @param message    Message
+     * @param messageSource Where the message has been sent from.
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 
