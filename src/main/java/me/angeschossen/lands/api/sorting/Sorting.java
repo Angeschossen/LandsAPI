@@ -13,12 +13,10 @@ public abstract class Sorting<T> implements Comparator<T> {
     protected final String id;
     protected final me.angeschossen.lands.api.sorting.SortingContext<T> sortingContext;
     protected List<T> entries = Collections.emptyList();
-
     public Sorting(@NotNull SortingContext<T> sortingContext, @NotNull String id) throws IllegalStateException {
         this.id = id;
         this.sortingContext = sortingContext;
     }
-
 
     @Nullable
     public final T get(int place) {
@@ -36,6 +34,9 @@ public abstract class Sorting<T> implements Comparator<T> {
 
     @NotNull
     public abstract String getDisplayName();
+
+    @NotNull
+    public abstract String getEmoji();
 
     public final String getId() {
         return id;
