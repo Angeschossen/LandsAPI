@@ -13,6 +13,7 @@ import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
+import me.angeschossen.lands.api.sorting.SortingContext;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -67,6 +68,7 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    @Deprecated
     public @NotNull SortMode getDefaultTopSortMode() {
         return null;
     }
@@ -152,17 +154,25 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    @Deprecated
     public @NotNull Land getTopLand(@NotNull SortMode sortMode, int place) {
         return null;
     }
 
     @Override
+    @Deprecated
     public @NotNull List<Land> getTopLands(SortMode sortMode) {
         return null;
     }
 
     @Override
+    @Deprecated
     public @NotNull List<Land> getTopLands(@NotNull SortMode sortMode, int page) {
+        return null;
+    }
+
+    @Override
+    public @Nullable SortingContext<?> getSortingContext(@NotNull String id) {
         return null;
     }
 

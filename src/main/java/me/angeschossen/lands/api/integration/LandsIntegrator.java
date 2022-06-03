@@ -12,6 +12,7 @@ import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
+import me.angeschossen.lands.api.sorting.SortingContext;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -214,6 +215,7 @@ public interface LandsIntegrator {
      * @return Top lands in order
      */
     @NotNull
+    @Deprecated
     List<Land> getTopLands(SortMode sortMode);
 
     /**
@@ -224,7 +226,15 @@ public interface LandsIntegrator {
      * @return Top lands in order
      */
     @NotNull
+    @Deprecated
     List<Land> getTopLands(@NotNull SortMode sortMode, int page);
+
+    /**
+     * Get a sorted context.
+     * @param id The context id. Default: land, nation
+     * @return null, if the sorting context does not exist.
+     */
+    @Nullable SortingContext<?> getSortingContext(@NotNull String id);
 
     /**
      * Get top land by sorting and place.
@@ -233,7 +243,8 @@ public interface LandsIntegrator {
      * @param place    Place
      * @return Top lands in order
      */
-    @NotNull
+    @Nullable
+    @Deprecated
     Land getTopLand(@NotNull SortMode sortMode, int place);
 
     /**
@@ -244,6 +255,7 @@ public interface LandsIntegrator {
      * @return Top lands in order and message
      */
     @NotNull
+    @Deprecated
     List<String> printTopLands(SortMode sortMode, int page);
 
     /**
@@ -282,6 +294,7 @@ public interface LandsIntegrator {
     boolean isPublic();
 
     @NotNull
+    @Deprecated
     SortMode getDefaultTopSortMode();
 
     /**
