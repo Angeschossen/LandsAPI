@@ -20,8 +20,6 @@ public interface Nation extends MemberHolder {
      */
     boolean isMember(Land land);
 
-    boolean isMember(LandPlayer landPlayer);
-
     /**
      * Get the members of this land.
      *

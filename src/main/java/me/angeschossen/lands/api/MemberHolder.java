@@ -34,6 +34,8 @@ public interface MemberHolder extends BalanceHolder {
 
     float getCachedRequirement(@NotNull String requirement);
 
+    boolean isTrusted(@NotNull LandPlayer landPlayer);
+
     int getChunksAmount();
 
     @NotNull
