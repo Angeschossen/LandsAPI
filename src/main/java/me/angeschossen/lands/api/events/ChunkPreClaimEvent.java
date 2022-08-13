@@ -7,17 +7,18 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ChunkPreClaimEvent extends Event implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
-    private final LandPlayer landPlayer;
+    private final @Nullable LandPlayer landPlayer;
     private final int x;
     private final int z;
     private final LandWorld world;
     private boolean cancelled;
 
-    public ChunkPreClaimEvent(LandPlayer landPlayer, LandWorld world, int x, int z) {
+    public ChunkPreClaimEvent(@Nullable LandPlayer landPlayer, LandWorld world, int x, int z) {
         super(!Bukkit.isPrimaryThread());
 
         this.landPlayer = landPlayer;
@@ -48,7 +49,7 @@ public class ChunkPreClaimEvent extends Event implements Cancellable {
         return world;
     }
 
-    @NotNull
+    @Nullable
     public LandPlayer getLandPlayer() {
         return landPlayer;
     }

@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.awt.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -21,6 +20,13 @@ import java.util.concurrent.CompletableFuture;
 
 public interface MemberHolder extends BalanceHolder {
     void addWarshield(long seconds);
+
+    /**
+     * Calculate the level
+     *
+     * @param executeCmds Execute level-up or level-down configured "reward" commands?
+     */
+    void calculateLevel(boolean executeCmds);
 
     boolean exists();
 
@@ -33,8 +39,6 @@ public interface MemberHolder extends BalanceHolder {
     Collection<? extends MemberHolder> getAllies();
 
     float getCachedRequirement(@NotNull String requirement);
-
-    boolean isTrusted(@NotNull LandPlayer landPlayer);
 
     int getChunksAmount();
 
@@ -105,7 +109,10 @@ public interface MemberHolder extends BalanceHolder {
     long getWarshield();
 
     @Nullable
-    Color getWebMapColor();
+    Integer getWebMapBorderColor();
+
+    @Nullable
+    Integer getWebMapFillColor();
 
     boolean hasWarEntity(@NotNull MemberHolder entity);
 
@@ -131,6 +138,8 @@ public interface MemberHolder extends BalanceHolder {
 
     boolean isRequirementCached(@NotNull String requirement);
 
+    boolean isTrusted(LandPlayer landPlayer);
+
     boolean isTrusted(@NotNull UUID uuid);
 
     boolean isWarField();
@@ -146,7 +155,6 @@ public interface MemberHolder extends BalanceHolder {
      *
      * @param playerUUID Sender
      * @param message    Message
-     * @param messageSource Where the message has been sent from.
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 

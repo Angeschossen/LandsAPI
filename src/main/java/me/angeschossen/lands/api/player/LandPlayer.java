@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.player;
 
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.land.enums.LandGetMode;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;

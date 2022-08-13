@@ -7,17 +7,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ChunkPostClaimEvent extends Event {
 
     public static HandlerList handlerList = new HandlerList();
 
-    private final LandPlayer landPlayer;
+    private final @Nullable LandPlayer landPlayer;
     private final int x, z;
     private final Land land;
     private final LandWorld world;
 
-    public ChunkPostClaimEvent(LandPlayer landPlayer, Land land, LandWorld landWorld, int x, int z) {
+    public ChunkPostClaimEvent(@Nullable LandPlayer landPlayer, Land land, LandWorld landWorld, int x, int z) {
         super(!Bukkit.isPrimaryThread());
 
         this.landPlayer = landPlayer;
@@ -49,7 +50,7 @@ public class ChunkPostClaimEvent extends Event {
         return x;
     }
 
-    @NotNull
+    @Nullable
     public LandPlayer getLandPlayer() {
         return landPlayer;
     }

@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
+import me.angeschossen.lands.api.land.enums.LandType;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.TrustedPlayer;
@@ -19,8 +20,27 @@ import java.util.concurrent.CompletableFuture;
 
 public interface Land extends MemberHolder {
 
-    @NotNull
-    Area getDefaultArea();
+    /**
+     * Add money to land bank. Use negative numbers
+     * to remove money.
+     *
+     * @param value Value
+     * @return If value was negative and result smaller then 0, false.
+     */
+    boolean addBalance(double value);
+
+    boolean banPlayer(@NotNull UUID playerUID);
+
+    /**
+     * Claim a chunk. It's recommended to call {@link #calculateLevel(boolean)}, if this method returns true (successful claim), in order to calculate the level as it might has changed after the claim.
+     *
+     * @param landPlayer The player that is claiming the chunk.
+     * @param world      The world
+     * @param x          Chunk x
+     * @param z          Chunk z
+     * @return false, if the chunk a 3rd party plugin cancels the claiming or the chunk is already claimed.
+     */
+    boolean claimChunk(@Nullable LandPlayer landPlayer, @NotNull World world, int x, int z);
 
     CompletableFuture<Boolean> delete(@Nullable LandPlayer landPlayer, @NotNull DeleteReason reason);
 
@@ -32,28 +52,33 @@ public interface Land extends MemberHolder {
      */
     void delete(@Nullable Player deleter);
 
+    /**
+     * Does land exist?
+     *
+     * @return boolean
+     */
+    boolean exists();
+
     @Nullable
     Area getArea(Location location);
+
+    /**
+     * Get land balance
+     *
+     * @return Balance
+     */
+    double getBalance();
+
+    @Nullable LandCategory getCategory();
 
     @Nullable
     Collection<ChunkCoordinate> getChunks(@NotNull World world);
 
-    Collection<? extends LandArea> getSubAreas(@NotNull World world);
-
-    boolean hasArea(@NotNull String name);
-
-    boolean banPlayer(@NotNull UUID playerUID);
-
-    void unbanPlayer(@NotNull UUID playerUID);
-
-    /**
-     * Get the enter title that would be sent to a entering player.
-     *
-     * @param player The player that enters the land.
-     * @return Messages with placeholders replaced with the values.
-     */
     @NotNull
-    String getTitleMessage(@Nullable Player player);
+    String getColorName();
+
+    @NotNull
+    Area getDefaultArea();
 
     /**
      * Get the identification of this land.
@@ -63,19 +88,21 @@ public interface Land extends MemberHolder {
      */
     int getId();
 
-    War getWar();
-
-    @Nullable Nation getNation();
+    LandType getLandType();
 
     /**
-     * Get upkeep costs
+     * Get max chunk claims.
      *
-     * @return Upkeep costs
+     * @return Max chunk claims
      */
-    double getUpkeepCosts();
+    int getMaxChunks(boolean countNation);
 
-    @NotNull
-    String getColorName();
+    /**
+     * Get max members.
+     *
+     * @return Max members
+     */
+    int getMaxMembers();
 
     /**
      * Get name of the land
@@ -86,13 +113,15 @@ public interface Land extends MemberHolder {
     @NotNull
     String getName();
 
+    @Nullable Nation getNation();
+
     /**
-     * Set name of land
+     * Get a collection of all online land members
      *
-     * @param name New name
-     * @return Will return false, if a 3rd party plugin cancelled it.
+     * @return Collection of online players
      */
-    boolean setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
+    @NotNull
+    Collection<Player> getOnlinePlayers();
 
     /**
      * Get owner UUID of land
@@ -103,12 +132,11 @@ public interface Land extends MemberHolder {
     UUID getOwnerUID();
 
     /**
-     * Untrust a player in the whole land.
+     * Get the size of an land
      *
-     * @param playerUID Player UID
-     * @return Change
+     * @return Size of land
      */
-    boolean untrustPlayer(@NotNull UUID playerUID);
+    int getSize();
 
     /**
      * Get spawn
@@ -125,35 +153,23 @@ public interface Land extends MemberHolder {
      */
     void setSpawn(@Nullable Location location);
 
-    /**
-     * Get the size of an land
-     *
-     * @return Size of land
-     */
-    int getSize();
+    Collection<? extends LandArea> getSubAreas(@NotNull World world);
 
     /**
-     * Trust a player to the whole land, including areas.
+     * Get the enter title that would be sent to a entering player.
      *
-     * @param playerUID The target player
-     * @return Change
+     * @param player The player that enters the land.
+     * @return Messages with placeholders replaced with the values.
      */
-    boolean trustPlayer(@NotNull UUID playerUID);
+    @NotNull
+    String getTitleMessage(@Nullable Player player);
 
     /**
-     * Get max members.
-     *
-     * @return Max members
+     * Use getTitleMessage(player) instead.
      */
-    int getMaxMembers();
-
-    /**
-     * Get max chunk claims.
-     *
-     * @param countNation Should level bonuses from the nation be added to the value?
-     * @return Max chunk claims
-     */
-    int getMaxChunks(boolean countNation);
+    @Deprecated
+    @NotNull
+    String getTitleMessage();
 
     /**
      * Set title message.
@@ -163,11 +179,24 @@ public interface Land extends MemberHolder {
     void setTitleMessage(@Nullable String title);
 
     /**
-     * Set an new owner for land
+     * Get trusted player.
      *
-     * @param playerUID Player for new owner
+     * @param playerUUID UID of player.
+     * @return Trusted player
      */
-    void setOwner(@NotNull UUID playerUID);
+    @Nullable
+    TrustedPlayer getTrustedPlayer(@NotNull UUID playerUUID);
+
+    /**
+     * Get upkeep costs
+     *
+     * @return Upkeep costs
+     */
+    double getUpkeepCosts();
+
+    War getWar();
+
+    boolean hasArea(@NotNull String name);
 
     /**
      * Check if land has a chunk
@@ -183,37 +212,6 @@ public interface Land extends MemberHolder {
     boolean isTrusted(@NotNull UUID playerUID);
 
     /**
-     * Get a collection of all online land members
-     *
-     * @return Collection of online players
-     */
-    @NotNull
-    Collection<Player> getOnlinePlayers();
-
-    /**
-     * Get trusted player.
-     *
-     * @param playerUUID UID of player.
-     * @return Trusted player
-     */
-    @Nullable
-    TrustedPlayer getTrustedPlayer(@NotNull UUID playerUUID);
-
-    /**
-     * Does land exist?
-     *
-     * @return boolean
-     */
-    boolean exists();
-
-    /**
-     * Get land balance
-     *
-     * @return Balance
-     */
-    double getBalance();
-
-    /**
      * Set land bank balance
      *
      * @param balance Value
@@ -221,12 +219,35 @@ public interface Land extends MemberHolder {
     boolean setBalance(double balance);
 
     /**
-     * Add money to land bank. Use negative numbers
-     * to remove money.
+     * Set name of land
      *
-     * @param value Value
-     * @return If value was negative and result smaller then 0, false.
+     * @param name New name
+     * @return
      */
-    boolean addBalance(double value);
+    boolean setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
+
+    /**
+     * Set an new owner for land
+     *
+     * @param playerUID Player for new owner
+     */
+    void setOwner(@NotNull UUID playerUID);
+
+    /**
+     * Trust a player to the whole land, including areas.
+     *
+     * @return Change
+     */
+    boolean trustPlayer(@NotNull UUID playerUID);
+
+    void unbanPlayer(@NotNull UUID playerUID);
+
+    /**
+     * Untrust a player in the whole land.
+     *
+     * @param playerUID Player UID
+     * @return Change
+     */
+    boolean untrustPlayer(@NotNull UUID playerUID);
 
 }
