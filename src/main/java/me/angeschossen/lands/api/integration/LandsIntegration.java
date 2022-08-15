@@ -124,6 +124,11 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
+    public @NotNull Collection<Nation> getNations() {
+        return null;
+    }
+
+    @Override
     public @NotNull LevelsHandler getLevelsHandler() {
         return null;
     }

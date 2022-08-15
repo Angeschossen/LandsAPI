@@ -29,6 +29,12 @@ import java.util.concurrent.CompletableFuture;
 public interface LandsIntegrator {
 
     /**
+     * Get a list of all nations.
+     * @return All nations of the server.
+     */
+    @NotNull Collection<Nation> getNations();
+
+    /**
      * Add requirements to levels.
      *
      * @return LevelsHandler
