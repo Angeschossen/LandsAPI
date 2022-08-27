@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.events.land.DeleteReason;
-import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.land.enums.LandType;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -76,6 +75,10 @@ public interface Land extends MemberHolder {
 
     @NotNull
     String getColorName();
+
+    @Nullable Container getContainer(World world);
+
+    @NotNull Collection<? extends Container> getContainers();
 
     @NotNull
     Area getDefaultArea();
@@ -217,14 +220,6 @@ public interface Land extends MemberHolder {
      * @param balance Value
      */
     boolean setBalance(double balance);
-
-    /**
-     * Set name of land
-     *
-     * @param name New name
-     * @return
-     */
-    boolean setName(@NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
 
     /**
      * Set an new owner for land
