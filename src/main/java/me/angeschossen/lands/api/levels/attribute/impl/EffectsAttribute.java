@@ -1,6 +1,8 @@
 package me.angeschossen.lands.api.levels.attribute.impl;
 
+import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.levels.attribute.LevelAttribute;
+import me.angeschossen.lands.api.nation.Nation;
 import org.bukkit.potion.PotionEffect;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,5 +21,10 @@ public class EffectsAttribute extends LevelAttribute {
 
     public List<PotionEffect> getEffects() {
         return effects;
+    }
+
+    @Override
+    public boolean shouldApply(@NotNull MemberHolder memberHolder) {
+        return memberHolder instanceof Nation;
     }
 }

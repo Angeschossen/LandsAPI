@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
-public interface Level {
+public interface Level  {
     void addRequirement(@NotNull Requirement requirement) throws IllegalArgumentException, IllegalStateException;
 
     @NotNull

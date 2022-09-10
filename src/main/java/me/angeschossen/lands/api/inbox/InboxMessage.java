@@ -1,7 +1,8 @@
 package me.angeschossen.lands.api.inbox;
 
 
-public interface InboxMessage {
+
+public interface InboxMessage  {
     InboxCategory getCategory();
 
     long getTime();

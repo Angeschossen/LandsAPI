@@ -5,15 +5,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 
 public interface Container {
-    @NotNull Collection<? extends LandArea> getAreas();
-
-    @NotNull Collection<? extends ChunkCoordinate> getChunks();
+    int getMinY();
 
     int getMaxY();
 
-    int getMinY();
-
     @NotNull LandWorld getWorld();
+
+    @NotNull Collection<? extends LandArea> getAreas();
+
+    @NotNull Collection<? extends ChunkCoordinate> getChunks();
 
     boolean hasChunk(int x, int z);
 

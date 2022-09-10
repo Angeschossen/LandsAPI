@@ -1,27 +1,23 @@
 package me.angeschossen.lands.api.events;
 
+import me.angeschossen.lands.api.events.internal.LandEditEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class ChunkPostClaimEvent extends Event {
+public class ChunkPostClaimEvent extends LandEditEvent {
 
     public static HandlerList handlerList = new HandlerList();
 
-    private final @Nullable LandPlayer landPlayer;
     private final int x, z;
     private final Land land;
     private final LandWorld world;
 
-    public ChunkPostClaimEvent(@Nullable LandPlayer landPlayer, Land land, LandWorld landWorld, int x, int z) {
-        super(!Bukkit.isPrimaryThread());
+    public ChunkPostClaimEvent( LandPlayer landPlayer, Land land, LandWorld landWorld, int x, int z) {
+        super(land, landPlayer);
 
-        this.landPlayer = landPlayer;
         this.land = land;
         this.x = x;
         this.world = landWorld;
@@ -48,11 +44,6 @@ public class ChunkPostClaimEvent extends Event {
 
     public int getX() {
         return x;
-    }
-
-    @Nullable
-    public LandPlayer getLandPlayer() {
-        return landPlayer;
     }
 
     @Override

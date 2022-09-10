@@ -1,10 +1,10 @@
 package me.angeschossen.lands.api.events.war;
 
+import me.angeschossen.lands.api.events.internal.plugin.LandsEvent;
 import me.angeschossen.lands.api.war.War;
-import org.bukkit.event.Event;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class WarEvent extends Event {
+public abstract class WarEvent extends LandsEvent {
 
     protected final War war;
 

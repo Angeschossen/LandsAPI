@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public interface LandArea extends Area {
-    @Nullable Container getContainer();
+
 
     @Nullable
     World getWorld();
@@ -23,5 +23,6 @@ public interface LandArea extends Area {
 
     boolean contains(int x, int y, int z);
 
-    boolean isSetup();
+    boolean isSetup();    @Nullable Container getContainer();
+
 }

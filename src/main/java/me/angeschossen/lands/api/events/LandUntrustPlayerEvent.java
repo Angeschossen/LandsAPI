@@ -15,11 +15,11 @@ public class LandUntrustPlayerEvent extends LandMemberEditCancellableEvent {
     private final @NotNull
     UntrustReason reason;
 
-    public LandUntrustPlayerEvent(@NotNull Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID targetUUID) {
+    public LandUntrustPlayerEvent(@NotNull Land land, @Nullable Area area,  UUID initiator,  UUID targetUUID) {
         this(land, area, initiator, targetUUID, UntrustReason.DEFAULT);
     }
 
-    public LandUntrustPlayerEvent(@NotNull Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID targetUUID, @NotNull UntrustReason reason) {
+    public LandUntrustPlayerEvent(@NotNull Land land, @Nullable Area area,  UUID initiator,  UUID targetUUID, @NotNull UntrustReason reason) {
         super(land, area, initiator, targetUUID);
 
         this.reason = reason;
@@ -46,6 +46,7 @@ public class LandUntrustPlayerEvent extends LandMemberEditCancellableEvent {
     HandlerList getHandlers() {
         return handlerList;
     }
+
 
     public enum UntrustReason {
         DEFAULT, BAN, TAXES, RENTAL_EXPIRED

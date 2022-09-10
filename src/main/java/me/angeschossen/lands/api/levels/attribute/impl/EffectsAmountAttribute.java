@@ -1,6 +1,8 @@
 package me.angeschossen.lands.api.levels.attribute.impl;
 
+import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.levels.attribute.LevelAttribute;
+import me.angeschossen.lands.api.nation.Nation;
 import org.jetbrains.annotations.NotNull;
 
 public class EffectsAmountAttribute extends LevelAttribute {
@@ -15,5 +17,10 @@ public class EffectsAmountAttribute extends LevelAttribute {
 
     public int getValue() {
         return amount;
+    }
+
+    @Override
+    public boolean shouldApply(@NotNull MemberHolder memberHolder) {
+        return memberHolder instanceof Nation;
     }
 }

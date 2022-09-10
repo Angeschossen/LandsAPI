@@ -1,43 +1,53 @@
 package me.angeschossen.lands.api.role.enums;
 
-public enum RoleType {
-    OWNER(4, false, false), NATION(3, false), NORMAL(2, true, true), ENTRY(1, false), VISITOR(0, false);
+import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
+public enum RoleType {
+    ALLY(5, false, false, false), OWNER(4, false, false, true), NATION(3, false, false, false), NORMAL(2, true, true, true), ENTRY(1, false, false, true), VISITOR(0, false, false, false);
+
+    private static final Map<Integer, RoleType> map = new HashMap<>();
+public boolean isLand(){
+    return this != NATION;
+}
+    static {
+        for (RoleType roleType : values()) {
+            map.put(roleType.id, roleType);
+        }
+    }
 
     private final boolean multiple;
     private final int id;
+    private final boolean canHaveMembers;
     private boolean isDeleteable;
-
-    RoleType(int id, boolean multiple) {
-        this(id, multiple, false);
-    }
-
-    RoleType(int id, boolean multiple, boolean isDeleteable) {
+    RoleType(int id, boolean multiple, boolean isDeleteable, boolean canHaveMembers) {
         this.id = id;
         this.multiple = multiple;
         this.isDeleteable = isDeleteable;
+        this.canHaveMembers = canHaveMembers;
     }
 
-    public static RoleType getById(int id) throws IllegalArgumentException {
-        for (RoleType roleType : values()) {
-            if (roleType.getId() == id) {
-                return roleType;
-            }
-        }
+    @NotNull
+    public static RoleType getById(int id) {
+        return map.getOrDefault(id, NORMAL);
+    }
 
-        throw new IllegalArgumentException("RoleType with id " + id + " not found.");
+    public boolean canApply() {
+        return this == NORMAL || this == ENTRY;
+    }
+
+    public boolean canHaveMembers() {
+        return canHaveMembers;
+    }
+
+    public boolean canMultiple() {
+        return multiple;
     }
 
     public int getId() {
         return id;
-    }
-
-    public boolean isSystem() {
-        return this == NATION;
-    }
-
-    public boolean shouldCountOnNextFreePriority() {
-        return this != NATION && this != VISITOR;
     }
 
     public boolean isDeleteable() {
@@ -48,11 +58,16 @@ public enum RoleType {
         isDeleteable = deleteable;
     }
 
-    public boolean shouldAddToNewObject() {
-        return this != NATION;
+    public boolean isSystem() {
+        return !canHaveMembers;
     }
 
-    public boolean canMultiple() {
-        return multiple;
+    public final boolean paysTaxes() {
+        return this == NORMAL || this == ENTRY;
+    }
+
+    public boolean shouldAddToNewObject() {
+        // nation role is only needed if land is part of nation
+        return this != NATION;
     }
 }

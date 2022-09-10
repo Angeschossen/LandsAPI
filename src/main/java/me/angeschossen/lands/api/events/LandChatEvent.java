@@ -1,33 +1,31 @@
 package me.angeschossen.lands.api.events;
 
 import me.angeschossen.lands.api.MemberHolder;
-import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
 
-public class LandChatEvent extends Event implements Cancellable {
+public class LandChatEvent extends LandsPlayerEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private final String message;
-    private final UUID playerUID;
     private final Collection<LandPlayer> recipients;
     private final MessageSource messageSource;
     private final MemberHolder memberHolder;
     private boolean cancelled;
 
-    public LandChatEvent(MemberHolder memberHolder, UUID playerUID, Collection<LandPlayer> recipients, String message, MessageSource messageSource) {
+    public LandChatEvent(@NotNull MemberHolder memberHolder,@NotNull  UUID playerUID,@NotNull  Collection<LandPlayer> recipients,@NotNull  String message,@NotNull  MessageSource messageSource) {
+        super(playerUID);
+
         this.memberHolder = memberHolder;
-        this.playerUID = playerUID;
         this.message = message;
         this.recipients = recipients;
         this.messageSource = messageSource;
@@ -37,22 +35,9 @@ public class LandChatEvent extends Event implements Cancellable {
         return handlerList;
     }
 
-    @Deprecated
-    public Collection<UUID> getRecipients() {
-        Collection<UUID> uuids = new ArrayList<>();
-        recipients.forEach(r -> uuids.add(r.getUID()));
-        return uuids;
-    }
-
-    @NotNull
-    public Collection<LandPlayer> getReceivers() {
-        return recipients;
-    }
-
-    @Deprecated
-    @Nullable
-    public Land getLand() {
-        return memberHolder instanceof Land ? (Land) memberHolder : null;
+    @Override
+    public HandlerList getHandlers() {
+        return handlerList;
     }
 
     @NotNull
@@ -60,22 +45,33 @@ public class LandChatEvent extends Event implements Cancellable {
         return memberHolder;
     }
 
-    public MessageSource getSource() {
-        return messageSource;
+    @NotNull
+    public String getMessage() {
+        return message;
     }
 
     @NotNull
-    public UUID getSenderUID() {
-        return playerUID;
+    public Collection<LandPlayer> getReceivers() {
+        return recipients;
     }
 
     @Nullable
+    @Deprecated
     public Player getSender() {
-        return Bukkit.getPlayer(playerUID);
+        assert playerUUID != null;
+        return Bukkit.getPlayer(playerUUID);
     }
 
-    public String getMessage() {
-        return message;
+    @NotNull
+    @Deprecated
+    public UUID getSenderUID() {
+        assert playerUUID != null;
+        return playerUUID;
+    }
+
+    @NotNull
+    public MessageSource getSource() {
+        return messageSource;
     }
 
     @Override
@@ -86,11 +82,6 @@ public class LandChatEvent extends Event implements Cancellable {
     @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
-    }
-
-    @Override
-    public HandlerList getHandlers() {
-        return handlerList;
     }
 
     @Override

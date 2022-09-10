@@ -14,26 +14,30 @@ public class LandOwnerChangeEvent extends LandMemberEditCancellableEvent {
     private final Reason reason;
     private final UUID oldOwner;
 
-    public LandOwnerChangeEvent(Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID oldOwner, @NotNull Reason reason) {
+    public LandOwnerChangeEvent(@NotNull Land land, @Nullable Area area,  UUID initiator, @NotNull UUID oldOwner, @NotNull Reason reason) {
         super(land, area, initiator, area == null ? land.getOwnerUID() : area.getOwnerUID());
 
         this.oldOwner = oldOwner;
         this.reason = reason;
     }
 
-
     public static HandlerList getHandlerList() {
         return handlerList;
     }
 
-    @NotNull
-    public Reason getReason() {
-        return reason;
+    @Override
+    public @NotNull HandlerList getHandlers() {
+        return handlerList;
     }
 
     @NotNull
     public UUID getOld() {
         return oldOwner;
+    }
+
+    @NotNull
+    public Reason getReason() {
+        return reason;
     }
 
     @Override
@@ -43,11 +47,6 @@ public class LandOwnerChangeEvent extends LandMemberEditCancellableEvent {
         }
 
         super.setCancelled(cancelled);
-    }
-
-    @Override
-    public @NotNull HandlerList getHandlers() {
-        return handlerList;
     }
 
     public enum Reason {

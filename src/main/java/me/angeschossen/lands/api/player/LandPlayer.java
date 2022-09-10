@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.player;
 
+import me.angeschossen.lands.api.flags.types.PlayerFlag;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.entity.Player;
@@ -10,6 +11,100 @@ import java.util.Collection;
 import java.util.Set;
 
 public interface LandPlayer extends OfflinePlayer {
+
+    boolean toggleFlag(@NotNull PlayerFlag flag);
+
+    boolean hasFlag(@NotNull PlayerFlag flag);
+
+    /**
+     * Get a players /lands edit land.
+     *
+     * @param sendMessage true: the player will receive a message, if they're not part of a land.
+     * @return The current /lands edit land
+     */
+    @Nullable Land getEditLand(boolean sendMessage);
+
+    /**
+     * Get invite of land
+     *
+     * @param landName Name of land
+     * @return Invite
+     */
+    Invite getInvite(@NotNull String landName);
+
+    @NotNull Collection<? extends Invite> getInvites();
+
+    /**
+     * Get land where the player is member in
+     *
+     * @param landName Name or displayname of land
+     * @return Land or null, if not member
+     */
+    @Nullable
+    Land getLand(@NotNull String landName);
+
+    /**
+     * Get names of lands.
+     *
+     * @return Array
+     */
+    String[] getLandNames();
+
+    /**
+     * Get all lands the player owns or is member of.
+     *
+     * @return Lands
+     */
+    @NotNull
+    Set<? extends Land> getLands();
+
+    /**
+     * Get an owning land
+     *
+     * @return Land or null, if player doesn't own a land
+     */
+    @Nullable
+    Land getOwningLand();
+
+    /**
+     * Get player
+     *
+     * @return Will return null if player is offline.
+     */
+    @NotNull
+    Player getPlayer();
+
+    /**
+     * Get current selection.
+     *
+     * @return Selection
+     */
+    @Nullable
+    Selection getSelection();
+
+    /**
+     * Get number of lands (own lands and where the player is trusted)
+     *
+     * @return Will return 0, if player has no lands.
+     */
+    int getSize();
+
+    /**
+     * Get support claims per land. Permission: lands.chunks.support.<number>
+     *
+     * @return Max support claims
+     */
+    int getSupportClaimsPerLand();
+
+    @NotNull Set<? extends War> getWars();
+
+    /**
+     * Check if player invited from land
+     *
+     * @param landName Name of land
+     * @return Will return false if no invite from land found.
+     */
+    boolean hasInvite(@NotNull String landName);
 
     /**
      * Is the player participating in a war?
@@ -26,96 +121,6 @@ public interface LandPlayer extends OfflinePlayer {
      */
     boolean isInWar(@NotNull War war);
 
-    @NotNull Set<? extends War> getWars();
-
-    /**
-     * Get current selection.
-     *
-     * @return Selection
-     */
-    @Nullable
-    Selection getSelection();
-
-    /**
-     * Get support claims per land.
-     *
-     * @return Max support claims
-     */
-    int getSupportClaimsPerLand();
-
-    /**
-     * Get player
-     *
-     * @return Will return null if player is offline.
-     */
-    @NotNull
-    Player getPlayer();
-
-    /**
-     * Get a players /lands edit land.
-     * @param sendMessage true: the player will receive a message, if they're not part of a land.
-     * @return The current /lands edit land
-     */
-    @Nullable Land getEditLand(boolean sendMessage);
-
-    /**
-     * Get invite of land
-     *
-     * @param landName Name of land
-     * @return Invite
-     */
-    Invite getInvite(@NotNull String landName);
-
-    /**
-     * Get land where the player is member in
-     *
-     * @param landName Name or displayname of land
-     * @return Land or null, if not member
-     */
-    @Nullable
-    Land getLand(@NotNull String landName);
-
-    /**
-     * Set edit land
-     * /lands edit
-     *
-     * @param land Land to select
-     */
-    void setEditLand(@Nullable Land land);
-
-    /**
-     * Get all lands the player owns or is member of.
-     *
-     * @return Lands
-     */
-    @NotNull
-    Set<? extends Land> getLands();
-
-    /**
-     * Get number of lands (own lands and where the player is trusted)
-     *
-     * @return Will return 0, if player has no lands.
-     */
-    int getSize();
-
-    /**
-     * Get an owning land
-     *
-     * @return Land or null, if player doesn't own a land
-     */
-    @Nullable
-    Land getOwningLand();
-
-    @NotNull Collection<? extends Invite> getInvites();
-
-    /**
-     * Check if player invited from land
-     *
-     * @param landName Name of land
-     * @return Will return false if no invite from land found.
-     */
-    boolean hasInvite(@NotNull String landName);
-
     /**
      * Check if player has owning land
      *
@@ -124,9 +129,10 @@ public interface LandPlayer extends OfflinePlayer {
     boolean ownsLand();
 
     /**
-     * Get names of lands.
+     * Set edit land
+     * /lands edit
      *
-     * @return Array
+     * @param land Land to select
      */
-    String[] getLandNames();
+    void setEditLand(@Nullable Land land);
 }

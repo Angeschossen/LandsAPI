@@ -25,7 +25,9 @@ public interface Role {
 
     boolean isVisitorRole();
 
+
     boolean toggleFlag(RoleFlag flag);
+
 
     boolean hasFlag(RoleFlag flag);
 }

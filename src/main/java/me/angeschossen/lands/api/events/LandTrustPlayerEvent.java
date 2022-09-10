@@ -11,7 +11,7 @@ import java.util.UUID;
 public class LandTrustPlayerEvent extends LandMemberEditCancellableEvent {
     public static HandlerList handlerList = new HandlerList();
 
-    public LandTrustPlayerEvent(Land land, Area area, UUID initiator, UUID targetUUID) {
+    public LandTrustPlayerEvent(@NotNull Land land,@NotNull  Area area,  UUID initiator,  UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 

@@ -1,43 +1,41 @@
 package me.angeschossen.lands.api.events.nation;
 
 import me.angeschossen.lands.api.nation.Nation;
+import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
-public class NationRenameEvent extends Event implements Cancellable {
+public class NationRenameEvent extends NationEditEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
-    private boolean cancelled = false;
-
-    private final Nation nation;
     private final String oldName;
     private final String newName;
+    private boolean cancelled = false;
 
-    public NationRenameEvent(Nation nation, String oldName, String newName) {
-        this.nation = nation;
+    public NationRenameEvent(@NotNull Nation nation, @NotNull String oldName,@NotNull String newName, LandPlayer landPlayer) {
+        super(nation, landPlayer);
+
         this.oldName = oldName;
         this.newName = newName;
-    }
-
-    public Nation getNation() {
-        return nation;
-    }
-
-    public String getCurrentName() {
-        return oldName;
-    }
-
-    public String getNewName() {
-        return newName;
     }
 
     public static HandlerList getHandlerList() {
         return handlerList;
     }
 
+    @NotNull
+    public String getCurrentName() {
+        return oldName;
+    }
+
     @Override
     public HandlerList getHandlers() {
         return handlerList;
+    }
+
+    @NotNull
+    public String getNewName() {
+        return newName;
     }
 
     @Override

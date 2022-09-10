@@ -13,7 +13,7 @@ public class LandUnbanPlayerEvent extends LandMemberEditCancellableEvent {
 
     public static HandlerList handlerList = new HandlerList();
 
-    public LandUnbanPlayerEvent(Land land, @Nullable Area area, UUID initiator, UUID targetUUID) {
+    public LandUnbanPlayerEvent(@NotNull Land land, @Nullable Area area,  UUID initiator,  UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 

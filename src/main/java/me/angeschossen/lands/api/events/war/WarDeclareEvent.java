@@ -1,14 +1,13 @@
 package me.angeschossen.lands.api.events.war;
 
 import me.angeschossen.lands.api.MemberHolder;
+import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class WarDeclareEvent extends Event implements Cancellable {
+public class WarDeclareEvent extends LandsPlayerEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
     private final @NotNull
@@ -16,8 +15,8 @@ public class WarDeclareEvent extends Event implements Cancellable {
     private final LandPlayer sender;
     private boolean cancelled;
 
-    public WarDeclareEvent(@NotNull MemberHolder attacker, @NotNull LandPlayer sender, @NotNull MemberHolder defender) {
-        super(!Bukkit.isPrimaryThread());
+    public WarDeclareEvent(@NotNull MemberHolder attacker, LandPlayer sender, @NotNull MemberHolder defender) {
+        super(sender);
 
         this.attacker = attacker;
         this.defender = defender;
@@ -26,11 +25,6 @@ public class WarDeclareEvent extends Event implements Cancellable {
 
     public static HandlerList getHandlerList() {
         return handlerList;
-    }
-
-    @NotNull
-    public LandPlayer getSender() {
-        return sender;
     }
 
     @NotNull
@@ -43,6 +37,16 @@ public class WarDeclareEvent extends Event implements Cancellable {
         return defender;
     }
 
+    public HandlerList getHandlers() {
+        return handlerList;
+    }
+
+    @NotNull
+    @Deprecated
+    public LandPlayer getSender() {
+        return sender;
+    }
+
     @Override
     public boolean isCancelled() {
         return this.cancelled;
@@ -51,11 +55,6 @@ public class WarDeclareEvent extends Event implements Cancellable {
     @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
-    }
-
-    @Override
-    public HandlerList getHandlers() {
-        return handlerList;
     }
 
     @Override

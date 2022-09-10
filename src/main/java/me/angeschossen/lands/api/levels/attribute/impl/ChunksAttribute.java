@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.levels.attribute.impl;
 
+import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.levels.attribute.LevelAttribute;
 import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;
@@ -15,5 +16,10 @@ public class ChunksAttribute extends LevelAttribute {
 
     public int getValue() {
         return value;
+    }
+
+    @Override
+    public boolean shouldApply(@NotNull MemberHolder memberHolder) {
+        return true;
     }
 }

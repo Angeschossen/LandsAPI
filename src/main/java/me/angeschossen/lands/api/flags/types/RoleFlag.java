@@ -13,21 +13,37 @@ import java.util.function.Predicate;
 
 public class RoleFlag extends Flag {
 
+    private static final String[] p_area = new String[]{"{area}", "{land}", "{bypass}", "{flag}"}, p_wilderness = new String[]{"{flag}", "{bypass}"};
+    protected final Category category;
+    private final Predicate<@Nullable Role> predicate;
+    private boolean toggleableByNation = false;
+
     /**
      * This flag needs to be used for actions that involve players.
      *
      * @param plugin                  Your plugin.
      * @param category                There are two categories of RoleFlags:
      *                                ACTION: This should be used for physical actions, like block breaking etc.
-     *                                MANAGEMENT: This should be used for administration actions, like trusting players etc.
+     *                                MANAGEMENT: This should be used for administrational actions, like trusting players etc.
      * @param name                    Name of the flag.
      * @param applyInSubAreas         Should this flag also be available in sub areas, not just the land in general?
      * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
      * @param predicate               You can specify to which roles this flag should be applied for already existing lands. The role will be null if the target is wilderness.
-     * @param target                  Specify if this flag should only be accessible to admin lands.
+     * @param target Only admin lands or all lands.
      */
     public RoleFlag(@NotNull Plugin plugin, @NotNull Flag.Target target, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
+
+        this.category = category;
+        this.predicate = predicate;
+    }
+
+    @Deprecated
+    public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
+        super(plugin, Target.PLAYER, name, applyInSubAreas, alwaysAllowInWilderness);
+
+        this.category = category;
+        this.predicate = predicate;
     }
 
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
@@ -39,21 +55,22 @@ public class RoleFlag extends Flag {
     }
 
     public boolean isToggleableByNation() {
-        return false;
+        return toggleableByNation;
     }
 
     public RoleFlag setToggleableByNation(boolean toggleable) {
+        this.toggleableByNation = toggleable;
         return this;
     }
 
     @NotNull
     public Predicate<Role> getPredicate() {
-        return null;
+        return predicate;
     }
 
     @Override
     public @NotNull String getTogglePerm() {
-        return null;
+        return "lands.role.setting." + name;
     }
 
     public void sendDenied(@NotNull LandPlayer landPlayer, @Nullable Area area) {
@@ -66,7 +83,7 @@ public class RoleFlag extends Flag {
 
     @NotNull
     public String getBypassPerm() {
-        return null;
+        return "lands.bypass." + name;
     }
 
     @NotNull
@@ -77,12 +94,12 @@ public class RoleFlag extends Flag {
 
     @NotNull
     public String getBypassPermWild() {
-        return null;
+        return "lands.bypass.wilderness." + name;
     }
 
     @NotNull
     public Category getCategory() {
-        return null;
+        return category;
     }
 
     public enum Category {

@@ -52,9 +52,10 @@ public interface Selection {
      *
      * @param sendMessage Send not valid messages to player?
      * @return Will return false if selection is not complete, positions are not in the same world
-     * or the selection is too big.
+     * or the selection is too big (lands.selection.<number>).
      */
-    boolean isValid(boolean sendMessage);
+    @NotNull
+    boolean isValid(@NotNull boolean sendMessage);
 
     /**
      * Get chunks in this selection.

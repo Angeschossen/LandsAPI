@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.levels.attribute.impl;
 
+import me.angeschossen.lands.api.MemberHolder;
 import me.angeschossen.lands.api.levels.attribute.LevelAttribute;
 import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;
@@ -25,5 +26,10 @@ public class UpkeepAttribute extends LevelAttribute {
 
         double result = value + ((value / 100) * this.value);
         return Math.max(0, result); // prevent minus upkeep
+    }
+
+    @Override
+    public boolean shouldApply(@NotNull MemberHolder memberHolder) {
+       return false;
     }
 }

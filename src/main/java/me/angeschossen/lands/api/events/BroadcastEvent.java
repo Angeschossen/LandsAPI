@@ -1,37 +1,45 @@
 package me.angeschossen.lands.api.events;
 
-import org.bukkit.event.Event;
+import me.angeschossen.lands.api.events.internal.plugin.LandsEvent;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Collection;
 
 
-public class BroadcastEvent extends Event {
+public class BroadcastEvent extends LandsEvent {
     public static HandlerList handlerList = new HandlerList();
 
     private final String message;
     private final String messageKey;
+    private final Collection<Player> recipients;
 
-    public BroadcastEvent(String messageKey, String message) {
-        super(true);
-
+    public BroadcastEvent(Collection<Player> recipients, String messageKey, String message) {
         this.message = message;
         this.messageKey = messageKey;
-    }
-
-    public String getMessageKey() {
-        return messageKey;
-    }
-
-    public String getMessage() {
-        return message;
+        this.recipients = recipients;
     }
 
     public static HandlerList getHandlerList() {
         return handlerList;
     }
 
-    @Override
     public HandlerList getHandlers() {
         return handlerList;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getMessageKey() {
+        return messageKey;
+    }
+
+    @NotNull
+    public Collection<Player> getRecipients() {
+        return recipients;
     }
 }
 

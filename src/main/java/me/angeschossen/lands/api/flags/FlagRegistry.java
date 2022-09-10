@@ -2,6 +2,7 @@ package me.angeschossen.lands.api.flags;
 
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.types.LandFlag;
+import me.angeschossen.lands.api.flags.types.PlayerFlag;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -30,6 +31,10 @@ public interface FlagRegistry {
 
     @NotNull
     List<RoleFlag> getRoleFlags(@NotNull RoleFlag.Category category, @NotNull RoleFlag.Module module);
+
+    @NotNull Collection<PlayerFlag> getPlayerFlags();
+
+    @Nullable PlayerFlag getPlayer(@NotNull String name);
 
     @NotNull
     Collection<LandFlag> getLandFlags();

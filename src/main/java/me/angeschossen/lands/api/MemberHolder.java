@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api;
 
 import me.angeschossen.lands.api.events.LandChatEvent;
+import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-public interface MemberHolder extends BalanceHolder {
+public interface MemberHolder extends BalanceHolder, ExpressionEntity {
     void addWarshield(long seconds);
 
     /**
@@ -60,10 +61,12 @@ public interface MemberHolder extends BalanceHolder {
     @NotNull
     Collection<? extends MemberHolder> getEnemies();
 
+    String getExpressionPrefix();
+
     int getId();
 
     @NotNull
-    java.util.List<? extends InboxMessage> getInbox();
+    List<? extends InboxMessage> getInbox();
 
     @NotNull
     List<? extends InboxMessage> getInbox(InboxCategory category);
@@ -84,6 +87,8 @@ public interface MemberHolder extends BalanceHolder {
 
     @NotNull
     UUID getOwnerUID();
+
+    @NotNull Relation getRelation(UUID playerUID);
 
     @NotNull
     WarStats getStats();
@@ -155,8 +160,18 @@ public interface MemberHolder extends BalanceHolder {
      *
      * @param playerUUID Sender
      * @param message    Message
+     * @param messageSource Source of the message
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
+
+    /**
+     * Set a new name
+     *
+     * @param name New name
+     * @return false, if event cancelled
+     * @throws NameAlreadyTakenException If the name is already taken.
+     */
+    boolean setName(@Nullable LandPlayer landPlayer, @NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
 
     void setWarShield(long seconds);
 

@@ -2,6 +2,7 @@ package me.angeschossen.lands.api.flags;
 
 import com.google.common.base.Preconditions;
 import me.angeschossen.lands.api.flags.types.LandFlag;
+import me.angeschossen.lands.api.flags.types.PlayerFlag;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
 import org.bukkit.Material;
 import org.bukkit.Tag;
@@ -15,7 +16,7 @@ import org.bukkit.material.PressureSensor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class Flags {
+public final class Flags {
 
     public static RoleFlag BLOCK_BREAK;
     public static RoleFlag BLOCK_PLACE;
@@ -29,14 +30,14 @@ public class Flags {
     public static RoleFlag INTERACT_DOOR;
     public static RoleFlag INTERACT_TRAPDOOR;
     public static RoleFlag INTERACT_VILLAGER;
-    public static RoleFlag FLY;
+    public static RoleFlag FLY, ELYTRA;
     public static RoleFlag SPAWN_TELEPORT;
     public static RoleFlag LAND_ENTER;
     public static RoleFlag VEHICLE_USE;
     public static RoleFlag ITEM_PICKUP;
     public static RoleFlag ENDER_PEARL;
     public static RoleFlag TRAMPLE_FARMLAND;
-    public static RoleFlag HARVEST;
+    public static RoleFlag HARVEST, PLANT, SHEAR;
 
     public static RoleFlag PLAYER_TRUST;
     public static RoleFlag PLAYER_UNTRUST;
@@ -59,6 +60,7 @@ public class Flags {
     public static LandFlag TNT_GRIEFING;
     public static LandFlag PISTON_GRIEFING;
     public static LandFlag MONSTER_SPAWN;
+    public static LandFlag PHANTOM_SPAWN;
     public static LandFlag ANIMAL_SPAWN;
     public static LandFlag WATERFLOW_ALLOW;
     public static LandFlag TITLE_HIDE;
@@ -70,6 +72,10 @@ public class Flags {
     // nation
     public static RoleFlag NATION_EDIT;
 
+    // player
+    public static PlayerFlag ENTER_MESSAGES;
+    public static PlayerFlag RECEIVE_INVITES;
+    
 
     private Flags() {
     }
@@ -92,7 +98,7 @@ public class Flags {
     public static RoleFlag getInteract(@NotNull Block block, @Nullable ItemStack item) {
         Preconditions.checkNotNull(block, "Block cannot be null");
 
-        BlockData blockData = block.getBlockData();
+        final BlockData blockData = block.getBlockData();
         if (blockData instanceof Openable) {
             return Tag.TRAPDOORS.isTagged(block.getType()) ? INTERACT_TRAPDOOR : INTERACT_DOOR;
         } else if (block.getState() instanceof BlockInventoryHolder) {
@@ -100,10 +106,23 @@ public class Flags {
         } else if (blockData instanceof Powerable || blockData instanceof PressureSensor) {
             return block.getType() == Material.LECTERN ? null : INTERACT_MECHANISM;
         } else {
-            Material material = block.getType();
+            final Material material = block.getType();
             switch (material) {
                 case COMPOSTER: {
                     return item == null ? BLOCK_BREAK : BLOCK_PLACE;
+                }
+
+                case RESPAWN_ANCHOR: {
+                    return item == null ? null : INTERACT_CONTAINER;
+                }
+
+                case BEACON:
+                case BEE_NEST:
+                case ANVIL:
+                case CHIPPED_ANVIL:
+                case DAMAGED_ANVIL:
+                case BEEHIVE: {
+                    return INTERACT_CONTAINER;
                 }
 
                 case NOTE_BLOCK: {

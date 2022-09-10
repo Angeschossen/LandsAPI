@@ -1,27 +1,24 @@
 package me.angeschossen.lands.api.events;
 
+import me.angeschossen.lands.api.events.internal.LandEditEvent;
+import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.Bukkit;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class ChunkPreClaimEvent extends Event implements Cancellable {
+public class ChunkPreClaimEvent extends LandEditEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
-    private final @Nullable LandPlayer landPlayer;
     private final int x;
     private final int z;
     private final LandWorld world;
     private boolean cancelled;
 
-    public ChunkPreClaimEvent(@Nullable LandPlayer landPlayer, LandWorld world, int x, int z) {
-        super(!Bukkit.isPrimaryThread());
+    public ChunkPreClaimEvent(@NotNull Land land, LandPlayer landPlayer, LandWorld world, int x, int z) {
+        super(land,landPlayer);
 
-        this.landPlayer = landPlayer;
         this.world = world;
         this.x = x;
         this.z = z;
@@ -47,11 +44,6 @@ public class ChunkPreClaimEvent extends Event implements Cancellable {
     @NotNull
     public LandWorld getWorld() {
         return world;
-    }
-
-    @Nullable
-    public LandPlayer getLandPlayer() {
-        return landPlayer;
     }
 
     @Override

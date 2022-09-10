@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.flags.types.LandFlag;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
-import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.Role;
@@ -62,9 +61,6 @@ public interface Area {
 
     boolean hasFlag(@NotNull Player player, @NotNull RoleFlag roleFlag, boolean sendMessage);
 
-    @Deprecated
-    boolean hasLandSetting(LandSetting naturalFlags);
-
     boolean isBanned(@NotNull UUID playerUID);
 
     boolean isDefault();
@@ -72,9 +68,6 @@ public interface Area {
     boolean isTrusted(UUID playerUID);
 
     boolean toggleFlag(@NotNull LandFlag flag);
-
-    @Deprecated
-    boolean toggleLandSetting(LandSetting naturalFlags);
 
     void unbanPlayer(UUID playerUID);
 }

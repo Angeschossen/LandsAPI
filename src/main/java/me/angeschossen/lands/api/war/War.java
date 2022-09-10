@@ -6,22 +6,38 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface War {
+import java.util.Collection;
 
-    @NotNull WarTeam getTeam(@NotNull Player player);
+public interface War {
 
     void end(@NotNull MemberHolder winner, boolean surrendered, double reward);
 
-    boolean isParticipating(@NotNull MemberHolder entity);
-
-    boolean isEndingSoon();
-
-    @Nullable
-    MemberHolder getWinner();
+    @NotNull
+    MemberHolder getAttacker();
 
     @NotNull
     WarStats getAttackerStats();
 
+    @NotNull Collection<Player> getOnlineAttackers();
+
+    @NotNull
+    MemberHolder getDefender();
+
     @NotNull
     WarStats getDefenderStats();
+
+    @NotNull Collection<Player> getOnlineDefenders();
+
+    @NotNull MemberHolder getEnemy(@NotNull MemberHolder memberHolder);
+
+    double getReward(@Nullable MemberHolder winner);
+
+    @NotNull WarTeam getTeam(@NotNull Player player);
+
+    @Nullable
+    MemberHolder getWinner();
+
+    boolean isEndingSoon();
+
+    boolean isParticipating(@NotNull MemberHolder entity);
 }

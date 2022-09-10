@@ -1,30 +1,22 @@
 package me.angeschossen.lands.api.events.internal;
 
+import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public abstract class PlayerLocationAreaEvent extends Event {
+public abstract class PlayerLocationAreaEvent extends LandsPlayerEvent {
     public static HandlerList handlerList = new HandlerList();
     protected final Area area;
-    protected final LandPlayer landPlayer;
 
-    public PlayerLocationAreaEvent(Area area, LandPlayer landPlayer) {
-        super(!Bukkit.isPrimaryThread());
+    public PlayerLocationAreaEvent(@NotNull Area area, LandPlayer landPlayer) {
+        super(landPlayer);
 
         this.area = area;
-        this.landPlayer = landPlayer;
     }
 
     public static HandlerList getHandlerList() {
-        return handlerList;
-    }
-
-    @Override
-    public @NotNull HandlerList getHandlers() {
         return handlerList;
     }
 
@@ -38,8 +30,7 @@ public abstract class PlayerLocationAreaEvent extends Event {
         return area;
     }
 
-    @NotNull
-    public LandPlayer getLandPlayer() {
-        return landPlayer;
+    public @NotNull HandlerList getHandlers() {
+        return handlerList;
     }
 }

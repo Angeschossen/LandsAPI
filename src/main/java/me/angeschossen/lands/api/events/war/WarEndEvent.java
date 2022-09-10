@@ -19,7 +19,6 @@ public class WarEndEvent extends WarEvent {
         return handlerList;
     }
 
-    @Override
     public @NotNull HandlerList getHandlers() {
         return handlerList;
     }

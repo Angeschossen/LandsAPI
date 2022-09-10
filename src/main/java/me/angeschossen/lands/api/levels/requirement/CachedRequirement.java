@@ -12,10 +12,16 @@ public abstract class CachedRequirement extends Requirement {
         super(plugin, name, title, description, required, requiredDisplay);
     }
 
+    public abstract float retrieveValue(@NotNull MemberHolder memberHolder);
+
     @Override
     public final float getValue(@NotNull MemberHolder memberHolder) {
-        return 0;
+        if (!memberHolder.isRequirementCached(name)) {
+            float val = retrieveValue(memberHolder);
+            memberHolder.updateRequirementCache(name, val, false);
+            return val;
+        } else {
+            return memberHolder.getCachedRequirement(name);
+        }
     }
-
-    public abstract float retrieveValue(@NotNull MemberHolder memberHolder);
 }

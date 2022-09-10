@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.player;
 
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.utils.TrustResult;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -36,10 +37,9 @@ public interface Invite {
     /**
      * Accept invite
      *
-     * @param player Messages will be send to this player.
-     * @return Will return false if invite fails because of max members permission (example: lands.members.10).
+     * @return Will return false if invite fails because of max members permission (lands.members.<number>).
      */
-    boolean accept(Player player);
+    TrustResult accept(Player player);
 
     /**
      * Deny invite

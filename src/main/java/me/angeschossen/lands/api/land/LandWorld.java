@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 public interface LandWorld {
 
+
     boolean hasWildernessFlag(@NotNull Player player, @NotNull Location location, @NotNull RoleFlag roleFlag, boolean sendMessage);
 
     @Nullable

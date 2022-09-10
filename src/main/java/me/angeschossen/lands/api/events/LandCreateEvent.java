@@ -1,30 +1,20 @@
 package me.angeschossen.lands.api.events;
 
+import me.angeschossen.lands.api.events.internal.LandEditEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
-public class LandCreateEvent extends Event implements Cancellable {
+public class LandCreateEvent extends LandEditEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
     private boolean cancelled;
 
-    private final LandPlayer landPlayer;
-    private final Land land;
 
-    public LandCreateEvent(LandPlayer landPlayer, Land land) {
-        this.land = land;
-        this.landPlayer = landPlayer;
-    }
-
-    public Land getLand() {
-        return land;
-    }
-
-    public LandPlayer getLandPlayer() {
-        return landPlayer;
+    public LandCreateEvent(LandPlayer landPlayer,@NotNull Land land) {
+        super(land, landPlayer);
     }
 
     public static HandlerList getHandlerList() {

@@ -11,22 +11,22 @@ public class NationRoleFlag extends RoleFlag {
 
     @Override
     public final @NotNull String getTogglePerm() {
-        return null;
+        return "nations.setting." + name;
     }
 
     @Override
     public final @NotNull String getBypassPerm() {
-        return null;
+        return "nations.bypass." + name;
     }
 
     @Override
     public final @NotNull String getBypassPermWild() {
-        return null;
+        return "nations.bypass.wilderness." + name;
     }
 
     @Override
     @NotNull
     public final Module getModule() {
-        return null;
+        return Module.NATION;
     }
 }
