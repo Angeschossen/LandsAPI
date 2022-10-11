@@ -47,7 +47,7 @@ Example:
 
     public IntegrationExample(Plugin yourPlugin) {
 
-        // view methods of this class: https://github.com/Angeschossen/LandsAPI/blob/4.8.17/src/main/java/me/angeschossen/lands/api/integration/LandsIntegrator.java
+        // view methods of this class: https://github.com/Angeschossen/LandsAPI/blob/master/src/main/java/me/angeschossen/lands/api/integration/LandsIntegrator.java
         this.landsIntegration = new LandsIntegration(yourPlugin);
 	
 	// example of registering a flag
