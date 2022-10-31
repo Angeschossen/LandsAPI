@@ -15,11 +15,13 @@ public class ChunkDeleteEvent extends LandEditEvent implements Cancellable {
     private final World world;
     private final Land land;
     private final DeleteReason reason;
+    private final UnclaimType unclaimType;
     private boolean cancelled;
 
-    public ChunkDeleteEvent( LandPlayer landPlayer, @NotNull DeleteReason reason, @NotNull World world, @NotNull Land land, int x, int z) {
+    public ChunkDeleteEvent(LandPlayer landPlayer, @NotNull DeleteReason reason, @NotNull UnclaimType unclaimType, @NotNull World world, @NotNull Land land, int x, int z) {
         super(land, landPlayer);
 
+        this.unclaimType = unclaimType;
         this.world = world;
         this.x = x;
         this.z = z;
@@ -31,14 +33,34 @@ public class ChunkDeleteEvent extends LandEditEvent implements Cancellable {
         return handlerList;
     }
 
+    @Override
+    public HandlerList getHandlers() {
+        return handlerList;
+    }
+
+    @NotNull
+    public Land getLand() {
+        return land;
+    }
+
     @NotNull
     public DeleteReason getReason() {
         return reason;
     }
 
     @NotNull
-    public Land getLand() {
-        return land;
+    public UnclaimType getUnclaimType() {
+        return unclaimType;
+    }
+
+    @NotNull
+    public World getWorld() {
+        return world;
+    }
+
+    @Deprecated
+    public String getWorldName() {
+        return world.getName();
     }
 
     public int getX() {
@@ -47,21 +69,6 @@ public class ChunkDeleteEvent extends LandEditEvent implements Cancellable {
 
     public int getZ() {
         return z;
-    }
-
-    @Deprecated
-    public String getWorldName() {
-        return world.getName();
-    }
-
-    @NotNull
-    public World getWorld() {
-        return world;
-    }
-
-    @Override
-    public HandlerList getHandlers() {
-        return handlerList;
     }
 
     @Override
@@ -76,5 +83,9 @@ public class ChunkDeleteEvent extends LandEditEvent implements Cancellable {
         }
 
         this.cancelled = b;
+    }
+
+    public enum UnclaimType {
+        DEFAULT, ALL, SELECTION
     }
 }
