@@ -78,8 +78,14 @@ public class ChunkDeleteEvent extends LandEditEvent implements Cancellable {
 
     @Override
     public void setCancelled(boolean b) throws IllegalStateException {
-        if (b && reason == DeleteReason.ADMIN) {
-            throw new IllegalStateException("Can't cancel event with reason 'ADMIN'.");
+        if (b) {
+            if (reason == DeleteReason.ADMIN) {
+                throw new IllegalStateException("Can't cancel event with reason \"ADMIN\".");
+            }
+
+            if (unclaimType != UnclaimType.DEFAULT) {
+                throw new IllegalStateException("For the unclaim type \"" + unclaimType.toString() + "\", please use the specific event.");
+            }
         }
 
         this.cancelled = b;

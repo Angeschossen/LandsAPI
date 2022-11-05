@@ -63,17 +63,12 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    public @Nullable LandWorld getLandWorld(@NotNull World world) {
+    public @Nullable Land getLandUnloaded(@NotNull World world, int x, int z) {
         return null;
     }
 
     @Override
-    public boolean isClaimed(@NotNull Location location) {
-        return false;
-    }
-
-    @Override
-    public CompletableFuture<Boolean> isClaimed(@NotNull String worldName, int chunkX, int chunkZ) {
+    public @Nullable LandWorld getLandWorld(@NotNull World world) {
         return null;
     }
 
@@ -83,17 +78,12 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    public Land getLand(@NotNull String worldName, @NotNull String landName) {
-        return null;
+    public boolean isClaimedUnloaded(@NotNull World world, int x, int z) {
+        return false;
     }
 
     @Override
     public @NotNull CompletableFuture<OfflinePlayer> getOfflineLandPlayer(@NotNull UUID playerUID) {
-        return null;
-    }
-
-    @Override
-    public LandWorld getLandWorld(@NotNull String worldName) {
         return null;
     }
 
@@ -123,22 +113,12 @@ public class LandsIntegration implements LandsIntegrator {
     }
 
     @Override
-    public @Nullable Land getLand(@NotNull Location location) {
-        return null;
-    }
-
-    @Override
     public @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ) {
         return null;
     }
 
     @Override
     public @NotNull Collection<Land> getLands() {
-        return null;
-    }
-
-    @Override
-    public @Nullable LandArea getArea(@NotNull Location location) {
         return null;
     }
 
@@ -165,36 +145,6 @@ public class LandsIntegration implements LandsIntegrator {
     @Override
     public @NotNull String getName() {
         return null;
-    }
-
-    @Override
-    public void disable() {
-
-    }
-
-    @Override
-    public void disable(@Nullable String hookKey) {
-
-    }
-
-    @Override
-    public @NotNull String initialize() {
-        return null;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
-
-    @Override
-    public boolean getAccess(@NotNull String hookKey) {
-        return false;
-    }
-
-    @Override
-    public boolean isPublic() {
-        return false;
     }
 
     @Override

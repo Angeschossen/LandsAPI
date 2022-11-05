@@ -16,7 +16,6 @@ public interface Selection {
      *
      * @return Will return false if one position is missing.
      */
-    @NotNull
     boolean isComplete();
 
     /**
@@ -54,8 +53,7 @@ public interface Selection {
      * @return Will return false if selection is not complete, positions are not in the same world
      * or the selection is too big (lands.selection.<number>).
      */
-    @NotNull
-    boolean isValid(@NotNull boolean sendMessage);
+    boolean isValid(boolean sendMessage);
 
     /**
      * Get chunks in this selection.
@@ -70,6 +68,8 @@ public interface Selection {
      * @return Size
      */
     int getSize();
+
+    boolean hasChunk(int x, int z);
 
     Collection<? extends ChunkCoordinate> getChunks(@NotNull BiPredicate<Integer, Integer> predicate);
 
