@@ -53,7 +53,7 @@ Example:
 	// registering a flag
 	Flag flag = new RoleFlag(ChestProtect.getPlugin(), Flag.Target.ADMIN, RoleFlag.Category.ACTION, "chestprotect_open", true, false, role -> false)
                 .setWarState(true);
-         landsIntegration.registerFlag(flag);
+        landsIntegration.registerFlag(flag);
     }
 
     // example
