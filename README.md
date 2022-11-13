@@ -50,23 +50,23 @@ Example:
         // view methods of this class: https://github.com/Angeschossen/LandsAPI/blob/master/src/main/java/me/angeschossen/lands/api/integration/LandsIntegrator.java
         this.landsIntegration = new LandsIntegration(yourPlugin);
 	
-	// example of registering a flag
-	(RoleFlag) new RoleFlag(ChestProtect.getPlugin(), Flag.Target.ADMIN, RoleFlag.Category.ACTION, "chestprotect_open", true, false, role -> false)
+	// registering a flag
+	Flag flag = new RoleFlag(ChestProtect.getPlugin(), Flag.Target.ADMIN, RoleFlag.Category.ACTION, "chestprotect_open", true, false, role -> false)
                 .setWarState(true);
-
+         landsIntegration.registerFlag(flag);
     }
 
     // example
-    void test(Location location, Player player) {
-        // get a land area from a location
+    public void test(Location location, Player player) {
+        // get an area from a location
         final @Nullable Area area = landsIntegration.getAreaByLoc(location);
 
         if (area != null) {
             // check flag status for a player
-            area.hasFlag(player, Flags.ATTACK_PLAYER, false);
+            final boolean canAttackPlayer = area.hasFlag(player, Flags.ATTACK_PLAYER, false);
 
             // alternatively UUID instead of Player (does not check war state)
-            area.hasFlag(player.getUniqueId(), Flags.ATTACK_PLAYER);
+            final boolean canAttackPlayerFromUUID = area.hasFlag(player.getUniqueId(), Flags.ATTACK_PLAYER);
         }
     }
 
