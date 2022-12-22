@@ -1,8 +1,8 @@
 package me.angeschossen.lands.api.legacy;
 
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
+import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.FlagRegistry;
-import me.angeschossen.lands.api.flags.type.Flag;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
@@ -345,7 +345,7 @@ public interface LandsIntegrator {
      * @throws FlagConflictException    A flag with this name already exists.
      * @throws IllegalArgumentException The name is invalid. It contains illegal characters or is too long (greater than 20 chars).
      */
-    void registerFlag(@NotNull Flag<?> flag) throws FlagConflictException, IllegalArgumentException;
+    void registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException;
 
     /**
      * Randomly teleport a player in the given world.

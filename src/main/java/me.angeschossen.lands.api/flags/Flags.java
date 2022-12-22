@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.flags;
 
 import com.google.common.base.Preconditions;
+import me.angeschossen.lands.api.flags.type.Flag;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.PlayerFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;

@@ -42,8 +42,12 @@ java {
     withJavadocJar()
 }
 
+tasks.jar{
+    archiveFileName.set("LandsAPI-${project.version}.jar")
+}
+
 group = "com.github.angeschossen"
-version = "1.2.6"
+version = "6.26.0"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
@@ -53,7 +57,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.angeschossen"
             artifactId = "WildRegenerationAPI"
-            version = "1.2.10"
+            version = "6.26.0"
 
             from(components["java"])
         }

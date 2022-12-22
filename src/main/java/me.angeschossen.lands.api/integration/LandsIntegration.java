@@ -2,8 +2,8 @@ package me.angeschossen.lands.api.integration;
 
 
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
+import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.FlagRegistry;
-import me.angeschossen.lands.api.flags.type.Flag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
@@ -58,9 +58,9 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
             } catch (NullPointerException e) {
                 throw new IllegalStateException("[Lands] Lands isn't enabled yet. Plugin " + getName() + " needs to be enabled after Lands.", e);
             }
-        });
 
-        Bukkit.getLogger().warning("Plugin " + plugin.getName() + " uses the deprecated LandsIntegration of Lands. This class is going to be removed in the future.");
+            Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses the deprecated LandsIntegration of Lands. This class is going to be removed in the future.");
+        });
     }
 
     @Override
@@ -373,8 +373,8 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    public void registerFlag(@NotNull Flag<?> flag) throws FlagConflictException, IllegalArgumentException {
-        executeOnPluginLoaded(() -> APIHandler.getInstance().getLegacySupport().getFlagRegistry().register(flag));
+    public void registerFlag(@NotNull Flag flag) throws FlagConflictException, IllegalArgumentException {
+
     }
 
     @Override
