@@ -23,6 +23,12 @@ import java.util.concurrent.CompletableFuture;
 
 public interface LandsIntegration {
 
+    /**
+     * Get an instance of the implementation.
+     * You should assign this instance to a class variable, if possible.
+     * @param plugin Your plugin
+     * @return instance
+     */
     @NotNull
     static LandsIntegration of(@NotNull Plugin plugin) {
         return APIHandler.getLandsIntegrationFactory().of(plugin);
@@ -30,6 +36,7 @@ public interface LandsIntegration {
 
     /**
      * Check if two players can attack each other at the given location.
+     * Besides checking flags, this does also take combat tags into account.
      *
      * @param attacker     The attacker
      * @param target       The defender
@@ -44,14 +51,22 @@ public interface LandsIntegration {
 
     /**
      * Get area at the specified coordinate.
+     * If you need to retrieve an area that is located insice an unloaded chunk, use {@link #getAreaUnloaded(Location)} instead.
+     * However, this method should always be prefered if possible.
      *
      * @param location The location
-     * @return The area at the specific coordinate. Might return null, if the coordinate is unloaded.
+     * @return null, if the target chunk isn't claimed or loaded.
      */
     @Nullable
     Area getArea(@NotNull Location location);
 
 
+    /**
+     * Get an area at the specified coordinate, even if the chunk isn't loaded.
+     * This method can be called async. It doesn't make any database calls, but requires a deep lookup in cached data.
+     * @param location The location
+     * @return null, if the target chunk isn't claimed.
+     */
     @Nullable Area getAreaUnloaded(@NotNull Location location);
 
     /**
@@ -62,7 +77,35 @@ public interface LandsIntegration {
     @NotNull FlagRegistry getFlagRegistry();
 
     /**
+     * Get land claimed land from a loaded chunk.
+     * This shouldn't be used, if you want to check flag states. Use {@link #getArea(Location)} instead.
+     *
+     * @param world  The world
+     * @param chunkX Chunk x value
+     * @param chunkZ Chunk z value
+     * @return null, if the chunk isn't claimed or not loaded. If you want to get the land from an unloaded chunk, use {@link #getLandByChunkUnloaded(World, int, int)} instead.
+     * However, this method should always prefered, if possible. Most bukkit events etc. usually have chunks already loaded.
+     */
+    @Nullable
+    Land getLandByChunk(@NotNull World world, int chunkX, int chunkZ);
+
+    /**
+     * Get land claimed land from a unloaded or loaded chunk. If you're using this method in an event handler or something else
+     * where the chunk is loaded anyway, make sure to use {@link #getLandByChunk(World, int, int)} instead.
+     * This shouldn't be used, if you want to check flag states. Use {@link #getArea(Location)} instead.
+     * This method can be called async. It doesn't make any database calls, but requires a deep lookup in cached data.
+     *
+     * @param world  The world
+     * @param chunkX Chunk x value
+     * @param chunkZ Chunk z value
+     * @return null, if the chunk isn't claimed
+     */
+    @Nullable
+    Land getLandByChunkUnloaded(@NotNull World world, int chunkX, int chunkZ);
+
+    /**
      * Get land by its id.
+     *
      * @param id The id of the land.
      * @return null, if no land with this id exists.
      */
@@ -100,6 +143,7 @@ public interface LandsIntegration {
 
     /**
      * Get all lands.
+     *
      * @return Includes camps and admin lands
      */
     @NotNull
@@ -123,6 +167,7 @@ public interface LandsIntegration {
 
     /**
      * Get a nation by its ID.
+     *
      * @param id ID of the nation
      * @return null, if no nation with this id exists
      */
@@ -130,6 +175,7 @@ public interface LandsIntegration {
 
     /**
      * Get a nation by its name.
+     *
      * @param name The name without color codes
      * @return null, if no nation with this name exists.
      */
@@ -144,6 +190,7 @@ public interface LandsIntegration {
 
     /**
      * Get data for an player that is offline.
+     *
      * @param playerUID UUID of the player
      * @return Offline player or instance of the loaded player, if the player is online
      */
@@ -167,38 +214,13 @@ public interface LandsIntegration {
     @Nullable SortingContext<?> getSortingContext(@NotNull String id);
 
     /**
-     * Checks if the given chunk is claimed. This does not take unloaded chunks into account.
-     * If you need this method for unloaded chunks, use {@link #isChunkClaimedUnloaded(World, int, int)} instead.
-     *
-     * @param world  World
-     * @param chunkX Chunk x
-     * @param chunkZ Chunk z
-     * @return true, if the chunk of the location is claimed.
-     * Works also in unloaded regions.
-     */
-    boolean isChunkClaimed(@NotNull World world, int chunkX, int chunkZ);
-
-    /**
-     * Same as {@link #isChunkClaimed(World, int, int)}, but also takes unloaded regions into account.
-     * If you call this method in situations where the chunk is loaded, it's recommended to use
-     * {@link #isChunkClaimed(World, int, int)} instead. This method is backed by a TTL cache.
-     * This method is backed by a TTL cache.
-     *
-     * @param world World
-     * @param x     Chunk x
-     * @param z     Chunk z
-     * @return false, if not claimed
-     */
-    boolean isChunkClaimedUnloaded(@NotNull World world, int x, int z);
-
-    /**
      * Execute actions once Lands is loaded.
      * This is not needed in most use cases.
      *
      * @param runnable The runnable that will be executed.
      * @since 5.13.0
      */
-    void executeOnPluginLoaded(@NotNull Runnable runnable);
+    void onLoad(@NotNull Runnable runnable);
 
     /**
      * Randomly teleport a player in the given world.

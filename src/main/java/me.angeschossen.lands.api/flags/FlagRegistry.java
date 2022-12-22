@@ -3,7 +3,7 @@ package me.angeschossen.lands.api.flags;
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
-import me.angeschossen.lands.api.flags.type.Flag;
+import me.angeschossen.lands.api.flags.type.parent.Flag;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.PlayerFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;

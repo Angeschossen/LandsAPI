@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.flags.type;
+package me.angeschossen.lands.api.flags.type.parent;
 
 public interface DefaultStateFlag<T> extends Flag<T> {
 

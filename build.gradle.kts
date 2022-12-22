@@ -43,7 +43,7 @@ java {
 }
 
 tasks.jar{
-    archiveFileName.set("LandsAPI-${project.version}.jar")
+    archiveFileName.set("LandsAPI.jar")
 }
 
 group = "com.github.angeschossen"

@@ -41,6 +41,10 @@ public interface LandsIntegrator {
      */
     boolean canPvP(@NotNull Player attacker, @NotNull Player target, @NotNull Location location, boolean setCombatTag, boolean sendMessage);
 
+    boolean isChunkClaimed(World w, int x, int z);
+
+    boolean isChunkClaimedUnloaded(World w, int x, int z);
+
     @Deprecated
     void disable();
 
@@ -98,6 +102,7 @@ public interface LandsIntegrator {
 
     /**
      * Get land by its id.
+     *
      * @param id The id of the land.
      * @return null, if no land with this id exists.
      */
@@ -146,8 +151,8 @@ public interface LandsIntegrator {
      * to use {@link #getLand(World, int, int)} instead.
      *
      * @param world World
-     * @param x Chunk x
-     * @param z Chunk z
+     * @param x     Chunk x
+     * @param z     Chunk z
      * @return null, if not claimed
      */
     @Nullable Land getLandUnloaded(@NotNull World world, int x, int z);
@@ -166,6 +171,7 @@ public interface LandsIntegrator {
 
     /**
      * Get all lands.
+     *
      * @return Includes camps and admin lands
      */
     @NotNull
@@ -189,6 +195,7 @@ public interface LandsIntegrator {
 
     /**
      * Get a nation by its ID.
+     *
      * @param id ID of the nation
      * @return null, if no nation with this id exists
      */
@@ -196,6 +203,7 @@ public interface LandsIntegrator {
 
     /**
      * Get a nation by its name.
+     *
      * @param name The name without color codes
      * @return null, if no nation with this name exists.
      */
@@ -210,6 +218,7 @@ public interface LandsIntegrator {
 
     /**
      * Get data for an player that is offline.
+     *
      * @param playerUID UUID of the player
      * @return Offline player or instance of the loaded player, if the player is online
      */

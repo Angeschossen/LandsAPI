@@ -51,14 +51,14 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
 
         this.plugin = plugin;
 
-        executeOnPluginLoaded(() -> {
+        this.onLoad(() -> {
             try {
                 APIHandler.getLandsIntegrationFactory().of(plugin);
             } catch (NullPointerException e) {
                 throw new IllegalStateException("[Lands] Lands isn't enabled yet. Plugin " + getName() + " needs to be enabled after Lands.", e);
             }
 
-            Bukkit.getLogger().info("[Lands] Nag author(s) of plugin " + plugin.getName() + ". It uses the deprecated LandsIntegration of Lands. This class is going to be removed in the future.");
+            Bukkit.getLogger().info("[Lands] Nag author(s) of plugin " + plugin.getName() + ". It uses the deprecated LandsIntegration of Lands: https://github.com/Angeschossen/LandsAPI/wiki/API-Update");
         });
     }
 
@@ -129,6 +129,16 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     @Override
     public FlagRegistry getFlagRegistry() {
         return APIHandler.getInstance().getLegacySupport().getFlagRegistry();
+    }
+
+    @Override
+    public @Nullable Land getLandByChunk(@NotNull World world, int chunkX, int chunkZ) {
+        return getLand(world, chunkX, chunkZ);
+    }
+
+    @Override
+    public @Nullable Land getLandByChunkUnloaded(@NotNull World world, int chunkX, int chunkZ) {
+        return getLandUnloaded(world, chunkX, chunkZ);
     }
 
     @Override
@@ -284,7 +294,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
 
     @Override
     public boolean isChunkClaimed(@NotNull World world, int x, int z) {
-        return APIHandler.getInstance().getLegacySupport().isChunkClaimedUnloaded(world, x, z);
+        return APIHandler.getInstance().getLegacySupport().getLandByChunk(world, x, z) != null;
     }
 
     @Override
@@ -310,7 +320,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
 
     @Override
     public boolean isChunkClaimedUnloaded(@NotNull World world, int x, int z) {
-        return APIHandler.getInstance().getLegacySupport().isChunkClaimedUnloaded(world, x, z);
+        return APIHandler.getInstance().getLegacySupport().getLandByChunkUnloaded(world, x, z) != null;
     }
 
     @Override
@@ -326,13 +336,8 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    public void onLoad(@NotNull Runnable runnable) {
-        executeOnPluginLoaded(runnable);
-    }
-
-    @Override
-    public void executeOnPluginLoaded(@NotNull Runnable r) {
-        APIHandler.getInstance().getLegacySupport().executeOnPluginLoaded(r);
+    public void onLoad(@NotNull Runnable r) {
+        APIHandler.getInstance().getLegacySupport().onLoad(r);
     }
 
     @Override

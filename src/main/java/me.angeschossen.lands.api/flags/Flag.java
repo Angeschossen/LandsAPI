@@ -40,7 +40,7 @@ public abstract class Flag {
         this.hashCode = Objects.hash(this.name);
         this.plugin = plugin;
 
-        Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses a deprecated flag of Lands. This flag is going to be removed in the future.");
+        Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses a deprecated flag of Lands: https://github.com/Angeschossen/LandsAPI/wiki/API-Update");
     }
 
     @NotNull
