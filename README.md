@@ -1,1 +1,1 @@
-## Wiki: https://github.com/Angeschossen/Lands/wiki
+## Wiki: https://github.com/Angeschossen/Lands/wiki/API
