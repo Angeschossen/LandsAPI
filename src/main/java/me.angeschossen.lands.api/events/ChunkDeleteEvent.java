@@ -59,11 +59,6 @@ public class ChunkDeleteEvent extends LandEditEvent implements Cancellable {
         return world;
     }
 
-    @Deprecated
-    public String getWorldName() {
-        return world.getName();
-    }
-
     public int getX() {
         return x;
     }

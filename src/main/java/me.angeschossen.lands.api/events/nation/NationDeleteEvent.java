@@ -59,12 +59,6 @@ public class NationDeleteEvent extends NationEditEvent implements Cancellable {
         this.cancelled = cancelled;
     }
 
-    @Nullable
-    @Deprecated
-    public CommandSender getDeleter() {
-        return landPlayer == null ? null : landPlayer.getPlayer();
-    }
-
     @Override
     public HandlerList getHandlers() {
         return handlerList;

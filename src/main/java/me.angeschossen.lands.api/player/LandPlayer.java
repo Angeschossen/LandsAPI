@@ -44,9 +44,6 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity {
     @Nullable
     Land getLand(@NotNull String landName);
 
-    @Deprecated
-    String[] getLandNames();
-
     /**
      * Get all lands the player owns or is member of.
      *

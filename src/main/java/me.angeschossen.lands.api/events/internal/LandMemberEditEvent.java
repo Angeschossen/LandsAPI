@@ -34,37 +34,13 @@ public abstract class LandMemberEditEvent extends LandsPlayerNullableEvent imple
     }
 
     @NotNull
-    @Deprecated
-    public UUID getInitiator() {
-        return initiator;
-    }
-
-    @NotNull
     public Land getLand() {
         return land;
     }
 
     @NotNull
-    @Deprecated
-    public UUID getTarget() {
-        return target;
-    }
-
-    @NotNull
     public UUID getTargetUID() {
         return target;
-    }
-
-    @NotNull
-    @Deprecated
-    public UUID getTargetUUID() {
-        return target;
-    }
-
-    @NotNull
-    @Deprecated
-    public UUID getTruster() {
-        return getInitiator();
     }
 
     @Override

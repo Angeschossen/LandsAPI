@@ -21,10 +21,6 @@ public enum DeleteReason {
      */
     INACTIVITY,
     /**
-     * Use {@link DeleteReason#INACTIVITY} instead.
-     */
-    @Deprecated EXPIRED,
-    /**
      * Land was captured by their enemy during war.
      */
     WAR_CAPTURED,

@@ -7,7 +7,6 @@ import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
-import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -83,10 +82,6 @@ public interface LandsIntegrator {
      */
     @Nullable
     Area getAreaByLoc(@NotNull Location location);
-
-    @NotNull
-    @Deprecated
-    SortMode getDefaultTopSortMode();
 
     /**
      * The flag registry allows you to make some more specific actions than in the Flags class.
@@ -237,38 +232,6 @@ public interface LandsIntegrator {
      */
     @Nullable SortingContext<?> getSortingContext(@NotNull String id);
 
-    /**
-     * Get top land by sorting and place.
-     *
-     * @param sortMode Sortmode
-     * @param place    Place
-     * @return Top lands in order
-     */
-    @Nullable
-    @Deprecated
-    Land getTopLand(@NotNull SortMode sortMode, int place);
-
-    /**
-     * Get top lands by sorting.
-     *
-     * @param sortMode Sortmode
-     * @return Top lands in order
-     */
-    @NotNull
-    @Deprecated
-    List<Land> getTopLands(SortMode sortMode);
-
-    /**
-     * Get top lands by sorting.
-     *
-     * @param sortMode Sortmode
-     * @param page     Same as /lands top
-     * @return Top lands in order
-     */
-    @NotNull
-    @Deprecated
-    List<Land> getTopLands(@NotNull SortMode sortMode, int page);
-
     @NotNull
     @Deprecated
     String initialize();
@@ -324,17 +287,6 @@ public interface LandsIntegrator {
      * @since 5.13.0
      */
     void onLoad(@NotNull Runnable runnable);
-
-    /**
-     * Print top lands, same as /lands top.
-     *
-     * @param sortMode Sortmode
-     * @param page     Page
-     * @return Top lands in order and message
-     */
-    @NotNull
-    @Deprecated
-    List<String> printTopLands(SortMode sortMode, int page);
 
     /**
      * Register your owns flags into Lands. They will also be toggleable in the GUI menus if you set display to true.

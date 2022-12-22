@@ -46,12 +46,6 @@ public class WarDeclareEvent extends LandsPlayerEvent implements Cancellable {
         return handlerList;
     }
 
-    @NotNull
-    @Deprecated
-    public LandPlayer getSender() {
-        return sender;
-    }
-
     @Override
     public boolean isCancelled() {
         return this.cancelled;

@@ -9,7 +9,6 @@ import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
-import me.angeschossen.lands.api.land.enums.SortMode;
 import me.angeschossen.lands.api.legacy.LandsIntegrator;
 import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
@@ -59,7 +58,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
                 throw new IllegalStateException("[Lands] Lands isn't enabled yet. Plugin " + getName() + " needs to be enabled after Lands.", e);
             }
 
-            Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses the deprecated LandsIntegration of Lands. This class is going to be removed in the future.");
+            Bukkit.getLogger().info("[Lands] Nag author(s) of plugin " + plugin.getName() + ". It uses the deprecated LandsIntegration of Lands. This class is going to be removed in the future.");
         });
     }
 
@@ -124,13 +123,6 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     @Nullable
     public Area getAreaByLoc(@NotNull Location location) {
         return APIHandler.getInstance().getLegacySupport().getArea(location.getWorld(), location.getBlockX(), location.getBlockY(), location.getBlockZ());
-    }
-
-    @Override
-    @NotNull
-    @Deprecated
-    public SortMode getDefaultTopSortMode() {
-        return SortMode.BALANCE;
     }
 
     @NotNull
@@ -273,28 +265,6 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    @Nullable
-    @Deprecated
-    public Land getTopLand(@NotNull SortMode sortMode, int place) {
-        Objects.requireNonNull(sortMode, "Sort mode can't be null");
-        return null;
-    }
-
-    @Override
-    @NotNull
-    @Deprecated
-    public List<Land> getTopLands(SortMode sortMode) {
-        return Collections.emptyList();
-    }
-
-    @Override
-    @NotNull
-    @Deprecated
-    public List<Land> getTopLands(@NotNull SortMode sortMode, int page) {
-        return Collections.emptyList();
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(getName());
     }
@@ -363,13 +333,6 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     @Override
     public void executeOnPluginLoaded(@NotNull Runnable r) {
         APIHandler.getInstance().getLegacySupport().executeOnPluginLoaded(r);
-    }
-
-    @Override
-    @NotNull
-    @Deprecated
-    public List<String> printTopLands(SortMode sortMode, int page) {
-        return Collections.emptyList();
     }
 
     @Override

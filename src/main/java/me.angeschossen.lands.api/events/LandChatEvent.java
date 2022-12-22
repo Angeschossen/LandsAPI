@@ -57,20 +57,6 @@ public class LandChatEvent extends LandsPlayerEvent implements Cancellable {
         return recipients;
     }
 
-    @Nullable
-    @Deprecated
-    public Player getSender() {
-        assert playerUUID != null;
-        return Bukkit.getPlayer(playerUUID);
-    }
-
-    @NotNull
-    @Deprecated
-    public UUID getSenderUID() {
-        assert playerUUID != null;
-        return playerUUID;
-    }
-
     @NotNull
     public MessageSource getSource() {
         return messageSource;
@@ -88,7 +74,7 @@ public class LandChatEvent extends LandsPlayerEvent implements Cancellable {
 
     @Override
     public String toString() {
-        return "Sender: " + getSenderUID() + " MemberHolder: " + memberHolder.getName();
+        return "Sender: " + getPlayerUID() + " MemberHolder: " + memberHolder.getName();
     }
 
     @Override

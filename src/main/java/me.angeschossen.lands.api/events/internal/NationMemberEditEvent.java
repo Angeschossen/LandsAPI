@@ -23,12 +23,6 @@ public abstract class NationMemberEditEvent extends LandEditEvent {
     }
 
     @NotNull
-    @Deprecated
-    public UUID getInitiator() {
-        return initiator;
-    }
-
-    @NotNull
     public Nation getNation() {
         return nation;
     }

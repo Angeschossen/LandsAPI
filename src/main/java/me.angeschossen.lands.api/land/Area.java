@@ -3,12 +3,10 @@ package me.angeschossen.lands.api.land;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
-import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.Role;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,18 +57,9 @@ public interface Area extends ExpressionEntity {
 
     boolean hasFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
 
-    @Deprecated
-    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
-
-    @Deprecated
-    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag roleFlag, boolean sendMessage);
-
     boolean hasFlag(@NotNull LandPlayer player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
 
     boolean hasFlag(@NotNull LandPlayer player, @NotNull RoleFlag roleFlag, boolean sendMessage);
-
-    @Deprecated
-    boolean hasLandSetting(LandSetting naturalFlags);
 
     boolean isBanned(@NotNull UUID playerUID);
 

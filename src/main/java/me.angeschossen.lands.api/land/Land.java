@@ -162,13 +162,6 @@ public interface Land extends MemberHolder {
     int getMaxChunks(boolean countNation);
 
     /**
-     * Use getTitleMessage(player) instead.
-     */
-    @Deprecated
-    @NotNull
-    String getTitleMessage();
-
-    /**
      * Set title message.
      *
      * @param title If title is null, it will set the default title instead.
@@ -191,9 +184,6 @@ public interface Land extends MemberHolder {
      * @return true if has
      */
     boolean hasChunk(@NotNull World world, int x, int z);
-
-    @Deprecated
-    boolean isTrusted(@NotNull UUID playerUID);
 
     /**
      * Get a collection of all online land members
