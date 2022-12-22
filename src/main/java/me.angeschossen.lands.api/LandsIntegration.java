@@ -45,17 +45,14 @@ public interface LandsIntegration {
     /**
      * Get area at the specified coordinate.
      *
-     * @param world World
-     * @param x     Block x
-     * @param y     Block y
-     * @param z     Block z
+     * @param location The location
      * @return The area at the specific coordinate. Might return null, if the coordinate is unloaded.
      */
     @Nullable
-    Area getArea(@NotNull World world, int x, int y, int z);
+    Area getArea(@NotNull Location location);
 
 
-    @Nullable Area getAreaUnloaded(@NotNull World world, int x, int y, int z);
+    @Nullable Area getAreaUnloaded(@NotNull Location location);
 
     /**
      * The flag registry allows you to make some more specific actions than in the Flags class.

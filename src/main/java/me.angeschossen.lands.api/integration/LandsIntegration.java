@@ -109,20 +109,20 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    @Nullable
-    public Area getArea(@NotNull World world, int x, int y, int z) {
-        return APIHandler.getInstance().getLegacySupport().getArea(world, x, y, z);
+    public @Nullable Area getAreaUnloaded(@NotNull Location location) {
+        return getArea(location);
     }
 
     @Override
-    public @Nullable Area getAreaUnloaded(@NotNull World world, int x, int y, int z) {
-        return APIHandler.getInstance().getLegacySupport().getAreaUnloaded(world, x, y, z);
+    @Nullable
+    public Area getArea(@NotNull World world, int x, int y, int z) {
+        return APIHandler.getInstance().getLegacySupport().getArea(new Location(world, x, y, z));
     }
 
     @Override
     @Nullable
     public Area getAreaByLoc(@NotNull Location location) {
-        return APIHandler.getInstance().getLegacySupport().getArea(location.getWorld(), location.getBlockX(), location.getBlockY(), location.getBlockZ());
+        return APIHandler.getInstance().getLegacySupport().getArea(location);
     }
 
     @NotNull
@@ -167,7 +167,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
 
     @Override
     public @Nullable Land getLand(@NotNull World world, int chunkX, int chunkZ) {
-        Area area = APIHandler.getInstance().getLegacySupport().getArea(world, chunkX << 4, 70, chunkZ << 4);
+        Area area = APIHandler.getInstance().getLegacySupport().getArea(new Location(world, chunkX << 4, 70, chunkZ << 4));
         return area == null ? null : area.getLand();
     }
 
@@ -179,7 +179,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     @Override
     @Nullable
     public Land getLandUnloaded(@NotNull World world, int x, int z) {
-        Area area = APIHandler.getInstance().getLegacySupport().getArea(world, x << 4, 70, z << 4);
+        Area area = APIHandler.getInstance().getLegacySupport().getArea(new Location(world, x << 4, 70, z << 4));
         return area == null ? null : area.getLand();
     }
 

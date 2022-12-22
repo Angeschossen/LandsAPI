@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.flags.type;
 
+import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.flags.enums.FlagTarget;
 import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
 import me.angeschossen.lands.api.handler.APIHandler;
@@ -16,8 +17,8 @@ import java.util.function.Predicate;
 public interface RoleFlag extends Flag<RoleFlag>, DefaultStateFlag<RoleFlag> {
 
     @NotNull
-    static RoleFlag of(@NotNull Plugin plugin, @NotNull FlagTarget flagTarget, @NotNull RoleFlagCategory category, @NotNull String name) {
-      return APIHandler.getFlagFactory().roleFlagOf(plugin, flagTarget, category, name);
+    static RoleFlag of(@NotNull LandsIntegration landsIntegration, @NotNull FlagTarget flagTarget, @NotNull RoleFlagCategory category, @NotNull String name) {
+      return APIHandler.getFlagFactory().roleFlagOf(landsIntegration, flagTarget, category, name);
     }
 
     @NotNull RoleFlag setUpdatePredicate(@NotNull Predicate<Role> predicate);

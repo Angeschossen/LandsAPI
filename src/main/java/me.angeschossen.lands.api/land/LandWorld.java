@@ -25,7 +25,7 @@ public interface LandWorld {
 
     boolean hasFlag(@NotNull LandPlayer player, @NotNull Location location, @Nullable Material material, @NotNull RoleFlag flag, boolean sendMessage);
 
-    boolean hasFlag(@NotNull Location location, @NotNull NaturalFlag flag);
+    boolean hasNaturalFlag(@NotNull Location location, @NotNull NaturalFlag flag);
 
     boolean hasFlag(@NotNull Player player, @NotNull Location location, @Nullable Material material, @NotNull RoleFlag flag, boolean sendMessage);
 

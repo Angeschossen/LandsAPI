@@ -53,7 +53,7 @@ public interface Area extends ExpressionEntity {
     @NotNull
     Role getVisitorRole();
 
-    boolean hasFlag(@NotNull NaturalFlag flag);
+    boolean hasNaturalFlag(@NotNull NaturalFlag flag);
 
     boolean hasFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
 
