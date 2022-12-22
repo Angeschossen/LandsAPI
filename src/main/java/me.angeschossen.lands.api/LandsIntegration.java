@@ -26,6 +26,7 @@ public interface LandsIntegration {
     /**
      * Get an instance of the implementation.
      * You should assign this instance to a class variable, if possible.
+     *
      * @param plugin Your plugin
      * @return instance
      */
@@ -40,7 +41,7 @@ public interface LandsIntegration {
      *
      * @param attacker     The attacker
      * @param target       The defender
-     * @param location     Location of the fight
+     * @param location     Location
      * @param setCombatTag Should Lands set a combat tag at these two players, if they are allowed to fight at the given location?
      *                     Depending on the servers configuration this will result in players beeing allowed to fight for a configured period, even if they move into a safe claim.
      *                     This prevents players running away into their claim to escape a fight, which they have started.
@@ -51,7 +52,7 @@ public interface LandsIntegration {
 
     /**
      * Get area at the specified coordinate.
-     * If you need to retrieve an area that is located insice an unloaded chunk, use {@link #getAreaUnloaded(Location)} instead.
+     * If you need to retrieve an area that is located insice an unloaded chunk, use {@link #getUnloadedArea(Location)} instead.
      * However, this method should always be prefered if possible.
      *
      * @param location The location
@@ -60,14 +61,14 @@ public interface LandsIntegration {
     @Nullable
     Area getArea(@NotNull Location location);
 
-
     /**
      * Get an area at the specified coordinate, even if the chunk isn't loaded.
      * This method can be called async. It doesn't make any database calls, but requires a deep lookup in cached data.
+     *
      * @param location The location
      * @return null, if the target chunk isn't claimed.
      */
-    @Nullable Area getAreaUnloaded(@NotNull Location location);
+    @Nullable Area getUnloadedArea(@NotNull Location location);
 
     /**
      * The flag registry allows you to make some more specific actions than in the Flags class.
@@ -83,7 +84,7 @@ public interface LandsIntegration {
      * @param world  The world
      * @param chunkX Chunk x value
      * @param chunkZ Chunk z value
-     * @return null, if the chunk isn't claimed or not loaded. If you want to get the land from an unloaded chunk, use {@link #getLandByChunkUnloaded(World, int, int)} instead.
+     * @return null, if the chunk isn't claimed or not loaded. If you want to get the land from an unloaded chunk, use {@link #getLandByUnloadedChunk(World, int, int)} instead.
      * However, this method should always prefered, if possible. Most bukkit events etc. usually have chunks already loaded.
      */
     @Nullable
@@ -101,7 +102,7 @@ public interface LandsIntegration {
      * @return null, if the chunk isn't claimed
      */
     @Nullable
-    Land getLandByChunkUnloaded(@NotNull World world, int chunkX, int chunkZ);
+    Land getLandByUnloadedChunk(@NotNull World world, int chunkX, int chunkZ);
 
     /**
      * Get land by its id.

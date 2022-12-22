@@ -109,7 +109,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    public @Nullable Area getAreaUnloaded(@NotNull Location location) {
+    public @Nullable Area getUnloadedArea(@NotNull Location location) {
         return getArea(location);
     }
 
@@ -137,7 +137,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    public @Nullable Land getLandByChunkUnloaded(@NotNull World world, int chunkX, int chunkZ) {
+    public @Nullable Land getLandByUnloadedChunk(@NotNull World world, int chunkX, int chunkZ) {
         return getLandUnloaded(world, chunkX, chunkZ);
     }
 
@@ -320,7 +320,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
 
     @Override
     public boolean isChunkClaimedUnloaded(@NotNull World world, int x, int z) {
-        return APIHandler.getInstance().getLegacySupport().getLandByChunkUnloaded(world, x, z) != null;
+        return APIHandler.getInstance().getLegacySupport().getLandByUnloadedChunk(world, x, z) != null;
     }
 
     @Override
