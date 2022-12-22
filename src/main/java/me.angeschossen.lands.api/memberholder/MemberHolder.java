@@ -1,8 +1,8 @@
 package me.angeschossen.lands.api.memberholder;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
+import com.github.angeschossen.pluginframework.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.events.LandChatEvent;
-import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;

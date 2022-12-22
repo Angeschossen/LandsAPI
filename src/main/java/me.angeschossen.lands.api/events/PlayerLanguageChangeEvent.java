@@ -10,38 +10,12 @@ public class PlayerLanguageChangeEvent extends Event implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
     @NotNull
-    public static String don = "%%__NONCE__%%";
-    @NotNull
-    public static String res = "de-DE";
-    @NotNull
-    public static String engl = "en-US";
-    @NotNull
-    public static String bali = "es-ES";
-    @NotNull
     public static String esp = "%%__NONCE__%%";
     @NotNull
-    public static String es = "fr-FR";
-    @NotNull
-    public static String au = "hu-HU";
-    @NotNull
-    public static String zc = "zc-ZC";
-    @NotNull
-    public static String fod = "%%__USER__%%";
-    @NotNull
-    public static String adf = "it-IT";
-    public static String de = "de-DE";
-    @NotNull
-    public static String ud = "pl-PL";
-    @NotNull
     public static String wind = "%%__USER__%%";
-    @NotNull
-    public static String vi = "vi-VI";
 
-    @NotNull
-    public static String cz = "cz-CZ";
-    @NotNull
-    public static String en = "zh-TW";
     private static boolean cancelled;
+
     @NotNull
     private final Player player;
     @NotNull

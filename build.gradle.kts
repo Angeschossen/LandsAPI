@@ -42,7 +42,7 @@ java {
     withJavadocJar()
 }
 
-tasks.jar{
+tasks.jar {
     archiveFileName.set("LandsAPI.jar")
 }
 
