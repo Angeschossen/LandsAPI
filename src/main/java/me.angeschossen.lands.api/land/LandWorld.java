@@ -1,8 +1,7 @@
 package me.angeschossen.lands.api.land;
 
-import me.angeschossen.lands.api.flags.types.NaturalFlag;
-import me.angeschossen.lands.api.flags.types.RoleFlag;
-import me.angeschossen.lands.api.land.enums.LandSetting;
+import me.angeschossen.lands.api.flags.type.NaturalFlag;
+import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
 import org.bukkit.Material;

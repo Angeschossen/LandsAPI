@@ -2,7 +2,7 @@ package me.angeschossen.lands.api.legacy;
 
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.FlagRegistry;
-import me.angeschossen.lands.api.flags.types.Flag;
+import me.angeschossen.lands.api.flags.type.Flag;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;

@@ -3,7 +3,7 @@ package me.angeschossen.lands.api.integration;
 
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.FlagRegistry;
-import me.angeschossen.lands.api.flags.types.Flag;
+import me.angeschossen.lands.api.flags.type.Flag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
@@ -28,6 +28,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 
+@Deprecated
 public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.api.LandsIntegration {
 
     private final Plugin plugin;
@@ -58,6 +59,8 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
                 throw new IllegalStateException("[Lands] Lands isn't enabled yet. Plugin " + getName() + " needs to be enabled after Lands.", e);
             }
         });
+
+        Bukkit.getLogger().warning("Plugin " + plugin.getName() + " uses the deprecated LandsIntegration of Lands. This class is going to be removed in the future.");
     }
 
     @Override

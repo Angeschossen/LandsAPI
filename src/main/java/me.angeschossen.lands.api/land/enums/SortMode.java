@@ -1,8 +1,5 @@
 package me.angeschossen.lands.api.land.enums;
 
-import me.angeschossen.lands.api.handler.APIHandler;
-import org.jetbrains.annotations.NotNull;
-
 @Deprecated
 public enum SortMode {
 

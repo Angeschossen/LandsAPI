@@ -1,8 +1,8 @@
 package me.angeschossen.lands.api.events;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

@@ -1,8 +1,8 @@
 package me.angeschossen.lands.api.levels.attribute.impl;
 
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.levels.attribute.LevelAttribute;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
 import org.bukkit.ChatColor;
 import org.jetbrains.annotations.NotNull;
 

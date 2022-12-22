@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.exceptions;
 
 
-import me.angeschossen.lands.api.flags.types.Flag;
+import me.angeschossen.lands.api.flags.type.Flag;
 
 public class FlagConflictException extends RuntimeException {
 

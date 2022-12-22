@@ -1,8 +1,8 @@
 package me.angeschossen.lands.api.land;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
-import me.angeschossen.lands.api.flags.types.NaturalFlag;
-import me.angeschossen.lands.api.flags.types.RoleFlag;
+import me.angeschossen.lands.api.flags.type.NaturalFlag;
+import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.land.enums.LandSetting;
 import me.angeschossen.lands.api.player.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;

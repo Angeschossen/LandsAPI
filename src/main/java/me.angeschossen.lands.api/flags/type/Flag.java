@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.flags.types;
+package me.angeschossen.lands.api.flags.type;
 
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.FlagTarget;

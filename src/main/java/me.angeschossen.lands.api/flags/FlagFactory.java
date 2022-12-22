@@ -3,8 +3,8 @@ package me.angeschossen.lands.api.flags;
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.enums.FlagTarget;
 import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
-import me.angeschossen.lands.api.flags.types.NaturalFlag;
-import me.angeschossen.lands.api.flags.types.RoleFlag;
+import me.angeschossen.lands.api.flags.type.NaturalFlag;
+import me.angeschossen.lands.api.flags.type.RoleFlag;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 

@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.memberholder;
 
-import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.inbox.InboxMessage;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 

@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.player;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
-import me.angeschossen.lands.api.flags.types.PlayerFlag;
+import me.angeschossen.lands.api.flags.type.PlayerFlag;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.entity.Player;

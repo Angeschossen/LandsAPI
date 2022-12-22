@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.levels.attribute.impl;
 
-import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.levels.attribute.LevelAttribute;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.nation.Nation;
 import org.jetbrains.annotations.NotNull;
 

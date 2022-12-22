@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.nation;
 
-import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;

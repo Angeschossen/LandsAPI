@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.memberholder;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
-import me.angeschossen.lands.api.relations.Relation;
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.exceptions.NameAlreadyTakenException;
 import me.angeschossen.lands.api.holders.BalanceHolder;
@@ -9,6 +8,7 @@ import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;
 import me.angeschossen.lands.api.levels.Level;
 import me.angeschossen.lands.api.player.LandPlayer;
+import me.angeschossen.lands.api.relations.Relation;
 import me.angeschossen.lands.api.war.War;
 import me.angeschossen.lands.api.war.WarStats;
 import me.angeschossen.lands.api.war.enums.WarTeam;
