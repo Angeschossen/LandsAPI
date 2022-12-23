@@ -37,7 +37,7 @@ public interface Invite {
     /**
      * Accept invite
      *
-     * @return Will return false if invite fails because of max members permission (lands.members.<number>).
+     * @return Will return false if invite fails because of max members permission (lands.members.number).
      */
     TrustResult accept(Player player);
 

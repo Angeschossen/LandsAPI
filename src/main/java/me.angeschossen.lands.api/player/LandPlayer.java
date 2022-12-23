@@ -78,7 +78,7 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity {
     int getSize();
 
     /**
-     * Get support claims per land. Permission: lands.chunks.support.<number>
+     * Get support claims per land. Permission: lands.chunks.support.number
      *
      * @return Max support claims
      */
