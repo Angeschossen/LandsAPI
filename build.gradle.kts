@@ -39,7 +39,6 @@ tasks {
     }
 
     shadowJar {
-        configurations = listOf(project.configurations.shadow.get())
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
     }
 }
@@ -56,20 +55,10 @@ java {
 }
 
 group = "com.github.angeschossen"
-version = "6.26.5"
+version = "6.26.6"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-
-publishing {
-    publications {
-        create<MavenPublication>("maven") {
-            groupId = project.group.toString()
-            artifactId = project.description
-            version = project.version.toString()
-
-            //from(components["java"])
-            artifact(tasks["shadowJar"])
-        }
-    }
+artifacts{
+    archives(tasks["shadowJar"])
 }
