@@ -1,5 +1,6 @@
 plugins {
     `java-library`
+    id("com.github.johnrengelman.shadow").version("7.1.2")
     `maven-publish`
 }
 
@@ -29,10 +30,24 @@ repositories {
     */
     maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
     maven { url = uri("https://oss.sonatype.org/content/repositories/central") }
+    maven { url = uri("https://jitpack.io") }
+}
+
+tasks {
+    build {
+        dependsOn(shadowJar)
+    }
+
+    shadowJar {
+        configurations = listOf(project.configurations.shadow.get())
+        archiveFileName.set("LandsAPI.jar")
+
+        relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
+    }
 }
 
 dependencies {
-    compileOnly("com.github.angeschossen:PluginFrameworkAPI:1.0")
+    shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.0")
     compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:1.7.0")
 }
@@ -47,19 +62,22 @@ tasks.jar {
 }
 
 group = "com.github.angeschossen"
-version = "6.26.0"
+version = "6.26.1"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
-            groupId = "com.github.angeschossen"
-            artifactId = "WildRegenerationAPI"
-            version = "6.26.0"
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group.toString()
+                artifactId = project.description
+                version = project.version.toString()
 
-            from(components["java"])
+                from(components["java"])
+                artifact(tasks["shadowJar"])
+            }
         }
     }
 }
