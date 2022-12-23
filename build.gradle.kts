@@ -56,22 +56,20 @@ java {
 }
 
 group = "com.github.angeschossen"
-version = "6.26.2"
+version = "6.26.3"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 
 publishing {
     publications {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.description
-                version = project.version.toString()
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = project.description
+            version = project.version.toString()
 
-                from(components["java"])
-                artifact(tasks["shadowJar"])
-            }
+            from(components["java"])
+            artifact(tasks["shadowJar"])
         }
     }
 }
