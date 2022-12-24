@@ -39,6 +39,7 @@ tasks {
     }
 
     shadowJar {
+        archiveFileName.set("LandsAPI.jar")
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
     }
 }
