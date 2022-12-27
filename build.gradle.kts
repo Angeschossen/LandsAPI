@@ -69,7 +69,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.angeschossen"
             artifactId = "LandsAPI"
-            version = "6.26.7"
+            version = "6.26.9"
 
             from(components["java"])
         }

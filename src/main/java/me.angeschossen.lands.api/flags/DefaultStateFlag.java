@@ -2,8 +2,9 @@ package me.angeschossen.lands.api.flags;
 
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+
 @Deprecated
-public abstract class DefaultStateFlag extends Flag {
+public abstract class DefaultStateFlag<T> extends Flag<T> implements me.angeschossen.lands.api.flags.type.parent.DefaultStateFlag<T> {
 
     protected boolean defaultState;
 
@@ -11,12 +12,14 @@ public abstract class DefaultStateFlag extends Flag {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
     }
 
+    @Override
     public final boolean getDefaultState() {
         return defaultState;
     }
 
     @NotNull
-    public final Flag setDefaultState(boolean defaultState) {
+    @Override
+    public final DefaultStateFlag<T> setDefaultState(boolean defaultState) {
         this.defaultState = defaultState;
         return this;
     }

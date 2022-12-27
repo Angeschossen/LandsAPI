@@ -1,6 +1,10 @@
 package me.angeschossen.lands.api.flags.types;
 
+import me.angeschossen.lands.api.flags.DefaultStateFlag;
 import me.angeschossen.lands.api.flags.Flag;
+import me.angeschossen.lands.api.flags.enums.FlagModule;
+import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
+import me.angeschossen.lands.api.flags.type.Flags;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -9,13 +13,14 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.function.Predicate;
-@Deprecated
-public class RoleFlag extends Flag {
 
-    private static final String[] p_area = new String[]{"{area}", "{land}", "{bypass}", "{flag}"}, p_wilderness = new String[]{"{flag}", "{bypass}"};
-    protected final Category category;
-    private final Predicate<@Nullable Role> predicate;
+@Deprecated
+public class RoleFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.type.RoleFlag> implements me.angeschossen.lands.api.flags.type.RoleFlag {
+
+    protected final RoleFlagCategory category;
+    private Predicate<@Nullable Role> predicate;
     private boolean toggleableByNation = false;
 
     /**
@@ -29,12 +34,12 @@ public class RoleFlag extends Flag {
      * @param applyInSubAreas         Should this flag also be available in sub areas, not just the land in general?
      * @param alwaysAllowInWilderness Should this flag always be true in wilderness?
      * @param predicate               You can specify to which roles this flag should be applied for already existing lands. The role will be null if the target is wilderness.
-     * @param target Only admin lands or all lands.
+     * @param target                  Only admin lands or all lands.
      */
     public RoleFlag(@NotNull Plugin plugin, @NotNull Flag.Target target, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
         super(plugin, target, name, applyInSubAreas, alwaysAllowInWilderness);
 
-        this.category = category;
+        this.category = RoleFlagCategory.valueOf(category.toString());
         this.predicate = predicate;
     }
 
@@ -42,8 +47,13 @@ public class RoleFlag extends Flag {
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness, @NotNull Predicate<Role> predicate) {
         super(plugin, Target.PLAYER, name, applyInSubAreas, alwaysAllowInWilderness);
 
-        this.category = category;
+        this.category = RoleFlagCategory.valueOf(category.toString());
         this.predicate = predicate;
+    }
+
+    public static RoleFlag of(String name) {
+        me.angeschossen.lands.api.flags.type.RoleFlag flag = Objects.requireNonNull((me.angeschossen.lands.api.flags.type.RoleFlag) Flags.get(name), "legacy flag");
+        return new RoleFlag(flag.getPlugin(), Flag.Target.valueOf(flag.getTarget().toString()), Category.valueOf(flag.getCategory().toString()), flag.getName(), flag.isApplyInSubareas(), flag.isAlwaysAllowInWilderness(), flag.getUpdatePredicate());
     }
 
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name, boolean applyInSubAreas, boolean alwaysAllowInWilderness) {
@@ -52,6 +62,12 @@ public class RoleFlag extends Flag {
 
     public RoleFlag(@NotNull Plugin plugin, @NotNull Category category, @NotNull String name) {
         this(plugin, Target.PLAYER, category, name, true, false, role -> true);
+    }
+
+    @Override
+    public me.angeschossen.lands.api.flags.type.@NotNull RoleFlag setUpdatePredicate(@NotNull Predicate<Role> predicate) {
+        this.predicate = predicate;
+        return self();
     }
 
     public boolean isToggleableByNation() {
@@ -63,9 +79,24 @@ public class RoleFlag extends Flag {
         return this;
     }
 
+    @Override
+    public void sendDenied(@NotNull LandPlayer landPlayer, @Nullable Area area) {
+
+    }
+
+    @Override
+    public void sendDeniedInWar(@NotNull LandPlayer landPlayer, @Nullable Land land) {
+
+    }
+
     @NotNull
     public Predicate<Role> getPredicate() {
         return predicate;
+    }
+
+    @Override
+    protected me.angeschossen.lands.api.flags.type.RoleFlag self() {
+        return this;
     }
 
     @Override
@@ -73,12 +104,24 @@ public class RoleFlag extends Flag {
         return "lands.role.setting." + name;
     }
 
-    public void sendDenied(@NotNull LandPlayer landPlayer, @Nullable Area area) {
-
+    @Override
+    public @NotNull String getTogglePermission() {
+        return getTogglePerm();
     }
 
-    public void sendDeniedInWar(@NotNull LandPlayer landPlayer, @Nullable Land land) {
+    @Override
+    public @NotNull Predicate<Role> getUpdatePredicate() {
+        return predicate;
+    }
 
+    @Override
+    public @NotNull String getBypassPermission() {
+        return getBypassPerm();
+    }
+
+    @Override
+    public @NotNull String getBypassPermissionWilderness() {
+        return getBypassPermissionWilderness();
     }
 
     @NotNull
@@ -88,8 +131,8 @@ public class RoleFlag extends Flag {
 
     @NotNull
     @Override
-    public Module getModule() {
-        return Module.LAND;
+    public FlagModule getModule() {
+        return FlagModule.LAND;
     }
 
     @NotNull
@@ -98,7 +141,7 @@ public class RoleFlag extends Flag {
     }
 
     @NotNull
-    public Category getCategory() {
+    public RoleFlagCategory getCategory() {
         return category;
     }
 

@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.flags.types;
 
+import me.angeschossen.lands.api.flags.enums.FlagModule;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 @Deprecated
@@ -26,7 +27,7 @@ public class NationRoleFlag extends RoleFlag {
 
     @Override
     @NotNull
-    public final Module getModule() {
-        return Module.NATION;
+    public final FlagModule getModule() {
+        return FlagModule.NATION;
     }
 }

@@ -1,22 +1,43 @@
 package me.angeschossen.lands.api.flags.types;
 
 import me.angeschossen.lands.api.flags.DefaultStateFlag;
+import me.angeschossen.lands.api.flags.Flag;
+import me.angeschossen.lands.api.flags.enums.FlagModule;
+import me.angeschossen.lands.api.flags.type.Flags;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 @Deprecated
-public class PlayerFlag extends DefaultStateFlag {
+public class PlayerFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.type.PlayerFlag> implements me.angeschossen.lands.api.flags.type.PlayerFlag {
 
     public PlayerFlag(@NotNull Plugin plugin,@NotNull String name) {
         super(plugin, Target.PLAYER, name, true, false);
     }
 
     @Override
-    public @NotNull Module getModule() {
-        return Module.LAND;
+    public @NotNull FlagModule getModule() {
+        return FlagModule.PLAYER;
+    }
+
+    @Override
+    protected PlayerFlag self() {
+        return this;
+    }
+
+    public static PlayerFlag of(String name) {
+        me.angeschossen.lands.api.flags.type.PlayerFlag flag = Objects.requireNonNull((me.angeschossen.lands.api.flags.type.PlayerFlag) Flags.get(name), "legacy flag");
+        return new PlayerFlag(flag.getPlugin(),flag.getName());
     }
 
     @Override
     public @NotNull String getTogglePerm() {
         return "lands.player.setting." + name;
+    }
+
+    @Override
+    public @NotNull String getTogglePermission() {
+        return getTogglePerm();
     }
 }
