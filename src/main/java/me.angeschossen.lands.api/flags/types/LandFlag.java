@@ -5,6 +5,7 @@ import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.type.Flags;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
+import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
@@ -30,7 +31,7 @@ public class LandFlag extends DefaultStateFlag<NaturalFlag> implements NaturalFl
     }
 
     public static LandFlag of(String name) {
-        me.angeschossen.lands.api.flags.type.NaturalFlag flag = Objects.requireNonNull((me.angeschossen.lands.api.flags.type.NaturalFlag) Flags.get(name), "legacy flag");
+        me.angeschossen.lands.api.flags.type.NaturalFlag flag = Objects.requireNonNull(APIHandler.getFlagRegistry().getNatural(name), "legacy flag");
         return new LandFlag(flag.getPlugin(), Flag.Target.valueOf(flag.getTarget().toString()), flag.getName(), flag.isApplyInSubareas(), flag.isAlwaysAllowInWilderness());
     }
 

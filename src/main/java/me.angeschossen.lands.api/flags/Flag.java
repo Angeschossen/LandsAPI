@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.flags;
 import com.google.common.base.Preconditions;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.FlagTarget;
+import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -46,7 +47,9 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
         this.hashCode = Objects.hash(this.name);
         this.plugin = plugin;
 
-        Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses a deprecated flag of Lands: https://github.com/Angeschossen/LandsAPI/wiki/API-Update");
+        if (!plugin.equals(APIHandler.getInstance().getPlugin())) {
+            Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses a deprecated flag of Lands: https://github.com/Angeschossen/LandsAPI/wiki/API-Update");
+        }
     }
 
     public final boolean isDisplayInWild() {
@@ -71,7 +74,7 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
     public abstract String getTogglePerm();
 
     public enum Target {
-        PLAYER, ADMIN
+        PLAYER, ADMIN, SYSTEM
     }
 
     public enum Module {
@@ -162,13 +165,13 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
         String[] var5 = input.split(" ");
         int var6 = var5.length;
 
-        for(int var7 = 0; var7 < var6; ++var7) {
+        for (int var7 = 0; var7 < var6; ++var7) {
             String line = var5[var7];
             String startWhiteSpaces = "";
             char[] var10 = line.toCharArray();
             int var11 = var10.length;
 
-            for(int var12 = 0; var12 < var11; ++var12) {
+            for (int var12 = 0; var12 < var11; ++var12) {
                 char a = var10[var12];
                 if (!Character.isWhitespace(a)) {
                     break;
@@ -178,8 +181,8 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
             }
 
             line = line.trim();
-            if (!lore.isEmpty() && ((String)lore.get(current)).length() + line.length() <= maxLength) {
-                lore.set(current, (String)lore.get(current) + " " + line);
+            if (!lore.isEmpty() && ((String) lore.get(current)).length() + line.length() <= maxLength) {
+                lore.set(current, (String) lore.get(current) + " " + line);
             } else {
                 lore.add(lastColor + startWhiteSpaces + line);
                 ++current;

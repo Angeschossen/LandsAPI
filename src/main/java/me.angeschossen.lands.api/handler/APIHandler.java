@@ -32,6 +32,7 @@ public class APIHandler {
     private final @NotNull PlayerUtils playerUtils;
     private static FlagFactory flagFactory;
 
+
     public static FlagFactory getFlagFactory() {
         return flagFactory;
     }
@@ -57,7 +58,6 @@ public class APIHandler {
             landsIntegrationFactory = fac;
             flagFactory = flagFac;
             flagRegistry = flagReg;
-            Flags.initializeLegacySupport();
         }
     }
 
@@ -116,7 +116,7 @@ public class APIHandler {
         return stringUtils;
     }
 
-    public FlagRegistry getFlagRegistry() {
+    public static FlagRegistry getFlagRegistry() {
         return flagRegistry;
     }
 
@@ -149,5 +149,7 @@ public class APIHandler {
                 flagRegistry,
                 stringUtils,
                 playerUtils);
+
+        Flags.initializeLegacySupport();
     }
 }

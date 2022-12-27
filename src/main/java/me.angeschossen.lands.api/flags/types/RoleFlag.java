@@ -5,6 +5,7 @@ import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
 import me.angeschossen.lands.api.flags.type.Flags;
+import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -52,7 +53,7 @@ public class RoleFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.t
     }
 
     public static RoleFlag of(String name) {
-        me.angeschossen.lands.api.flags.type.RoleFlag flag = Objects.requireNonNull((me.angeschossen.lands.api.flags.type.RoleFlag) Flags.get(name), "legacy flag");
+        me.angeschossen.lands.api.flags.type.RoleFlag flag = Objects.requireNonNull(APIHandler.getFlagRegistry().getRole(name), "legacy flag");
         return new RoleFlag(flag.getPlugin(), Flag.Target.valueOf(flag.getTarget().toString()), Category.valueOf(flag.getCategory().toString()), flag.getName(), flag.isApplyInSubareas(), flag.isAlwaysAllowInWilderness(), flag.getUpdatePredicate());
     }
 
