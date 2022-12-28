@@ -41,7 +41,7 @@ tasks {
     shadowJar {
         archiveClassifier.set("")
         configurations = listOf(project.configurations.shadow.get())
-        archiveFileName.set("LandsAPI-${project.version}.jar")
+       // archiveFileName.set("LandsAPI-${project.version}.jar")
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
     }
 }
@@ -57,16 +57,16 @@ version = "6.26.11"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-artifacts{
+artifacts {
     archives(tasks["shadowJar"])
 }
 
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            groupId = "com.github.angeschossen"
-            artifactId = "LandsAPI"
-            version = "6.26.11"
+            groupId = project.group.toString()
+            artifactId = project.description
+            version = project.version.toString()
 
             from(components["java"])
         }
