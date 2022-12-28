@@ -56,11 +56,13 @@ java {
 }
 
 group = "com.github.angeschossen"
-version = "6.26.7"
+version = "6.26.8"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 artifacts{
+    archives(tasks["sourcesJar"])
+    archives(tasks["javadocJar"])
     archives(tasks["shadowJar"])
 }
 
