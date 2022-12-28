@@ -39,7 +39,7 @@ tasks {
     }
 
     shadowJar {
-        archiveClassifier.set("")
+       // archiveClassifier.set("")
         configurations = listOf(project.configurations.shadow.get())
        // archiveFileName.set("LandsAPI-${project.version}.jar")
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
@@ -53,7 +53,7 @@ dependencies {
 }
 
 group = "com.github.angeschossen"
-version = "6.26.11"
+version = "6.26.13"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
