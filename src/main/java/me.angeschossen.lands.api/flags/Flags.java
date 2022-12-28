@@ -74,7 +74,7 @@ public final class Flags {
 
 
     public static void initializeLegacySupport() {
-        BLOCK_PLACE = RoleFlag.of("BLOCK_PLACE");
+        BLOCK_BREAK = RoleFlag.of("BLOCK_BREAK");
         BLOCK_PLACE = RoleFlag.of("BLOCK_PLACE");
         ATTACK_PLAYER = RoleFlag.of("ATTACK_PLAYER");
         ATTACK_ANIMAL = RoleFlag.of("ATTACK_ANIMAL");

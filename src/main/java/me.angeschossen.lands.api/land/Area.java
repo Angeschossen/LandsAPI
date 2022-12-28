@@ -56,15 +56,20 @@ public interface Area extends ExpressionEntity {
 
     boolean hasNaturalFlag(@NotNull NaturalFlag flag);
 
-    boolean hasFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
+    boolean hasRoleFLag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
 
-    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
+    boolean hasRoleFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
 
-    boolean hasFlag(@NotNull Player player, @NotNull RoleFlag roleFlag, boolean sendMessage);
+    boolean hasRoleFlag(@NotNull LandPlayer player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
 
-    boolean hasFlag(@NotNull LandPlayer player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
+    @Deprecated
+    boolean hasFlag(@NotNull UUID playerUUID, @NotNull me.angeschossen.lands.api.flags.types.RoleFlag flag);
 
-    boolean hasFlag(@NotNull LandPlayer player, @NotNull RoleFlag roleFlag, boolean sendMessage);
+    @Deprecated
+    boolean hasFlag(@NotNull Player player, @NotNull me.angeschossen.lands.api.flags.types.RoleFlag flag, @Nullable Material material, boolean sendMessage);
+
+    @Deprecated
+    boolean hasFlag(@NotNull Player player, @NotNull me.angeschossen.lands.api.flags.types.RoleFlag roleFlag, boolean sendMessage);
 
     boolean isBanned(@NotNull UUID playerUID);
 

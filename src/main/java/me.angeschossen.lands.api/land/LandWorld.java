@@ -10,9 +10,11 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
 public interface LandWorld {
 
-    boolean hasWildernessFlag(@NotNull LandPlayer player, @NotNull Location location, @NotNull RoleFlag roleFlag, boolean sendMessage);
+    boolean hasWildernessRoleFlag(@NotNull LandPlayer player, @NotNull Location location, @NotNull RoleFlag roleFlag, boolean sendMessage);
 
     @Nullable
     Area getArea(Location location);
@@ -23,11 +25,19 @@ public interface LandWorld {
     @Nullable
     Area getArea(int x, int y, int z);
 
-    boolean hasFlag(@NotNull LandPlayer player, @NotNull Location location, @Nullable Material material, @NotNull RoleFlag flag, boolean sendMessage);
+    boolean hasRoleFlag(@NotNull LandPlayer player, @NotNull Location location, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
+
+    boolean hasRoleFlag(@NotNull Player player, @NotNull Location location, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
+
+    boolean hasRoleFlag(@NotNull UUID playerUID, @NotNull Location location, @NotNull RoleFlag flag);
+
+    @Deprecated
+    boolean hasFlag(@NotNull LandPlayer player, @NotNull Location location, @Nullable Material material, @NotNull me.angeschossen.lands.api.flags.types.RoleFlag flag, boolean sendMessage);
+
+    @Deprecated
+    boolean hasFlag(@NotNull Player player, @NotNull Location location, @Nullable Material material, @NotNull me.angeschossen.lands.api.flags.types.RoleFlag flag, boolean sendMessage);
 
     boolean hasNaturalFlag(@NotNull Location location, @NotNull NaturalFlag flag);
-
-    boolean hasFlag(@NotNull Player player, @NotNull Location location, @Nullable Material material, @NotNull RoleFlag flag, boolean sendMessage);
 
     /**
      * Get name of world.
