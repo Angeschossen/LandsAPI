@@ -89,6 +89,15 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof me.angeschossen.lands.api.flags.type.parent.Flag<?>)) {
+            return false;
+        }
+
+        return ((me.angeschossen.lands.api.flags.type.parent.Flag<?>) obj).getName().equals(this.getName());
+    }
+
+    @Override
     public T setApplyInSubareas(boolean set) {
         this.applyInSubAreas = set;
         return self();
