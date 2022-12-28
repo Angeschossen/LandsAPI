@@ -39,7 +39,8 @@ tasks {
     }
 
     shadowJar {
-        archiveFileName.set("LandsAPI.jar")
+        configurations = listOf(project.configurations.shadow.get())
+        archiveFileName.set("LandsAPI-${project.version}.jar")
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
     }
 }
@@ -50,19 +51,12 @@ dependencies {
     compileOnly("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:1.7.0")
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
 group = "com.github.angeschossen"
-version = "6.26.8"
+version = "6.26.10"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 artifacts{
-    archives(tasks["sourcesJar"])
-    archives(tasks["javadocJar"])
     archives(tasks["shadowJar"])
 }
 
