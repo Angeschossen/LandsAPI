@@ -56,7 +56,7 @@ public interface Area extends ExpressionEntity {
 
     boolean hasNaturalFlag(@NotNull NaturalFlag flag);
 
-    boolean hasRoleFLag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
+    boolean hasRoleFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
 
     boolean hasRoleFlag(@NotNull Player player, @NotNull RoleFlag flag, @Nullable Material material, boolean sendMessage);
 
