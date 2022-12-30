@@ -28,7 +28,7 @@ public interface LandsIntegration {
      * You should assign this instance to a class variable, if possible.
      *
      * @param plugin Your plugin
-     * @return instance
+     * @return Instance of your integration
      */
     @NotNull
     static LandsIntegration of(@NotNull Plugin plugin) {
@@ -41,12 +41,12 @@ public interface LandsIntegration {
      *
      * @param attacker     The attacker
      * @param target       The defender
-     * @param location     Location
+     * @param location     Location of the fight
      * @param setCombatTag Should Lands set a combat tag at these two players, if they are allowed to fight at the given location?
      *                     Depending on the servers configuration this will result in players beeing allowed to fight for a configured period, even if they move into a safe claim.
      *                     This prevents players running away into their claim to escape a fight, which they have started.
      * @param sendMessage  Should Lands send a deny message if result is false?
-     * @return This will return true, if the world is not a Lands world or the players are allowed to fight at the given location.
+     * @return true, if the world is not a Lands world or the players are allowed to fight at the given location
      */
     boolean canPvP(@NotNull Player attacker, @NotNull Player target, @NotNull Location location, boolean setCombatTag, boolean sendMessage);
 
@@ -56,7 +56,7 @@ public interface LandsIntegration {
      * However, this method should always be prefered if possible.
      *
      * @param location The location
-     * @return null, if the target chunk isn't claimed or loaded.
+     * @return null, if the target chunk isn't claimed or loaded
      */
     @Nullable
     Area getArea(@NotNull Location location);
@@ -66,14 +66,14 @@ public interface LandsIntegration {
      * This method can be called async. It doesn't make any database calls, but requires a deep lookup in cached data.
      *
      * @param location The location
-     * @return null, if the target chunk isn't claimed.
+     * @return null, if the target chunk isn't claimed
      */
     @Nullable Area getUnloadedArea(@NotNull Location location);
 
     /**
      * The flag registry allows you to make some more specific actions than in the Flags class.
      *
-     * @return The flag registry
+     * @return The flag registry with more advanced methods for flag management
      */
     @NotNull FlagRegistry getFlagRegistry();
 
@@ -85,7 +85,7 @@ public interface LandsIntegration {
      * @param chunkX Chunk x value
      * @param chunkZ Chunk z value
      * @return null, if the chunk isn't claimed or not loaded. If you want to get the land from an unloaded chunk, use {@link #getLandByUnloadedChunk(World, int, int)} instead.
-     * However, this method should always prefered, if possible. Most bukkit events etc. usually have chunks already loaded.
+     * However, this method should always prefered, if possible. Most bukkit events etc. usually have chunks already loaded
      */
     @Nullable
     Land getLandByChunk(@NotNull World world, int chunkX, int chunkZ);
@@ -108,50 +108,49 @@ public interface LandsIntegration {
      * Get land by its id.
      *
      * @param id The id of the land.
-     * @return null, if no land with this id exists.
+     * @return null, if no land with this id exists
      */
     @Nullable
     Land getLandById(int id);
 
     /**
-     * Get land by name
-     * Name is not case sensitive
+     * Get a land by name.
      *
-     * @param name Name
-     * @return Land
+     * @param name Name of the land without color codes. Not case sensitive
+     * @return null, if no land with this name exists.
      */
     @Nullable
     Land getLandByName(@NotNull String name);
 
     /**
-     * Get cached landPlayer
+     * Get cached player data.
      *
-     * @param playerUUID UUID of player
-     * @return LandPlayer or null, if not cached
+     * @param playerUUID UUID of the player
+     * @return null, if the player is not online
      * @since 2.5.7
      */
     @Nullable
     LandPlayer getLandPlayer(@NotNull UUID playerUUID);
 
     /**
-     * Get world
+     * Get world data.
      *
-     * @param world World
-     * @return Will return null if is not a lands world
+     * @param world The bukkit world
+     * @return null, if this world is not a configured claim world
      */
     @Nullable
     LandWorld getWorld(@NotNull World world);
 
     /**
-     * Get all lands.
+     * Get all lands on this server.
      *
-     * @return Includes camps and admin lands
+     * @return all lands, including camps and admin lands
      */
     @NotNull
     Collection<Land> getLands();
 
     /**
-     * Manage levels.
+     * Using the LevelsHandler, you can register your own level requirements.
      *
      * @return LevelsHandler
      * @since 5.14.0
@@ -159,9 +158,9 @@ public interface LandsIntegration {
     @NotNull LevelsHandler getLevelsHandler();
 
     /**
-     * Get name of integration.
+     * Get the name of this integration.
      *
-     * @return Name of the plugin.
+     * @return Identical with the plugin name
      */
     @NotNull
     String getName();
@@ -177,20 +176,20 @@ public interface LandsIntegration {
     /**
      * Get a nation by its name.
      *
-     * @param name The name without color codes
-     * @return null, if no nation with this name exists.
+     * @param name The name of the nation without color codes. Not case sensitive
+     * @return null, if no nation with this name exists
      */
     @Nullable Nation getNationByName(@NotNull String name);
 
     /**
-     * Get all nations.
+     * Get all nations
      *
-     * @return Includes nations owned by the server
+     * @return Includes nations owned by an admin land
      */
     @NotNull Collection<Nation> getNations();
 
     /**
-     * Get data for an player that is offline.
+     * Get reduced data for an player that is offline or online.
      *
      * @param playerUID UUID of the player
      * @return Offline player or instance of the loaded player, if the player is online
@@ -201,13 +200,13 @@ public interface LandsIntegration {
     /**
      * Get plugin which hooks into Lands.
      *
-     * @return Plugin
+     * @return Your plugin
      */
     @NotNull
     Plugin getPlugin();
 
     /**
-     * Get a sorted context.
+     * Get a sorted context. This is used for land and nation sorting related to leaderboards.
      *
      * @param id The context id. Default: land, nation
      * @return null, if the sorting context does not exist.
@@ -215,16 +214,16 @@ public interface LandsIntegration {
     @Nullable SortingContext<?> getSortingContext(@NotNull String id);
 
     /**
-     * Execute actions once Lands is loaded.
-     * This is not needed in most use cases.
+     * Execute actions once Lands is fully loaded.
      *
-     * @param runnable The runnable that will be executed.
+     * @param runnable The runnable that will be executed
      * @since 5.13.0
      */
     void onLoad(@NotNull Runnable runnable);
 
     /**
-     * Randomly teleport a player in the given world.
+     * Randomly teleport a player in the given world. This can still be cancelled by 3rd party plugins.
+     * This method calls the cancellable {@link me.angeschossen.lands.api.events.player.PlayerRandomTeleportEvent}.
      *
      * @param landPlayer The player
      * @param world      The destination world

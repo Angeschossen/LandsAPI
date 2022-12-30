@@ -33,6 +33,10 @@ repositories {
     maven { url = uri("https://jitpack.io") }
 }
 
+tasks.withType<JavaCompile> {
+    options.encoding = "UTF-8"
+}
+
 tasks {
     build {
         dependsOn(shadowJar)
