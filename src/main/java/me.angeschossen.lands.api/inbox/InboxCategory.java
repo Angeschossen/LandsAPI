@@ -8,8 +8,11 @@ import java.util.Map;
 
 public enum InboxCategory {
 
-    ALL(0, 0), ECONOMY(1, 1),
-    MEMBERS(2, 2), WAR(3, 3), RELATIONS(4, 4);
+    ALL(0, 0),
+    ECONOMY(1, 1),
+    MEMBERS(2, 2),
+    WAR(3, 3),
+    RELATIONS(4, 4);
 
     private static final Map<Integer, InboxCategory> categories = new HashMap<>();
 
@@ -21,10 +24,19 @@ public enum InboxCategory {
 
     public final int id;
     public final int priority;
+    private boolean enabled = true;
 
     InboxCategory(int id, int prio) {
         this.id = id;
         this.priority = prio;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @NotNull
@@ -46,9 +58,7 @@ public enum InboxCategory {
     @NotNull
     public InboxCategory getNext() {
         InboxCategory inboxCategory = getByPriority(priority + 1);
-
-        // if war is disabled and type is war, get next one after war. +2
-        return APIHandler.getInstance().getWarsConfig().isEnabled() || inboxCategory != InboxCategory.WAR ? inboxCategory : getByPriority(priority + 2);
+        return inboxCategory.enabled ? inboxCategory : inboxCategory.getNext();
     }
 
     public int getId() {
