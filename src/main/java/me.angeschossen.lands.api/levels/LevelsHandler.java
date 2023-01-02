@@ -14,6 +14,10 @@ public interface LevelsHandler {
 
     void registerCachedLandRequirement(CachedRequirement requirement);
 
+    boolean isCachedLandRequirement(String name);
+
+    boolean isCachedNationRequirement(String name);
+
     void registerCachedNationRequirement(CachedRequirement requirement);
 
     @NotNull List<? extends Level> getNationLevels();
