@@ -155,7 +155,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     void markLevelUpdate();
 
-    CompletableFuture<Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
+    CompletableFuture<@Nullable Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
 
     /**
      * Send message to online players of this land.
