@@ -7,4 +7,7 @@ import java.util.UUID;
 public interface TargetableEvent {
 
     @NotNull UUID getTargetUID();
+
+    @Deprecated
+    @NotNull UUID getTargetUUID();
 }

@@ -39,6 +39,12 @@ public abstract class LandMemberEditEvent extends LandsPlayerNullableEvent imple
     }
 
     @NotNull
+    @Deprecated
+    public UUID getTargetUUID() {
+        return getTargetUID();
+    }
+
+    @NotNull
     public UUID getTargetUID() {
         return target;
     }
