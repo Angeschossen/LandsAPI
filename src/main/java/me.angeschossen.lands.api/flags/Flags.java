@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import me.angeschossen.lands.api.flags.types.LandFlag;
 import me.angeschossen.lands.api.flags.types.PlayerFlag;
 import me.angeschossen.lands.api.flags.types.RoleFlag;
-import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;

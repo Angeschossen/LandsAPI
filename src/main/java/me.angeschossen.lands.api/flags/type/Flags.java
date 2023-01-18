@@ -2,9 +2,6 @@ package me.angeschossen.lands.api.flags.type;
 
 import com.google.common.base.Preconditions;
 import me.angeschossen.lands.api.flags.type.parent.Flag;
-import me.angeschossen.lands.api.flags.type.NaturalFlag;
-import me.angeschossen.lands.api.flags.type.PlayerFlag;
-import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;

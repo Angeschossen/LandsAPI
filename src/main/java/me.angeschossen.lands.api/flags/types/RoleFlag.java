@@ -4,7 +4,6 @@ import me.angeschossen.lands.api.flags.DefaultStateFlag;
 import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
-import me.angeschossen.lands.api.flags.type.Flags;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;

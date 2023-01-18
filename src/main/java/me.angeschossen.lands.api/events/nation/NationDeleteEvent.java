@@ -4,11 +4,9 @@ import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class NationDeleteEvent extends NationEditEvent implements Cancellable {
 
