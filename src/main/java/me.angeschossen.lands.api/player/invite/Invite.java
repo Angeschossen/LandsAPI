@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.player;
+package me.angeschossen.lands.api.player.invite;
 
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.utils.TrustResult;
@@ -10,6 +10,8 @@ import java.util.UUID;
 public interface Invite {
 
     boolean isWholeLand();
+
+    InviteIntent getIntent();
 
     /**
      * Get UUID of sender

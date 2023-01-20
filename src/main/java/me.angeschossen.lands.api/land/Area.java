@@ -3,7 +3,7 @@ package me.angeschossen.lands.api.land;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
-import me.angeschossen.lands.api.player.Invite;
+import me.angeschossen.lands.api.player.invite.Invite;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.Role;
 import org.bukkit.Material;
