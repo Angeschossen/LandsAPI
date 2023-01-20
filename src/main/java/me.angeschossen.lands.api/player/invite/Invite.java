@@ -9,8 +9,6 @@ import java.util.UUID;
 
 public interface Invite {
 
-    boolean isWholeLand();
-
     InviteIntent getIntent();
 
     /**
