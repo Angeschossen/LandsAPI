@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.player;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import me.angeschossen.lands.api.flags.type.PlayerFlag;
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.player.combat.CombatTag;
 import me.angeschossen.lands.api.player.invite.Invite;
 import me.angeschossen.lands.api.war.War;
 import org.bukkit.entity.Player;
@@ -17,6 +18,13 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity {
     boolean toggleFlag(@NotNull PlayerFlag flag);
 
     boolean hasFlag(@NotNull PlayerFlag flag);
+
+    /**
+     * Get the current combat tag.
+     * @return null, if the player isn't in combat or the server doesn't have combat tags enabled and no 3rd party plugin set one.
+     */
+    @Nullable
+    CombatTag getCombatTag();
 
     /**
      * Get a players /lands edit land.

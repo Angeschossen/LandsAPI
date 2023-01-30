@@ -77,7 +77,7 @@ public class APIHandler {
         this.nationsConfig = nationsConfig;
         this.plugin = plugin;
         this.messages = messages;
-        this.flagRegistry = flagRegistry;
+        APIHandler.flagRegistry = flagRegistry;
         this.guiConfiguration = guiConfiguration;
         this.levelsHandler = levelsHandler;
         this.stringUtils = stringUtils;
