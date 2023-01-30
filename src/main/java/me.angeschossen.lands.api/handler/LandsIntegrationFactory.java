@@ -10,5 +10,5 @@ public interface LandsIntegrationFactory {
 
     @NotNull LandsIntegration of(@NotNull Plugin plugin);
 
-    @NotNull CombatTag combatTagOf(@NotNull LandPlayer attacker, LandPlayer target, long duration, boolean showMessage);
+    @NotNull CombatTag combatTagOf(@NotNull LandsIntegration landsIntegration, @NotNull LandPlayer attacker, LandPlayer target, long duration, boolean showMessage);
 }
