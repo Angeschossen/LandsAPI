@@ -11,8 +11,8 @@ public interface CombatTag {
      * @param attacker    Initial attacker
      * @param target      Initial target
      * @param duration    Duration of this combat tag. If lower than 1, the combat tag won't expire and must be removed manually via {@link #remove()}.
-     *                    Combat tags do not persist when leaving the server.
-     * @param showMessage If false, no message (by default bossbar) will be sent.
+     *                    Combat tags do not persist when leaving the server
+     * @param showMessage If false, no message (by default bossbar) will be sent
      * @return CombatTag instance
      */
     static @NotNull CombatTag of(@NotNull LandPlayer attacker, LandPlayer target, long duration, boolean showMessage) {
