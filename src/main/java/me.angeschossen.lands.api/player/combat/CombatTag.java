@@ -10,8 +10,8 @@ public interface CombatTag {
      * Create an combat tag and apply it to both players.
      *
      * @param landsIntegration Your instance of {@link LandsIntegration}
-     * @param attacker         Initial attacker
-     * @param target           Initial target
+     * @param attacker         Initial attacker. Can't be the same as target.
+     * @param target           Initial target. Can't be the same as attacker.
      * @param duration         Duration of this combat tag. If lower than 1, the combat tag won't expire and must be removed manually via {@link #remove()}.
      *                         Combat tags do not persist when leaving the server
      * @param showMessage      If false, no message (by default bossbar) will be sent
@@ -53,7 +53,7 @@ public interface CombatTag {
     long getDuration();
 
     /**
-     * Remove this combat tag from both players.
+     * Removes this combat tag from both players.
      */
     void remove();
 }
