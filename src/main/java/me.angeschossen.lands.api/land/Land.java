@@ -28,22 +28,35 @@ public interface Land extends MemberHolder {
 
     /**
      * Claim a chunk. It's recommended to call {@link #calculateLevel(boolean)}, if this method returns true (successful claim), in order to calculate the level as it might has changed after the claim.
+     *
      * @param landPlayer The player that is claiming the chunk.
-     * @param world The world
-     * @param x Chunk x
-     * @param z Chunk z
+     * @param world      The world
+     * @param x          Chunk x
+     * @param z          Chunk z
      * @return false, if the chunk a 3rd party plugin cancels the claiming or the chunk is already claimed.
      */
     boolean claimChunk(@Nullable LandPlayer landPlayer, @NotNull World world, int x, int z);
 
+    /**
+     * Delete this land.
+     *
+     * @param landPlayer The player that initiates the deletion.
+     *                   This is mainly used to prevent the player from receiving a message from your plugin and additionally a inbox message in lands of the nation.
+     *                   Just to prevent spam. Also this player will receive cashback, if enabled by the server.
+     * @return false, if a 3rd party plugin cancelled the deletion.
+     */
+    CompletableFuture<Boolean> delete(@Nullable LandPlayer landPlayer);
+
+    /**
+     * Deprecated. Use {@link #delete(LandPlayer)} instead.
+     */
+    @Deprecated
     CompletableFuture<Boolean> delete(@Nullable LandPlayer landPlayer, @NotNull DeleteReason reason);
 
     /**
-     * Delete this land
-     *
-     * @param deleter If you provide the deleter of the land, Lands will send the bank balance
-     *                and cashback (from config) to the deleters economy account.
+     * Deprecated. Use {@link #delete(LandPlayer)} instead.
      */
+    @Deprecated
     void delete(@Nullable Player deleter);
 
     @Nullable

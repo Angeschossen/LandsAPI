@@ -9,6 +9,10 @@ public enum DeleteReason {
      */
     DEFAULT,
     /**
+     * Used by 3rd party plugins.
+     */
+    PLUGIN,
+    /**
      * Deletion because of insufficient funds.
      */
     UPKEEP,
