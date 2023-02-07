@@ -6,12 +6,13 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class BankEvent extends LandEditEvent implements Cancellable {
     private boolean cancelled = false;
     private final double value;
 
-    public BankEvent(@NotNull Land land, @NotNull LandPlayer landPlayer, double value) {
+    public BankEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, double value) {
         super(land, landPlayer);
 
         this.value = value;
