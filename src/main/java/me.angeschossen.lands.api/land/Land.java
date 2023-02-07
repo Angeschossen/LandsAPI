@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.events.land.DeleteReason;
+import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.enums.LandType;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.nation.Nation;
@@ -18,6 +19,21 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public interface Land extends MemberHolder {
+
+    /**
+     * Create a new land.
+     *
+     * @param name     The name. Depending on the servers settings, this may not include numbers or other non alphabetical characters
+     * @param landType The type
+     * @param location The location of the new land. Should be located in a loaded chunk
+     * @param owner    Owner of this new land
+     * @param claim    If true, the new land creation will claim an initial area depending on your servers configuration.
+     * @param msg      If true, sends the owner failure and success messages during creation
+     * @return the result of the future is null, if the land creation failed at this location
+     */
+    static CompletableFuture<? extends Land> of(@NotNull String name, @NotNull LandType landType, @NotNull Location location, @NotNull LandPlayer owner, boolean claim, boolean msg) {
+        return APIHandler.getLandsIntegrationFactory().landOf(name, landType, location, owner, claim, msg);
+    }
 
     @Nullable Container getContainer(World world);
 

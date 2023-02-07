@@ -52,7 +52,7 @@ public class RoleFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.t
     }
 
     public static RoleFlag of(String name) {
-        me.angeschossen.lands.api.flags.type.RoleFlag flag = Objects.requireNonNull(APIHandler.getFlagRegistry().getRole(name), "legacy flag");
+        me.angeschossen.lands.api.flags.type.RoleFlag flag = Objects.requireNonNull(APIHandler.getFlagRegistry().getRole(name), "legacy flag: " + name);
         return new RoleFlag(flag.getPlugin(), Flag.Target.valueOf(flag.getTarget().toString()), Category.valueOf(flag.getCategory().toString()), flag.getName(), flag.isApplyInSubareas(), flag.isAlwaysAllowInWilderness(), flag.getUpdatePredicate());
     }
 

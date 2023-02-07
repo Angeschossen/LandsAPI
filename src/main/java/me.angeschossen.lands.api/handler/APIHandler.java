@@ -8,7 +8,6 @@ import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.configuration.ModuleConfig;
 import me.angeschossen.lands.api.flags.FlagFactory;
 import me.angeschossen.lands.api.flags.FlagRegistry;
-import me.angeschossen.lands.api.flags.Flags;
 import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.utils.PlayerUtils;
 import org.bukkit.plugin.Plugin;
@@ -31,7 +30,6 @@ public class APIHandler {
     private final @NotNull StringUtils stringUtils;
     private final @NotNull PlayerUtils playerUtils;
     private static FlagFactory flagFactory;
-
 
     public static FlagFactory getFlagFactory() {
         return flagFactory;
@@ -149,7 +147,5 @@ public class APIHandler {
                 flagRegistry,
                 stringUtils,
                 playerUtils);
-
-        Flags.initializeLegacySupport();
     }
 }

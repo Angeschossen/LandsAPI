@@ -58,6 +58,6 @@ public class MemberHolderUpkeepEvent extends MemberHolderEvent implements Cancel
         super.setExpressionVariables(builder);
 
         builder.put("upkeep", upkeep)
-                .put(memberHolder.getExpressionPrefix(), balance);
+                .put(memberHolder.getExpressionPrefix() + "_balance", balance);
     }
 }
