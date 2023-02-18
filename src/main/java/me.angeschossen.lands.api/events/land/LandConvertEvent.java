@@ -48,7 +48,7 @@ public class LandConvertEvent extends LandEditEvent implements Cancellable {
     }
 
     @Override
-    public void setCancelled(boolean b) throws IllegalStateException {
+    public void setCancelled(boolean b) {
         this.cancelled = b;
     }
 }
