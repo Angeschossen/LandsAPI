@@ -1,14 +1,14 @@
 package me.angeschossen.lands.api.events;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.LandEditEvent;
+import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class LandRenameEvent extends LandEditEvent implements Cancellable {
+public class LandRenameEvent extends LandEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
     private final String oldName;
     private final String newName;

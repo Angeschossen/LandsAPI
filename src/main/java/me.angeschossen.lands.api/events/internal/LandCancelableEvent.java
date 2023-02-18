@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
-public abstract class LandEditCancelableEvent extends LandEditEvent implements Cancellable {
+public abstract class LandCancelableEvent extends LandEvent implements Cancellable {
 
     private boolean cancelled;
 
@@ -21,11 +21,11 @@ public abstract class LandEditCancelableEvent extends LandEditEvent implements C
         this.cancelled = cancel;
     }
 
-    public LandEditCancelableEvent(@NotNull Land land, LandPlayer landPlayer) {
+    public LandCancelableEvent(@NotNull Land land, LandPlayer landPlayer) {
         super(land, landPlayer);
     }
 
-    public LandEditCancelableEvent(@NotNull Land land, UUID landPlayer) {
+    public LandCancelableEvent(@NotNull Land land, UUID landPlayer) {
         super(land, landPlayer);
     }
 }

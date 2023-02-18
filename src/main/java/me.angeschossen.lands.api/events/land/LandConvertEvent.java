@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.land;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.LandEditEvent;
+import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.enums.LandType;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -10,7 +10,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class LandConvertEvent extends LandEditEvent implements Cancellable {
+public class LandConvertEvent extends LandEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private final @NotNull LandType landType;
     private boolean cancelled;

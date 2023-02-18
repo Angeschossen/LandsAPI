@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.events.land.claiming;
+package me.angeschossen.lands.api.events.land.spawn;
 
 import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.Land;
@@ -6,14 +6,23 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public class LandUnclaimAllEvent extends LandEvent implements Cancellable {
+import java.util.Objects;
+
+public class LandSpawnTeleportEvent extends LandEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private boolean cancelled;
 
-    public LandUnclaimAllEvent(@NotNull Land land, @Nullable LandPlayer landPlayer) {
+    public LandSpawnTeleportEvent(@NotNull Land land, @NotNull LandPlayer landPlayer) {
         super(land, landPlayer);
+
+        Objects.requireNonNull(landPlayer, "LandPlayer can't be null");
+    }
+
+    @Override
+    public @NotNull LandPlayer getLandPlayer() {
+        assert super.getLandPlayer() != null;
+        return super.getLandPlayer();
     }
 
     public static HandlerList getHandlerList() {
@@ -31,7 +40,7 @@ public class LandUnclaimAllEvent extends LandEvent implements Cancellable {
     }
 
     @Override
-    public void setCancelled(boolean b)  {
-        this.cancelled = b;
+    public void setCancelled(boolean cancel) {
+        this.cancelled = cancel;
     }
 }

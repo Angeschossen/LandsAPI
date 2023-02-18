@@ -11,6 +11,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.UUID;
 
+/**
+ * Deprecated. Use {@link me.angeschossen.lands.api.events.land.spawn.LandSpawnTeleportEvent} instead.
+ */
+@Deprecated
 public class PlayerSpawnLandEvent extends LandsPlayerEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
     private final @NotNull Land land;

@@ -9,17 +9,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class LandEditEvent extends LandsPlayerNullableEvent {
+public abstract class LandEvent extends LandsPlayerNullableEvent {
 
     protected final @NotNull Land land;
 
-    public LandEditEvent(@NotNull Land land, LandPlayer landPlayer) {
+    public LandEvent(@NotNull Land land, LandPlayer landPlayer) {
         super(landPlayer);
 
         this.land = land;
     }
 
-    public LandEditEvent(@NotNull Land land, UUID landPlayer) {
+    public LandEvent(@NotNull Land land, UUID landPlayer) {
         super(landPlayer);
 
         this.land = land;

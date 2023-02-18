@@ -1,9 +1,8 @@
 package me.angeschossen.lands.api.events.land.spawn;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.LandEditCancelableEvent;
+import me.angeschossen.lands.api.events.internal.LandCancelableEvent;
 import me.angeschossen.lands.api.land.Land;
-import me.angeschossen.lands.api.land.enums.LandType;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
 import org.bukkit.event.HandlerList;
@@ -15,7 +14,7 @@ import java.util.Objects;
 /**
  * This even is called each time the spawn if a land changes.
  */
-public class LandSpawnSetEvent extends LandEditCancelableEvent {
+public class LandSpawnSetEvent extends LandCancelableEvent {
     public static HandlerList handlerList = new HandlerList();
     private final @NotNull Location location;
 

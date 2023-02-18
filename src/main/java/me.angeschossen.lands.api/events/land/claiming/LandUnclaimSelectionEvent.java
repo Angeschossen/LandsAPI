@@ -1,6 +1,6 @@
 package me.angeschossen.lands.api.events.land.claiming;
 
-import me.angeschossen.lands.api.events.internal.LandEditEvent;
+import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.ChunkCoordinate;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
-public class LandUnclaimSelectionEvent extends LandEditEvent implements Cancellable {
+public class LandUnclaimSelectionEvent extends LandEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private final Selection selection;
     private boolean cancelled;

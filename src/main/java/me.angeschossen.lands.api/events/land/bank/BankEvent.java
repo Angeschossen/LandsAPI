@@ -1,14 +1,14 @@
 package me.angeschossen.lands.api.events.land.bank;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.LandEditEvent;
+import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class BankEvent extends LandEditEvent implements Cancellable {
+public abstract class BankEvent extends LandEvent implements Cancellable {
     private boolean cancelled = false;
     private final double value;
 

@@ -1,13 +1,13 @@
 package me.angeschossen.lands.api.events.land.bank;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.LandEditEvent;
+import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class LandBankBalanceChangedEvent extends LandEditEvent {
+public class LandBankBalanceChangedEvent extends LandEvent {
 
     public static final HandlerList handlerList = new HandlerList();
     private final double prev, now;

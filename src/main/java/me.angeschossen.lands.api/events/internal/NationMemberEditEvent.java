@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class NationMemberEditEvent extends LandEditEvent {
+public abstract class NationMemberEditEvent extends LandEvent {
     protected final UUID initiator;
     protected final Nation nation;
     protected final Land land;
