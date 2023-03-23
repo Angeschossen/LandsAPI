@@ -11,34 +11,103 @@ import java.util.Collection;
 
 public interface War extends ExpressionEntity {
 
+    /**
+     * End this war.
+     *
+     * @param winner      Who should be the winner? {{@link #getDefender()}} or {{@link #getAttacker()}}.
+     * @param surrendered If true, the other team surrendered
+     * @param reward      If true and surrendered is false, rewards from wars.yml are given to the winner
+     */
     void end(@NotNull MemberHolder winner, boolean surrendered, double reward);
 
+    /**
+     * Get the land or nation that declared war initially.
+     *
+     * @return The attacker
+     */
     @NotNull
     MemberHolder getAttacker();
 
+    /**
+     * Get stats of this war for the attacker {{@link #getAttacker()}}.
+     *
+     * @return Stats of the attacker
+     */
     @NotNull
     WarStats getAttackerStats();
 
+    /**
+     * Get online players of the attacker.
+     *
+     * @return Online players of the attacker
+     */
     @NotNull Collection<Player> getOnlineAttackers();
 
+    /**
+     * Get the land or nation that was declared war against by the attacker.
+     *
+     * @return The defender
+     */
     @NotNull
     MemberHolder getDefender();
 
+    /**
+     * Get stats of this war for the defender {{@link #getDefender()} ()}}.
+     *
+     * @return Stats of the defender
+     */
     @NotNull
     WarStats getDefenderStats();
 
+    /**
+     * Get online players of the defender.
+     *
+     * @return Online players of the defender
+     */
     @NotNull Collection<Player> getOnlineDefenders();
 
+    /**
+     * Get the opposite team of the land or nation.
+     *
+     * @param memberHolder Land or nation
+     * @return the provided memberHolder if it's not part of any team
+     */
     @NotNull MemberHolder getEnemy(@NotNull MemberHolder memberHolder);
 
+    /**
+     * @param winner The assumed winner
+     * @return Configured robbery reward from wars.yml. The reward depends on the other teams balance
+     */
     double getReward(@Nullable MemberHolder winner);
 
+    /**
+     * Get the team the player belongs to.
+     *
+     * @param player The player
+     * @return NEUTRAL, if the player is not related to any land or nation in this war
+     */
     @NotNull WarTeam getTeam(@NotNull Player player);
 
+    /**
+     * Get the current winner.
+     *
+     * @return The current winner
+     */
     @Nullable
     MemberHolder getWinner();
 
+    /**
+     * Check if points to win from wars.yml is reached or war timeout from wars.yml is reached.
+     *
+     * @return true, if points to win is reached by the current {{@link #getWinner()}} or war timeout is reached.
+     * The war will end in a matter of seconds of this method returns true
+     */
     boolean isEndingSoon();
 
+    /**
+     * Check if this land or nation takes part in this war.
+     * @param entity The land or nation
+     * @return true, if it takes part in this war
+     */
     boolean isParticipating(@NotNull MemberHolder entity);
 }
