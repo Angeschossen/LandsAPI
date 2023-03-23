@@ -14,7 +14,7 @@ public interface War extends ExpressionEntity {
     /**
      * End this war.
      *
-     * @param winner      Who should be the winner? {{@link #getDefender()}} or {{@link #getAttacker()}}.
+     * @param winner      Who should be the winner? {@link #getDefender()} or {@link #getAttacker()}.
      * @param surrendered If true, the other team surrendered
      * @param reward      If true and surrendered is false, rewards from wars.yml are given to the winner
      */
@@ -29,7 +29,7 @@ public interface War extends ExpressionEntity {
     MemberHolder getAttacker();
 
     /**
-     * Get stats of this war for the attacker {{@link #getAttacker()}}.
+     * Get stats of this war for the attacker {@link #getAttacker()}.
      *
      * @return Stats of the attacker
      */
@@ -52,7 +52,7 @@ public interface War extends ExpressionEntity {
     MemberHolder getDefender();
 
     /**
-     * Get stats of this war for the defender {{@link #getDefender()} ()}}.
+     * Get stats of this war for the defender {@link #getDefender()}.
      *
      * @return Stats of the defender
      */
@@ -99,7 +99,7 @@ public interface War extends ExpressionEntity {
     /**
      * Check if points to win from wars.yml is reached or war timeout from wars.yml is reached.
      *
-     * @return true, if points to win is reached by the current {{@link #getWinner()}} or war timeout is reached.
+     * @return true, if points to win is reached by the current {@link #getWinner()} or war timeout is reached.
      * The war will end in a matter of seconds of this method returns true
      */
     boolean isEndingSoon();
