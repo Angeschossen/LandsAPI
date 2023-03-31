@@ -188,6 +188,9 @@ public interface Land extends MemberHolder {
      *
      * @return Max chunk claims
      */
+    int getMaxChunks();
+
+    @Deprecated
     int getMaxChunks(boolean countNation);
 
     /**
