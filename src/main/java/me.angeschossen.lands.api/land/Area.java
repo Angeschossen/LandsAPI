@@ -45,6 +45,12 @@ public interface Area extends ExpressionEntity {
     @NotNull
     Role getRole(@NotNull String name);
 
+    /**
+     * Get roles.
+     * @return Roles
+     */
+    Collection<? extends Role> getRoles();
+
     double getTax();
 
     void setTax(double rent);
