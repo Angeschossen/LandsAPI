@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public abstract class Sorting<T> implements Comparator<T> {
 
     protected final String id;
-    protected final me.angeschossen.lands.api.sorting.SortingContext<T> sortingContext;
+    protected final SortingContext<T> sortingContext;
     protected List<T> entries = Collections.emptyList();
 
     public Sorting(@NotNull SortingContext<T> sortingContext, @NotNull String id) throws IllegalStateException {

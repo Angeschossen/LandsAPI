@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
+import me.angeschossen.lands.api.events.land.spawn.LandSpawnTeleportEvent;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +13,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 /**
- * Deprecated. Use {@link me.angeschossen.lands.api.events.land.spawn.LandSpawnTeleportEvent} instead.
+ * Deprecated. Use {@link LandSpawnTeleportEvent} instead.
  */
 @Deprecated
 public class PlayerSpawnLandEvent extends LandsPlayerEvent implements Cancellable {

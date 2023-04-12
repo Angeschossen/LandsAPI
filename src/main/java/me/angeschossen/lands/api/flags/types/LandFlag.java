@@ -30,7 +30,7 @@ public class LandFlag extends DefaultStateFlag<NaturalFlag> implements NaturalFl
     }
 
     public static LandFlag of(String name) {
-        me.angeschossen.lands.api.flags.type.NaturalFlag flag = Objects.requireNonNull(APIHandler.getFlagRegistry().getNatural(name), "legacy flag");
+        NaturalFlag flag = Objects.requireNonNull(APIHandler.getFlagRegistry().getNatural(name), "legacy flag");
         return new LandFlag(flag.getPlugin(), Flag.Target.valueOf(flag.getTarget().toString()), flag.getName(), flag.isApplyInSubareas(), flag.isAlwaysAllowInWilderness());
     }
 

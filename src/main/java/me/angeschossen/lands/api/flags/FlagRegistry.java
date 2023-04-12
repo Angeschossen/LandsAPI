@@ -18,7 +18,7 @@ import java.util.List;
 public interface FlagRegistry {
 
     @NotNull
-    Flag<?> register(@NotNull Flag<?> flag) throws FlagConflictException, IllegalArgumentException;
+    me.angeschossen.lands.api.flags.type.parent.Flag<?> register(@NotNull me.angeschossen.lands.api.flags.type.parent.Flag<?> flag) throws FlagConflictException, IllegalArgumentException;
 
     boolean isValidName(String name);
 

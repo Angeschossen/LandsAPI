@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.events.land.spawn;
 import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
+import me.angeschossen.lands.api.events.LandDeleteEvent;
 import org.bukkit.Location;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
  * This event is called each time the spawn is removed.
  * It mostly fires when an admin deletes world data or the world, in which the spawn was located
  * in doesn't exist any longer. This is not called upon land deletion.
- * If you want to handle this case too, just listen to {@link me.angeschossen.lands.api.events.LandDeleteEvent}.
+ * If you want to handle this case too, just listen to {@link LandDeleteEvent}.
  */
 public class LandSpawnRemoveEvent extends LandEvent {
     public static HandlerList handlerList = new HandlerList();

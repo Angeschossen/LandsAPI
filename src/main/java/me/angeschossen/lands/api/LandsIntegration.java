@@ -10,6 +10,7 @@ import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
 import me.angeschossen.lands.api.sorting.SortingContext;
+import me.angeschossen.lands.api.events.player.PlayerRandomTeleportEvent;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -223,7 +224,7 @@ public interface LandsIntegration {
 
     /**
      * Randomly teleport a player in the given world. This can still be cancelled by 3rd party plugins.
-     * This method calls the cancellable {@link me.angeschossen.lands.api.events.player.PlayerRandomTeleportEvent}.
+     * This method calls the cancellable {@link PlayerRandomTeleportEvent}.
      *
      * @param landPlayer The player
      * @param world      The destination world

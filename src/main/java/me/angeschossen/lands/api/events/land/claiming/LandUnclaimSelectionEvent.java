@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.land.claiming;
 
+import me.angeschossen.lands.api.blockworks.ChunkCoordinate;
 import me.angeschossen.lands.api.events.internal.LandEvent;
-import me.angeschossen.lands.api.land.ChunkCoordinate;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.Selection;
@@ -16,9 +16,9 @@ public class LandUnclaimSelectionEvent extends LandEvent implements Cancellable 
     public static HandlerList handlerList = new HandlerList();
     private final Selection selection;
     private boolean cancelled;
-    private final Set<? extends ChunkCoordinate> unclaim;
+    private final Set<? extends me.angeschossen.lands.api.land.ChunkCoordinate> unclaim;
 
-    public LandUnclaimSelectionEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull Selection selection, @NotNull Set<? extends ChunkCoordinate> unclaim) {
+    public LandUnclaimSelectionEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull Selection selection, @NotNull Set<? extends me.angeschossen.lands.api.land.ChunkCoordinate> unclaim) {
         super(land, landPlayer);
 
         this.selection = selection;
@@ -26,7 +26,7 @@ public class LandUnclaimSelectionEvent extends LandEvent implements Cancellable 
     }
 
     @NotNull
-    public Set<? extends ChunkCoordinate> getUnclaim() {
+    public Set<? extends me.angeschossen.lands.api.land.ChunkCoordinate> getUnclaim() {
         return unclaim;
     }
 
@@ -36,7 +36,7 @@ public class LandUnclaimSelectionEvent extends LandEvent implements Cancellable 
     }
 
     public boolean hasChunk(int x, int z){
-        return unclaim.contains(new me.angeschossen.lands.api.blockworks.ChunkCoordinate(x, z));
+        return unclaim.contains(new ChunkCoordinate(x, z));
     }
 
     public static HandlerList getHandlerList() {

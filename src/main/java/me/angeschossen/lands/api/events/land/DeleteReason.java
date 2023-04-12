@@ -1,7 +1,10 @@
 package me.angeschossen.lands.api.events.land;
 
+import me.angeschossen.lands.api.events.ChunkDeleteEvent;
+import me.angeschossen.lands.api.events.LandDeleteEvent;
+
 /**
- * Delete reasons are used at the {@link me.angeschossen.lands.api.events.ChunkDeleteEvent} and {@link me.angeschossen.lands.api.events.LandDeleteEvent}.
+ * Delete reasons are used at the {@link ChunkDeleteEvent} and {@link LandDeleteEvent}.
  */
 public enum DeleteReason {
     /**
