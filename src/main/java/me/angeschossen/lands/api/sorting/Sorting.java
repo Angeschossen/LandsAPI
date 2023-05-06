@@ -70,6 +70,8 @@ public abstract class Sorting<T> implements Comparator<T> {
         return s;
     }
 
+    public abstract String[] getPlaceholders();
+
     @NotNull
     public final String[] handleParseSignLines(int place) {
         T t = get(place);
