@@ -1,9 +1,9 @@
 package me.angeschossen.lands.api.events.land.spawn;
 
+import me.angeschossen.lands.api.events.LandDeleteEvent;
 import me.angeschossen.lands.api.events.internal.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
-import me.angeschossen.lands.api.events.LandDeleteEvent;
 import org.bukkit.Location;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api;
 
+import me.angeschossen.lands.api.events.player.PlayerRandomTeleportEvent;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.Area;
@@ -10,7 +11,6 @@ import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
 import me.angeschossen.lands.api.sorting.SortingContext;
-import me.angeschossen.lands.api.events.player.PlayerRandomTeleportEvent;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;

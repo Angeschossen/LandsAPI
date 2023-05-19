@@ -2,9 +2,9 @@ package me.angeschossen.lands.api.events.player;
 
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
+import me.angeschossen.lands.api.events.land.spawn.LandSpawnTeleportEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
-import me.angeschossen.lands.api.events.land.spawn.LandSpawnTeleportEvent;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
