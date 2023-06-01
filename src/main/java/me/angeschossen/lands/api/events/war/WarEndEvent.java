@@ -5,13 +5,14 @@ import me.angeschossen.lands.api.war.War;
 import me.angeschossen.lands.api.war.enums.WarResult;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class WarEndEvent extends WarEvent {
     public static HandlerList handlerList = new HandlerList();
     private final WarResult warResult;
-    private final MemberHolder winner;
+    private final @Nullable MemberHolder winner;
 
-    public WarEndEvent(@NotNull War war, @NotNull WarResult warResult, @NotNull MemberHolder winner) {
+    public WarEndEvent(@NotNull War war, @NotNull WarResult warResult, @Nullable MemberHolder winner) {
         super(war);
 
         this.warResult = warResult;
@@ -27,9 +28,14 @@ public class WarEndEvent extends WarEvent {
         return handlerList;
     }
 
-    @NotNull
+    /**
+     * Get winner.
+     *
+     * @return null, if {@link #getResult()} returns DRAW
+     */
+    @Nullable
     public MemberHolder getLoser() {
-        return war.getEnemy(winner);
+        return winner == null ? null : war.getEnemy(winner);
     }
 
     @NotNull
@@ -37,7 +43,12 @@ public class WarEndEvent extends WarEvent {
         return warResult;
     }
 
-    @NotNull
+    /**
+     * Get winner.
+     *
+     * @return null, if {@link #getResult()} returns DRAW
+     */
+    @Nullable
     public MemberHolder getWinner() {
         return winner;
     }
