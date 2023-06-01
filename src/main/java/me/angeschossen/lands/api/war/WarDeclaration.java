@@ -1,9 +1,9 @@
-package me.angeschossen.lands.api.war.declaration;
+package me.angeschossen.lands.api.war;
 
 import me.angeschossen.lands.api.war.War;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 
-public interface WarDeclaration {
+public interface WarDeclaration extends WarState {
 
     /**
      * Set tribute, which the surrenderer must pay to the enemy if they surrender.

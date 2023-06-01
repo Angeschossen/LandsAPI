@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.war.captureflag;
 
 import me.angeschossen.lands.api.player.LandPlayer;
-import me.angeschossen.lands.api.war.CaptureFlag;
+import me.angeschossen.lands.api.war.captureflag.CaptureFlag;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;

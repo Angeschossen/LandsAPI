@@ -1,5 +1,7 @@
 package me.angeschossen.lands.api.war;
 
+import me.angeschossen.lands.api.war.captureflag.CaptureFlag;
+
 public interface WarStats {
 
     /**

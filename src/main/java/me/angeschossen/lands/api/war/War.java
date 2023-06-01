@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
-public interface War extends ExpressionEntity {
+public interface War extends ExpressionEntity, WarState {
 
     /**
      * End this war.
@@ -19,14 +19,6 @@ public interface War extends ExpressionEntity {
      * @param reward      If true and surrendered is false, rewards from wars.yml are given to the winner
      */
     void end(@NotNull MemberHolder winner, boolean surrendered, double reward);
-
-    /**
-     * Get the land or nation that declared war initially.
-     *
-     * @return The attacker
-     */
-    @NotNull
-    MemberHolder getAttacker();
 
     /**
      * Get stats of this war for the attacker {@link #getAttacker()}.
@@ -44,14 +36,6 @@ public interface War extends ExpressionEntity {
     @NotNull Collection<Player> getOnlineAttackers();
 
     /**
-     * Get the land or nation that was declared war against by the attacker.
-     *
-     * @return The defender
-     */
-    @NotNull
-    MemberHolder getDefender();
-
-    /**
      * Get stats of this war for the defender {@link #getDefender()}.
      *
      * @return Stats of the defender
@@ -67,26 +51,10 @@ public interface War extends ExpressionEntity {
     @NotNull Collection<Player> getOnlineDefenders();
 
     /**
-     * Get the opposite team of the land or nation.
-     *
-     * @param memberHolder Land or nation
-     * @return the provided memberHolder if it's not part of any team
-     */
-    @NotNull MemberHolder getEnemy(@NotNull MemberHolder memberHolder);
-
-    /**
      * @param winner The assumed winner
      * @return Configured robbery reward from wars.yml. The reward depends on the other teams balance
      */
     double getReward(@Nullable MemberHolder winner);
-
-    /**
-     * Get the team the player belongs to.
-     *
-     * @param player The player
-     * @return NEUTRAL, if the player is not related to any land or nation in this war
-     */
-    @NotNull WarTeam getTeam(@NotNull Player player);
 
     /**
      * Get the current winner.
@@ -103,11 +71,4 @@ public interface War extends ExpressionEntity {
      * The war will end in a matter of seconds of this method returns true
      */
     boolean isEndingSoon();
-
-    /**
-     * Check if this land or nation takes part in this war.
-     * @param entity The land or nation
-     * @return true, if it takes part in this war
-     */
-    boolean isParticipating(@NotNull MemberHolder entity);
 }
