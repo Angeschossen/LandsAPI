@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.war;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
-import me.angeschossen.lands.api.war.enums.WarTeam;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
