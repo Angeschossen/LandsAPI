@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.role.enums;
 
 import org.jetbrains.annotations.NotNull;
+import sun.security.krb5.Config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,9 +10,11 @@ public enum RoleType {
     ALLY(5, false, false, false), OWNER(4, false, false, true), NATION(3, false, false, false), NORMAL(2, true, true, true), ENTRY(1, false, false, true), VISITOR(0, false, false, false);
 
     private static final Map<Integer, RoleType> map = new HashMap<>();
-public boolean isLand(){
-    return this != NATION;
-}
+
+    public boolean isLand() {
+        return this != NATION;
+    }
+
     static {
         for (RoleType roleType : values()) {
             map.put(roleType.id, roleType);
@@ -22,6 +25,7 @@ public boolean isLand(){
     private final int id;
     private final boolean canHaveMembers;
     private boolean isDeleteable;
+
     RoleType(int id, boolean multiple, boolean isDeleteable, boolean canHaveMembers) {
         this.id = id;
         this.multiple = multiple;
