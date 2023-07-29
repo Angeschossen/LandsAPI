@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.role.enums;
 
 import org.jetbrains.annotations.NotNull;
-import sun.security.krb5.Config;
 
 import java.util.HashMap;
 import java.util.Map;
