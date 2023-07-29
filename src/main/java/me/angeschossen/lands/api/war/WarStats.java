@@ -5,6 +5,20 @@ import me.angeschossen.lands.api.war.captureflag.CaptureFlag;
 public interface WarStats {
 
     /**
+     * Get points that weren't received by capturing a capture flag or killing enemies.
+     * This includes positive point modification using {@link #modifyPoints(int)} and exploding or breaking an capture flag.
+     * @return Never negative
+     */
+    int getPointsAdditional();
+
+    /**
+     * Get total amount of points, including {@link #getPointsAdditional()}.
+     * This also includes points received by killing enemies and capturing capture flags.
+     * @return Never negative
+     */
+    float getPointsTotal();
+
+    /**
      * Get win-lost wars ratio.
      *
      * @return win-lost wars ratio
@@ -48,10 +62,9 @@ public interface WarStats {
 
     /**
      * Modify points of team.
-     * @param mod Can be positiv or negative
-     * @return New amount of points
+     * @param mod Can be positive or negative
      */
-    int modifyPoints(int mod);
+    void modifyPoints(int mod);
 
     /**
      * Get amount of captures. See {@link CaptureFlag} for more information.
