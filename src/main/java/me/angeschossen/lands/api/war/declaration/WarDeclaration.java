@@ -1,5 +1,7 @@
-package me.angeschossen.lands.api.war;
+package me.angeschossen.lands.api.war.declaration;
 
+import me.angeschossen.lands.api.war.War;
+import me.angeschossen.lands.api.war.WarState;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 
 public interface WarDeclaration extends WarState {

@@ -47,6 +47,13 @@ public interface WarStats {
     int getDeaths();
 
     /**
+     * Modify points of team.
+     * @param mod Can be positiv or negative
+     * @return New amount of points
+     */
+    int modifyPoints(int mod);
+
+    /**
      * Get amount of captures. See {@link CaptureFlag} for more information.
      *
      * @return Amount of captures

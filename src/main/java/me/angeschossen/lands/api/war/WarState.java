@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.war;
 
 import me.angeschossen.lands.api.memberholder.MemberHolder;
+import me.angeschossen.lands.api.war.declaration.WarDeclaration;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -35,6 +36,15 @@ public interface WarState {
      * @return The defender
      */
     @NotNull MemberHolder getDefender();
+
+    /**
+     * If state represents:
+     * {@link War}: Get the time left until the war ends forcefully (no team reached the needed amount of points)
+     * {@link WarDeclaration} Time until the war starts
+     * {@link me.angeschossen.lands.api.war.declaration.MutualDeclaration} Time until the declaration is automatically being declined.
+     * @return Time in seconds
+     */
+    long getTimeLeft();
 
     /**
      * Check if this land or nation takes part in this war.
