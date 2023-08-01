@@ -40,6 +40,9 @@ tasks.withType<JavaCompile> {
 tasks {
     build {
         dependsOn(shadowJar)
+        java{
+            withJavadocJar()
+        }
     }
 
     shadowJar {
@@ -56,7 +59,7 @@ dependencies {
 }
 
 group = "com.github.angeschossen"
-version = "6.33.6"
+version = "6.33.7"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
