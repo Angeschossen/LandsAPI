@@ -40,9 +40,7 @@ tasks.withType<JavaCompile> {
 tasks {
     build {
         dependsOn(shadowJar)
-        java{
-            withJavadocJar()
-        }
+        dependsOn(javadoc)
     }
 
     shadowJar {
