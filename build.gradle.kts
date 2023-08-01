@@ -38,9 +38,13 @@ tasks.withType<JavaCompile> {
 }
 
 tasks {
+    java {
+        withJavadocJar()
+    }
+
     build {
         dependsOn(shadowJar)
-        dependsOn(javadoc)
+        //dependsOn(javadoc)
     }
 
     shadowJar {
@@ -48,8 +52,9 @@ tasks {
         configurations = listOf(project.configurations.shadow.get())
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
     }
-}
 
+
+}
 dependencies {
     shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.1")
     compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
@@ -57,7 +62,7 @@ dependencies {
 }
 
 group = "com.github.angeschossen"
-version = "6.33.7"
+version = "6.33.8"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
