@@ -18,6 +18,9 @@ import java.util.Collection;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * A land can be of different types ({@link #getLandType()}).
+ */
 public interface Land extends MemberHolder {
 
     /**

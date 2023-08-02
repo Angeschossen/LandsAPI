@@ -1,5 +1,8 @@
 package me.angeschossen.lands.api.land;
 
+/**
+ * Represents coordinates of a chunk.
+ */
 public interface ChunkCoordinate {
 
     /**

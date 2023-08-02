@@ -14,15 +14,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public interface Area extends ExpressionEntity {
-
-    /**
-     * Add taxes for this area.
-     *
-     * @param tax If negative, it will remove taxes.
-     * @return New tax value
-     */
-    double addTax(double tax);
+/**
+ * This might be a default area ({@link Land#getDefaultArea()} or a sub area ({@link LandArea}).
+ */
+public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Ban a player.
@@ -40,13 +35,6 @@ public interface Area extends ExpressionEntity {
      * @return false, if the player isn't allowed to enter
      */
     boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
-
-    /**
-     * Same as {@link #getName()}, but with colors codes included.
-     * @return Name with color codes
-     */
-    @NotNull
-    String getColorName();
 
     /**
      * Get the entry role.
@@ -106,18 +94,6 @@ public interface Area extends ExpressionEntity {
      * @return Collection of all roles
      */
     Collection<? extends Role> getRoles();
-
-    /**
-     * Get current tax value.
-     * @return Current tax
-     */
-    double getTax();
-
-    /**
-     * Set tax value.
-     * @param tax New tax value. Can't be negative
-     */
-    void setTax(double tax);
 
     /**
      * Get all trusted players.
