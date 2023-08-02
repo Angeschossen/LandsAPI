@@ -3,7 +3,7 @@ package me.angeschossen.lands.api.land;
 public interface ChunkCoordinate {
 
     /**
-     * Get block x
+     * Get block x.
      *
      * @return Block x
      */
@@ -11,21 +11,21 @@ public interface ChunkCoordinate {
 
 
     /**
-     * Get block z
+     * Get block z.
      *
      * @return Block z
      */
     int getBlockZ();
 
     /**
-     * Get chunk x
+     * Get chunk x.
      *
      * @return Chunk x
      */
     int getX();
 
     /**
-     * Get chunk z
+     * Get chunk z.
      *
      * @return Chunk z
      */
