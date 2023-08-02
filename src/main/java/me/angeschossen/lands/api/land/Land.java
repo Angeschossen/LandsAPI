@@ -35,10 +35,23 @@ public interface Land extends MemberHolder {
         return APIHandler.getLandsIntegrationFactory().landOf(name, landType, location, owner, claim, msg);
     }
 
-    @Nullable Container getContainer(World world);
+    /**
+     * Get information about claims and sub areas inside a specific world.
+     * @param world The world
+     * @return null, if there are no claims in the provided world
+     */
+    @Nullable Container getContainer(@NotNull World world);
 
+    /**
+     * Get information about claims and sub areas in all worlds, that have at least one claim of this land.
+     * @return Collection of worlds that have claims of this land inside it
+     */
     @NotNull Collection<? extends Container> getContainers();
 
+    /**
+     * Get the default areas of this land. Parts of the land that aren't part of a sub areas, are automatically part of this area.
+     * @return Each land has a default area
+     */
     @NotNull
     Area getDefaultArea();
 
@@ -75,18 +88,57 @@ public interface Land extends MemberHolder {
     @Deprecated
     void delete(@Nullable Player deleter);
 
-    @Nullable
-    Area getArea(Location location);
+    /**
+     * Get area by its name.
+     * @param name Not case sensitive. Chat colors will be removed for the lookup
+     * @return null, if there's no sub area with this name. This also checks the default area ({@link #getDefaultArea()}).
+     */
+    Area getArea(@NotNull String name);
 
+    /**
+     * Get a sub area from a location.
+     * @param location The location
+     * @return null, if the part of the land doesn't belong to a sub area. If null, it belongs to the default area ({@link #getDefaultArea()}).
+     */
+    @Nullable
+    Area getArea(@NotNull Location location);
+
+    /**
+     * Use {@link #getContainer(World)} instead.
+     * @param world The world
+     * @return null, if no claims in this world
+     */
+    @Deprecated
     @Nullable
     Collection<ChunkCoordinate> getChunks(@NotNull World world);
 
+    /**
+     * Use {@link #getContainer(World)} instead.
+     * @param world The world
+     * @return null, if no claims in this world
+     */
+    @Deprecated
     Collection<? extends LandArea> getSubAreas(@NotNull World world);
 
+    /**
+     * Use {@link #getArea(String)} instead.
+     * @param name Area name
+     * @return false, if no such area exists.
+     */
+    @Deprecated
     boolean hasArea(@NotNull String name);
 
+    /**
+     * Ban a player from the whole land. This automatically untrusts the player as well.
+     * @param playerUID The player to be banned
+     * @return false, if the player was already banned in all parts of the land
+     */
     boolean banPlayer(@NotNull UUID playerUID);
 
+    /**
+     * Unban a player from the whole land.
+     * @param playerUID The player to be unbanned
+     */
     void unbanPlayer(@NotNull UUID playerUID);
 
     /**
@@ -102,37 +154,49 @@ public interface Land extends MemberHolder {
      * Get the identification of this land.
      * This is independent of the land name.
      *
-     * @return Numerical ID
+     * @return Numerical unique identifier
      */
     int getId();
 
+    /**
+     * Get the current war the land is currently engaged in.
+     * @return null, if the land isn't involded in an active war or the war is still in preparation and not yet active.
+     */
+    @Nullable
     War getWar();
 
+    /**
+     * Get the nation that this land belongs to.
+     * @return null, if the land doesn't belong to any nation
+     */
     @Nullable Nation getNation();
 
     /**
-     * Get upkeep costs
+     * Get upkeep costs of this land.
      *
-     * @return Upkeep costs
+     * @return Never negative
      */
     double getUpkeepCosts();
 
+    /**
+     * Get the land name with color codes that a player set in the name.
+     * @return Just like {@link #getName()}, but with color codes included
+     */
     @NotNull
     String getColorName();
 
     /**
-     * Get name of the land
-     * This value never changes
+     * Get name of the land. To retrieve the name with color codes, use {@link #getColorName()}.
      *
-     * @return Name of land without color
+     * @return Name of the land without color.
      */
     @NotNull
     String getName();
 
     /**
-     * Get owner UUID of land
+     * Get the owners UUID.
      *
-     * @return UUID of owner
+     * @return UUID of the owner
      */
     @NotNull
     UUID getOwnerUID();
@@ -140,96 +204,109 @@ public interface Land extends MemberHolder {
     /**
      * Untrust a player in the whole land.
      *
-     * @param playerUID Player UID
-     * @return Change
+     * @param playerUID The player to untrust
+     * @return false, if the player was already untrusted in the whole land
      */
     boolean untrustPlayer(@NotNull UUID playerUID);
 
     /**
-     * Get spawn
+     * Get the spawn location.
      *
-     * @return Spawn
+     * @return null, if no spawn set
      */
     @Nullable
     Location getSpawn();
 
     /**
-     * Set spawn location of land
+     * Set spawn location.
      *
-     * @param location Location of spawn
+     * @param location Location of the new spawn
      */
     void setSpawn(@Nullable Location location);
 
     /**
-     * Get the size of an land
+     * Use {@link #getChunksAmount()} instead.
      *
-     * @return Size of land
+     * @return Amount of claimed chunks
      */
+    @Deprecated
     int getSize();
 
     /**
-     * Trust a player to the whole land, including areas.
+     * Trust a player to the whole land.
      *
-     * @return Change
+     * @return false, if the player was already trusted in the whole land
      */
     boolean trustPlayer(@NotNull UUID playerUID);
 
     /**
-     * Get max members.
+     * Get max amount of members. May depend on the numbered permission
+     * lands.members.number, level and other factors.
      *
-     * @return Max members
+     * @return Max amount of members. Never negative
      */
     int getMaxMembers();
 
+    /**
+     * Get the land type
+     * @return Never null
+     */
+    @NotNull
     LandType getLandType();
 
     /**
-     * Get max chunk claims.
+     * Get amount of claimable chunks.
      *
-     * @return Max chunk claims
+     * @return Max chunk claims. Never negative
      */
     int getMaxChunks();
 
+    /**
+     * Use {@link #getMaxChunks()} instead.
+     * @param countNation If rewards from nation level should be counted
+     * @return Never negative
+     */
     @Deprecated
     int getMaxChunks(boolean countNation);
 
     /**
-     * Set title message.
+     * Set title message, which appears if a player enters the land.
+     * The player itself must have enter titles enabled in their personal settings menu.
      *
      * @param title If title is null, it will set the default title instead.
      */
     void setTitleMessage(@Nullable String title);
 
     /**
-     * Set an new owner for land
+     * Set a new owner.
      *
-     * @param playerUID Player for new owner
+     * @param playerUID The new owner
      */
     void setOwner(@NotNull UUID playerUID);
 
     /**
-     * Check if land has a chunk
+     * Check if land has claimed a specific chunk.
      *
      * @param world World
      * @param x     X of chunk
      * @param z     Z of chunk
-     * @return true if has
+     * @return true, if claimed by this land
      */
     boolean hasChunk(@NotNull World world, int x, int z);
 
     /**
      * Get a collection of all online land members
      *
-     * @return Collection of online players
+     * @return Collection of online land members
      */
     @NotNull
     Collection<Player> getOnlinePlayers();
 
     /**
-     * Get trusted player.
+     * Get trusted information of a trusted player.
      *
-     * @param playerUUID UID of player.
-     * @return Trusted player
+     * @param playerUUID The trusted player
+     * @return null, if player isn't trusted anywhere in the land
      */
     @Nullable
     TrustedPlayer getTrustedPlayer(@NotNull UUID playerUUID);
@@ -237,32 +314,36 @@ public interface Land extends MemberHolder {
     /**
      * Does land exist?
      *
-     * @return boolean
+     * @return false, if meanwhile the land has been deleted
      */
     boolean exists();
 
     /**
-     * Get land balance
+     * Get the bank balance. Some servers might have banks disabled.
      *
-     * @return Balance
+     * @return Never negative
      */
     double getBalance();
 
     /**
-     * Set land bank balance
+     * Set land bank balance.
      *
-     * @param balance Value
+     * @param balance Minimum value is 0
      */
     boolean setBalance(double balance);
 
+    /**
+     * Get the category of this land. Players can change the category of their land.
+     * Categories help lands to present themselves as a shop focused land etc.
+     * @return null, if the land doesn't have any category set
+     */
     @Nullable LandCategory getCategory();
 
     /**
-     * Add money to land bank. Use negative numbers
-     * to remove money.
+     * Add or remove money from the bank.
      *
-     * @param value Value
-     * @return If value was negative and result smaller then 0, false.
+     * @param value If negative, it will remove the amount from the balance.
+     * @return If value was negative and result smaller then 0, false. If false, this method has no effect.
      */
     boolean addBalance(double value);
 
