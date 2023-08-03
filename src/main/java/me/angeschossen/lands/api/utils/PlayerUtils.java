@@ -6,5 +6,10 @@ import java.util.UUID;
 
 public interface PlayerUtils {
 
+    /**
+     * Getting the name of an player. The player might be offline.
+     * @param playerUID The player
+     * @return The name of the player
+     */
     @NotNull String getName(@NotNull UUID playerUID);
 }
