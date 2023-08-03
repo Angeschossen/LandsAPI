@@ -4,25 +4,31 @@ import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.utils.TrustResult;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
 public interface Invite {
 
+    /**
+     * Get the result of the acceptance of this invite.
+     * @return Intent of this invite
+     */
+    @NotNull
     InviteIntent getIntent();
 
     /**
-     * Get UUID of sender
+     * Get the UUID of the sender.
      *
-     * @return UUID of sender
+     * @return UUID of the sender
      */
     @NotNull
     UUID getSender();
 
     /**
-     * Get UUID of receiver
+     * Get UUID of the receiver.
      *
-     * @return UUID of receiver
+     * @return UUID of the receiver
      */
     @NotNull
     UUID getReceiver();
@@ -30,26 +36,26 @@ public interface Invite {
     /**
      * Get sent date
      *
-     * @return Date
+     * @return Date when the invite was sent
      */
     long getTime();
 
     /**
-     * Accept invite
-     *
-     * @return Will return false if invite fails because of max members permission (lands.members.number).
+     * Accept this invite.
+     * @param player The player that should get a response in chat about this acceptance
+     * @return false, if the invite fails because of max members permission (lands.members.number).
      */
-    TrustResult accept(Player player);
+    TrustResult accept(@Nullable Player player);
 
     /**
-     * Deny invite
+     * Deny this invite.
      */
     void deny();
 
     /**
-     * Get land
+     * Get the land that sent the invite.
      *
-     * @return Land
+     * @return Land that sent the invite
      */
     @NotNull
     Land getLand();

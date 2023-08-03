@@ -6,7 +6,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum RoleType {
-    ALLY(5, false, false, false), OWNER(4, false, false, true), NATION(3, false, false, false), NORMAL(2, true, true, true), ENTRY(1, false, false, true), VISITOR(0, false, false, false);
+    /**
+     * The role of this type is assigned for members of lands or nations that are allied
+     * to a land.
+     */
+    ALLY(5, false, false, false),
+    /**
+     * The role of this type is assigned to the owner of the land or area.
+     */
+    OWNER(4, false, false, true),
+    /**
+     * The role of this type is automatically assigned to members of the same nation that
+     * aren't part of the land itself.
+     */
+    NATION(3, false, false, false),
+    /**
+     * This can be a user created role or another default role.
+     */
+    NORMAL(2, true, true, true),
+    /**
+     * The role of this type is assigned to newly trusted players.
+     */
+    ENTRY(1, false, false, true),
+    /**
+     * The role of this type is assigned to players that aren't part of
+     * any other role types.
+     */
+    VISITOR(0, false, false, false);
 
     private static final Map<Integer, RoleType> map = new HashMap<>();
 

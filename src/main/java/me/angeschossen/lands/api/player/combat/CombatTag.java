@@ -32,7 +32,7 @@ public interface CombatTag {
     /**
      * Get the initial attacker.
      *
-     * @return never null
+     * @return Never null
      */
     @NotNull
     LandPlayer getAttacker();
@@ -40,7 +40,7 @@ public interface CombatTag {
     /**
      * Get the initial target.
      *
-     * @return never null
+     * @return Never null
      */
     @NotNull
     LandPlayer getTarget();
