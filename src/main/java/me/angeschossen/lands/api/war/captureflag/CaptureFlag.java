@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public interface CaptureFlag extends ExpressionEntity {
     /**
-     * Get the position of this capture flag.
+     * Gets the position of this capture flag.
      * @return Coordinates of the capture flag
      */
     @NotNull BlockPosition getPosition();
