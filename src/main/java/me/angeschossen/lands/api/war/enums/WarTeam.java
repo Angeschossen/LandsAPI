@@ -2,7 +2,18 @@ package me.angeschossen.lands.api.war.enums;
 
 public enum WarTeam {
 
-    ATTACKER, DEFENDER, NEUTRAL;
+    /**
+     * The initial attacker that sent the war declaration.
+     */
+    ATTACKER,
+    /**
+     * The defender that received the war declaration.
+     */
+    DEFENDER,
+    /**
+     * Not engaged in this war.
+     */
+    NEUTRAL;
 
     public WarTeam getOpposite() {
         return this == ATTACKER ? DEFENDER : this == DEFENDER ? ATTACKER : NEUTRAL;

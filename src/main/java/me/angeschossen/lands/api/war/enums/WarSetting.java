@@ -2,6 +2,9 @@ package me.angeschossen.lands.api.war.enums;
 
 public enum WarSetting {
 
+    /**
+     * If enabled, team members can damage each other.
+     */
     FRIENDLY_FIRE(1);
 
     private final int id;
