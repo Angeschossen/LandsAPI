@@ -22,15 +22,23 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget {
+    /**
+     * Add an amount of seconds to the warshiled.
+     * @param seconds If negative, the seconds will be subtracted from the warshield
+     */
     void addWarshield(long seconds);
 
     /**
-     * Calculate the level
+     * Calculate the level.
      *
      * @param executeCmds Execute level-up or level-down configured "reward" commands?
      */
     void calculateLevel(boolean executeCmds);
 
+    /**
+     * Check if it still exists.
+     * @return false, if it was deleted meanwhile
+     */
     boolean exists();
 
     /**
@@ -41,17 +49,31 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     @NotNull
     Collection<? extends MemberHolder> getAllies();
 
+    /**
+     * Get progress (not percentage) of the cached requirement.
+     * See {@link me.angeschossen.lands.api.levels.requirement.CachedRequirement}
+     * @param requirement The identification of the cached requirement
+     * @return The progress (not percentage) of the cached requirement
+     */
     float getCachedRequirement(@NotNull String requirement);
 
+    /**
+     * Get the amount of chunks.
+     * @return Amount of chunks
+     */
     int getChunksAmount();
 
+    /**
+     * Get the name, including colors codes.
+     * @return Name with color codes included
+     */
     @NotNull
     String getColorName();
 
     /**
-     * Get the creation timestamp.
+     * Get the timestamp of when it was created.
      *
-     * @return Time milliseconds
+     * @return Time in milliseconds
      */
     long getCreationTime();
 
@@ -63,119 +85,259 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     @NotNull
     Collection<? extends MemberHolder> getEnemies();
 
+    /**
+     * Used for expressions and their variables in events.yml.
+     * @return Prefix
+     */
     String getExpressionPrefix();
 
+    /**
+     * Get numerical identification.
+     * @return ID
+     */
     int getId();
 
+    /**
+     * Get all inbox messages.
+     * @return All inbox messages
+     */
     @NotNull
     java.util.List<? extends InboxMessage> getInbox();
 
+    /**
+     * Filter the inbox by a specific category.
+     * @param category The category
+     * @return The filtered inbox
+     */
     @NotNull
-    List<? extends InboxMessage> getInbox(InboxCategory category);
+    List<? extends InboxMessage> getInbox(@NotNull InboxCategory category);
 
+    /**
+     * Get the current level.
+     * @return The current level
+     */
     @NotNull
     Level getLevel();
 
+    /**
+     * Get the amount of players.
+     * @return Total amount of players
+     */
     int getMembersAmount();
 
+    /**
+     * Get the name without colors codes. To have color codes included use {@link #getColorName()}.
+     * @return The name with color codes included
+     */
     @NotNull
     String getName();
 
+    /**
+     * Get online players.
+     * @return Online players
+     */
     @NotNull
     Collection<? extends LandPlayer> getOnlineLandPlayers();
 
+    /**
+     * Get online Bukkit players.
+     * @return Online Bukkit players
+     */
     @NotNull
     Collection<Player> getOnlinePlayers();
 
+    /**
+     * Get the owner.
+     * @return UUID of the owner
+     */
     @NotNull
     UUID getOwnerUID();
 
-    @NotNull Relation getRelation(UUID playerUID);
+    /**
+     * Get the relation of a player.
+     * @param playerUID The player
+     * @return The relation of this player
+     */
+    @NotNull Relation getRelation(@NotNull UUID playerUID);
 
+    /**
+     * Get stats of all previous wars.
+     * @return Stats of all previous wars
+     */
     @NotNull
     WarStats getStats();
 
     /**
      * Get all trusted players
      *
-     * @return Trusted players
+     * @return All trusted players
      */
     @NotNull
     Collection<UUID> getTrustedPlayers();
 
+    /**
+     * Get the type.
+     * @return Type
+     */
+    @NotNull
     HolderType getType();
 
+    /**
+     * Get the current war
+     * @return null, if currently not engaged in any war or the war hasn't started yet
+     */
     @Nullable
     War getWar();
 
+    /**
+     * Depending on the type ({@link #getType()}), this will return the colored name ({@link #getColorName()}) with a prefix.
+     * Example: "Land Test" or "Nation Test". This depends on the servers language file.
+     * @return The colored name with prefix
+     */
     String getWarName();
 
+    /**
+     * Get the team of the current war.
+     * @return null, if not engaged in any war or the war hasn't started yet
+     */
     @Nullable
     WarTeam getWarTeam();
 
+    /**
+     * Get the amount of seconds left for the warshield.
+     * @return Warshield that is left in seconds
+     */
     long getWarshield();
 
+    /**
+     * Get the webmap border color. Used for dynmap etc.
+     * @return null, if there's no color in the colored name ({@link #getColorName()}).
+     */
     @Nullable
     Integer getWebMapBorderColor();
 
+    /**
+     * Get the webmap fill color. Used for dynmap etc.
+     * @return null, if there's no color in the colored name ({@link #getColorName()}).
+     */
     @Nullable
     Integer getWebMapFillColor();
 
+    /**
+     * Check if another memberholder is part of this one.
+     * Mainly used for nations to check if a land is part of their nation.
+     * @param entity The memberholder
+     * @return false, if the memberholder is not contained by this memberholder
+     */
     boolean hasWarEntity(@NotNull MemberHolder entity);
 
+    /**
+     * Check if there's any war shield time left.
+     * @return false, if {@link #getWarshield()} returns 0
+     */
     boolean hasWarshield();
 
     /**
-     * Check if memberHolder has alliance with this once.
+     * Check if memberHolder has an alliance with this one.
      *
      * @param memberHolder The target
-     * @return true, if they're in an alliance.
+     * @return true, if they're allys
      */
     boolean isAlly(@NotNull MemberHolder memberHolder);
 
     /**
-     * Check if memberHolder is an enemy to this one.
+     * Check if the memberHolder is an enemy to this one.
      *
      * @param memberHolder The target
-     * @return true, if they're enemies.
+     * @return true, if they're enemies
      */
     boolean isEnemy(@NotNull MemberHolder memberHolder);
 
+    /**
+     * Check if they're in an active war.
+     * @return false, if they're not engaged in a war or the war hasn't started yet
+     */
     boolean isInWar();
 
+    /**
+     * Check if an level requirement is already calculated and cached.
+     * @param requirement The identification of the requirement
+     * @return false, if the requirement progress isn't cached
+     */
     boolean isRequirementCached(@NotNull String requirement);
 
-    boolean isTrusted(LandPlayer landPlayer);
+    /**
+     * Use {@link #isTrusted(UUID)} instead.
+     * Check if an player is trusted.
+     * @param landPlayer The player
+     * @return false, if the player isn't trusted
+     */
+    @Deprecated
+    boolean isTrusted(@NotNull LandPlayer landPlayer);
 
+    /**
+     * Check if an player is trusted.
+     * @param uuid The player's UUID
+     * @return false, if the player isn't trusted
+     */
     boolean isTrusted(@NotNull UUID uuid);
 
+    /**
+     * Check if in case of a war, the terretory of this land or nation will be influenced by the block break list etc. in the wars.yml configuration.
+     * @return true, if this land or nation is a war field
+     */
     boolean isWarField();
 
+    /**
+     * Leave the current war or abort the received war declaration.
+     * @return false, they aren't engaged in a war and haven't received a war declaration
+     */
     boolean leaveWar();
 
+    /**
+     * Mark this land or nation to be recalculate its level soon.
+     */
     void markLevelUpdate();
 
+    /**
+     * Update the progress of a cached level requirement.
+     * @param requirement The identification of the requirement
+     * @param modify Can be negative
+     * @param allowNegative Allow the result to be negative?
+     * @return The result / progress value
+     */
     CompletableFuture<@Nullable Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
 
     /**
-     * Send message to online players of this land.
+     * Send A message to online players of this land or nation.
      *
-     * @param playerUUID Sender
-     * @param message    Message
-     * @param messageSource Source of the message
+     * @param playerUUID The sender
+     * @param message    The message
+     * @param messageSource The source of the message
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
 
     /**
-     * Set a new name
+     * Set a new name.
      *
-     * @param name New name
-     * @return false, if event cancelled
-     * @throws NameAlreadyTakenException If the name is already taken.
+     * @param name The new name. Can include color codes.
+     * @return false, if a 3rd party plugin cancelled this name update.
+     * @throws NameAlreadyTakenException If the name is already taken
      */
     boolean setName(@Nullable LandPlayer landPlayer, @NotNull String name) throws NameAlreadyTakenException, IllegalArgumentException;
 
+    /**
+     * Set the amount of seconds for the war shield.
+     * @param seconds Amount of seconds for the war shield
+     */
     void setWarShield(long seconds);
 
+    /**
+     * Update the level requirement progress
+     * @param requirement Identification of the requirement
+     * @param val The new value
+     * @param levelCalc If the level should be recalculated after updating this requirement
+     * @throws IllegalArgumentException If this requirement doesn't exist
+     */
     void updateRequirementCache(@NotNull String requirement, float val, boolean levelCalc) throws IllegalArgumentException;
 }
