@@ -96,14 +96,6 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity {
     Land getLand(@NotNull String landName);
 
     /**
-     * Get all lands the player owns or is a member of.
-     *
-     * @return All lands
-     */
-    @NotNull
-    Set<? extends Land> getLands();
-
-    /**
      * Get a random land, which the player owns.
      *
      * @return null, if player doesn't own a land
@@ -125,13 +117,6 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity {
      */
     @Nullable
     Selection getSelection();
-
-    /**
-     * Get the number of lands (own lands and where the player is trusted).
-     *
-     * @return 0, if the player isn't part of any land
-     */
-    int getSize();
 
     /**
      * Get the amount of chunks that a land will be able to claim additionally, if

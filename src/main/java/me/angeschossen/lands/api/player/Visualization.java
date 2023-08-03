@@ -3,15 +3,15 @@ package me.angeschossen.lands.api.player;
 public interface Visualization {
 
     /**
-     * Is permanent?
-     * @return true, if permanent.
+     * Check if this visualization stays permanently.
+     * @return true, if it's permanent
      */
     boolean isPermanent();
 
     /**
-     * Check if visualization has more time until it stops.
+     * Check if the visualization has another display cycle.
      *
-     * @return Will return false if the visualization is about to stop.
+     * @return false, if the visualization is about to stop.
      */
     boolean hasNext();
 }
