@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.integration;
 
 
+import me.angeschossen.lands.api.configuration.Configuration;
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.FlagRegistry;
@@ -62,6 +63,11 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
 
             Bukkit.getLogger().info("[Lands] Nag author(s) of plugin " + plugin.getName() + ". It uses the deprecated LandsIntegration of Lands: https://github.com/Angeschossen/LandsAPI/wiki/API-Update");
         });
+    }
+
+    @Override
+    public @NotNull Configuration getConfig() {
+        return null;
     }
 
     @Override
