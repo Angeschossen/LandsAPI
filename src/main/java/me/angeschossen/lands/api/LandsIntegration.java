@@ -37,6 +37,10 @@ public interface LandsIntegration {
         return APIHandler.getLandsIntegrationFactory().of(plugin);
     }
 
+    /**
+     * Get the configuration of Lands.
+     * @return never null
+     */
     @NotNull Configuration getConfig();
 
     /**
