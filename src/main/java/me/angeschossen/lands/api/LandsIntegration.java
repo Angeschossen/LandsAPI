@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api;
 
+import me.angeschossen.lands.api.configuration.Configuration;
 import me.angeschossen.lands.api.events.player.PlayerRandomTeleportEvent;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.handler.APIHandler;
@@ -35,6 +36,8 @@ public interface LandsIntegration {
     static LandsIntegration of(@NotNull Plugin plugin) {
         return APIHandler.getLandsIntegrationFactory().of(plugin);
     }
+
+    @NotNull Configuration getConfig();
 
     /**
      * Check if two players can attack each other at the given location.
