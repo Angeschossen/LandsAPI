@@ -23,10 +23,11 @@ public abstract class Sorting<T> implements Comparator<T> {
 
     @Nullable
     public final T get(int place) {
-        if (place < 0) {
-            throw new IllegalArgumentException("Place can't be smaller than 0.");
+        if (place <= 0) {
+            throw new IllegalArgumentException("Place can't be smaller than 1.");
         }
 
+        place -= 1;
         return entries.size() <= place ? null : entries.get(place);
     }
 
@@ -62,7 +63,7 @@ public abstract class Sorting<T> implements Comparator<T> {
             return new String[0][0];
         }
 
-        String[][] s = getGUIPlaceholders(++place, t);
+        String[][] s = getGUIPlaceholders(place, t);
         if (s.length < 2 || s[0].length != s[1].length) {
             throw new IllegalStateException("Placeholder and value array must be of the same length.");
         }
