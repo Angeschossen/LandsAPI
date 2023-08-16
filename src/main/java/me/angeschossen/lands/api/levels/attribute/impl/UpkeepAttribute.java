@@ -9,6 +9,12 @@ import org.jetbrains.annotations.NotNull;
 public class UpkeepAttribute extends LevelAttribute {
     private final double value;
 
+    /**
+     * Create instance.
+     * @param name Name of the effect level attribute
+     * @param description The description
+     * @param value Level of the effect
+     */
     public UpkeepAttribute(@NotNull String name, @NotNull String description, double value) {
         super(name, description.replace("{value}", (value >= 0 ? ChatColor.RED + "+ " : ChatColor.GREEN + "- ") + Math.abs(value)));
 

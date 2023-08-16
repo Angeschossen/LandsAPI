@@ -29,7 +29,9 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-
+/**
+ * Use {@link me.angeschossen.lands.api.LandsIntegration} instead.
+ */
 @Deprecated
 public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.api.LandsIntegration {
 

@@ -348,6 +348,6 @@ public interface Land extends MemberHolder {
      * @param value If negative, it will remove the amount from the balance.
      * @return If value was negative and result smaller then 0, false. If false, this method has no effect.
      */
-    boolean addBalance(double value);
+    boolean modifyBalance(double value);
 
 }

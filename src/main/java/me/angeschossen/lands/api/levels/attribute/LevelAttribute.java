@@ -11,6 +11,11 @@ public abstract class LevelAttribute {
     protected final String description;
     protected final String name;
 
+    /**
+     * Level attribute reward lands or nations when reaching a level.
+     * @param name Name of the attribute
+     * @param description Description of the attribute
+     */
     public LevelAttribute(@NotNull String name, @NotNull String description) {
         Objects.requireNonNull(name);
         Objects.requireNonNull(description);
@@ -19,15 +24,28 @@ public abstract class LevelAttribute {
         this.description = APIHandler.getInstance().getStringUtils().colorize(description);
     }
 
+    /**
+     * Check if the attribute should be applied.
+     * @param memberHolder Land or nation
+     * @return true, if the attribute can be applied to the land or nation.
+     */
     public abstract boolean shouldApply(@NotNull MemberHolder memberHolder);
 
+    /**
+     * Get the name of the attribute.
+     * @return Name of the attribute
+     */
     @NotNull
-    public String getName() {
+    public final String getName() {
         return name;
     }
 
+    /**
+     * Get the description of the attribute.
+     * @return Description of the attribute
+     */
     @NotNull
-    public String getAttributeDisplay() {
+    public final String getAttributeDescription() {
         return description;
     }
 }

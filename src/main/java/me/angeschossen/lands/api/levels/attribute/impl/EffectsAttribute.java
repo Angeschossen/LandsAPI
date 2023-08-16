@@ -8,6 +8,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * Rewards potion effect within a nation.
+ * A nation can set the effect in their nation menu.
+ */
 public class EffectsAttribute extends LevelAttribute {
 
     private final List<PotionEffect> effects;
