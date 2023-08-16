@@ -12,6 +12,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * This interface is not intended for direct usage and might change at any time.
+ */
 public interface LandsIntegrationFactory {
 
     @NotNull LandsIntegration of(@NotNull Plugin plugin);

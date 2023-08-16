@@ -15,6 +15,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+/**
+ * This class is not intended for direct usage and might change at any time.
+ */
 public class APIHandler {
 
     private static APIHandler instance;
@@ -39,11 +42,11 @@ public class APIHandler {
         return nationsConfig;
     }
 
-    public ModuleConfig getWarsConfig() {
+    public @NotNull ModuleConfig getWarsConfig() {
         return warsConfig;
     }
 
-    public Configuration getConfig() {
+    public @NotNull Configuration getConfig() {
         return config;
     }
 
@@ -86,7 +89,7 @@ public class APIHandler {
         return landsIntegrationFactory;
     }
 
-    public LandsIntegration getLegacySupport() {
+    public @NotNull LandsIntegration getLegacySupport() {
         return legacySupport;
     }
 
@@ -98,19 +101,19 @@ public class APIHandler {
         return guiConfiguration;
     }
 
-    public Messages getMessages() {
+    public @NotNull Messages getMessages() {
         return messages;
     }
 
-    public PlayerUtils getPlayerUtils() {
+    public @NotNull PlayerUtils getPlayerUtils() {
         return playerUtils;
     }
 
-    public LevelsHandler getLevelsHandler() {
+    public @NotNull LevelsHandler getLevelsHandler() {
         return levelsHandler;
     }
 
-    public StringUtils getStringUtils() {
+    public @NotNull StringUtils getStringUtils() {
         return stringUtils;
     }
 

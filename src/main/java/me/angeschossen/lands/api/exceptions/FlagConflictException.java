@@ -2,17 +2,36 @@ package me.angeschossen.lands.api.exceptions;
 
 
 import me.angeschossen.lands.api.flags.type.parent.Flag;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
+/**
+ * Thrown when you try to register a flag, which name is already taken by a different flag.
+ */
 public class FlagConflictException extends RuntimeException {
 
-    private final Flag<?> existing;
+    private final @NotNull Flag<?> existing;
 
-    public FlagConflictException(Flag<?> existing, String message) {
+    /**
+     * Create instance.
+     *
+     * @param existing The existing flag
+     * @param message  Message to throw
+     */
+    public FlagConflictException(@NotNull Flag<?> existing, @NotNull String message) {
         super(message);
 
+        Objects.requireNonNull(existing, "existing flag can't be null");
         this.existing = existing;
     }
 
+    /**
+     * Get the existing flag, which already has the provided name.
+     *
+     * @return The existing flag
+     */
+    @NotNull
     public Flag<?> getExisting() {
         return existing;
     }
