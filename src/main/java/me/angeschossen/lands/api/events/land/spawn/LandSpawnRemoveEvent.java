@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.land.spawn;
 
 import me.angeschossen.lands.api.events.LandDeleteEvent;
-import me.angeschossen.lands.api.events.internal.LandEvent;
+import me.angeschossen.lands.api.events.land.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
@@ -19,6 +19,14 @@ public class LandSpawnRemoveEvent extends LandEvent {
     public static HandlerList handlerList = new HandlerList();
     private final Location current;
 
+    /**
+     * Create an instance of this event.
+     *
+     * @param land       land to which the current spawn belongs
+     * @param landPlayer The player that removes this spawn.
+     *                   If null, the spawn is being removed by the plugin itself.
+     * @param current    current spawn that is being removed
+     */
     public LandSpawnRemoveEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull Location current) {
         super(land, landPlayer);
 
@@ -32,7 +40,7 @@ public class LandSpawnRemoveEvent extends LandEvent {
     /**
      * Get the current spawn.
      *
-     * @return Location of the spawn
+     * @return location of the spawn
      */
     @NotNull
     public Location getCurrent() {

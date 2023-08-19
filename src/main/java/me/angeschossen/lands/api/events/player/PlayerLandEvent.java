@@ -1,7 +1,7 @@
-package me.angeschossen.lands.api.events.internal;
+package me.angeschossen.lands.api.events.player;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
+import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -12,12 +12,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class PlayerEditEvent extends LandsPlayerEvent implements Cancellable {
+public abstract class PlayerLandEvent extends PlayerEvent implements Cancellable {
     private final @Nullable Area area;
     private final Land land;
     private boolean cancelled;
 
-    public PlayerEditEvent(@NotNull Land land, @Nullable Area area, @NotNull LandPlayer landPlayer) {
+    public PlayerLandEvent(@NotNull Land land, @Nullable Area area, @NotNull LandPlayer landPlayer) {
         super(landPlayer);
 
         this.land = land;

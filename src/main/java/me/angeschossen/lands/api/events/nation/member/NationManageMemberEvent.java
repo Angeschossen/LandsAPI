@@ -1,6 +1,7 @@
-package me.angeschossen.lands.api.events.internal;
+package me.angeschossen.lands.api.events.nation.member;
 
 import com.google.common.collect.ImmutableMap;
+import me.angeschossen.lands.api.events.land.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.nation.Nation;
 import org.jetbrains.annotations.NotNull;
@@ -9,12 +10,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class NationMemberEditEvent extends LandEvent {
+public abstract class NationManageMemberEvent extends LandEvent {
     protected final UUID initiator;
     protected final Nation nation;
     protected final Land land;
 
-    public NationMemberEditEvent(@NotNull Nation nation, @NotNull Land land, @Nullable UUID initiator) {
+    public NationManageMemberEvent(@NotNull Nation nation, @NotNull Land land, @Nullable UUID initiator) {
         super(land, initiator);
 
         this.initiator = initiator;

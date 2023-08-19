@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.events.internal.plugin;
+package me.angeschossen.lands.api.events.player;
 
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
@@ -6,15 +6,15 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 import java.util.UUID;
 
-public abstract class LandsPlayerEvent extends LandsPlayerNullableEvent {
+public abstract class PlayerEvent extends PlayerNullableEvent {
 
-    public LandsPlayerEvent(@NotNull LandPlayer landPlayer) {
+    public PlayerEvent(@NotNull LandPlayer landPlayer) {
         super(landPlayer);
 
         Objects.requireNonNull(landPlayer, "LandPlayer can't be null");
     }
 
-    public LandsPlayerEvent(@NotNull UUID playerUUID) {
+    public PlayerEvent(@NotNull UUID playerUUID) {
         super(playerUUID);
 
         Objects.requireNonNull(playerUUID, "UUID can't be null");

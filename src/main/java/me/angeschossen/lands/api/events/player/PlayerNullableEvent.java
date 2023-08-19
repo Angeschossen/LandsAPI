@@ -1,8 +1,9 @@
-package me.angeschossen.lands.api.events.internal.plugin;
+package me.angeschossen.lands.api.events.player;
 
 import com.github.angeschossen.pluginframework.api.events.PlayerEvent;
 import com.github.angeschossen.pluginframework.api.utils.StringUtils;
 import com.google.common.collect.ImmutableMap;
+import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
@@ -12,16 +13,16 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
 
-public abstract class LandsPlayerNullableEvent extends LandsEvent implements PlayerEvent {
+public abstract class PlayerNullableEvent extends LandsEvent implements PlayerEvent {
     protected final UUID playerUUID;
     protected LandPlayer landPlayer;
 
-    public LandsPlayerNullableEvent(@Nullable LandPlayer landPlayer) {
+    public PlayerNullableEvent(@Nullable LandPlayer landPlayer) {
         this.landPlayer = landPlayer;
         this.playerUUID = landPlayer == null ? null : landPlayer.getUID();
     }
 
-    public LandsPlayerNullableEvent(@Nullable UUID playerUUID) {
+    public PlayerNullableEvent(@Nullable UUID playerUUID) {
         this.landPlayer = playerUUID == null ? null : APIHandler.getInstance().getLegacySupport().getLandPlayer(playerUUID);
         this.playerUUID = playerUUID;
     }

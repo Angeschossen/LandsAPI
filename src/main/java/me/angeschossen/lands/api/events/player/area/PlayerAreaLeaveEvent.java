@@ -1,6 +1,5 @@
-package me.angeschossen.lands.api.events.player;
+package me.angeschossen.lands.api.events.player.area;
 
-import me.angeschossen.lands.api.events.internal.PlayerLocationAreaEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
@@ -8,7 +7,7 @@ import org.bukkit.event.Cancellable;
 /**
  * This event is called when a player leaves a area into wilderness.
  */
-public class PlayerAreaLeaveEvent extends PlayerLocationAreaEvent implements Cancellable {
+public class PlayerAreaLeaveEvent extends PlayerAreaEvent implements Cancellable {
     private boolean cancelled;
 
     public PlayerAreaLeaveEvent(Area area, LandPlayer landPlayer) {

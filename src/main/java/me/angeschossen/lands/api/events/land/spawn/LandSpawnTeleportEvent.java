@@ -1,6 +1,6 @@
 package me.angeschossen.lands.api.events.land.spawn;
 
-import me.angeschossen.lands.api.events.internal.LandEvent;
+import me.angeschossen.lands.api.events.land.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
@@ -13,6 +13,12 @@ public class LandSpawnTeleportEvent extends LandEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private boolean cancelled;
 
+    /**
+     * Create an instance of this event.
+     *
+     * @param land       land to which the spawn belongs
+     * @param landPlayer player that teleports to the spawn
+     */
     public LandSpawnTeleportEvent(@NotNull Land land, @NotNull LandPlayer landPlayer) {
         super(land, landPlayer);
 

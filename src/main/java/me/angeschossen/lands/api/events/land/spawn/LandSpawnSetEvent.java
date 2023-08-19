@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.land.spawn;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.LandCancelableEvent;
+import me.angeschossen.lands.api.events.land.LandCancellableEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.Location;
@@ -12,12 +12,20 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 
 /**
- * This even is called each time the spawn if a land changes.
+ * This even is called each time the spawn of a land changes.
  */
-public class LandSpawnSetEvent extends LandCancelableEvent {
+public class LandSpawnSetEvent extends LandCancellableEvent {
     public static HandlerList handlerList = new HandlerList();
     private final @NotNull Location location;
 
+    /**
+     * Create an instance of this event.
+     *
+     * @param land       land to which this spawn belongs
+     * @param landPlayer player which sets this spawn.
+     *                   if null, the spawn is set by the plugin itself
+     * @param location   the new spawn
+     */
     public LandSpawnSetEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull Location location) {
         super(land, landPlayer);
 
@@ -37,6 +45,7 @@ public class LandSpawnSetEvent extends LandCancelableEvent {
 
     /**
      * Get the old spawn.
+     *
      * @return null, if previously none was set
      */
     @Nullable

@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
+import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
@@ -13,7 +13,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 
-public class LandChatEvent extends LandsPlayerEvent implements Cancellable {
+public class LandChatEvent extends PlayerEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
     private final String message;
     private final Collection<LandPlayer> recipients;

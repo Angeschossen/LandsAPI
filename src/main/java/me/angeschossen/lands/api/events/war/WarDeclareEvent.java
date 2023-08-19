@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.war;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
+import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.UUID;
 
-public class WarDeclareEvent extends LandsPlayerEvent implements Cancellable {
+public class WarDeclareEvent extends PlayerEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
     private final @NotNull

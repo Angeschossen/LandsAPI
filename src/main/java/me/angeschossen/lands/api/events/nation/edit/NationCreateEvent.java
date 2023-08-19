@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.events.nation;
+package me.angeschossen.lands.api.events.nation.edit;
 
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;

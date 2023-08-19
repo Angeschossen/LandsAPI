@@ -1,7 +1,7 @@
-package me.angeschossen.lands.api.events.nation;
+package me.angeschossen.lands.api.events.nation.edit;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerNullableEvent;
+import me.angeschossen.lands.api.events.player.PlayerNullableEvent;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class NationEditEvent extends LandsPlayerNullableEvent {
+public abstract class NationEditEvent extends PlayerNullableEvent {
 
 
     protected final @NotNull Nation nation;

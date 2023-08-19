@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events.memberholder;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsEvent;
+import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import org.jetbrains.annotations.NotNull;
 

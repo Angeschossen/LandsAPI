@@ -1,8 +1,8 @@
-package me.angeschossen.lands.api.events.player;
+package me.angeschossen.lands.api.events.player.teleportation;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
 import me.angeschossen.lands.api.events.land.spawn.LandSpawnTeleportEvent;
+import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
@@ -16,7 +16,7 @@ import java.util.UUID;
  * Deprecated. Use {@link LandSpawnTeleportEvent} instead.
  */
 @Deprecated
-public class PlayerSpawnLandEvent extends LandsPlayerEvent implements Cancellable {
+public class PlayerSpawnLandEvent extends PlayerEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
     private final @NotNull Land land;
     private boolean cancelled = false;

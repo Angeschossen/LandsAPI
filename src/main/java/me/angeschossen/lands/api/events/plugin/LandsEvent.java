@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.events.internal.plugin;
+package me.angeschossen.lands.api.events.plugin;
 
 
 import com.github.angeschossen.pluginframework.api.events.PluginEvent;

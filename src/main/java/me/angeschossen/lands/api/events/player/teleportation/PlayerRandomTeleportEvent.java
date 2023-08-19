@@ -1,23 +1,22 @@
-package me.angeschossen.lands.api.events.nation;
+package me.angeschossen.lands.api.events.player.teleportation;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.nation.Nation;
+import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.player.LandPlayer;
+import org.bukkit.Location;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-public class NationRenameEvent extends NationEditEvent implements Cancellable {
+public class PlayerRandomTeleportEvent extends PlayerEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
-    private final String oldName;
-    private final String newName;
+    private final @NotNull Location destination;
     private boolean cancelled = false;
 
-    public NationRenameEvent(@NotNull Nation nation, @NotNull String oldName,@NotNull String newName, LandPlayer landPlayer) {
-        super(nation, landPlayer);
+    public PlayerRandomTeleportEvent(@NotNull LandPlayer landPlayer, @NotNull Location location) {
+        super(landPlayer);
 
-        this.oldName = oldName;
-        this.newName = newName;
+        this.destination = location;
     }
 
     public static HandlerList getHandlerList() {
@@ -25,18 +24,13 @@ public class NationRenameEvent extends NationEditEvent implements Cancellable {
     }
 
     @NotNull
-    public String getCurrentName() {
-        return oldName;
+    public Location getDestination() {
+        return destination;
     }
 
     @Override
     public HandlerList getHandlers() {
         return handlerList;
-    }
-
-    @NotNull
-    public String getNewName() {
-        return newName;
     }
 
     @Override
@@ -53,7 +47,9 @@ public class NationRenameEvent extends NationEditEvent implements Cancellable {
     public void setExpressionVariables(ImmutableMap.@NotNull Builder<String, Object> builder) {
         super.setExpressionVariables(builder);
 
-        builder.put("name_old", oldName)
-                .put("name_new", newName);
+        builder.put("destination_world", destination.getWorld().getName())
+                .put("destination_x", destination.getBlockX())
+                .put("destination_y", destination.getBlockY())
+                .put("destination_z", destination.getBlockZ());
     }
 }

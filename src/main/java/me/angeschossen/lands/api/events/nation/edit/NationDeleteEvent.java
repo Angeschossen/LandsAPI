@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.events.nation;
+package me.angeschossen.lands.api.events.nation.edit;
 
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.land.DeleteReason;

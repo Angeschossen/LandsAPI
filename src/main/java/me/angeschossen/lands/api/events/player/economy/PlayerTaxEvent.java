@@ -1,7 +1,7 @@
-package me.angeschossen.lands.api.events.player;
+package me.angeschossen.lands.api.events.player.economy;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
+import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.land.Area;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * Called when a land member needs to pay taxes to the land.
  */
-public class PlayerTaxEvent extends LandsPlayerEvent implements Cancellable {
+public class PlayerTaxEvent extends PlayerEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
     private final @NotNull Area area;
     private final double balance;

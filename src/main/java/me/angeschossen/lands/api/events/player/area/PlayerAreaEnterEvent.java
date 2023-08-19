@@ -1,6 +1,5 @@
-package me.angeschossen.lands.api.events.player;
+package me.angeschossen.lands.api.events.player.area;
 
-import me.angeschossen.lands.api.events.internal.PlayerLocationAreaEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
@@ -11,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
  * Please note that the player must not enter from wilderness.
  * They can also enter from a different area of the same or a different land.
  */
-public class PlayerAreaEnterEvent extends PlayerLocationAreaEvent implements Cancellable {
+public class PlayerAreaEnterEvent extends PlayerAreaEvent implements Cancellable {
     private final Area from;
     private boolean cancelled;
 

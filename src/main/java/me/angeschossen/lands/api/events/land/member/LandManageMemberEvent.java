@@ -1,8 +1,8 @@
-package me.angeschossen.lands.api.events.internal;
+package me.angeschossen.lands.api.events.land.member;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerNullableEvent;
-import me.angeschossen.lands.api.events.internal.plugin.TargetableEvent;
+import me.angeschossen.lands.api.events.player.PlayerNullableEvent;
+import me.angeschossen.lands.api.events.plugin.TargetableEvent;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
@@ -13,13 +13,24 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
 
-public abstract class LandMemberEditEvent extends LandsPlayerNullableEvent implements TargetableEvent {
+/**
+ * Used for events that involve managing a member.
+ */
+public abstract class LandManageMemberEvent extends PlayerNullableEvent implements TargetableEvent {
     protected final UUID initiator, target;
     protected final Land land;
     protected final @Nullable
     Area area;
 
-    public LandMemberEditEvent(Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID target) {
+    /**
+     * Constructor for this event.
+     *
+     * @param land      land that manages this member
+     * @param area      if null, this action affects the whole land. If not null, this action is only executed for this single area.
+     * @param initiator player that initiated this action
+     * @param target    member that this action affects
+     */
+    public LandManageMemberEvent(Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID target) {
         super(initiator);
 
         this.initiator = initiator;
@@ -28,24 +39,41 @@ public abstract class LandMemberEditEvent extends LandsPlayerNullableEvent imple
         this.area = area;
     }
 
+    /**
+     * Get the involved area.
+     *
+     * @return if null, this action is applied to the whole land. If not null, this action is applied to this single area only.
+     */
     @Nullable
     public Area getArea() {
         return area;
     }
 
+    /**
+     * Get the involved land.
+     * @return never null
+     */
     @NotNull
     public Land getLand() {
         return land;
     }
 
+    /**
+     * Use {@link #getTargetUUID()} instead.
+     * @return the affected member
+     */
     @NotNull
     @Deprecated
-    public UUID getTargetUUID() {
-        return getTargetUID();
+    public UUID getTargetUID() {
+        return getTargetUUID();
     }
 
+    /**
+     * Get the affected member
+     * @return never null
+     */
     @NotNull
-    public UUID getTargetUID() {
+    public UUID getTargetUUID() {
         return target;
     }
 

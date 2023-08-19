@@ -1,7 +1,7 @@
-package me.angeschossen.lands.api.events.internal;
+package me.angeschossen.lands.api.events.player.area;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.internal.plugin.LandsPlayerEvent;
+import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.HandlerList;
@@ -10,11 +10,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class PlayerLocationAreaEvent extends LandsPlayerEvent {
+public abstract class PlayerAreaEvent extends PlayerEvent {
     public static HandlerList handlerList = new HandlerList();
     protected final Area area;
 
-    public PlayerLocationAreaEvent(@NotNull Area area, LandPlayer landPlayer) {
+    public PlayerAreaEvent(@NotNull Area area, LandPlayer landPlayer) {
         super(landPlayer);
 
         this.area = area;
