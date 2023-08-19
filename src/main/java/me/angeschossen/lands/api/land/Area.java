@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.land;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
+import com.github.angeschossen.pluginframework.api.exceptions.PlayerUntrustedException;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -25,7 +26,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
      * @param uuid The player to be banned.
      * @return false, if was already banned
      */
-    boolean banPlayer(UUID uuid);
+    boolean banPlayer(@NotNull UUID uuid);
 
     /**
      * Check if a player can enter this area. This depends on {@link #isBanned(UUID)} and on the land enter flag state for the player's role.
@@ -38,6 +39,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Get the entry role.
+     *
      * @return New players receive this role
      */
     @NotNull
@@ -45,6 +47,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Get invite that was sent to a specific player.
+     *
      * @param receiverUUID The receiver
      * @return null, if the player was never invited, already accepted the invite or the invite expired.
      */
@@ -53,6 +56,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Get the land of this area.
+     *
      * @return The land to which this area belongs
      */
     @NotNull
@@ -60,6 +64,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Get the name of this area. To include color codes, use {@link #getColorName()} instead.
+     *
      * @return Name of the land without color codes
      */
     @NotNull
@@ -67,6 +72,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Get the owner of this area. Might differ to {@link Land#getOwnerUID()}, if the area is sold or rented.
+     *
      * @return The current owner of this area
      */
     @NotNull
@@ -74,6 +80,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Get the rolre of a player.
+     *
      * @param playerUID The player
      * @return Visitor role, if the player is untrusted
      */
@@ -82,6 +89,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Get a role by its name.
+     *
      * @param name Color codes are stripped for the lookup
      * @return null, if no role with this name found
      */
@@ -93,16 +101,19 @@ public interface Area extends ExpressionEntity, TaxHolder {
      *
      * @return Collection of all roles
      */
+    @NotNull
     Collection<? extends Role> getRoles();
 
     /**
      * Get all trusted players.
+     *
      * @return Collection of trusted players, including owner
      */
     @NotNull Collection<UUID> getTrustedPlayers();
 
     /**
      * Get the visitor role.
+     *
      * @return Players which aren't trusted have this role automatically
      */
     @NotNull
@@ -110,6 +121,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Check if area has a natural flag enabled.
+     *
      * @param flag The flag to check
      * @return false, if not set
      */
@@ -117,8 +129,9 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Check if a player has a role flag enabled through their role.
+     *
      * @param playerUUID The player
-     * @param flag The flag
+     * @param flag       The flag
      * @return false, their role doesn't have this flag
      */
     boolean hasRoleFlag(@NotNull UUID playerUUID, @NotNull RoleFlag flag);
@@ -126,11 +139,12 @@ public interface Area extends ExpressionEntity, TaxHolder {
     /**
      * Use {@link #hasRoleFlag(LandPlayer, RoleFlag, Material, boolean)} instead.
      * Check if a player has a role flag set through their role.
-     * @param player The player
-     * @param flag The flag to check
-     * @param material The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
-     *                 This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
-     *                 For flags that don't include any blocks you can provide null here.
+     *
+     * @param player      The player
+     * @param flag        The flag to check
+     * @param material    The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
+     *                    This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
+     *                    For flags that don't include any blocks you can provide null here.
      * @param sendMessage If the player should get a message, if their role doesn't have this flag
      * @return false, if their role doesn't have this flag
      */
@@ -139,11 +153,12 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Check if a player has a role flag set through their role.
-     * @param player The player
-     * @param flag The flag to check
-     * @param material The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
-     *                 This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
-     *                 For flags that don't include any blocks you can provide null here.
+     *
+     * @param player      The player
+     * @param flag        The flag to check
+     * @param material    The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
+     *                    This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
+     *                    For flags that don't include any blocks you can provide null here.
      * @param sendMessage If the player should get a message, if their role doesn't have this flag
      * @return false, if their role doesn't have this flag
      */
@@ -151,8 +166,9 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Use {@link #hasRoleFlag(UUID, RoleFlag)} instead.
+     *
      * @param playerUUID The player
-     * @param flag The flag
+     * @param flag       The flag
      * @return false, if their role doesn't have this flag
      */
     @Deprecated
@@ -160,11 +176,12 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Use {@link #hasRoleFlag(LandPlayer, RoleFlag, Material, boolean)} instead.
-     * @param player The player
-     * @param flag The flag
-     * @param material The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
-     *                 This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
-     *                 For flags that don't include any blocks you can provide null here.
+     *
+     * @param player      The player
+     * @param flag        The flag
+     * @param material    The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
+     *                    This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
+     *                    For flags that don't include any blocks you can provide null here.
      * @param sendMessage If the player should get a message, if their role doesn't have this flag
      * @return false, if their role doesn't have this flag
      */
@@ -173,8 +190,9 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Use {@link #hasRoleFlag(LandPlayer, RoleFlag, Material, boolean)} instead.
-     * @param player The player
-     * @param roleFlag The flag
+     *
+     * @param player      The player
+     * @param roleFlag    The flag
      * @param sendMessage If the player should get a message, if their role doesn't have this flag
      * @return false, if their role doesn't have this flag
      */
@@ -183,6 +201,7 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Check if a player is banned.
+     *
      * @param playerUID The player
      * @return false, if the player isn't banned
      */
@@ -190,19 +209,56 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Check if this area is the defeault area ({@link Land#getDefaultArea()}.
+     *
      * @return true, if this area is the default area
      */
     boolean isDefault();
 
     /**
      * Check if a player is trusted.
+     *
      * @param playerUID The player
      * @return true, if the player is trusted
      */
-    boolean isTrusted(UUID playerUID);
+    boolean isTrusted(@NotNull UUID playerUID);
+
+
+    /**
+     * Untrust a player from this area.
+     *
+     * @param playerUID The player to untrust
+     * @return true, if the player was previously trusted
+     * @throws IllegalArgumentException If the target player owns this area.
+     *                                  Use {@link Land#setOwner(UUID)} to set a new owner instead.
+     */
+    boolean untrustPlayer(@NotNull UUID playerUID) throws IllegalArgumentException;
+
+    /**
+     * Trust a player to this area. If executed for a player that is already trusted,
+     * this will set the entry role ({@link me.angeschossen.lands.api.role.enums.RoleType#ENTRY}) for this player.
+     * Using this method will also automatically unban the player from this area
+     * and remove the pending received invite for this area.
+     *
+     * @param playerUID The player to trust
+     * @return true, if the player was previously untrusted
+     * @throws IllegalArgumentException If the target player is the owner of this area
+     */
+    boolean trustPlayer(@NotNull UUID playerUID) throws IllegalArgumentException;
+
+    /**
+     * Set role for a trusted player.
+     *
+     * @param targetUID The trusted player
+     * @param role      The role to set
+     * @throws IllegalArgumentException If the role doesn't exist in this area, the role is of type {@link me.angeschossen.lands.api.role.enums.RoleType#VISITOR} or the current role of this player is of type {@link me.angeschossen.lands.api.role.enums.RoleType#OWNER}.
+     *                                  If you want to untrust a player, use {@link #}
+     * @throws PlayerUntrustedException If the player isn't trusted
+     */
+    void setRole(@NotNull UUID targetUID, @NotNull Role role) throws IllegalArgumentException, PlayerUntrustedException;
 
     /**
      * Toggle a natural flag.
+     *
      * @param flag The flag
      * @return The new flag state
      */
@@ -210,7 +266,8 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Unban a player.
+     *
      * @param playerUID The player to be unbanned
      */
-    void unbanPlayer(UUID playerUID);
+    void unbanPlayer(@NotNull UUID playerUID);
 }
