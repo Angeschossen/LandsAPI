@@ -16,7 +16,7 @@ import java.util.UUID;
 /**
  * Used for events that involve managing a member.
  */
-public abstract class LandManageMemberEvent extends PlayerNullableEvent implements TargetableEvent {
+public abstract class LandEditMemberEvent extends PlayerNullableEvent implements TargetableEvent {
     protected final UUID initiator, target;
     protected final Land land;
     protected final @Nullable
@@ -30,7 +30,7 @@ public abstract class LandManageMemberEvent extends PlayerNullableEvent implemen
      * @param initiator player that initiated this action
      * @param target    member that this action affects
      */
-    public LandManageMemberEvent(Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID target) {
+    public LandEditMemberEvent(Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID target) {
         super(initiator);
 
         this.initiator = initiator;

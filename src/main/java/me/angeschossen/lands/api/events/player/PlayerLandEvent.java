@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.events.player;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;

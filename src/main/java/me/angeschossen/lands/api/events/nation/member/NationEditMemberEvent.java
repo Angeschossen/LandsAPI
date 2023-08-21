@@ -10,12 +10,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
-public abstract class NationManageMemberEvent extends LandEvent {
+public abstract class NationEditMemberEvent extends LandEvent {
     protected final UUID initiator;
     protected final Nation nation;
     protected final Land land;
 
-    public NationManageMemberEvent(@NotNull Nation nation, @NotNull Land land, @Nullable UUID initiator) {
+    public NationEditMemberEvent(@NotNull Nation nation, @NotNull Land land, @Nullable UUID initiator) {
         super(land, initiator);
 
         this.initiator = initiator;

@@ -6,11 +6,11 @@ import org.bukkit.event.Cancellable;
 
 import java.util.UUID;
 
-public abstract class NationManageMemberCancellableEvent extends NationManageMemberEvent implements Cancellable {
+public abstract class NationEditMemberCancellableEvent extends NationEditMemberEvent implements Cancellable {
 
     protected boolean cancelled;
 
-    public NationManageMemberCancellableEvent(Nation nation, Land land, UUID initiator) {
+    public NationEditMemberCancellableEvent(Nation nation, Land land, UUID initiator) {
         super(nation, land, initiator);
     }
 

@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * Used for events that involve managing a member and that can be cancelled.
  */
-public abstract class LandManageMemberCancellableEvent extends LandManageMemberEvent implements Cancellable {
+public abstract class LandEditMemberCancellableEvent extends LandEditMemberEvent implements Cancellable {
 
     private boolean cancelled;
 
@@ -22,7 +22,7 @@ public abstract class LandManageMemberCancellableEvent extends LandManageMemberE
      * @param initiator player that initiated this action
      * @param target member that this action affects
      */
-    public LandManageMemberCancellableEvent(@NotNull Land land, @Nullable Area area, UUID initiator, UUID target) {
+    public LandEditMemberCancellableEvent(@NotNull Land land, @Nullable Area area, UUID initiator, UUID target) {
         super(land, area, initiator, target);
     }
 

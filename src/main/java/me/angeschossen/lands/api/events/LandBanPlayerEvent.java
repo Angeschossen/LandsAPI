@@ -1,6 +1,6 @@
 package me.angeschossen.lands.api.events;
 
-import me.angeschossen.lands.api.events.land.member.LandManageMemberCancellableEvent;
+import me.angeschossen.lands.api.events.land.member.LandEditMemberCancellableEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import org.bukkit.event.HandlerList;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class LandBanPlayerEvent extends LandManageMemberCancellableEvent {
+public class LandBanPlayerEvent extends LandEditMemberCancellableEvent {
 
     public static HandlerList handlerList = new HandlerList();
 

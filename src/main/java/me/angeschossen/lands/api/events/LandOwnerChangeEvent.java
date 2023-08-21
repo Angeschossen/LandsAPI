@@ -1,7 +1,7 @@
 package me.angeschossen.lands.api.events;
 
 import com.google.common.collect.ImmutableMap;
-import me.angeschossen.lands.api.events.land.member.LandManageMemberCancellableEvent;
+import me.angeschossen.lands.api.events.land.member.LandEditMemberCancellableEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import org.bukkit.event.HandlerList;
@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
-public class LandOwnerChangeEvent extends LandManageMemberCancellableEvent {
+public class LandOwnerChangeEvent extends LandEditMemberCancellableEvent {
     public static final HandlerList handlerList = new HandlerList();
     private final Reason reason;
 

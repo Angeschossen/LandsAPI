@@ -5,8 +5,6 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.UUID;
-
 /**
  * Used for events that involve a land and can be cancelled.
  */
