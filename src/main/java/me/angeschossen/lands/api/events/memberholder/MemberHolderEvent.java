@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.memberholder;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
@@ -10,12 +11,21 @@ import java.util.UUID;
 
 public abstract class MemberHolderEvent extends LandsEvent {
 
-    protected final MemberHolder memberHolder;
+    protected final @NotNull MemberHolder memberHolder;
 
+    /**
+     * Used for events that involve a land or nation.
+     * @param memberHolder land or nation
+     */
     public MemberHolderEvent(@NotNull MemberHolder memberHolder) {
+        Checks.requireNonNull(memberHolder, "memberHolder");
         this.memberHolder = memberHolder;
     }
 
+    /**
+     * Get the involved land or nation.
+     * @return land or nation
+     */
     @NotNull
     public MemberHolder getMemberHolder() {
         return memberHolder;

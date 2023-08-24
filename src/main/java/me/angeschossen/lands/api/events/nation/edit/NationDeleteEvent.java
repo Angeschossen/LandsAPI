@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.nation.edit;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.nation.Nation;
@@ -7,18 +8,28 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+/**
+ * Called whenever a nation is about to be deleted.
+ */
 public class NationDeleteEvent extends NationEditEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
-    private final Nation nation;
-    private final DeleteReason reason;
+    private final @NotNull DeleteReason reason;
     private boolean cancelled;
 
-    public NationDeleteEvent(@NotNull Nation nation, @NotNull DeleteReason reason,LandPlayer deleter) {
+    /**
+     * Create instance of this event.
+     *
+     * @param nation  the nation that is being deleted
+     * @param reason  reason of the deletion
+     * @param deleter null, if no player is involved in deleting this nation
+     */
+    public NationDeleteEvent(@NotNull Nation nation, @NotNull DeleteReason reason, @Nullable LandPlayer deleter) {
         super(nation, deleter);
 
-        this.nation = nation;
+        Checks.requireNonNull(reason, "reason");
         this.reason = reason;
     }
 
@@ -38,6 +49,10 @@ public class NationDeleteEvent extends NationEditEvent implements Cancellable {
         return nation;
     }
 
+    /**
+     * Get the reason of the deletion.
+     * @return reason of deletion
+     */
     @NotNull
     public DeleteReason getReason() {
         return reason;
@@ -48,6 +63,11 @@ public class NationDeleteEvent extends NationEditEvent implements Cancellable {
         return this.cancelled;
     }
 
+    /**
+     * Cancel this event.
+     * @param cancelled true if you wish to cancel this event
+     * @throws IllegalStateException if this nation is forcefully deleted by an administrator ({@link DeleteReason#ADMIN})
+     */
     @Override
     public void setCancelled(boolean cancelled) throws IllegalStateException {
         if (cancelled && reason == DeleteReason.ADMIN) {

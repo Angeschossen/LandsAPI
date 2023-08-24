@@ -1,21 +1,32 @@
 package me.angeschossen.lands.api.events.memberholder;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.levels.Level;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
+/**
+ * Called on level up and down of a land or nation.
+ */
 public class LevelChangedEvent extends MemberHolderEvent {
     public static final HandlerList handlerList = new HandlerList();
 
-    private final @NotNull MemberHolder memberHolder;
     private final @NotNull Level previous;
 
+    /**
+     * Create instance of this event.
+     *
+     * @param memberHolder land or nation
+     * @param previous     the previous level
+     */
     public LevelChangedEvent(@NotNull MemberHolder memberHolder, @NotNull Level previous) {
         super(memberHolder);
 
-        this.memberHolder = memberHolder;
+        Checks.requireNonNull(previous, "previous level");
         this.previous = previous;
     }
 
@@ -28,16 +39,19 @@ public class LevelChangedEvent extends MemberHolderEvent {
         return handlerList;
     }
 
-    @NotNull
-    public MemberHolder getMemberHolder() {
-        return memberHolder;
-    }
-
+    /**
+     * Get new level.
+     * @return new level
+     */
     @NotNull
     public Level getNew() {
         return memberHolder.getLevel();
     }
 
+    /**
+     * Get the previous level.
+     * @return previous level
+     */
     @NotNull
     public Level getPrevious() {
         return previous;
@@ -48,6 +62,6 @@ public class LevelChangedEvent extends MemberHolderEvent {
         super.setExpressionVariables(builder);
 
         previous.setExpressionVariables("level_previous_", builder, null);
-        memberHolder.getLevel().setExpressionVariables("level_new_", builder,null);
+        memberHolder.getLevel().setExpressionVariables("level_new_", builder, null);
     }
 }

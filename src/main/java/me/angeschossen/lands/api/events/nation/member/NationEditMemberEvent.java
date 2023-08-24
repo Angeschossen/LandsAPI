@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.nation.member;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.land.LandEvent;
 import me.angeschossen.lands.api.land.Land;
@@ -10,19 +11,35 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
+/**
+ * Called whenever a nation modifies one of its members (lands).
+ */
 public abstract class NationEditMemberEvent extends LandEvent {
-    protected final UUID initiator;
-    protected final Nation nation;
-    protected final Land land;
+    protected final @Nullable UUID initiator;
+    protected final @NotNull Nation nation;
+    protected final @NotNull Land land;
 
+    /**
+     * Used for events that involve a nation modifying one of its lands.
+     *
+     * @param nation    the nation
+     * @param land      the modified land
+     * @param initiator the initiatior of this action
+     */
     public NationEditMemberEvent(@NotNull Nation nation, @NotNull Land land, @Nullable UUID initiator) {
         super(land, initiator);
 
+        Checks.requireNonNull(nation, "nation");
+        Checks.requireNonNull(land, "land");
         this.initiator = initiator;
         this.land = land;
         this.nation = nation;
     }
 
+    /**
+     * Get the involved nation.
+     * @return never null
+     */
     @NotNull
     public Nation getNation() {
         return nation;

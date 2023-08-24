@@ -15,6 +15,12 @@ public class MemberHolderUpkeepEvent extends MemberHolderEvent implements Cancel
     private final double balance;
     private boolean cancelled = false;
 
+    /**
+     * Create instance of this event.
+     * @param memberHolder the involved memberHolder
+     * @param upkeep upkeep to pay
+     * @param balance the current balance
+     */
     public MemberHolderUpkeepEvent(@NotNull MemberHolder memberHolder, double upkeep, double balance) {
         super(memberHolder);
 
@@ -26,10 +32,18 @@ public class MemberHolderUpkeepEvent extends MemberHolderEvent implements Cancel
         return handlerList;
     }
 
+    /**
+     * Check if they have enough money to pay the upkeep.
+     * @return true, if they don't have enough money
+     */
     public boolean IsInsufficient() {
         return balance < upkeep;
     }
 
+    /**
+     * Get the current balance.
+     * @return current balance
+     */
     public double getBalance() {
         return balance;
     }
@@ -39,6 +53,10 @@ public class MemberHolderUpkeepEvent extends MemberHolderEvent implements Cancel
         return handlerList;
     }
 
+    /**
+     * Get the upkeep that they need to pay
+     * @return upkeep to pay
+     */
     public double getUpkeep() {
         return upkeep;
     }
