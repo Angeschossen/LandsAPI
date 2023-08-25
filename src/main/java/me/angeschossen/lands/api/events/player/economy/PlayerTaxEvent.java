@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 /**
- * Called when a land member needs to pay taxes to the land.
+ * Called when a land member needs to pay taxes to a land.
  */
 public class PlayerTaxEvent extends PlayerEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
@@ -19,7 +19,7 @@ public class PlayerTaxEvent extends PlayerEvent implements Cancellable {
     private final double balance;
     private boolean cancelled = false;
 
-    public PlayerTaxEvent(@NotNull Area area, UUID playerUID, double balance) {
+    public PlayerTaxEvent(@NotNull Area area, @NotNull UUID playerUID, double balance) {
         super(playerUID);
 
         this.area = area;
@@ -30,12 +30,29 @@ public class PlayerTaxEvent extends PlayerEvent implements Cancellable {
         return handlerList;
     }
 
+    /**
+     * The area of which has the taxes configured.
+     *
+     * @return never null
+     */
     @NotNull
     public Area getArea() {
         return area;
     }
 
-    public double getBalance() {
+    /**
+     * Get the taxes of the area.
+     * @return taxes of the area
+     */
+    public double getTax() {
+        return area.getTax();
+    }
+
+    /**
+     * Get the player's balance.
+     * @return player's balance
+     */
+    public double getPlayerBalance() {
         return balance;
     }
 
@@ -54,6 +71,10 @@ public class PlayerTaxEvent extends PlayerEvent implements Cancellable {
         this.cancelled = cancelled;
     }
 
+    /**
+     * Check if the player has enough money to pay the tax.
+     * @return true, if the player doesn't have enough money. Depending on the server's config this may trigger the player getting untrusted.
+     */
     public boolean isInsufficient() {
         return balance < area.getTax();
     }

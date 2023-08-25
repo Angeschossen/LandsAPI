@@ -13,9 +13,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
 
+/**
+ * Used for events that affect a land and might as well affect a player.
+ */
 public abstract class PlayerNullableEvent extends LandsEvent implements PlayerEvent {
-    protected final UUID playerUUID;
-    protected LandPlayer landPlayer;
+    protected final @Nullable UUID playerUUID;
+    protected @Nullable LandPlayer landPlayer;
 
     public PlayerNullableEvent(@Nullable LandPlayer landPlayer) {
         this.landPlayer = landPlayer;
@@ -27,14 +30,18 @@ public abstract class PlayerNullableEvent extends LandsEvent implements PlayerEv
         this.playerUUID = playerUUID;
     }
 
-    protected static String parsePrefix(String prefix) {
-        return StringUtils.toLowerCase(prefix);
-    }
-
+    /**
+     * Get the affected online player.
+     * @return if null and {@link #getPlayerUID()} is null as well, no player is involved in this event
+     */
     public @Nullable LandPlayer getLandPlayer() {
         return landPlayer;
     }
 
+    /**
+     * Get the affected player, which might be offline.
+     * @return if null, no player is involved in this event
+     */
     @Nullable
     public UUID getPlayerUID() {
         return playerUUID;

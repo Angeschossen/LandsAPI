@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.player;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
@@ -11,24 +12,45 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.UUID;
 
+/**
+ * Used for events that affect a player and land.
+ */
 public abstract class PlayerLandEvent extends PlayerEvent implements Cancellable {
     private final @Nullable Area area;
-    private final Land land;
+    private final @NotNull Land land;
     private boolean cancelled;
 
+    /**
+     * Constructor
+     *
+     * @param land       the affected land
+     * @param area       the affected area
+     * @param landPlayer involved player
+     */
     public PlayerLandEvent(@NotNull Land land, @Nullable Area area, @NotNull LandPlayer landPlayer) {
         super(landPlayer);
 
+        Checks.requireNonNull(land, "land");
+        Checks.requireNonNull(landPlayer, "landPlayer");
         this.land = land;
         this.area = area;
         this.landPlayer = landPlayer;
     }
 
+    /**
+     * Get the area.
+     * @return if null, this event affects the whole land. If not null, this event only affects this area.
+     */
     @Nullable
     public Area getArea() {
         return area;
     }
 
+    /**
+     * Get the land.
+     * @see #getArea()
+     * @return never null
+     */
     @NotNull
     public Land getLand() {
         return land;

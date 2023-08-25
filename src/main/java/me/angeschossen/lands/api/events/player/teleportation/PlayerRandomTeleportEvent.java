@@ -8,11 +8,20 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Called whenever a player randomly teleports either using "/lands wild" or
+ * initiated by a 3rd party plugin.
+ */
 public class PlayerRandomTeleportEvent extends PlayerEvent implements Cancellable {
     public static final HandlerList handlerList = new HandlerList();
     private final @NotNull Location destination;
     private boolean cancelled = false;
 
+    /**
+     * Create instance of this event.
+     * @param landPlayer player that randomly teleports
+     * @param location the random destination
+     */
     public PlayerRandomTeleportEvent(@NotNull LandPlayer landPlayer, @NotNull Location location) {
         super(landPlayer);
 
@@ -23,6 +32,10 @@ public class PlayerRandomTeleportEvent extends PlayerEvent implements Cancellabl
         return handlerList;
     }
 
+    /**
+     * Get the random destination.
+     * @return random destination
+     */
     @NotNull
     public Location getDestination() {
         return destination;

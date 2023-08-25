@@ -10,6 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.UUID;
 
+/**
+ * Used for events related to physically entering and leaving an area.
+ */
 public abstract class PlayerAreaEvent extends PlayerEvent {
     public static HandlerList handlerList = new HandlerList();
     protected final Area area;
@@ -27,7 +30,7 @@ public abstract class PlayerAreaEvent extends PlayerEvent {
     /**
      * Get the area. Can be entering or leaving, depending on the event.
      *
-     * @return {@link Area}
+     * @return the affected area
      */
     @NotNull
     public Area getArea() {
