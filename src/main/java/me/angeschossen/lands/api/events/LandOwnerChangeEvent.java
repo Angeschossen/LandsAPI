@@ -8,6 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collection;
 import java.util.UUID;
 
 public class LandOwnerChangeEvent extends LandEditMemberCancellableEvent {
@@ -41,6 +42,11 @@ public class LandOwnerChangeEvent extends LandEditMemberCancellableEvent {
         }
 
         super.setCancelled(cancelled);
+    }
+
+    @Override
+    public void setAffectedPlayers(ImmutableMap.@NotNull Builder<String, Collection<UUID>> builder) {
+        super.setAffectedPlayers(builder);
     }
 
     @Override
