@@ -4,6 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.UUID;
 
+/**
+ * Used for events that affect a target.
+ */
 public interface TargetableEvent {
 
     /**
