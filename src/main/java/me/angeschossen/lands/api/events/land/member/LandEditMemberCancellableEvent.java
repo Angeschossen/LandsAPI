@@ -17,12 +17,13 @@ public abstract class LandEditMemberCancellableEvent extends LandEditMemberEvent
 
     /**
      * Constructor for this event.
-     * @param land land that manages this member
-     * @param area if null, this action affects the whole land. If not null, this action is only executed for this single area.
+     *
+     * @param land      land that manages this member
+     * @param area      if null, this action affects the whole land. If not null, this action is only executed for this single area.
      * @param initiator player that initiated this action
-     * @param target member that this action affects
+     * @param target    member that this action affects
      */
-    public LandEditMemberCancellableEvent(@NotNull Land land, @Nullable Area area, UUID initiator, UUID target) {
+    public LandEditMemberCancellableEvent(@NotNull Land land, @Nullable Area area, @Nullable UUID initiator, @NotNull UUID target) {
         super(land, area, initiator, target);
     }
 

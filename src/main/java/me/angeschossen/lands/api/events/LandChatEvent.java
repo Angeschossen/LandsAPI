@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.player.PlayerEvent;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
@@ -15,15 +16,28 @@ import java.util.stream.Collectors;
 
 public class LandChatEvent extends PlayerEvent implements Cancellable {
     public static HandlerList handlerList = new HandlerList();
-    private final String message;
-    private final Collection<LandPlayer> recipients;
-    private final MessageSource messageSource;
-    private final MemberHolder memberHolder;
+    private final @NotNull String message;
+    private final @NotNull Collection<LandPlayer> recipients;
+    private final @NotNull MessageSource messageSource;
+    private final @NotNull MemberHolder memberHolder;
     private boolean cancelled;
 
-    public LandChatEvent(@NotNull MemberHolder memberHolder,@NotNull  UUID playerUID,@NotNull  Collection<LandPlayer> recipients,@NotNull  String message,@NotNull  MessageSource messageSource) {
-        super(playerUID);
+    /**
+     * Create an instance of this event.
+     *
+     * @param memberHolder  land or nation
+     * @param sender        the sender
+     * @param recipients    the recipients
+     * @param message       message content
+     * @param messageSource where they message was sent
+     */
+    public LandChatEvent(@NotNull MemberHolder memberHolder, @NotNull UUID sender, @NotNull Collection<LandPlayer> recipients, @NotNull String message, @NotNull MessageSource messageSource) {
+        super(sender);
 
+        Checks.requireNonNull(memberHolder, "memberHolder");
+        Checks.requireNonNull(message, "message");
+        Checks.requireNonNull(recipients, "recipients");
+        Checks.requireNonNull(messageSource, "messageSource");
         this.memberHolder = memberHolder;
         this.message = message;
         this.recipients = recipients;
@@ -35,25 +49,45 @@ public class LandChatEvent extends PlayerEvent implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return handlerList;
     }
 
+    /**
+     * Get the land or nation in which this message was sent.
+     *
+     * @return land or nation
+     */
     @NotNull
     public MemberHolder getMemberHolder() {
         return memberHolder;
     }
 
+    /**
+     * Get the message content.
+     *
+     * @return message including color codes
+     */
     @NotNull
     public String getMessage() {
         return message;
     }
 
+    /**
+     * Get the recipients of this message.
+     *
+     * @return usually all online players of the land or nation
+     */
     @NotNull
     public Collection<LandPlayer> getReceivers() {
         return recipients;
     }
 
+    /**
+     * Get the context in which the message was sent.
+     *
+     * @return source of message
+     */
     @NotNull
     public MessageSource getSource() {
         return messageSource;
@@ -71,7 +105,9 @@ public class LandChatEvent extends PlayerEvent implements Cancellable {
 
     @Override
     public String toString() {
-        return "Sender: " + getPlayerUID() + " MemberHolder: " + memberHolder.getName();
+        return "LandChatEvent{" +
+                "sender=" + getPlayerUID() + "," +
+                "memberHolder=" + memberHolder.getName() + "}";
     }
 
     @Override
@@ -81,7 +117,17 @@ public class LandChatEvent extends PlayerEvent implements Cancellable {
         memberHolder.setAffectedPlayers(memberHolder.getExpressionPrefix(), builder);
     }
 
+    /**
+     * Defines the origin of the message.
+     */
     public enum MessageSource {
-        MINECRAFT, DISCORD, SYSTEM
+        /**
+         * Message was sent ingame.
+         */
+        MINECRAFT,
+        /**
+         * Message was sent in a Discord server.
+         */
+        DISCORD,
     }
 }

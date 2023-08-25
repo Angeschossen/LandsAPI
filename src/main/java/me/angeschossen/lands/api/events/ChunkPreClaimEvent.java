@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import me.angeschossen.lands.api.events.land.LandEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
@@ -7,18 +8,23 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+/**
+ * Called before a chunk is being claimed.
+ */
 public class ChunkPreClaimEvent extends LandEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
     private final int x;
     private final int z;
-    private final LandWorld world;
+    private final @NotNull LandWorld world;
     private boolean cancelled;
 
-    public ChunkPreClaimEvent(@NotNull Land land, LandPlayer landPlayer, LandWorld world, int x, int z) {
-        super(land,landPlayer);
+    public ChunkPreClaimEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull LandWorld world, int x, int z) {
+        super(land, landPlayer);
 
+        Checks.requireNonNull(world, "world");
         this.world = world;
         this.x = x;
         this.z = z;
@@ -28,19 +34,40 @@ public class ChunkPreClaimEvent extends LandEvent implements Cancellable {
         return handlerList;
     }
 
+    /**
+     * Get chunk x.
+     *
+     * @return chunk x
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Get chunk z.
+     *
+     * @return chunk z
+     */
     public int getZ() {
         return z;
     }
 
+    /**
+     * Use {@link #getWorld()} instead.
+     *
+     * @return world name
+     */
+    @Deprecated
     @NotNull
     public String getWorldName() {
         return world.getName();
     }
 
+    /**
+     * Get the world in which the chunk is located in.
+     *
+     * @return world in which the chunk is located
+     */
     @NotNull
     public LandWorld getWorld() {
         return world;
@@ -57,7 +84,7 @@ public class ChunkPreClaimEvent extends LandEvent implements Cancellable {
     }
 
     @Override
-    public HandlerList getHandlers() {
+    public @NotNull HandlerList getHandlers() {
         return handlerList;
     }
 }

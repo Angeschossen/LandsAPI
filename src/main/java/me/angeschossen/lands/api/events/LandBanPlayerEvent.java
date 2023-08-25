@@ -9,11 +9,23 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/**
+ * Called whenver a land bans a player from a land or an area.
+ * This also untrusts the player, if they were previously trusted.
+ */
 public class LandBanPlayerEvent extends LandEditMemberCancellableEvent {
 
     public static HandlerList handlerList = new HandlerList();
 
-    public LandBanPlayerEvent(Land land, @Nullable Area area, UUID initiator, UUID targetUUID) {
+    /**
+     * Create an instance of this event.
+     *
+     * @param land the land
+     * @param area if null, the target is banned from the whole land. Otherwise, only from the area.
+     * @param initiator the player that initiated the ban
+     * @param targetUUID the taget that is getting banned
+     */
+    public LandBanPlayerEvent(@NotNull Land land, @Nullable Area area, @NotNull UUID initiator, @NotNull UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 

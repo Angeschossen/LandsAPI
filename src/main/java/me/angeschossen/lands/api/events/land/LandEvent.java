@@ -1,10 +1,12 @@
 package me.angeschossen.lands.api.events.land;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.player.PlayerNullableEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.UUID;
@@ -18,18 +20,21 @@ public abstract class LandEvent extends PlayerNullableEvent {
 
     /**
      * Constructor for this event.
-     * @param land involved land
+     *
+     * @param land       involved land
      * @param landPlayer involved player
      */
-    public LandEvent(@NotNull Land land, LandPlayer landPlayer) {
+    public LandEvent(@NotNull Land land, @Nullable LandPlayer landPlayer) {
         super(landPlayer);
 
+        Checks.requireNonNull(land, "land");
         this.land = land;
     }
 
     /**
      * Constructor for this event.
-     * @param land involved land
+     *
+     * @param land       involved land
      * @param landPlayer The involved player, which might be offline.
      */
     public LandEvent(@NotNull Land land, UUID landPlayer) {
@@ -40,6 +45,7 @@ public abstract class LandEvent extends PlayerNullableEvent {
 
     /**
      * Get the involved land.
+     *
      * @return never null
      */
     @NotNull

@@ -9,10 +9,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/**
+ * Called whenver a land invites a player to the whole land or a specific area inside that land.
+ */
 public class LandInvitePlayerEvent extends LandEditMemberCancellableEvent {
     public static HandlerList handlerList = new HandlerList();
 
-    public LandInvitePlayerEvent(Land land, @Nullable Area area,  UUID initiator,  UUID targetUUID) {
+    /**
+     * Create an instance of this event.
+     *
+     * @param land       the land that invites the player
+     * @param area       if null, the player is invited to a specific area only
+     * @param initiator  The player that initiated the invitation. If null, a player didn't initiate the invitation.
+     * @param targetUUID the player that is being invited
+     */
+    public LandInvitePlayerEvent(@NotNull Land land, @Nullable Area area, @Nullable UUID initiator, @NotNull UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 
