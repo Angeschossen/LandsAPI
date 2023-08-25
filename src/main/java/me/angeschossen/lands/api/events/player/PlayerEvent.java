@@ -38,7 +38,7 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
      */
     @Override
     @Nullable
-    public final LandPlayer getLandPlayer() {
+    public LandPlayer getLandPlayer() {
         return landPlayer;
     }
 
@@ -48,7 +48,7 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
      */
     @Override
     @Nullable
-    public final UUID getPlayerUID() {
+    public UUID getPlayerUID() {
         return playerUUID;
     }
 }

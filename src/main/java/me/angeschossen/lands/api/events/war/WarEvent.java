@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.war;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import me.angeschossen.lands.api.war.War;
@@ -8,14 +9,23 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 import java.util.UUID;
 
+/**
+ * Used for events that affect a war.
+ */
 public abstract class WarEvent extends LandsEvent {
 
-    protected final War war;
+    protected final @NotNull War war;
 
     public WarEvent(@NotNull War war) {
+        Checks.requireNonNull(war, "war");
         this.war = war;
     }
 
+    /**
+     * Get the affected war.
+     *
+     * @return never null
+     */
     @NotNull
     public War getWar() {
         return war;
