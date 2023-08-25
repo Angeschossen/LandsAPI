@@ -7,8 +7,6 @@ import me.angeschossen.lands.api.memberholder.MemberHolder;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 /**
  * Called on level up and down of a land or nation.
  */

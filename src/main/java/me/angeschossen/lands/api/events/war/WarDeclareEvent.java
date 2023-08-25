@@ -8,7 +8,6 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.UUID;

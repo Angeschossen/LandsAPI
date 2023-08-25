@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.events.player;
 
 import com.github.angeschossen.pluginframework.api.events.PlayerEvent;
-import com.github.angeschossen.pluginframework.api.utils.StringUtils;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import me.angeschossen.lands.api.handler.APIHandler;
