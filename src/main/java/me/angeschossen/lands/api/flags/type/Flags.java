@@ -72,19 +72,38 @@ public final class Flags {
     private Flags() {
     }
 
+    /**
+     * Get a flag by its name.
+     *
+     * @param name the name isn't case sensitive
+     * @return null, if no flag with this name exists
+     */
     @Nullable
     public static Flag<?> get(@NotNull String name) {
         Preconditions.checkNotNull(name, "Name cannot be null");
-        return APIHandler.getInstance().getFlagRegistry().get(name);
+        return APIHandler.getFlagRegistry().get(name);
     }
 
+    /**
+     * Get the flag that would be used for an interaction with this block
+     *
+     * @param block the interacted block
+     * @return null, if this block interaction isn't covered by any flag. To get more specific results, use {@link #getInteract(Block, ItemStack)}.
+     */
     @Nullable
     public static RoleFlag getInteract(@NotNull Block block) {
         return getInteract(block, null);
     }
 
+    /**
+     * Get the flag that would be used for an interaction with this block
+     *
+     * @param block the interacted block
+     * @param item  the item that is used to interaction with the block
+     * @return null, if this block interaction isn't covered by any flag
+     */
     @Nullable
     public static RoleFlag getInteract(@NotNull Block block, @Nullable ItemStack item) {
-        return APIHandler.getInstance().getFlagRegistry().getInteract(block, item);
+        return APIHandler.getFlagRegistry().getInteract(block, item);
     }
 }

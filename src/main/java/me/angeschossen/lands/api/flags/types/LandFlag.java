@@ -10,6 +10,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+/**
+ * Use {@link NaturalFlag} instead.
+ */
 @Deprecated
 public class LandFlag extends DefaultStateFlag<NaturalFlag> implements NaturalFlag {
 

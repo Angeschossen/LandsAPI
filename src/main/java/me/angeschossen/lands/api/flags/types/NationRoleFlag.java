@@ -3,6 +3,10 @@ package me.angeschossen.lands.api.flags.types;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
+
+/**
+ * No longer needed.
+ */
 @Deprecated
 public class NationRoleFlag extends RoleFlag {
 

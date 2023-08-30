@@ -21,11 +21,19 @@ public class UpkeepAttribute extends LevelAttribute {
         this.value = value;
     }
 
+    /**
+     * The the upkeep modification.
+     * @return if negative, the upkeep is reduced by this attribute
+     */
     public double getValue() {
         return value;
     }
 
-
+    /**
+     * Modify the upkeep of a land or nation.
+     * @param value the current upkeep
+     * @return modified upkeep
+     */
     public double modifyUpkeep(double value) {
         if (this.value == 0) {
             return value;
@@ -35,6 +43,11 @@ public class UpkeepAttribute extends LevelAttribute {
         return Math.max(0, result); // prevent minus upkeep
     }
 
+    /**
+     * Check if this attribute should be applied.
+     * @param memberHolder Land or nation
+     * @return this is only applied to lands, that aren't part of nation, or nations.
+     */
     @Override
     public boolean shouldApply(@NotNull MemberHolder memberHolder) {
         if (memberHolder instanceof Land) {

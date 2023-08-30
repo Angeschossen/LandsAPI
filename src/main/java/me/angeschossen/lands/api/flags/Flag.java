@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.flags;
 import com.google.common.base.Preconditions;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.FlagTarget;
+import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -18,6 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Use {@link me.angeschossen.lands.api.flags.type.parent.Flag} instead.
+ */
 @Deprecated
 public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.parent.Flag<T> {
 
@@ -83,7 +87,7 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
 
 
     @Override
-    public T setAlwaysAllowInWilderness(boolean allow) {
+    public @NotNull T setAlwaysAllowInWilderness(boolean allow) {
         this.alwaysAllowInWilderness = allow;
         return self();
     }
@@ -98,7 +102,7 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
     }
 
     @Override
-    public T setApplyInSubareas(boolean set) {
+    public @NotNull T setApplyInSubareas(boolean set) {
         this.applyInSubAreas = set;
         return self();
     }

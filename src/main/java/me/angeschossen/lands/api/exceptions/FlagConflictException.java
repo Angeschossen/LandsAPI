@@ -16,8 +16,8 @@ public class FlagConflictException extends RuntimeException {
     /**
      * Create instance.
      *
-     * @param existing The existing flag
-     * @param message  Message to throw
+     * @param existing the existing flag
+     * @param message  message to throw
      */
     public FlagConflictException(@NotNull Flag<?> existing, @NotNull String message) {
         super(message);
@@ -29,7 +29,7 @@ public class FlagConflictException extends RuntimeException {
     /**
      * Get the existing flag, which already has the provided name.
      *
-     * @return The existing flag
+     * @return the existing flag
      */
     @NotNull
     public Flag<?> getExisting() {

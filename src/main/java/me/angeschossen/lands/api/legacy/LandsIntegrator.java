@@ -24,6 +24,10 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 
+/**
+ * Use {@link me.angeschossen.lands.api.LandsIntegration} instead.
+ */
+@Deprecated
 public interface LandsIntegrator {
 
     /**

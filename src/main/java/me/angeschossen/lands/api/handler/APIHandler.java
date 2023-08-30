@@ -6,7 +6,6 @@ import com.github.angeschossen.pluginframework.api.configuration.messages.Messag
 import com.github.angeschossen.pluginframework.api.utils.StringUtils;
 import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.configuration.ModuleConfig;
-import me.angeschossen.lands.api.flags.FlagFactory;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.utils.PlayerUtils;

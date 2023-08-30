@@ -4,6 +4,7 @@ import me.angeschossen.lands.api.flags.DefaultStateFlag;
 import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
+import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
@@ -16,6 +17,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Objects;
 import java.util.function.Predicate;
 
+/**
+ * Use {@link RoleFlag} instead.
+ */
 @Deprecated
 public class RoleFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.type.RoleFlag> implements me.angeschossen.lands.api.flags.type.RoleFlag {
 
@@ -74,7 +78,7 @@ public class RoleFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.t
         return toggleableByNation;
     }
 
-    public RoleFlag setToggleableByNation(boolean toggleable) {
+    public @NotNull RoleFlag setToggleableByNation(boolean toggleable) {
         this.toggleableByNation = toggleable;
         return this;
     }

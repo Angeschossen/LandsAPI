@@ -1,8 +1,12 @@
 package me.angeschossen.lands.api.flags;
 
+import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Use {@link me.angeschossen.lands.api.flags.type.parent.DefaultStateFlag} instead.
+ */
 @Deprecated
 public abstract class DefaultStateFlag<T> extends Flag<T> implements me.angeschossen.lands.api.flags.type.parent.DefaultStateFlag<T> {
 

@@ -2,12 +2,16 @@ package me.angeschossen.lands.api.flags.types;
 
 import me.angeschossen.lands.api.flags.DefaultStateFlag;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
+import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+/**
+ * Use {@link me.angeschossen.lands.api.flags.type.PlayerFlag} instead.
+ */
 @Deprecated
 public class PlayerFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.type.PlayerFlag> implements me.angeschossen.lands.api.flags.type.PlayerFlag {
 
