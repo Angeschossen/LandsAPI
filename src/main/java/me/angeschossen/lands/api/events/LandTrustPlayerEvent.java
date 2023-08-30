@@ -9,10 +9,23 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/**
+ * Called when a land trusts a players.
+ * Depending on the servers config, invites are enabled.
+ * If invites are enabled, this event is called whenever a player accepts an invitation to join a land.
+ * If invites are disabled, players are trusted directly and the event is called at the command execution or menu action that trusts the player.
+ */
 public class LandTrustPlayerEvent extends LandEditMemberCancellableEvent {
     public static HandlerList handlerList = new HandlerList();
 
-    public LandTrustPlayerEvent(@NotNull Land land, @Nullable Area area, UUID initiator, UUID targetUUID) {
+    /**
+     * Create an instance of this event.
+     * @param land the land
+     * @param area If null, the player is trusted to the whole land. Otherwise, only to the specified area.
+     * @param initiator The player that trusted the target. If null, no player initiated this action.
+     * @param targetUUID the target that is being trusted
+     */
+    public LandTrustPlayerEvent(@NotNull Land land, @Nullable Area area, @Nullable UUID initiator, @NotNull UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 

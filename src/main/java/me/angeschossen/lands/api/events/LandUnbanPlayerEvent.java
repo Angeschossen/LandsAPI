@@ -9,11 +9,22 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/**
+ * Called whenever a land unbans a player from the whole land or a specific area.
+ */
 public class LandUnbanPlayerEvent extends LandEditMemberCancellableEvent {
 
     public static HandlerList handlerList = new HandlerList();
 
-    public LandUnbanPlayerEvent(@NotNull Land land, @Nullable Area area,  UUID initiator,  UUID targetUUID) {
+    /**
+     * Create an instance of this event.
+     *
+     * @param land       the land that the player is being unbanned from
+     * @param area       If null, the player is unbanned from the whole land. Otherwise, only from the specified area.
+     * @param initiator  The player that initiated the target getting unbanned. If null, no player initiated this action.
+     * @param targetUUID the player that is being unabnned
+     */
+    public LandUnbanPlayerEvent(@NotNull Land land, @Nullable Area area, @Nullable UUID initiator, @NotNull UUID targetUUID) {
         super(land, area, initiator, targetUUID);
     }
 

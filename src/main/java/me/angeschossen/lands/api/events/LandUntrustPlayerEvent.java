@@ -9,17 +9,25 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
 
+/**
+ * Called whenever a land untrusts a player from the whole land or from a specific area.
+ */
 public class LandUntrustPlayerEvent extends LandEditMemberCancellableEvent {
 
     public static HandlerList handlerList = new HandlerList();
     private final @NotNull
     UntrustReason reason;
 
-    public LandUntrustPlayerEvent(@NotNull Land land, @Nullable Area area,  UUID initiator,  UUID targetUUID) {
-        this(land, area, initiator, targetUUID, UntrustReason.DEFAULT);
-    }
-
-    public LandUntrustPlayerEvent(@NotNull Land land, @Nullable Area area,  UUID initiator,  UUID targetUUID, @NotNull UntrustReason reason) {
+    /**
+     * Create an instance of this event.
+     *
+     * @param land       land from which the target is untrusted
+     * @param area       If null, the target is being untrusted from the whole land. Otherwise, only from the specified area.
+     * @param initiator  The player that initiated untrusting the player. If null, no player initiated this action.
+     * @param targetUUID the player that is being untrusted
+     * @param reason     the reason of the player being untrusted
+     */
+    public LandUntrustPlayerEvent(@NotNull Land land, @Nullable Area area, @Nullable UUID initiator, @NotNull UUID targetUUID, @NotNull UntrustReason reason) {
         super(land, area, initiator, targetUUID);
 
         this.reason = reason;
@@ -29,6 +37,11 @@ public class LandUntrustPlayerEvent extends LandEditMemberCancellableEvent {
         return handlerList;
     }
 
+    /**
+     * Get the reason of the player being untrusted.
+     *
+     * @return never null
+     */
     @NotNull
     public UntrustReason getReason() {
         return reason;
@@ -49,6 +62,21 @@ public class LandUntrustPlayerEvent extends LandEditMemberCancellableEvent {
 
 
     public enum UntrustReason {
-        DEFAULT, BAN, TAXES, RENTAL_EXPIRED
+        /**
+         * Untrust command or untrust action in menu was triggered by a player.
+         */
+        DEFAULT,
+        /**
+         * The player is being banned. Banning a player, also untrusts them.
+         */
+        BAN,
+        /**
+         * The player wasn't able to pay its taxes.
+         */
+        TAXES,
+        /**
+         * The player was a tenant and his rental expired.
+         */
+        RENTAL_EXPIRED
     }
 }
