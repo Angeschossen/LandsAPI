@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.events;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.events.land.LandEvent;
+import me.angeschossen.lands.api.events.land.claiming.selection.LandUnclaimSelectionEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.World;
@@ -113,7 +114,7 @@ public class ChunkDeleteEvent extends LandEvent implements Cancellable {
      *                               In this case you should use the corresponding events:
      *                               - {@link UnclaimType#LAND_DELETION}: {@link LandDeleteEvent}
      *                               - {@link UnclaimType#ALL}: {@link me.angeschossen.lands.api.events.land.claiming.LandUnclaimAllEvent}
-     *                               - {@link UnclaimType#SELECTION}: {@link me.angeschossen.lands.api.events.land.claiming.LandUnclaimSelectionEvent}
+     *                               - {@link UnclaimType#SELECTION}: {@link LandUnclaimSelectionEvent}
      */
     @Override
     public void setCancelled(boolean b) throws IllegalStateException {
