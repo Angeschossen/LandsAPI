@@ -9,13 +9,28 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Requirements define which requirements a land or nation needs to fullfil in order to progress to the next level.
+ * Used for requirements that are calculated each time, a plugin requests its progress.
+ * There is an implementation ({@link CachedRequirement}) of this class that prevents to recalculation at each request.
+ */
 public abstract class Requirement implements me.angeschossen.lands.api.levels.Requirement {
 
-    protected final String name, title;
-    protected final List<String> description;
+    protected final @NotNull String name, title;
+    protected final @NotNull List<String> description;
     protected final float required;
-    protected final Plugin plugin;
+    protected final @NotNull Plugin plugin;
 
+    /**
+     * Create an instance of this requirement.
+     *
+     * @param plugin          plugin that provides this requirement
+     * @param name            the unique name of this requirement
+     * @param title           title of this requirement. Used in menus
+     * @param description     description of this requirement. Used in menus
+     * @param required        required progress (not percentage) to consider this requirement as fullfilled
+     * @param requiredDisplay displayed as the required value in menus
+     */
     public Requirement(@NotNull Plugin plugin, @NotNull String name, @NotNull String title, @NotNull List<String> description, float required, @NotNull String requiredDisplay) {
         Objects.requireNonNull(plugin);
         Objects.requireNonNull(name);
@@ -34,43 +49,78 @@ public abstract class Requirement implements me.angeschossen.lands.api.levels.Re
     }
 
 
+    /**
+     * Get the plugin that provides this requirement.
+     * @return plugin that provides this requirement
+     */
     @Override
     public @NotNull Plugin getPlugin() {
         return plugin;
     }
 
+    /**
+     * Get the required value.
+     * @return value required to consider this requirement as fullfilled
+     */
     @Override
     public final float getRequired() {
         return required;
     }
 
+    /**
+     * Used for menus to display the requirement progress.
+     * @param memberHolder land or nation
+     * @return displays the progress
+     */
     @Override
     @NotNull
     public String getProgressDisplay(@NotNull MemberHolder memberHolder) {
         return getValue(memberHolder) + "/" + required;
     }
 
+    /**
+     * Get the progress in a numerical value.
+     * @param memberHolder land or nation
+     * @return numerical progress
+     */
     @Override
     public final float getProgress(@NotNull MemberHolder memberHolder) {
         return (getValue(memberHolder) / required) * 100;
     }
 
+    /**
+     * Check if this land or nation already fullfills this requirement.
+     * @param memberHolder land or nation
+     * @return true, if the land or nation already fullfills this requirement
+     */
     @Override
     public boolean matches(@NotNull MemberHolder memberHolder) {
         return getValue(memberHolder) >= required;
     }
 
+    /**
+     * Get the description of this requirement.
+     * @return used for menus
+     */
     @Override
     public @NotNull List<String> getDescription() {
         return description;
     }
 
+    /**
+     * Get the unique name of this requirement. For display name, use {@link #getTitle()} instead.
+     * @return unique name
+     */
     @Override
     @NotNull
     public final String getName() {
         return name;
     }
 
+    /**
+     * Get the title of this requirement.
+     * @return might include parsed color
+     */
     @Override
     public @NotNull String getTitle() {
         return title;

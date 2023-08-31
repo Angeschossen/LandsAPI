@@ -8,8 +8,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public abstract class LevelAttribute {
-    protected final String description;
-    protected final String name;
+    protected final @NotNull String description;
+    protected final @NotNull String name;
 
     /**
      * Level attribute reward lands or nations when reaching a level.
