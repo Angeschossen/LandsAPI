@@ -1,6 +1,5 @@
 package me.angeschossen.lands.api.flags;
 
-import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 

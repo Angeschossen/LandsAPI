@@ -3,7 +3,6 @@ package me.angeschossen.lands.api.flags;
 import com.google.common.base.Preconditions;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
 import me.angeschossen.lands.api.flags.enums.FlagTarget;
-import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

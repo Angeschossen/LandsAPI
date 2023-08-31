@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.flags.types;
 
 import me.angeschossen.lands.api.flags.DefaultStateFlag;
 import me.angeschossen.lands.api.flags.enums.FlagModule;
-import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.handler.APIHandler;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
