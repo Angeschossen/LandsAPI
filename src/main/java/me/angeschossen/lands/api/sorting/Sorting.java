@@ -53,7 +53,7 @@ public abstract class Sorting<T> implements Comparator<T> {
     @Nullable
     public final String handleParseHologramLine(int place) {
         T t = get(place);
-        return t == null ? null : parseHologramLine(++place, t);
+        return t == null ? null : parseHologramLine(place, t);
     }
 
     @NotNull
