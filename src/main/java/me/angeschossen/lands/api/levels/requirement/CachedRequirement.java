@@ -27,7 +27,7 @@ public abstract class CachedRequirement extends Requirement {
     /**
      * Get the progress value. If the progress isn't cached, this will call {@link #retrieveValue(MemberHolder)}.
      * @param memberHolder the land or nation
-     * @return the cached or newly calculated progress
+     * @return The cached or newly calculated progress. Example: 2 placed hoppers
      */
     @Override
     public final float getValue(@NotNull MemberHolder memberHolder) {

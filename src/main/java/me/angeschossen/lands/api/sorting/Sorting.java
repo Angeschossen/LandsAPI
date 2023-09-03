@@ -9,6 +9,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A sorting evaluates the place of an land or nation on the leaderboard.
+ * @param <T>
+ */
 public abstract class Sorting<T> implements Comparator<T> {
 
     protected final String id;
@@ -19,7 +23,6 @@ public abstract class Sorting<T> implements Comparator<T> {
         this.id = StringUtils.toLowerCase(id);
         this.sortingContext = sortingContext;
     }
-
 
     @Nullable
     public final T get(int place) {

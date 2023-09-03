@@ -60,7 +60,7 @@ public abstract class Requirement implements me.angeschossen.lands.api.levels.Re
 
     /**
      * Get the required value.
-     * @return value required to consider this requirement as fullfilled
+     * @return example: 4 hoppers placed
      */
     @Override
     public final float getRequired() {
@@ -68,9 +68,9 @@ public abstract class Requirement implements me.angeschossen.lands.api.levels.Re
     }
 
     /**
-     * Used for menus to display the requirement progress.
+     * Get the progress percentage.
      * @param memberHolder land or nation
-     * @return displays the progress
+     * @return example: 50 because 2/4 required hoppers placed
      */
     @Override
     @NotNull
