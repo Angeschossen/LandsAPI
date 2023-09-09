@@ -32,6 +32,7 @@ public class CaptureFlagBreakEvent extends CaptureFlagEvent implements Cancellab
 
     /**
      * Get the reason of the removal.
+     *
      * @return reason of removal
      */
     @NotNull
@@ -59,7 +60,9 @@ public class CaptureFlagBreakEvent extends CaptureFlagEvent implements Cancellab
          * If a player is currently defening a capture flag and quits the game, the capture flag
          * will be removed and the invaders will have captured the flag successfully.
          */
-        DEFENDER_LOGOUT
+        DEFENDER_LOGOUT,
+        WAR_END,
+        BLOCK_INVALID
     }
 
     public static HandlerList getHandlerList() {
