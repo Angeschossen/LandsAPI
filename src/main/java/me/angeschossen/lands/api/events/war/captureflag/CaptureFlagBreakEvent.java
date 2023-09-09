@@ -61,12 +61,35 @@ public class CaptureFlagBreakEvent extends CaptureFlagEvent implements Cancellab
          * will be removed and the invaders will have captured the flag successfully.
          */
         DEFENDER_LOGOUT,
+        /**
+         * The war is over.
+         */
         WAR_END,
+        /**
+         * At least one of the blocks of the capture flag don't exist anymore in the world.
+         */
         BLOCK_INVALID
     }
 
     public static HandlerList getHandlerList() {
         return handlerList;
+    }
+
+
+    /**
+     * Cancel the removal of the capture flag.
+     *
+     * @param cancelled true if you wish to cancel this event
+     * @throws IllegalStateException if this capture flag is removed because of {@link BreakReason#BLOCK_INVALID} or {@link BreakReason#CAPTURED}.
+     *                               For {@link BreakReason#CAPTURED}, please cancel {@link CaptureFlagCapturedEvent} instead.
+     */
+    @Override
+    public void setCancelled(boolean cancelled) throws IllegalStateException {
+        if (breakReason == BreakReason.BLOCK_INVALID || breakReason == BreakReason.CAPTURED) {
+            throw new IllegalStateException("Can't cancel event with reason " + breakReason.toString());
+        }
+
+        super.setCancelled(cancelled);
     }
 
     @NotNull
