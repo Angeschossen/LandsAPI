@@ -25,7 +25,7 @@ public class APIHandler {
     private final @NotNull Plugin plugin;
     private static LandsIntegrationFactory landsIntegrationFactory;
     private final @NotNull GUIConfiguration guiConfiguration;
-    private final @NotNull Messages messages;
+    private final @NotNull MessageHandler messages;
     private final @NotNull LevelsHandler levelsHandler;
     private final @NotNull LandsIntegration legacySupport;
     private static FlagRegistry flagRegistry;
@@ -64,7 +64,7 @@ public class APIHandler {
     private APIHandler(@NotNull Plugin plugin,
                        @NotNull Configuration config,
                        @NotNull ModuleConfig warsConfig, @NotNull ModuleConfig nationsConfig,
-                       @NotNull Messages messages, @NotNull GUIConfiguration guiConfiguration,
+                       @NotNull MessageHandler messages, @NotNull GUIConfiguration guiConfiguration,
                        @NotNull LevelsHandler levelsHandler,
                        @NotNull LandsIntegration legacySupport,
                        @NotNull FlagRegistry flagRegistry,
@@ -100,7 +100,7 @@ public class APIHandler {
         return guiConfiguration;
     }
 
-    public @NotNull Messages getMessages() {
+    public @NotNull MessageHandler getMessages() {
         return messages;
     }
 
@@ -127,7 +127,7 @@ public class APIHandler {
     public static void init(@NotNull Plugin plugin,
                             @NotNull Configuration config,
                             @NotNull ModuleConfig warsConfig, @NotNull ModuleConfig nationsConfig,
-                            @NotNull Messages messages, @NotNull GUIConfiguration guiConfiguration,
+                            @NotNull MessageHandler messages, @NotNull GUIConfiguration guiConfiguration,
                             @NotNull LevelsHandler levelsHandler,
                             @NotNull LandsIntegration legacySupport,
                             @NotNull FlagRegistry flagRegistry,

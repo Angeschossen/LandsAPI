@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.land;
 
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,8 +41,18 @@ public interface TaxHolder {
      *
      * @return Name with color codes
      */
+    @Deprecated
     @NotNull
     String getColorName();
+
+    /**
+     * Same as {@link #getName()}, but with colors codes included.
+     *
+     * @return Name with color codes
+     */
+    @Deprecated
+    @NotNull
+    String getColorName(@Nullable CommandSender sender);
 
     /**
      * Get estimated tax revenue amount.
