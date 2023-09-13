@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.player;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
+import com.github.angeschossen.pluginframework.api.player.PlayerData;
 import me.angeschossen.lands.api.flags.type.PlayerFlag;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.chat.ChatMode;
@@ -14,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.Set;
 
-public interface LandPlayer extends OfflinePlayer, ExpressionEntity {
+public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData {
 
     /**
      * Set the current chat mode. See {@link ChatMode} for more info.

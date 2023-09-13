@@ -2,7 +2,11 @@ package me.angeschossen.lands.api.inbox;
 
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
+import com.github.angeschossen.pluginframework.api.player.PlayerData;
+import me.angeschossen.lands.api.player.LandPlayer;
+import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Inbox messages notify the land about events, such as newly trusted players, paid upkeep etc.
@@ -14,6 +18,13 @@ public interface InboxMessage extends ExpressionEntity {
      */
     @NotNull
     InboxCategory getCategory();
+
+    /**
+     * Get the message content {@link #getText()} with the messages date when it was received ({@link #getText()}).
+     * @param sender Used for per user language. If no player provided, uses default language.
+     * @return Format: time ({@link #getTime()}): content ({@link #getText()})
+     */
+    @NotNull String getTextWithDate(@Nullable PlayerData sender);
 
     /**
      * Timestamp in milliseconds when the message was received.
@@ -29,9 +40,10 @@ public interface InboxMessage extends ExpressionEntity {
     String getText();
 
     /**
-     * Get the message content {@link #getText()} with the messages date when it was received ({@link #getText()}).
+     * Use {@link #getTextWithDate(PlayerData)} instead.
      * @return Format: time ({@link #getTime()}): content ({@link #getText()})
      */
+    @Deprecated
     @NotNull
     String getTextWithDate();
 
