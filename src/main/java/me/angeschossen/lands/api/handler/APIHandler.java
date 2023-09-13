@@ -2,7 +2,6 @@ package me.angeschossen.lands.api.handler;
 
 import com.github.angeschossen.pluginframework.api.configuration.Configuration;
 import com.github.angeschossen.pluginframework.api.configuration.gui.GUIConfiguration;
-import com.github.angeschossen.pluginframework.api.configuration.messages.Messages;
 import com.github.angeschossen.pluginframework.api.utils.StringUtils;
 import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.configuration.ModuleConfig;

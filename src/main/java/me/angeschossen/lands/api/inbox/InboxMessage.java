@@ -3,8 +3,6 @@ package me.angeschossen.lands.api.inbox;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.player.PlayerData;
-import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
