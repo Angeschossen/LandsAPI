@@ -50,7 +50,6 @@ public interface TaxHolder {
      *
      * @return Name with color codes
      */
-    @Deprecated
     @NotNull
     String getColorName(@Nullable CommandSender sender);
 

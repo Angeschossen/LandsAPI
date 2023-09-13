@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events;
 
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import org.bukkit.entity.Player;
@@ -9,6 +10,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.UUID;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -18,20 +20,21 @@ import java.util.stream.Collectors;
 public class BroadcastEvent extends LandsEvent {
     public static HandlerList handlerList = new HandlerList();
 
-    private final @NotNull String message;
     private final @Nullable String messageKey;
     private final @NotNull Collection<Player> recipients;
+    private final @NotNull Function<Player, String> parseMessage;
 
     /**
      * Create an instance of this event.
-     * @param recipients all recipients
-     * @param messageKey Message key in the Lands language file. Use null if the message isn't from Lands
-     * @param message the message content
+     *
+     * @param recipients   all recipients
+     * @param messageKey   Message key in the Lands language file. Use null if the message isn't from Lands
+     * @param parseMessage parses the message for a specific player. Lands supports per player language
      */
-    public BroadcastEvent(@NotNull Collection<Player> recipients, @Nullable String messageKey, @NotNull String message) {
-        this.message = message;
+    public BroadcastEvent(@NotNull Collection<Player> recipients, @Nullable String messageKey, @NotNull Function<Player, String> parseMessage) {
         this.messageKey = messageKey;
         this.recipients = recipients;
+        this.parseMessage = parseMessage;
     }
 
     public static HandlerList getHandlerList() {
@@ -45,15 +48,24 @@ public class BroadcastEvent extends LandsEvent {
 
     /**
      * Get the message content.
+     *
      * @return message content
      */
+    @Deprecated
     @NotNull
     public String getMessage() {
-        return message;
+        return "deprecated";
+    }
+
+    @NotNull
+    public String parseMessage(@NotNull Player recipient) {
+        Checks.requireNonNull(recipient, "recipient");
+        return parseMessage.apply(recipient);
     }
 
     /**
      * Get the message key.
+     *
      * @return null, if message isn't from Lands and a 3rd party plugin called this event
      */
     @Nullable
@@ -63,6 +75,7 @@ public class BroadcastEvent extends LandsEvent {
 
     /**
      * Get a collection of recipients.
+     *
      * @return all recipients
      */
     @NotNull
