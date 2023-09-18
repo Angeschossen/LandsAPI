@@ -22,7 +22,7 @@ public class BroadcastEvent extends LandsEvent {
 
     private final @Nullable String messageKey;
     private final @NotNull Collection<Player> recipients;
-    private final @NotNull Function<Player, String> parseMessage;
+    private final @NotNull Function<@Nullable Player, String> parseMessage;
 
     /**
      * Create an instance of this event.
@@ -31,7 +31,7 @@ public class BroadcastEvent extends LandsEvent {
      * @param messageKey   Message key in the Lands language file. Use null if the message isn't from Lands
      * @param parseMessage parses the message for a specific player. Lands supports per player language
      */
-    public BroadcastEvent(@NotNull Collection<Player> recipients, @Nullable String messageKey, @NotNull Function<Player, String> parseMessage) {
+    public BroadcastEvent(@NotNull Collection<Player> recipients, @Nullable String messageKey, @NotNull Function<@Nullable Player, String> parseMessage) {
         this.messageKey = messageKey;
         this.recipients = recipients;
         this.parseMessage = parseMessage;
@@ -58,8 +58,7 @@ public class BroadcastEvent extends LandsEvent {
     }
 
     @NotNull
-    public String parseMessage(@NotNull Player recipient) {
-        Checks.requireNonNull(recipient, "recipient");
+    public String parseMessage(@Nullable Player recipient) {
         return parseMessage.apply(recipient);
     }
 
