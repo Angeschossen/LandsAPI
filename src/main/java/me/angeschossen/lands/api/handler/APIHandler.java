@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.handler;
 
 import com.github.angeschossen.pluginframework.api.configuration.Configuration;
-import com.github.angeschossen.pluginframework.api.configuration.gui.GUIConfiguration;
 import com.github.angeschossen.pluginframework.api.utils.StringUtils;
 import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.configuration.ModuleConfig;
@@ -23,7 +22,6 @@ public class APIHandler {
     private final @NotNull ModuleConfig warsConfig, nationsConfig;
     private final @NotNull Plugin plugin;
     private static LandsIntegrationFactory landsIntegrationFactory;
-    private final @NotNull GUIConfiguration guiConfiguration;
     private final @NotNull MessageHandler messages;
     private final @NotNull LevelsHandler levelsHandler;
     private final @NotNull LandsIntegration legacySupport;
@@ -63,7 +61,7 @@ public class APIHandler {
     private APIHandler(@NotNull Plugin plugin,
                        @NotNull Configuration config,
                        @NotNull ModuleConfig warsConfig, @NotNull ModuleConfig nationsConfig,
-                       @NotNull MessageHandler messages, @NotNull GUIConfiguration guiConfiguration,
+                       @NotNull MessageHandler messages,
                        @NotNull LevelsHandler levelsHandler,
                        @NotNull LandsIntegration legacySupport,
                        @NotNull FlagRegistry flagRegistry,
@@ -77,7 +75,6 @@ public class APIHandler {
         this.plugin = plugin;
         this.messages = messages;
         APIHandler.flagRegistry = flagRegistry;
-        this.guiConfiguration = guiConfiguration;
         this.levelsHandler = levelsHandler;
         this.stringUtils = stringUtils;
     }
@@ -95,11 +92,7 @@ public class APIHandler {
         return plugin;
     }
 
-    public GUIConfiguration getGUIConfiguration() {
-        return guiConfiguration;
-    }
-
-    public @NotNull MessageHandler getMessages() {
+    public @NotNull MessageHandler getLocaleHandler() {
         return messages;
     }
 
@@ -126,7 +119,7 @@ public class APIHandler {
     public static void init(@NotNull Plugin plugin,
                             @NotNull Configuration config,
                             @NotNull ModuleConfig warsConfig, @NotNull ModuleConfig nationsConfig,
-                            @NotNull MessageHandler messages, @NotNull GUIConfiguration guiConfiguration,
+                            @NotNull MessageHandler messages,
                             @NotNull LevelsHandler levelsHandler,
                             @NotNull LandsIntegration legacySupport,
                             @NotNull FlagRegistry flagRegistry,
@@ -142,7 +135,7 @@ public class APIHandler {
 
         instance = new APIHandler(plugin,
                 config, warsConfig, nationsConfig,
-                messages, guiConfiguration,
+                messages,
                 levelsHandler,
                 legacySupport,
                 flagRegistry,

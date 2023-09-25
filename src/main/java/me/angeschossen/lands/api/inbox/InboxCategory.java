@@ -1,7 +1,9 @@
 package me.angeschossen.lands.api.inbox;
 
 import me.angeschossen.lands.api.handler.APIHandler;
+import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -63,10 +65,10 @@ public enum InboxCategory {
      * Disable this category from being selectable in the menu.
      * Messages of this category will still display, if {@link #ALL} is seleted.
      *
-     * @throws IllegalStateException The {@link #ALL} category can't be disabled
      * @param enabled false, to disable this category
+     * @throws IllegalStateException The {@link #ALL} category can't be disabled
      */
-    public final void setEnabled(boolean enabled)throws IllegalStateException {
+    public final void setEnabled(boolean enabled) throws IllegalStateException {
         if (this == ALL && !enabled) {
             throw new IllegalStateException("Can't disable the category ALL");
         }
@@ -76,6 +78,7 @@ public enum InboxCategory {
 
     /**
      * Get a category by its ID.
+     *
      * @param id The ID
      * @return never null. Will return {@link #ALL} if there's no category with such ID
      */
@@ -92,6 +95,7 @@ public enum InboxCategory {
 
     /**
      * Get a category by it's priority
+     *
      * @param prio The priority
      * @return never null. Will return {@link #ALL} if there's no category with this priority
      */
@@ -102,6 +106,7 @@ public enum InboxCategory {
 
     /**
      * Cycle through the categories.
+     *
      * @return never null
      */
     @NotNull
@@ -112,6 +117,7 @@ public enum InboxCategory {
 
     /**
      * Get the ID of the category.
+     *
      * @return The categories ID
      */
     public final int getId() {
@@ -119,11 +125,23 @@ public enum InboxCategory {
     }
 
     /**
-     * Get the name of the category.
+     * Use {@link #getName(LandPlayer)} instead.
+     *
      * @return The name
      */
     @NotNull
+    @Deprecated
     public final String getName() {
-        return APIHandler.getInstance().getGUIConfiguration().getString(this == ALL ? "all" : "inbox-filter." + toString());
+        return getName(null);
+    }
+
+    /**
+     * Get the name of the category.
+     * @param landPlayer returned value may depend on player's locale
+     * @return the name
+     */
+    @NotNull
+    public final String getName(@Nullable LandPlayer landPlayer) {
+        return APIHandler.getInstance().getLocaleHandler().getGUILocale(landPlayer).getString(this == ALL ? "all" : "inbox-filter." + toString());
     }
 }

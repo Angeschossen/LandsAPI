@@ -190,11 +190,19 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     War getWar();
 
     /**
-     * Depending on the type ({@link #getType()}), this will return the colored name ({@link #getColorName()}) with a prefix.
-     * Example: "Land Test" or "Nation Test". This depends on the servers language file.
+     * Use {@link #getWarName(LandPlayer)} instead.
      * @return The colored name with prefix
      */
+    @Deprecated
     String getWarName();
+
+    /**
+     * Depending on the type ({@link #getType()}), this will return the colored name ({@link #getColorName()}) with a prefix.
+     * Example: "Land Test" or "Nation Test". This depends on the servers language file.
+     * @param landPlayer returned value may depend on the locale of the player
+     * @return The colored name with prefix
+     */
+    String getWarName(@Nullable LandPlayer landPlayer);
 
     /**
      * Get the team of the current war.

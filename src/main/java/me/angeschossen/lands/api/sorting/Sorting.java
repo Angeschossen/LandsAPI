@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.sorting;
 
 import com.github.angeschossen.pluginframework.api.utils.StringUtils;
+import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,6 +41,7 @@ public abstract class Sorting<T> implements Comparator<T> {
     }
 
     @NotNull
+    @Deprecated
     public abstract String getDisplayName();
 
     public final String getId() {
@@ -89,6 +91,8 @@ public abstract class Sorting<T> implements Comparator<T> {
 
     @NotNull
     protected abstract String[][] getGUIPlaceholders(int place, T t);
+
+    public abstract @NotNull String getDisplayName(@Nullable LandPlayer landPlayer);
 
     @NotNull
     protected abstract String parseHologramLine(int place, T t);
