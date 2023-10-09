@@ -1,6 +1,5 @@
 package me.angeschossen.lands.api.land;
 
-import com.github.angeschossen.pluginframework.api.blockutil.BlockPosition;
 import com.github.angeschossen.pluginframework.api.blockutil.impl.Position;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.PlayerUntrustedException;
