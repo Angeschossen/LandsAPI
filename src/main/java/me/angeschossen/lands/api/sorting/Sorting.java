@@ -27,7 +27,7 @@ public abstract class Sorting<T> implements Comparator<T> {
 
     @Nullable
     public final T get(int place) {
-        if (place <= 0) {
+        if (place < 1) {
             throw new IllegalArgumentException("Place can't be smaller than 1.");
         }
 

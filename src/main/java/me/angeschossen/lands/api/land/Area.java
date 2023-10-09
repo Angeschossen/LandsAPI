@@ -1,5 +1,7 @@
 package me.angeschossen.lands.api.land;
 
+import com.github.angeschossen.pluginframework.api.blockutil.BlockPosition;
+import com.github.angeschossen.pluginframework.api.blockutil.impl.Position;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.PlayerUntrustedException;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
@@ -36,6 +38,18 @@ public interface Area extends ExpressionEntity, TaxHolder {
      * @return false, if the player isn't allowed to enter
      */
     boolean canEnter(@NotNull LandPlayer landPlayer, boolean sendMessage);
+
+    /**
+     * Set the spawn position of the area.
+     * @param position new position or reset to default
+     */
+    void setSpawn(@Nullable Position position);
+
+    /**
+     * Get the spawn position of the area.
+     * @return null, if area isn't setup yet or no spawn set manually ({@link #setSpawn(Position)}) for the default area.
+     */
+    @Nullable Position getSpawn();
 
     /**
      * Get the entry role.
