@@ -81,7 +81,7 @@ public abstract class Sorting<T> implements Comparator<T> {
     @NotNull
     public final String[] handleParseSignLines(int place) {
         T t = get(place);
-        return t == null ? new String[0] : parseSignLines(++place, t);
+        return t == null ? new String[0] : parseSignLines(place, t);
     }
 
     public final void sort() {
