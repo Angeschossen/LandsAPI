@@ -25,6 +25,10 @@ public enum RoleType {
      */
     NORMAL(2, true, true, true),
     /**
+     * This role is assigned to the tenant of an area.
+     */
+    TENANT(6, false, false, true),
+    /**
      * The role of this type is assigned to newly trusted players.
      */
     ENTRY(1, false, false, true),
