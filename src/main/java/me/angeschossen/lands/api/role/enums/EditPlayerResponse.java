@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.land.enums;
+package me.angeschossen.lands.api.role.enums;
 
 /**
  * Used to check if a player is allowed to edit a specific role or a player that is part of that role.
