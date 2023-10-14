@@ -1,5 +1,7 @@
 package me.angeschossen.lands.api.role.enums;
 
+import me.angeschossen.lands.api.land.Area;
+import me.angeschossen.lands.api.land.enums.LandType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -73,6 +75,10 @@ public enum RoleType {
 
     public boolean canHaveMembers() {
         return canHaveMembers;
+    }
+
+    public boolean shouldDisplay(Area area) {
+        return this != TENANT || area.getLand().getLandType() == LandType.ADMIN;
     }
 
     public boolean canMultiple() {
