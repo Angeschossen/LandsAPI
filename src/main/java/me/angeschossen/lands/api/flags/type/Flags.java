@@ -68,6 +68,7 @@ public final class Flags {
     // player
     public static PlayerFlag ENTER_MESSAGES;
     public static PlayerFlag RECEIVE_INVITES;
+    public static PlayerFlag SHOW_INBOX;
 
     private Flags() {
     }
