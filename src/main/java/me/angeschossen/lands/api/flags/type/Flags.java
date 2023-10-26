@@ -47,6 +47,7 @@ public final class Flags {
     public static RoleFlag WAR_MANAGE;
 
     public static RoleFlag NO_DAMAGE;
+    public static RoleFlag RENT_LIMIT_ONE;
 
     public static NaturalFlag ENTITY_GRIEFING;
     public static NaturalFlag TNT_GRIEFING;
