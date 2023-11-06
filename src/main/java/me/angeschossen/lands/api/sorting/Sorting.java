@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 /**
  * A sorting evaluates the place of an land or nation on the leaderboard.
+ *
  * @param <T>
  */
 public abstract class Sorting<T> implements Comparator<T> {
@@ -61,6 +62,16 @@ public abstract class Sorting<T> implements Comparator<T> {
         return t == null ? null : parseHologramLine(place, t);
     }
 
+
+    public final String[][] handleParseMenuItem(int place,@NotNull T t) {
+        String[][] s = getGUIPlaceholders(place, t);
+        if (s.length < 2 || s[0].length != s[1].length) {
+            throw new IllegalStateException("Placeholder and value array must be of the same length.");
+        }
+
+        return s;
+    }
+
     @NotNull
     public final String[][] handleParseMenuItem(int place) {
         T t = get(place);
@@ -68,12 +79,7 @@ public abstract class Sorting<T> implements Comparator<T> {
             return new String[0][0];
         }
 
-        String[][] s = getGUIPlaceholders(place, t);
-        if (s.length < 2 || s[0].length != s[1].length) {
-            throw new IllegalStateException("Placeholder and value array must be of the same length.");
-        }
-
-        return s;
+        return handleParseMenuItem(place, t);
     }
 
     public abstract String[] getPlaceholders();
