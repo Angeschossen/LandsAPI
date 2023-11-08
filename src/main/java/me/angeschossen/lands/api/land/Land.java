@@ -67,7 +67,7 @@ public interface Land extends MemberHolder {
      * @param z          Chunk z
      * @return false, if the chunk a 3rd party plugin cancels the claiming or the chunk is already claimed.
      */
-    boolean claimChunk(@Nullable LandPlayer landPlayer, @NotNull World world, int x, int z);
+    CompletableFuture<Boolean> claimChunk(@Nullable LandPlayer landPlayer, @NotNull World world, int x, int z);
 
     /**
      * Delete this land.
