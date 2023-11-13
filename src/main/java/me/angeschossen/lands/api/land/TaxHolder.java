@@ -1,10 +1,11 @@
 package me.angeschossen.lands.api.land;
 
+import com.github.angeschossen.pluginframework.api.holder.ChangeSaveable;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public interface TaxHolder {
+public interface TaxHolder extends ChangeSaveable {
 
     /**
      * Set tax value.
