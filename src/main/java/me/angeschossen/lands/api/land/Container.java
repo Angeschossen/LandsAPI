@@ -53,4 +53,11 @@ public interface Container {
      * @return false, if out of bounds
      */
     boolean isInYLevel(int y);
+
+    /**
+     * Get the land to which the container belongs.
+     * @return land of the container
+     */
+    @NotNull
+    Land getLand();
 }
