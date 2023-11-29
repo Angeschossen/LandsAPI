@@ -33,7 +33,11 @@ public enum InboxCategory {
     /**
      * Messages about new relations, such as new allies or declaration of enemies.
      */
-    RELATIONS(4, 4);
+    RELATIONS(4, 4),
+    /**
+     * Messages posted by land members to inform other land members.
+     */
+    POSTS(5, 5);
 
     private static final Map<Integer, InboxCategory> categories = new HashMap<>();
 
