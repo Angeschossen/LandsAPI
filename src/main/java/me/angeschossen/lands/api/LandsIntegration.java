@@ -11,6 +11,7 @@ import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
+import me.angeschossen.lands.api.player.PlayerCooldown;
 import me.angeschossen.lands.api.sorting.SortingContext;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -39,6 +40,7 @@ public interface LandsIntegration {
 
     /**
      * Get the configuration of Lands.
+     *
      * @return never null
      */
     @NotNull Configuration getConfig();
@@ -164,6 +166,17 @@ public interface LandsIntegration {
      * @since 5.14.0
      */
     @NotNull LevelsHandler getLevelsHandler();
+
+    /**
+     * Get the last time a cooldown was set for a player.
+     * The cooldown will expire once the {@link PlayerCooldown#getTime()} is over.
+     *
+     * @param playerUUID the player
+     * @param cooldown   the cooldown
+     * @return null, if cooldown wasn't set yet or cooldown is expired. Never negative
+     */
+    @Nullable
+    Long getPlayerCooldown(@NotNull UUID playerUUID, @NotNull PlayerCooldown cooldown);
 
     /**
      * Get the name of this integration.

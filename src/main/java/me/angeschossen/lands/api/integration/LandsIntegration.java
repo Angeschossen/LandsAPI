@@ -15,6 +15,7 @@ import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
+import me.angeschossen.lands.api.player.PlayerCooldown;
 import me.angeschossen.lands.api.sorting.SortingContext;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -230,6 +231,11 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     @NotNull
     public LevelsHandler getLevelsHandler() {
         return APIHandler.getInstance().getLegacySupport().getLevelsHandler();
+    }
+
+    @Override
+    public @Nullable Long getPlayerCooldown(@NotNull UUID playerUUID, @NotNull PlayerCooldown cooldown) {
+        return null;
     }
 
     @Override
