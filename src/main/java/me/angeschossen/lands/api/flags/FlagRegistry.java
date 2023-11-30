@@ -21,15 +21,16 @@ import java.util.List;
 public interface FlagRegistry {
 
     /**
-     * Register a flag.
+     * Register a flag. Flags need to be registered before Lands enables, but after Lands was loaded.
      *
      * @param flag flag to register
      * @return same instance
      * @throws FlagConflictException    if an flag with this unique name already exists
-     * @throws IllegalArgumentException the flag name is invalid
+     * @throws IllegalArgumentException if the flag name is invalid
+     * @throws IllegalStateException    if Lands wasn't loaded yet or it's already enabled
      */
     @NotNull
-    me.angeschossen.lands.api.flags.type.parent.Flag<?> register(@NotNull me.angeschossen.lands.api.flags.type.parent.Flag<?> flag) throws FlagConflictException, IllegalArgumentException;
+    me.angeschossen.lands.api.flags.type.parent.Flag<?> register(@NotNull me.angeschossen.lands.api.flags.type.parent.Flag<?> flag) throws FlagConflictException, IllegalArgumentException, IllegalStateException;
 
     /**
      * Check if the name is valid.
