@@ -77,10 +77,6 @@ public enum RoleType {
         return canHaveMembers;
     }
 
-    public boolean shouldDisplay(Area area) {
-        return this != TENANT || area.getLand().getLandType() == LandType.ADMIN;
-    }
-
     public boolean canMultiple() {
         return multiple;
     }
