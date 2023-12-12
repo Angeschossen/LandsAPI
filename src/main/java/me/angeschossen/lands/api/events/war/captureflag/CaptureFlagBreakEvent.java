@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.events.war.captureflag;
 
 import com.github.angeschossen.pluginframework.api.utils.Checks;
+import me.angeschossen.lands.api.land.block.removalreason.LandBlockRemovalReason;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.captureflag.CaptureFlag;
 import org.bukkit.event.Cancellable;
@@ -43,7 +44,7 @@ public class CaptureFlagBreakEvent extends CaptureFlagEvent implements Cancellab
     /**
      * Describes the reason of removal.
      */
-    public enum BreakReason {
+    public enum BreakReason implements LandBlockRemovalReason {
         /**
          * The capture flag has been captured by the invaders.
          */
