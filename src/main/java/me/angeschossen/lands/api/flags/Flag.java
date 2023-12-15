@@ -35,7 +35,7 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
     private @Nullable List<String> description;
     private @Nullable String displayName;
     private boolean warState;
-    private boolean display = true;
+    private boolean display;
 
     protected abstract T self();
 
