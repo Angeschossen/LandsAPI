@@ -1,7 +1,11 @@
 package me.angeschossen.lands.api.land.block;
 
 import com.github.angeschossen.pluginframework.api.blockutil.impl.BlockPosition;
+import me.angeschossen.lands.api.land.Container;
+import me.angeschossen.lands.api.land.block.removalreason.LandBlockRemovalReason;
+import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Special blocks that can be placed inside a land.
@@ -13,6 +17,13 @@ public interface LandBlock {
      * @return unique id
      */
     @NotNull String getId();
+
+    /**
+     * Get the container in which the landblock is placed in.
+     *
+     * @return never null. A landblock needs to be placed inside a land
+     */
+    @NotNull Container getContainer();
 
     /**
      * Get the center of the structure.
@@ -38,4 +49,14 @@ public interface LandBlock {
      * @return type of the block
      */
     @NotNull LandBlockType getType();
+
+    /**
+     * @param landPlayer The player that initiated the removal. null, if no player involved.
+     * @param reason     The reason of the removal
+     * @param done       will be executed once all blocks are removed
+     * @param delayTicks remove a block each x ticks. So if the landblock
+     *                   consists of 5 blocks it will take 5 * x ticks to remove the complete landblock.
+     * @return false, if a 3rd party plugin cancelled the removal of the landblock
+     */
+    boolean remove(@Nullable LandPlayer landPlayer, @NotNull LandBlockRemovalReason reason, @Nullable Runnable done, int delayTicks);
 }
