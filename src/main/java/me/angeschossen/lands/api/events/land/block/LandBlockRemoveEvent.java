@@ -1,17 +1,15 @@
 package me.angeschossen.lands.api.events.land.block;
 
-import me.angeschossen.lands.api.events.land.LandEvent;
-import me.angeschossen.lands.api.events.land.bank.BankEvent;
-import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.block.LandBlock;
+import me.angeschossen.lands.api.land.block.LandBlockType;
+import me.angeschossen.lands.api.land.block.removalreason.BlockRemovalReason;
 import me.angeschossen.lands.api.land.block.removalreason.LandBlockRemovalReason;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class LandBlockRemovalEvent extends LandBlockEvent {
+public class LandBlockRemoveEvent extends LandBlockEvent {
     public static final HandlerList handlerList = new HandlerList();
     private final @NotNull LandBlockRemovalReason reason;
 
@@ -22,7 +20,7 @@ public class LandBlockRemovalEvent extends LandBlockEvent {
      * @param landBlock  landblock that is being removed
      * @param reason     the reason of the removal
      */
-    public LandBlockRemovalEvent(@Nullable LandPlayer landPlayer, @NotNull LandBlock landBlock, @NotNull LandBlockRemovalReason reason) {
+    public LandBlockRemoveEvent(@Nullable LandPlayer landPlayer, @NotNull LandBlock landBlock, @NotNull LandBlockRemovalReason reason) {
         super(landBlock.getContainer().getLand(), landPlayer, landBlock);
 
         this.reason = reason;
@@ -45,5 +43,24 @@ public class LandBlockRemovalEvent extends LandBlockEvent {
     @Override
     public @NotNull HandlerList getHandlers() {
         return handlerList;
+    }
+
+    /**
+     * Cancel the removal of the landblock.
+     *
+     * @param cancel true if you wish to cancel this event
+     * @throws IllegalStateException if you try to cancel the removal of a landblock that is being removed because the block doesn't exist anymore in the world. See {@link BlockRemovalReason#BLOCK_INVALID}. The removal of rental signs can't be cancelled either.
+     */
+    @Override
+    public void setCancelled(boolean cancel) throws IllegalStateException {
+        if (reason == BlockRemovalReason.BLOCK_INVALID) {
+            throw new IllegalStateException("Can't cancel landblock removal with reason " + reason.toString());
+        }
+
+        if (landBlock.getType() == LandBlockType.RENTAL) {
+            throw new IllegalStateException("Can't cancel removal of rental landblock");
+        }
+
+        super.setCancelled(cancel);
     }
 }

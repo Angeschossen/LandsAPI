@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.war.captureflag;
 
+import me.angeschossen.lands.api.events.land.block.LandBlockPlaceEvent;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.captureflag.CaptureFlag;
 import org.bukkit.event.Cancellable;
@@ -7,8 +8,9 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called whenever a capture flag is being placed.
+ * Use {@link LandBlockPlaceEvent} instead.
  */
+@Deprecated
 public class CaptureFlagPlaceEvent extends CaptureFlagEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();

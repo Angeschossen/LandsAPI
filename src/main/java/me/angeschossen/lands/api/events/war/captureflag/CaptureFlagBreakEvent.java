@@ -10,8 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called whenever a capture flag is being removed.
+ * Use {@link me.angeschossen.lands.api.events.land.block.LandBlockRemoveEvent} instead.
  */
+@Deprecated
 public class CaptureFlagBreakEvent extends CaptureFlagEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
