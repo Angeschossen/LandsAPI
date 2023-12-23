@@ -90,11 +90,7 @@ public enum PlayerCooldown {
      * @param time if 0, disables this cooldown
      */
     public void setTime(long time) {
-        if (time < 0) {
-            throw new IllegalArgumentException("time can't be lower than 0");
-        }
-
-        this.time = time;
+        this.time = Math.max(time, 0); // all lower than 1 disables it
     }
 
     public enum ConfigType {
