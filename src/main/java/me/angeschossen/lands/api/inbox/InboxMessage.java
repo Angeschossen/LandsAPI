@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 public interface InboxMessage extends ExpressionEntity {
     /**
      * Get the category of this message.
+     *
      * @return The category this message belongs to
      */
     @NotNull
@@ -19,6 +20,7 @@ public interface InboxMessage extends ExpressionEntity {
 
     /**
      * Get the message content {@link #getText()} with the messages date when it was received ({@link #getText()}).
+     *
      * @param sender Used for per user language. If no player provided, uses default language.
      * @return Format: time ({@link #getTime()}): content ({@link #getText()})
      */
@@ -26,12 +28,14 @@ public interface InboxMessage extends ExpressionEntity {
 
     /**
      * Timestamp in milliseconds when the message was received.
+     *
      * @return Milliseconds
      */
     long getTime();
 
     /**
      * Get the message text
+     *
      * @return Content of the message
      */
     @NotNull
@@ -39,6 +43,7 @@ public interface InboxMessage extends ExpressionEntity {
 
     /**
      * Use {@link #getTextWithDate(PlayerData)} instead.
+     *
      * @return Format: time ({@link #getTime()}): content ({@link #getText()})
      */
     @Deprecated
@@ -46,7 +51,16 @@ public interface InboxMessage extends ExpressionEntity {
     String getTextWithDate();
 
     /**
+     * Check if this message is an alert. Some messages are really important, such as the reminder to deposit money for upkeep, if a land
+     * is lacking funds.
+     *
+     * @return true, if this message is an alert
+     */
+    boolean shouldAlertMembers();
+
+    /**
      * Check if this message belongs to a specific inbox category.
+     *
      * @param type The inbox category
      * @return true, if the inbox category is the same or the provided inbox category equals {@link InboxCategory#ALL}
      */
