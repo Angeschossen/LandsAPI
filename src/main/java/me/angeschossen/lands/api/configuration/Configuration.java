@@ -8,4 +8,10 @@ public interface Configuration {
      * @return never null
      */
     @NotNull WarsConfig getWarsConfig();
+
+    /**
+     * Get configuration options for nations.
+     * @return never null
+     */
+    @NotNull NationsConfig getNationsConfig();
 }
