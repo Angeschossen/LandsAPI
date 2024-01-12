@@ -124,7 +124,7 @@ public class RoleFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.t
 
     @Override
     public @NotNull String getBypassPermissionWilderness() {
-        return getBypassPermissionWilderness();
+        return "lands.bypass.wilderness." + name;
     }
 
     @NotNull
@@ -138,9 +138,10 @@ public class RoleFlag extends DefaultStateFlag<me.angeschossen.lands.api.flags.t
         return FlagModule.LAND;
     }
 
+    @Deprecated
     @NotNull
     public String getBypassPermWild() {
-        return "lands.bypass.wilderness." + name;
+        return getBypassPermissionWilderness();
     }
 
     @NotNull
