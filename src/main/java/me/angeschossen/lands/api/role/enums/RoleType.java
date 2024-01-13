@@ -100,9 +100,4 @@ public enum RoleType {
     public final boolean paysTaxes() {
         return this == NORMAL || this == ENTRY;
     }
-
-    public boolean shouldAddToNewObject() {
-        // nation role is only needed if land is part of nation
-        return this != NATION;
-    }
 }
