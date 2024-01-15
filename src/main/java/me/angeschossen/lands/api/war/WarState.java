@@ -42,7 +42,6 @@ public interface WarState {
 
     @NotNull WarTeam getTeam(MemberHolder entity);
 
-
     double getMaxTribute(WarTeam warTeam);
 
     float getPointsToWin();

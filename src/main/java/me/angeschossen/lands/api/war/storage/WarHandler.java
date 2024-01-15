@@ -16,13 +16,15 @@ public interface WarHandler {
      * Get all wars from the database. This is called sync at plugin startup to ensure all data is ready before players join,
      * but is never called after the server started.
      *
+     * @param wars All current wars in the Lands database. You can use these instances to make your wars based on their functionality.
      * @return all active wars
      */
     @NotNull
-    Collection<? extends War> getAllWarsFromDatabase();
+    Collection<? extends War> getAllWarsFromDatabase(Collection<? extends War> wars);
 
     /**
      * Delete a war from your database.
+     *
      * @param war the war to delete
      * @return async completeable future
      */
