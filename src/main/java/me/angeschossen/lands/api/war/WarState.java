@@ -34,7 +34,7 @@ public interface WarState {
      */
     @NotNull MemberHolder getEnemy(@NotNull MemberHolder memberHolder);
 
-    MemberHolder getMemberHolder(WarTeam warTeam);
+    MemberHolder getMemberHolder(@NotNull WarTeam warTeam);
 
     int getId();
 

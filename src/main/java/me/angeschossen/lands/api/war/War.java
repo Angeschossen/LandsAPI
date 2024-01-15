@@ -17,8 +17,17 @@ import java.util.Collection;
 
 public interface War extends ExpressionEntity, WarState {
 
-    void addOnlinePlayer(LandPlayer landPlayer);
+    /**
+     * Add an online player to this war.
+     * This is called by Lands.
+     *
+     * @param landPlayer the player to add
+     */
+    void addOnlinePlayer(@NotNull LandPlayer landPlayer);
 
+    /**
+     * End this war.
+     */
     void end();
 
     /**
@@ -45,6 +54,12 @@ public interface War extends ExpressionEntity, WarState {
      */
     @NotNull Collection<? extends WarPlayer> getOnlineAttackers();
 
+    /**
+     * Get all capture flags of this war.
+     *
+     * @return never null
+     */
+    @NotNull
     Collection<? extends CaptureFlag> getCaptureFlags();
 
     /**
@@ -62,7 +77,13 @@ public interface War extends ExpressionEntity, WarState {
      */
     @NotNull Collection<? extends WarPlayer> getOnlineDefenders();
 
-    @Nullable Collection<? extends CaptureFlag> getPlacedByTeam(WarTeam warTeam);
+    /**
+     * Get all capture flags that were placed by a specific team.
+     *
+     * @param warTeam the team
+     * @return all capture flags placed by a specific team
+     */
+    @Nullable Collection<? extends CaptureFlag> getPlacedByTeam(@NotNull WarTeam warTeam);
 
     /**
      * @param winner The assumed winner
@@ -70,11 +91,37 @@ public interface War extends ExpressionEntity, WarState {
      */
     double getReward(@Nullable MemberHolder winner);
 
-    WarStats getStats(WarTeam warTeam);
+    /**
+     * Get the war stats of a specific team
+     *
+     * @param warTeam the team
+     * @return stats of a specific team
+     */
+    @NotNull
+    WarStats getStats(@NotNull WarTeam warTeam);
 
+    /**
+     * Get milliseconds when of date at which the war started
+     *
+     * @return milliseconds when of date at which the war started
+     */
     long getStarted();
-void setStarted(long started);
-    WarPlayer getWarPlayer(LandPlayer landPlayer);
+
+    /**
+     * Set started time. See {@link #getStarted()} for more info.
+     *
+     * @param started milliseconds
+     */
+    void setStarted(long started);
+
+    /**
+     * Get information about player in this war.
+     *
+     * @param landPlayer the player
+     * @return null, if player doesn't participate in this war
+     */
+    @Nullable
+    WarPlayer getWarPlayer(@NotNull LandPlayer landPlayer);
 
     /**
      * Get the current winner.
@@ -84,6 +131,16 @@ void setStarted(long started);
     @Nullable
     MemberHolder getWinner();
 
+    /**
+     * Check if the war allows player to do specific actions during war in the enemies lands.
+     *
+     * @param land        the enemy land to check for
+     * @param landPlayer  the player doing the action
+     * @param roleFlag    the flag
+     * @param material    material of block. null if no block involved
+     * @param sendMessage should a denied message be sent?
+     * @return false, if player not allowed to do this in the enemy land
+     */
     boolean hasFlag(@NotNull Land land, @NotNull LandPlayer landPlayer, @NotNull RoleFlag roleFlag, @Nullable Material material, boolean sendMessage);
 
     /**
@@ -94,7 +151,19 @@ void setStarted(long started);
      */
     boolean isEndingSoon();
 
-    boolean isParticipating(LandPlayer player);
+    /**
+     * Check if a player is participating in this war.
+     *
+     * @param player the player to check
+     * @return false, if player isn't participating
+     */
+    boolean isParticipating(@NotNull LandPlayer player);
 
-    void removeOnlinePlayer(Player player, boolean logging);
+    /**
+     * Remove an online player from this war.
+     *
+     * @param player  the player that is logging out
+     * @param logging related to cooldown_logging option in config.yml
+     */
+    void removeOnlinePlayer(@NotNull LandPlayer player, boolean logging);
 }
