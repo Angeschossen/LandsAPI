@@ -9,7 +9,6 @@ import me.angeschossen.lands.api.war.captureflag.CaptureFlag;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 import me.angeschossen.lands.api.war.player.WarPlayer;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
