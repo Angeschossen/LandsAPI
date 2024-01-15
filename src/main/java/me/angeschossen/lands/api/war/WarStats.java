@@ -72,4 +72,8 @@ public interface WarStats {
      * @return Amount of captures
      */
     int getCaptures();
+
+
+    void setKills(int kills);void setDeaths(int deaths);
+    void setCaptures(int captures);
 }

@@ -1,7 +1,5 @@
 package me.angeschossen.lands.api.role.enums;
 
-import me.angeschossen.lands.api.land.Area;
-import me.angeschossen.lands.api.land.enums.LandType;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;

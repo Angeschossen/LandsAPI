@@ -17,6 +17,7 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
 import me.angeschossen.lands.api.player.PlayerCooldown;
 import me.angeschossen.lands.api.sorting.SortingContext;
+import me.angeschossen.lands.api.war.storage.WarHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -66,6 +67,11 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
 
             Bukkit.getLogger().info("[Lands] Nag author(s) of plugin " + plugin.getName() + ". It uses the deprecated LandsIntegration of Lands: https://github.com/Angeschossen/LandsAPI/wiki/API-Update");
         });
+    }
+
+    @Override
+    public void setWarHandler(@Nullable WarHandler warHandler) {
+
     }
 
     @Override

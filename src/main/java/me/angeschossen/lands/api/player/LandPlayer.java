@@ -17,6 +17,8 @@ import java.util.Set;
 
 public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData {
 
+    Object sendMessage(String key, String[] p, String[] v);
+
     /**
      * Set the current chat mode. See {@link ChatMode} for more info.
      *
@@ -33,6 +35,7 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
 
     /**
      * Toggle a personal flag for this player.
+     *
      * @param flag The flag to toggle
      * @return true, if the new state equals flag set
      */
@@ -40,6 +43,7 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
 
     /**
      * Check if a personal flag is set.
+     *
      * @param flag The flag
      * @return true, if the flag is set
      */
@@ -74,6 +78,7 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
 
     /**
      * Get invite that was sent by a specific land.
+     *
      * @param land The land that sent the invite to this player
      * @return null, if the land didn't send any invite to this player
      */
@@ -81,6 +86,7 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
 
     /**
      * Get all received invites.
+     *
      * @return All received invites
      */
     @NotNull Collection<? extends Invite> getInvites();
@@ -106,6 +112,7 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
 
     /**
      * Get the Bukkit player.
+     *
      * @return Bukkit player
      */
     Player getPlayer();
@@ -129,6 +136,7 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
 
     /**
      * Get a collection of wars the player is engaged in.
+     *
      * @return All wars the player is currently engaged in.
      */
     @NotNull Set<? extends War> getWars();

@@ -64,6 +64,8 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      */
     int getChunksAmount();
 
+    long getLastCaptureFlagPlacement();
+
     /**
      * Get the name, including colors codes.
      * @return Name with color codes included

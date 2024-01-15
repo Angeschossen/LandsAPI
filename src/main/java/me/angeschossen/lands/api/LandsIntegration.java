@@ -13,6 +13,7 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
 import me.angeschossen.lands.api.player.PlayerCooldown;
 import me.angeschossen.lands.api.sorting.SortingContext;
+import me.angeschossen.lands.api.war.storage.WarHandler;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -37,6 +38,14 @@ public interface LandsIntegration {
     static LandsIntegration of(@NotNull Plugin plugin) {
         return APIHandler.getLandsIntegrationFactory().of(plugin);
     }
+
+    /**
+     * Allows you to add your own war elements to wars in Lands.
+     * This needs to be set before Lands fully enabled. So after Lands loaded, but before it enables.
+     *
+     * @param warHandler if null, it will use the default war handler.
+     */
+    void setWarHandler(@Nullable WarHandler warHandler);
 
     /**
      * Get the configuration of Lands.
