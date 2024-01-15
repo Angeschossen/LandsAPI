@@ -170,7 +170,7 @@ public interface WarState {
     /**
      * Send current info of the war.
      *
-     * @param landPlayer the player to send it to
+     * @param landPlayer if null, sends it to all players that are engaged in the war
      */
     void sendCurrentInfo(@Nullable LandPlayer landPlayer);
 
