@@ -7,6 +7,7 @@ public interface WarStats {
     /**
      * Get points that weren't received by capturing a capture flag or killing enemies.
      * This includes positive point modification using {@link #modifyPoints(int)} and exploding or breaking an capture flag.
+     *
      * @return Never negative
      */
     int getPointsAdditional();
@@ -14,6 +15,7 @@ public interface WarStats {
     /**
      * Get total amount of points, including {@link #getPointsAdditional()}.
      * This also includes points received by killing enemies and capturing capture flags.
+     *
      * @return Never negative
      */
     float getPointsTotal();
@@ -62,6 +64,7 @@ public interface WarStats {
 
     /**
      * Modify points of team.
+     *
      * @param mod Can be positive or negative
      */
     void modifyPoints(int mod);
@@ -73,7 +76,24 @@ public interface WarStats {
      */
     int getCaptures();
 
+    /**
+     * Set current kills.
+     *
+     * @param kills kills to set
+     */
+    void setKills(int kills);
 
-    void setKills(int kills);void setDeaths(int deaths);
+    /**
+     * Set current deaths.
+     *
+     * @param deaths deaths to set
+     */
+    void setDeaths(int deaths);
+
+    /**
+     * Set current captures of {@link CaptureFlag}.
+     *
+     * @param captures captures to set
+     */
     void setCaptures(int captures);
 }

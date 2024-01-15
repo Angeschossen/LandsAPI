@@ -15,6 +15,15 @@ import java.util.UUID;
 import java.util.function.Function;
 
 public interface WarState {
+
+    /**
+     * Broadcast a message
+     *
+     * @param key    message key of locale file
+     * @param p      placeholders
+     * @param v      placeholder values
+     * @param filter if true, only send to players enganged in this war. If false, send to all players
+     */
     void broadcast(String key, String[] p, Function<Player, String[]> v, boolean filter);
 
     /**
@@ -24,6 +33,12 @@ public interface WarState {
      */
     @NotNull MemberHolder getAttacker();
 
+    /**
+     * Get the enemy of a player.
+     *
+     * @param playerUID the player
+     * @return null, if player not engaged in the war
+     */
     @Nullable MemberHolder getEnemy(UUID playerUID);
 
     /**
@@ -34,16 +49,51 @@ public interface WarState {
      */
     @NotNull MemberHolder getEnemy(@NotNull MemberHolder memberHolder);
 
+    /**
+     * Get land or nation by opponent team
+     *
+     * @param warTeam the opponent team
+     * @return never null
+     */
+    @NotNull
     MemberHolder getMemberHolder(@NotNull WarTeam warTeam);
 
+    /**
+     * Get the ID of this warstate
+     *
+     * @return numerical ID
+     */
     int getId();
 
+    /**
+     * get the current state of the war or declaration
+     *
+     * @return current state
+     */
     WarStatus getState();
 
-    @NotNull WarTeam getTeam(MemberHolder entity);
+    /**
+     * Get the team of a land or nation
+     *
+     * @param entity land or nation
+     * @return {@link WarTeam#NEUTRAL}, if not engaged in this war
+     */
+    @NotNull WarTeam getTeam(@NotNull MemberHolder entity);
 
-    double getMaxTribute(WarTeam warTeam);
 
+    /**
+     * Get the max tribute a team can set
+     *
+     * @param warTeam the team to check
+     * @return the opponent will need to pay this tribute to the team, if they want to surrender
+     */
+    double getMaxTribute(@NotNull WarTeam warTeam);
+
+    /**
+     * Get required points to win.
+     *
+     * @return required points to win
+     */
     float getPointsToWin();
 
     /**
@@ -66,32 +116,83 @@ public interface WarState {
      * {@link War}: Get the time left until the war ends forcefully (no team reached the needed amount of points)
      * {@link WarDeclaration} Time until the war starts
      * {@link me.angeschossen.lands.api.war.declaration.MutualDeclaration} Time until the declaration is automatically being declined.
+     *
      * @return Time in seconds
      */
     long getTimeLeft();
 
-    String getTime(@Nullable PlayerData sender);
+    /**
+     * Same as {@link #getTimeLeft()}, but formatted
+     *
+     * @param sender for per player locale support
+     * @return may depend on the player's locale
+     */
+    String getTimeLeftFormatted(@Nullable PlayerData sender);
 
-    boolean hasFlag(WarSetting warSetting);
+    /**
+     * Check if this war has a specific flag set. They're configured in the config.
+     *
+     * @param warSetting flag to check
+     * @return true, if flag is set
+     */
+    boolean hasFlag(@NotNull WarSetting warSetting);
 
-    double getTribute(MemberHolder entity);
+    /**
+     * Get the tribute that a specific team needs to pay.
+     *
+     * @param entity the team
+     * @return tribute that the entity needs to pay
+     */
+    double getTribute(@NotNull MemberHolder entity);
 
+    /**
+     * Get the tribute that has been set by the initial attacker.
+     *
+     * @return the defenders need to pay this if they want to surrender
+     */
     double getTribute();
 
+    /**
+     * Set the tribute that the defenders need to pay, if they surrender
+     *
+     * @param tribute the tribute to set
+     */
     void setTribute(double tribute);
 
     /**
      * Check if this land or nation takes part in this war.
+     *
      * @param entity The land or nation
      * @return true, if it takes part in this war
      */
     boolean isParticipating(@NotNull MemberHolder entity);
 
-    void sendCurrentInfo(@Nullable LandPlayer landPlayer, @Nullable MemberHolder warEntity);
+    /**
+     * Send current info of the war.
+     *
+     * @param landPlayer the player to send it to
+     */
+    void sendCurrentInfo(@Nullable LandPlayer landPlayer);
 
+    /**
+     * Forcefully end this war and delete it.
+     */
     void delete();
 
-    boolean surrender(MemberHolder surrenderer, @Nullable Player filter);
+    /**
+     * Let a team surrender.
+     *
+     * @param surrenderer the surrendering team
+     * @param filter      don't the resulting inbox messages to this player
+     * @return false, if the surrenderer doesn't have enough money to pay {@link #getTribute(MemberHolder)}
+     */
+    boolean surrender(@NotNull MemberHolder surrenderer, @Nullable Player filter);
 
+    /**
+     * Get attacker and defender.
+     *
+     * @return attacker and defender for iteration
+     */
+    @NotNull
     MemberHolder[] getEntities();
 }

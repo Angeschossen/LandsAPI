@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.war.declaration;
 import me.angeschossen.lands.api.war.War;
 import me.angeschossen.lands.api.war.WarState;
 import me.angeschossen.lands.api.war.enums.WarTeam;
+import org.jetbrains.annotations.NotNull;
 
 public interface WarDeclaration extends WarState {
 
@@ -26,7 +27,7 @@ public interface WarDeclaration extends WarState {
      * @param warTeam The team
      * @return Can't be negative
      */
-    double getMaxTribute(WarTeam warTeam);
+    double getMaxTribute(@NotNull WarTeam warTeam);
 
     /**
      * Check if the war preparation time ends soon.
