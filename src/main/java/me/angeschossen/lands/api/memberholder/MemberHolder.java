@@ -319,6 +319,8 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      */
     CompletableFuture<@Nullable Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
 
+    void removeInboxMessage(@NotNull InboxMessage message);
+
     /**
      * Send A message to online players of this land or nation.
      *

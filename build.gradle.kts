@@ -61,7 +61,7 @@ dependencies {
 }
 
 group = "com.github.angeschossen"
-version = "6.44.0"
+version = "6.44.4"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
