@@ -55,7 +55,7 @@ tasks {
 }
 
 dependencies {
-    shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.6")
+    shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.8")
     compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:1.7.0")
 }

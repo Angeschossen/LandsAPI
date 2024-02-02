@@ -1,10 +1,16 @@
 package me.angeschossen.lands.api.role;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
+import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.enums.RoleType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public interface Role extends ExpressionEntity {
@@ -30,6 +36,7 @@ public interface Role extends ExpressionEntity {
      *
      * @return Role type
      */
+    @NotNull
     RoleType getType();
 
     /**
@@ -57,15 +64,6 @@ public interface Role extends ExpressionEntity {
     String getColorName();
 
     /**
-     * Use {@link #getType()} instead.
-     * Check if this role is the visitor role.
-     *
-     * @return true, if this role is the visitor role
-     */
-    @Deprecated
-    boolean isVisitorRole();
-
-    /**
      * Toggle a flag for this role.
      *
      * @param flag The flag
@@ -84,7 +82,7 @@ public interface Role extends ExpressionEntity {
     /**
      * Get the hierarchy / priority of a role.
      *
-     * @return Aigher priority means that one role is above another in the hierarchy. Minimum value is 0
+     * @return A higher priority means that one role is above another in the hierarchy. Minimum value is 0
      */
     int getPriority();
 }
