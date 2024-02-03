@@ -3,7 +3,6 @@ package me.angeschossen.lands.api.land;
 import com.github.angeschossen.pluginframework.api.blockutil.impl.Position;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.PlayerUntrustedException;
-import me.angeschossen.lands.api.flags.SystemFlagStatesHolder;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.player.LandPlayer;

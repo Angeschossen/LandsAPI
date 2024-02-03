@@ -1,4 +1,4 @@
-package me.angeschossen.lands.api.flags;
+package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.system.SystemFlagStates;
@@ -22,8 +22,9 @@ public interface SystemFlagStatesHolder {
      *
      * @param player     the player for which the flags should be set
      * @param flagStates collection of flag states
+     * @throws IllegalStateException if the player is trusted
      */
-    void setSystemFlagStates(@NotNull LandPlayer player, @NotNull SystemFlagStates flagStates);
+    void setSystemFlagStates(@NotNull LandPlayer player, @NotNull SystemFlagStates flagStates) throws IllegalStateException;
 
     /**
      * Remove system flag states for a player.
