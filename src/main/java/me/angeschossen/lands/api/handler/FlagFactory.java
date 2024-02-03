@@ -17,6 +17,4 @@ public interface FlagFactory {
     @NotNull RoleFlag roleFlagOf(@NotNull LandsIntegration plugin, @NotNull FlagTarget flagTarget, @NotNull RoleFlagCategory category, @NotNull String name) throws FlagConflictException, IllegalArgumentException;
 
     @NotNull NaturalFlag naturalFlagOf(@NotNull LandsIntegration plugin, @NotNull FlagTarget flagTarget, @NotNull String name) throws FlagConflictException, IllegalArgumentException;
-
-    void dropSystemFlagStatesCache(@NotNull SystemFlagStates systemFlagStates);
 }

@@ -261,13 +261,4 @@ public interface LandsIntegration {
      * @param world      The destination world
      */
     void randomTeleport(@NotNull LandPlayer landPlayer, @NotNull World world);
-
-    /**
-     * Allows you to dynamically assign roles to players without setting them to a specific area.
-     * If you want to set a player's role inside an area, use {@link Area#setRole(UUID, Role)} instead.
-     *
-     * @param systemFlagStates your logic for role relations
-     * @return false, if already registered
-     */
-    boolean registerDynamicRoleAccessor(@NotNull SystemFlagStates systemFlagStates);
 }

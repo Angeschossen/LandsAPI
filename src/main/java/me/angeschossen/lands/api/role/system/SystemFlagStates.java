@@ -11,6 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 public abstract class SystemFlagStates {
     protected final @NotNull LandsIntegration integration;
@@ -25,18 +26,6 @@ public abstract class SystemFlagStates {
     public final LandsIntegration getIntegration() {
         return integration;
     }
-
-    /**
-     * This method is being called each time a flag is being check while no other role from Lands belongs to the player.
-     * That means that if the player has a role set in the area, this method won't be called. This is only called for
-     * players that don't have any role. Results of this method may be cached.
-     *
-     * @param area         the area
-     * @param playerUUID   UUID of the player
-     * @param onlinePlayer null, if the player is offline
-     * @return should return false, if this role shouldn't be applied to this player
-     */
-    public abstract boolean applies(@NotNull Area area, @NotNull UUID playerUUID, @Nullable LandPlayer onlinePlayer);
 
     /**
      * Check if these flag states also contain a specific role flag.

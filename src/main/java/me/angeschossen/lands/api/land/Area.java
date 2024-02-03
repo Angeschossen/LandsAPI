@@ -3,11 +3,13 @@ package me.angeschossen.lands.api.land;
 import com.github.angeschossen.pluginframework.api.blockutil.impl.Position;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.PlayerUntrustedException;
+import me.angeschossen.lands.api.flags.SystemFlagStatesHolder;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.invite.Invite;
 import me.angeschossen.lands.api.role.Role;
+import me.angeschossen.lands.api.role.system.SystemFlagStates;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +21,14 @@ import java.util.UUID;
 /**
  * This might be a default area ({@link Land#getDefaultArea()} or a sub area ({@link LandArea}).
  */
-public interface Area extends ExpressionEntity, TaxHolder {
+public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolder {
+    /**
+     * Get applied system flag states for player. See {@link SystemFlagStatesHolder#setSystemFlagStates(Player, SystemFlagStates)} for more info.
+     *
+     * @param player the player to look for
+     * @return null, if none set or the player is trusted in this area
+     */
+    @Nullable SystemFlagStates getSystemFlagStates(@NotNull Player player);
 
     /**
      * Ban a player.
@@ -40,12 +49,14 @@ public interface Area extends ExpressionEntity, TaxHolder {
 
     /**
      * Set the spawn position of the area.
+     *
      * @param position new position or reset to default
      */
     void setSpawn(@Nullable Position position);
 
     /**
      * Get the spawn position of the area.
+     *
      * @return null, if area isn't setup yet or no spawn set manually ({@link #setSpawn(Position)}) for the default area.
      */
     @Nullable Position getSpawn();

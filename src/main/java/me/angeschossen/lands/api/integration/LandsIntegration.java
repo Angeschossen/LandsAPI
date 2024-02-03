@@ -377,9 +377,4 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     public void randomTeleport(@NotNull LandPlayer landPlayer, @NotNull World world) {
         APIHandler.getInstance().getLegacySupport().randomTeleport(landPlayer, world);
     }
-
-    @Override
-    public boolean registerDynamicRoleAccessor(@NotNull SystemFlagStates systemFlagStates) {
-        return false;
-    }
 }

@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.land;
 
 import me.angeschossen.lands.api.events.land.DeleteReason;
+import me.angeschossen.lands.api.flags.SystemFlagStatesHolder;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.enums.LandType;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
@@ -21,8 +22,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * A land can be of different types ({@link #getLandType()}).
  */
-public interface Land extends MemberHolder {
-
+public interface Land extends MemberHolder, SystemFlagStatesHolder {
     /**
      * Create a new land.
      *
@@ -40,6 +40,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get information about claims and sub areas inside a specific world.
+     *
      * @param world The world
      * @return null, if there are no claims in the provided world
      */
@@ -47,12 +48,14 @@ public interface Land extends MemberHolder {
 
     /**
      * Get information about claims and sub areas in all worlds, that have at least one claim of this land.
+     *
      * @return Collection of worlds that have claims of this land inside it
      */
     @NotNull Collection<? extends Container> getContainers();
 
     /**
      * Get the default areas of this land. Parts of the land that aren't part of a sub areas, are automatically part of this area.
+     *
      * @return Each land has a default area
      */
     @NotNull
@@ -93,6 +96,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get area by its name.
+     *
      * @param name Not case sensitive. Chat colors will be removed for the lookup
      * @return null, if there's no sub area with this name. This also checks the default area ({@link #getDefaultArea()}).
      */
@@ -100,6 +104,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get a sub area from a location.
+     *
      * @param location The location
      * @return null, if the part of the land doesn't belong to a sub area. If null, it belongs to the default area ({@link #getDefaultArea()}).
      */
@@ -108,6 +113,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Use {@link #getContainer(World)} instead.
+     *
      * @param world The world
      * @return null, if no claims in this world
      */
@@ -117,6 +123,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Use {@link #getContainer(World)} instead.
+     *
      * @param world The world
      * @return null, if no claims in this world
      */
@@ -125,6 +132,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Use {@link #getArea(String)} instead.
+     *
      * @param name Area name
      * @return false, if no such area exists.
      */
@@ -133,6 +141,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Ban a player from the whole land. This automatically untrusts the player as well.
+     *
      * @param playerUID The player to be banned
      * @return false, if the player was already banned in all parts of the land
      */
@@ -140,6 +149,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Unban a player from the whole land.
+     *
      * @param playerUID The player to be unbanned
      */
     void unbanPlayer(@NotNull UUID playerUID);
@@ -163,6 +173,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get the current war the land is currently engaged in.
+     *
      * @return null, if the land isn't involded in an active war or the war is still in preparation and not yet active.
      */
     @Nullable
@@ -170,6 +181,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get the nation that this land belongs to.
+     *
      * @return null, if the land doesn't belong to any nation
      */
     @Nullable Nation getNation();
@@ -183,6 +195,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get the land name with color codes that a player set in the name.
+     *
      * @return Just like {@link #getName()}, but with color codes included
      */
     @NotNull
@@ -252,6 +265,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Get the land type
+     *
      * @return Never null
      */
     @NotNull
@@ -266,6 +280,7 @@ public interface Land extends MemberHolder {
 
     /**
      * Use {@link #getMaxChunks()} instead.
+     *
      * @param countNation If rewards from nation level should be counted
      * @return Never negative
      */
@@ -338,6 +353,7 @@ public interface Land extends MemberHolder {
     /**
      * Get the category of this land. Players can change the category of their land.
      * Categories help lands to present themselves as a shop focused land etc.
+     *
      * @return null, if the land doesn't have any category set
      */
     @Nullable LandCategory getCategory();
