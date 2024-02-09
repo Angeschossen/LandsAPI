@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.enums.LandType;
+import me.angeschossen.lands.api.land.info.LandInfo;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -137,6 +138,8 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
      */
     @Deprecated
     boolean hasArea(@NotNull String name);
+
+    LandInfo buildInfo();
 
     /**
      * Ban a player from the whole land. This automatically untrusts the player as well.
