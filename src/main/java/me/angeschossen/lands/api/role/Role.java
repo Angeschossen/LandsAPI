@@ -16,6 +16,15 @@ import java.util.List;
 public interface Role extends ExpressionEntity {
 
     /**
+     * Check if this role is the visitor role.
+     *
+     * @return true, if this role's type equals {@link RoleType#VISITOR}
+     * @deprecated Use {@link #getType()} instead.
+     */
+    @Deprecated
+    boolean isVisitorRole();
+
+    /**
      * Get the icon of this role.
      *
      * @return Icon

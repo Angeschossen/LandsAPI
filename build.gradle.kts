@@ -50,6 +50,7 @@ tasks {
     shadowJar {
         archiveClassifier.set("") // replace default
         configurations = listOf(project.configurations.shadow.get())
+        archiveFileName.set("LandsAPI.jar")
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
     }
 }

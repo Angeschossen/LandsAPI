@@ -139,7 +139,7 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
     @Deprecated
     boolean hasArea(@NotNull String name);
 
-    LandInfo buildInfo();
+    @NotNull LandInfo buildInfo();
 
     /**
      * Ban a player from the whole land. This automatically untrusts the player as well.

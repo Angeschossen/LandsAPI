@@ -25,9 +25,13 @@ import java.util.concurrent.CompletableFuture;
 public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget {
     /**
      * Add an amount of seconds to the warshiled.
+     *
      * @param seconds If negative, the seconds will be subtracted from the warshield
      */
     void addWarshield(long seconds);
+
+    @NotNull
+    MemberHolderInfo buildInfo();
 
     /**
      * Calculate the level.
@@ -38,6 +42,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Check if it still exists.
+     *
      * @return false, if it was deleted meanwhile
      */
     boolean exists();
@@ -53,6 +58,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     /**
      * Get progress (not percentage) of the cached requirement.
      * See {@link me.angeschossen.lands.api.levels.requirement.CachedRequirement}
+     *
      * @param requirement The identification of the cached requirement
      * @return The progress (not percentage) of the cached requirement
      */
@@ -60,6 +66,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the amount of chunks.
+     *
      * @return Amount of chunks
      */
     int getChunksAmount();
@@ -68,6 +75,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the name, including colors codes.
+     *
      * @return Name with color codes included
      */
     @NotNull
@@ -90,18 +98,21 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Used for expressions and their variables in events.yml.
+     *
      * @return Prefix
      */
     String getExpressionPrefix();
 
     /**
      * Get numerical identification.
+     *
      * @return ID
      */
     int getId();
 
     /**
      * Get all inbox messages.
+     *
      * @return All inbox messages
      */
     @NotNull
@@ -109,6 +120,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Filter the inbox by a specific category.
+     *
      * @param category The category
      * @return The filtered inbox
      */
@@ -117,6 +129,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the current level.
+     *
      * @return The current level
      */
     @NotNull
@@ -124,12 +137,14 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the amount of players.
+     *
      * @return Total amount of players
      */
     int getMembersAmount();
 
     /**
      * Get the name without colors codes. To have color codes included use {@link #getColorName()}.
+     *
      * @return The name with color codes included
      */
     @NotNull
@@ -137,6 +152,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get online players.
+     *
      * @return Online players
      */
     @NotNull
@@ -144,6 +160,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get online Bukkit players.
+     *
      * @return Online Bukkit players
      */
     @NotNull
@@ -151,6 +168,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the owner.
+     *
      * @return UUID of the owner
      */
     @NotNull
@@ -158,6 +176,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the relation of a player.
+     *
      * @param playerUID The player
      * @return The relation of this player
      */
@@ -165,6 +184,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get stats of all previous wars.
+     *
      * @return Stats of all previous wars
      */
     @NotNull
@@ -180,6 +200,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the type.
+     *
      * @return Type
      */
     @NotNull
@@ -187,13 +208,15 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the current war
+     *
      * @return null, if currently not engaged in any war or the war hasn't started yet
      */
     @Nullable
     War getWar();
 
     /**
-     * Use {@link #getWarName(LandPlayer)} instead.
+     * Use {@link #getWarName(PlayerData)} instead.
+     *
      * @return The colored name with prefix
      */
     @Deprecated
@@ -202,6 +225,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     /**
      * Depending on the type ({@link #getType()}), this will return the colored name ({@link #getColorName()}) with a prefix.
      * Example: "Land Test" or "Nation Test". This depends on the servers language file.
+     *
      * @param landPlayer returned value may depend on the locale of the player
      * @return The colored name with prefix
      */
@@ -209,6 +233,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the team of the current war.
+     *
      * @return null, if not engaged in any war or the war hasn't started yet
      */
     @Nullable
@@ -216,12 +241,14 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the amount of seconds left for the warshield.
+     *
      * @return Warshield that is left in seconds
      */
     long getWarshield();
 
     /**
      * Get the webmap border color. Used for dynmap etc.
+     *
      * @return null, if there's no color in the colored name ({@link #getColorName()}).
      */
     @Nullable
@@ -229,6 +256,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get the webmap fill color. Used for dynmap etc.
+     *
      * @return null, if there's no color in the colored name ({@link #getColorName()}).
      */
     @Nullable
@@ -237,6 +265,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     /**
      * Check if another memberholder is part of this one.
      * Mainly used for nations to check if a land is part of their nation.
+     *
      * @param entity The memberholder
      * @return false, if the memberholder is not contained by this memberholder
      */
@@ -244,6 +273,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Check if there's any war shield time left.
+     *
      * @return false, if {@link #getWarshield()} returns 0
      */
     boolean hasWarshield();
@@ -266,12 +296,14 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Check if they're in an active war.
+     *
      * @return false, if they're not engaged in a war or the war hasn't started yet
      */
     boolean isInWar();
 
     /**
      * Check if an level requirement is already calculated and cached.
+     *
      * @param requirement The identification of the requirement
      * @return false, if the requirement progress isn't cached
      */
@@ -280,6 +312,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     /**
      * Use {@link #isTrusted(UUID)} instead.
      * Check if an player is trusted.
+     *
      * @param landPlayer The player
      * @return false, if the player isn't trusted
      */
@@ -288,6 +321,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Check if an player is trusted.
+     *
      * @param uuid The player's UUID
      * @return false, if the player isn't trusted
      */
@@ -295,12 +329,14 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Check if in case of a war, the terretory of this land or nation will be influenced by the block break list etc. in the wars.yml configuration.
+     *
      * @return true, if this land or nation is a war field
      */
     boolean isWarField();
 
     /**
      * Leave the current war or abort the received war declaration.
+     *
      * @return false, they aren't engaged in a war and haven't received a war declaration
      */
     boolean leaveWar();
@@ -312,8 +348,9 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Update the progress of a cached level requirement.
-     * @param requirement The identification of the requirement
-     * @param modify Can be negative
+     *
+     * @param requirement   The identification of the requirement
+     * @param modify        Can be negative
      * @param allowNegative Allow the result to be negative?
      * @return The result / progress value
      */
@@ -324,8 +361,8 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     /**
      * Send A message to online players of this land or nation.
      *
-     * @param playerUUID The sender
-     * @param message    The message
+     * @param playerUUID    The sender
+     * @param message       The message
      * @param messageSource The source of the message
      */
     void sendMessage(@NotNull UUID playerUUID, @NotNull String message, LandChatEvent.MessageSource messageSource);
@@ -341,15 +378,17 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Set the amount of seconds for the war shield.
+     *
      * @param seconds Amount of seconds for the war shield
      */
     void setWarShield(long seconds);
 
     /**
      * Update the level requirement progress
+     *
      * @param requirement Identification of the requirement
-     * @param val The new value
-     * @param levelCalc If the level should be recalculated after updating this requirement
+     * @param val         The new value
+     * @param levelCalc   If the level should be recalculated after updating this requirement
      * @throws IllegalArgumentException If this requirement doesn't exist
      */
     void updateRequirementCache(@NotNull String requirement, float val, boolean levelCalc) throws IllegalArgumentException;

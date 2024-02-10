@@ -22,7 +22,7 @@ import java.util.UUID;
  */
 public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolder {
     /**
-     * Get applied system flag states for player. See {@link SystemFlagStatesHolder#setSystemFlagStates(Player, SystemFlagStates)} for more info.
+     * Get applied system flag states for player. See {@link SystemFlagStatesHolder#setSystemFlagStates(LandPlayer, SystemFlagStates)} for more info.
      *
      * @param player the player to look for
      * @return null, if none set or the player is trusted in this area
@@ -67,6 +67,13 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      */
     @NotNull
     Role getEntryRole();
+
+    /**
+     * Get the numerical ID of this area.
+     *
+     * @return The ID is unique for the land it belongs to. Areas of other lands may have the same id. Areas of the same land have all different IDs.
+     */
+    int getId();
 
     /**
      * Get invite that was sent to a specific player.
