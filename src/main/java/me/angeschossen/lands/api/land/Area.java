@@ -281,7 +281,7 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      * @param targetUID The trusted player
      * @param role      The role to set
      * @throws IllegalArgumentException If the role doesn't exist in this area, the role is of type {@link me.angeschossen.lands.api.role.enums.RoleType#VISITOR} or the current role of this player is of type {@link me.angeschossen.lands.api.role.enums.RoleType#OWNER}.
-     *                                  If you want to untrust a player, use {@link #}
+     *                                  If you want to untrust a player, use {@link #untrustPlayer(UUID)}
      * @throws PlayerUntrustedException If the player isn't trusted
      */
     void setRole(@NotNull UUID targetUID, @NotNull Role role) throws IllegalArgumentException, PlayerUntrustedException;
