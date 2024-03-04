@@ -150,7 +150,6 @@ public interface LandsIntegration {
      * @return null, if the player is not online
      * @since 2.5.7
      */
-    @Nullable
     LandPlayer getLandPlayer(@NotNull UUID playerUUID);
 
     /**
