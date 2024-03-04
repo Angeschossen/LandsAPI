@@ -55,14 +55,14 @@ tasks {
 }
 
 dependencies {
-    shadow(libs.applicationframework)
+    //shadow(libs.applicationframework)
     shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.8")
     compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:1.7.0")
 }
 
 group = "com.github.angeschossen"
-version = "6.44.11"
+version = "6.44.12"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
