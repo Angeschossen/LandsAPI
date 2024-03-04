@@ -38,6 +38,16 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
     boolean banPlayer(@NotNull UUID uuid);
 
     /**
+     * Check if two players can fight each other in this area. This also takes wars into account.
+     *
+     * @param attacker    the attacker
+     * @param target      the target
+     * @param sendMessage if true, sends denied message if they can't fight each other in this area
+     * @return false, if they can't fight each other
+     */
+    boolean canPvP(@NotNull LandPlayer attacker, LandPlayer target, boolean sendMessage);
+
+    /**
      * Check if a player can enter this area. This depends on {@link #isBanned(UUID)} and on the land enter flag state for the player's role.
      *
      * @param landPlayer  The player which wants to enter
