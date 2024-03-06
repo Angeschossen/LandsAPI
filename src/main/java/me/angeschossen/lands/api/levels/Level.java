@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.levels;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
+import me.angeschossen.lands.api.levels.attribute.LevelAttribute;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -12,6 +13,15 @@ import java.util.Collection;
  * Usually configured in the plugin's "levels.yml" configuration file.
  */
 public interface Level extends ExpressionEntity {
+    /**
+     * Add an attribute to this level, which will be rewarded to the land or nation.
+     * This just provides the description etc. The functionality must be implemented by yourself.
+     *
+     * @param attribute the attribute to add
+     * @throws IllegalStateException a attribute with this name already exists
+     */
+    void addAttribute(@NotNull LevelAttribute attribute) throws IllegalStateException;
+
     /**
      * Add a requirement that is required for a land or nation to progress to this level.
      *
