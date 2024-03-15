@@ -71,6 +71,10 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      */
     int getChunksAmount();
 
+    /**
+     * Get time of last capture flag placement.
+     * @return time in milliseconds
+     */
     long getLastCaptureFlagPlacement();
 
     /**
@@ -356,6 +360,11 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      */
     CompletableFuture<@Nullable Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
 
+    /**
+     * Remove an inbox message from the inbox.
+     *
+     * @param message message to remove
+     */
     void removeInboxMessage(@NotNull InboxMessage message);
 
     /**
