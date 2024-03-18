@@ -288,6 +288,11 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      */
     boolean trustPlayer(@NotNull UUID playerUID) throws IllegalArgumentException;
 
+    /**
+     * Get the current rental or purchase offer.
+     *
+     * @return null, if area isn't setup to be rented or sold
+     */
     @Nullable RentalOffer getRentalOffer();
 
     /**
