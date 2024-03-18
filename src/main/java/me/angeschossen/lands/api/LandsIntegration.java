@@ -12,8 +12,6 @@ import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
 import me.angeschossen.lands.api.player.PlayerCooldown;
-import me.angeschossen.lands.api.role.Role;
-import me.angeschossen.lands.api.role.system.SystemFlagStates;
 import me.angeschossen.lands.api.sorting.SortingContext;
 import me.angeschossen.lands.api.war.storage.WarHandler;
 import org.bukkit.Location;

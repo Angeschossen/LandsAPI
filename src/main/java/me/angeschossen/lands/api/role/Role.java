@@ -1,16 +1,10 @@
 package me.angeschossen.lands.api.role;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
-import com.github.angeschossen.pluginframework.api.utils.Checks;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
-import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.role.enums.RoleType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public interface Role extends ExpressionEntity {

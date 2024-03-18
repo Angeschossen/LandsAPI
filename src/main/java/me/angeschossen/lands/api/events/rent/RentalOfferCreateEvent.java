@@ -1,15 +1,10 @@
 package me.angeschossen.lands.api.events.rent;
 
 import com.github.angeschossen.pluginframework.api.utils.Checks;
-import me.angeschossen.lands.api.events.player.area.PlayerAreaEvent;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.rental.RentalOffer;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.event.Cancellable;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.Objects;
 
 /**
  * Called whenever a rent or sell offer is created.

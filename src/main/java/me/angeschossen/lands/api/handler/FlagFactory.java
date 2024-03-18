@@ -6,7 +6,6 @@ import me.angeschossen.lands.api.flags.enums.FlagTarget;
 import me.angeschossen.lands.api.flags.enums.RoleFlagCategory;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
-import me.angeschossen.lands.api.role.system.SystemFlagStates;
 import org.jetbrains.annotations.NotNull;
 
 /**

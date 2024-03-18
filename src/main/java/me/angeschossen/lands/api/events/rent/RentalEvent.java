@@ -7,7 +7,6 @@ import me.angeschossen.lands.api.land.rental.RentalOffer;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 import java.util.UUID;
