@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.UUID;
 
 /**
- * Used for events related to physically entering and leaving an area.
+ * Used for events where a player interacts with an area.
  */
 public abstract class PlayerAreaEvent extends PlayerEvent {
     public static HandlerList handlerList = new HandlerList();
@@ -19,6 +19,12 @@ public abstract class PlayerAreaEvent extends PlayerEvent {
 
     public PlayerAreaEvent(@NotNull Area area, LandPlayer landPlayer) {
         super(landPlayer);
+
+        this.area = area;
+    }
+
+    public PlayerAreaEvent(@NotNull Area area, UUID player) {
+        super(player);
 
         this.area = area;
     }

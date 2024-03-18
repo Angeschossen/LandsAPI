@@ -5,6 +5,7 @@ import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.PlayerUntrustedException;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
+import me.angeschossen.lands.api.land.rental.RentalOffer;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.invite.Invite;
 import me.angeschossen.lands.api.role.Role;
@@ -69,6 +70,8 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      * @return null, if area isn't setup yet or no spawn set manually ({@link #setSpawn(Position)}) for the default area.
      */
     @Nullable Position getSpawn();
+
+    @Nullable UUID getTenant();
 
     /**
      * Get the entry role.
@@ -284,6 +287,8 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      * @throws IllegalArgumentException If the target player is the owner of this area
      */
     boolean trustPlayer(@NotNull UUID playerUID) throws IllegalArgumentException;
+
+    @Nullable RentalOffer getRentalOffer();
 
     /**
      * Set role for a trusted player.
