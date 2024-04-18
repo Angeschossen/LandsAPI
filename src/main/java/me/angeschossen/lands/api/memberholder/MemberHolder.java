@@ -33,15 +33,12 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     void addWarshield(long seconds);
 
     /**
-     * Get the globally unique ID.
+     * Get the globally unique ID. This ID is unique across all servers, similar to UUID.
      *
      * @return Universally unique lexicographically sortable identifier
      */
     @NotNull
     ULID getULID();
-
-    @NotNull
-    MemberHolderInfo buildInfo();
 
     /**
      * Calculate the level.
@@ -124,7 +121,9 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      * Get numerical identification.
      *
      * @return ID
+     * @deprecated Use {@link #getULID()} instead.
      */
+    @Deprecated
     int getId();
 
     /**

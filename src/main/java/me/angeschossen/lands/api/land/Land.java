@@ -3,7 +3,6 @@ package me.angeschossen.lands.api.land;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.enums.LandType;
-import me.angeschossen.lands.api.land.info.LandInfo;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -139,8 +138,6 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
     @Deprecated
     boolean hasArea(@NotNull String name);
 
-    @NotNull LandInfo buildInfo();
-
     /**
      * Ban a player from the whole land. This automatically untrusts the player as well.
      *
@@ -164,14 +161,6 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
      */
     @NotNull
     String getTitleMessage(@Nullable Player player);
-
-    /**
-     * Get the identification of this land.
-     * This is independent of the land name.
-     *
-     * @return Numerical unique identifier
-     */
-    int getId();
 
     /**
      * Get the current war the land is currently engaged in.

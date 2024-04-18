@@ -86,7 +86,9 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      * Get the numerical ID of this area.
      *
      * @return The ID is unique for the land it belongs to. Areas of other lands may have the same id. Areas of the same land have all different IDs.
+     * @deprecated Use {@link #getULID()} instead
      */
+    @Deprecated
     int getId();
 
     /**
@@ -290,7 +292,7 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
     boolean trustPlayer(@NotNull UUID playerUID) throws IllegalArgumentException;
 
     /**
-     * Get the globally unique ID.
+     * Get the globally unique ID. This ID is unique across all lands and servers.
      *
      * @return Universally unique lexicographically sortable identifier
      */

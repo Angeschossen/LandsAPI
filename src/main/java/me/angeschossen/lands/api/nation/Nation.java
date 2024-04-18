@@ -3,7 +3,6 @@ package me.angeschossen.lands.api.nation;
 import me.angeschossen.lands.api.exceptions.LandAlreadyInNationException;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
-import me.angeschossen.lands.api.nation.info.NationInfo;
 import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -13,8 +12,6 @@ import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 
 public interface Nation extends MemberHolder {
-
-    @NotNull NationInfo buildInfo();
 
     /**
      * Add a land to this nation.

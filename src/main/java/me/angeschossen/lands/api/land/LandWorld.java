@@ -17,6 +17,11 @@ import java.util.UUID;
  * A world contain claim information for the specific world.
  */
 public interface LandWorld {
+    /**
+     * Get the globally unique ID. This ID is unique across all servers and is mainly used for the database.
+     *
+     * @return Universally unique lexicographically sortable identifier
+     */
     @NotNull ULID getULID();
 
     /**
