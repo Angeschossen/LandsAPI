@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public abstract class BankEvent extends LandEvent implements Cancellable {
     private boolean cancelled = false;
-    private final double value;
+    protected final double value;
 
     /**
      * Create an instance.

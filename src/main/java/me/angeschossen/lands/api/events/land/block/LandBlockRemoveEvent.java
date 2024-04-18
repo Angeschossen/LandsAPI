@@ -63,4 +63,17 @@ public class LandBlockRemoveEvent extends LandBlockEvent {
 
         super.setCancelled(cancel);
     }
+
+    @Override
+    public String toString() {
+        return "LandBlockRemoveEvent{" +
+                "block=" + landBlock.toString() +
+                ",reason=" + reason.toString() +
+                "}";
+    }
+
+    @Override
+    public @Nullable String getLogInfo() {
+        return toString();
+    }
 }

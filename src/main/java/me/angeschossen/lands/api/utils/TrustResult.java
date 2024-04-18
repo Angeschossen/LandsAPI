@@ -62,5 +62,9 @@ public enum TrustResult {
      * The target player was trusted successfully.
      * If the player that trusts the target is a server admin or invites are disabled in config.yml.
      */
-    SUCCESS_TRUSTED,
+    SUCCESS_TRUSTED;
+
+    public boolean isSuccess(){
+        return this == SUCCESS_INVITED || this == SUCCESS_TRUSTED;
+    }
 }

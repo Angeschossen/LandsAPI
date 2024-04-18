@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.land;
 
+import com.github.angeschossen.applicationframework.api.util.ULID;
 import me.angeschossen.lands.api.flags.type.NaturalFlag;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -16,6 +17,7 @@ import java.util.UUID;
  * A world contain claim information for the specific world.
  */
 public interface LandWorld {
+    @NotNull ULID getULID();
 
     /**
      * Check if players are allowed to do certain actions in the wilderness.
@@ -93,12 +95,13 @@ public interface LandWorld {
 
     /**
      * Check if a player has a role flag set through their role.
-     * @param player The player
-     * @param location The location of the action
-     * @param flag The flag to check
-     * @param material The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
-     *                 This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
-     *                 For flags that don't include any blocks you can provide null here.
+     *
+     * @param player      The player
+     * @param location    The location of the action
+     * @param flag        The flag to check
+     * @param material    The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
+     *                    This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
+     *                    For flags that don't include any blocks you can provide null here.
      * @param sendMessage If the player should get a message, if their role doesn't have this flag
      * @return false, if their role doesn't have this flag
      */
@@ -107,12 +110,13 @@ public interface LandWorld {
     /**
      * Use {@link #hasRoleFlag(LandPlayer, Location, RoleFlag, Material, boolean)} instead.
      * Check if a player has a role flag set through their role.
-     * @param player The player
-     * @param location The location of the action
-     * @param flag The flag to check
-     * @param material The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
-     *                 This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
-     *                 For flags that don't include any blocks you can provide null here.
+     *
+     * @param player      The player
+     * @param location    The location of the action
+     * @param flag        The flag to check
+     * @param material    The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
+     *                    This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
+     *                    For flags that don't include any blocks you can provide null here.
      * @param sendMessage If the player should get a message, if their role doesn't have this flag
      * @return false, if their role doesn't have this flag
      */
@@ -121,21 +125,23 @@ public interface LandWorld {
 
     /**
      * Check if a player has a role flag enabled through their role.
+     *
      * @param playerUID The player
-     * @param location The location of the action
-     * @param flag The flag
+     * @param location  The location of the action
+     * @param flag      The flag
      * @return false, their role doesn't have this flag
      */
     boolean hasRoleFlag(@NotNull UUID playerUID, @NotNull Location location, @NotNull RoleFlag flag);
 
     /**
      * Use {@link #hasRoleFlag(LandPlayer, Location, RoleFlag, Material, boolean)} instead.
-     * @param player The player
-     * @param location The location of the action
-     * @param flag The flag
-     * @param material The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
-     *                 This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
-     *                 For flags that don't include any blocks you can provide null here.
+     *
+     * @param player      The player
+     * @param location    The location of the action
+     * @param flag        The flag
+     * @param material    The blocks material. Useful for flags like {@link me.angeschossen.lands.api.flags.type.Flags#BLOCK_BREAK} etc.
+     *                    This parameter is used if the land is engaged in a war and the server configured that in wars specific blocks are allowed to break etc.
+     *                    For flags that don't include any blocks you can provide null here.
      * @param sendMessage If the player should get a message, if their role doesn't have this flag
      * @return false, if their role doesn't have this flag
      */
@@ -144,8 +150,9 @@ public interface LandWorld {
 
     /**
      * Check if area has a natural flag enabled.
+     *
      * @param location The location to check
-     * @param flag The flag to check
+     * @param flag     The flag to check
      * @return false, if not set
      */
     boolean hasNaturalFlag(@NotNull Location location, @NotNull NaturalFlag flag);

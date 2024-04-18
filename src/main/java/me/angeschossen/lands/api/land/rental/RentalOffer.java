@@ -52,5 +52,5 @@ public interface RentalOffer {
     void sendInfo(@NotNull LandPlayer player);
 
     @NotNull
-    List<String> getHologramLines();
+    List<String> getHologramLines(@NotNull InfoType infoType);
 }

@@ -1,6 +1,7 @@
 package me.angeschossen.lands.api.integration;
 
 
+import com.github.angeschossen.applicationframework.api.util.ULID;
 import me.angeschossen.lands.api.configuration.Configuration;
 import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.Flag;
@@ -12,6 +13,7 @@ import me.angeschossen.lands.api.land.LandArea;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.legacy.LandsIntegrator;
 import me.angeschossen.lands.api.levels.LevelsHandler;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
@@ -180,6 +182,16 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
+    public @Nullable Land getLandByULID(@NotNull ULID ulid) {
+        return null;
+    }
+
+    @Override
+    public @Nullable MemberHolder getMemberholderByULID(@NotNull ULID ulid) {
+        return null;
+    }
+
+    @Override
     @Nullable
     public Land getLandByName(@NotNull String name) {
         return APIHandler.getInstance().getLegacySupport().getLandByName(name);
@@ -264,6 +276,11 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     @Nullable
     public Nation getNationById(int id) {
         return APIHandler.getInstance().getLegacySupport().getNationById(id);
+    }
+
+    @Override
+    public @Nullable Nation getNationByULID(@NotNull ULID ulid) {
+        return null;
     }
 
     @Nullable

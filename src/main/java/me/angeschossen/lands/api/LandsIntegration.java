@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api;
 
+import com.github.angeschossen.applicationframework.api.util.ULID;
 import me.angeschossen.lands.api.configuration.Configuration;
 import me.angeschossen.lands.api.events.player.teleportation.PlayerRandomTeleportEvent;
 import me.angeschossen.lands.api.flags.FlagRegistry;
@@ -8,6 +9,7 @@ import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
 import me.angeschossen.lands.api.levels.LevelsHandler;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.nation.Nation;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.OfflinePlayer;
@@ -128,9 +130,29 @@ public interface LandsIntegration {
      *
      * @param id The id of the land.
      * @return null, if no land with this id exists
+     * @deprecated Use {@link #getLandByULID(ULID)} instead
      */
     @Nullable
+    @Deprecated
     Land getLandById(int id);
+
+    /**
+     * Get land by its ULID.
+     *
+     * @param ulid ULID of the land
+     * @return null, if no land with this ULID exists
+     */
+    @Nullable
+    Land getLandByULID(@NotNull ULID ulid);
+
+    /**
+     * Get land or nation by its ULID.
+     *
+     * @param ulid ULID of the land or nation
+     * @return null, if no land and no nation with this ULID exists
+     */
+    @Nullable
+    MemberHolder getMemberholderByULID(@NotNull ULID ulid);
 
     /**
      * Get a land by name.
@@ -199,8 +221,18 @@ public interface LandsIntegration {
      *
      * @param id ID of the nation
      * @return null, if no nation with this id exists
+     * @deprecated Use {@link #getNationByULID(ULID)} instead
      */
     @Nullable Nation getNationById(int id);
+
+    /**
+     * Get nation by its ULID.
+     *
+     * @param ulid ULID of the nation
+     * @return null, if no nation with this ULID exists
+     */
+    @Nullable
+    Nation getNationByULID(@NotNull ULID ulid);
 
     /**
      * Get a nation by its name.

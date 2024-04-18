@@ -26,6 +26,8 @@ public interface InboxMessage extends ExpressionEntity {
      */
     @NotNull String getTextWithDate(@Nullable PlayerData sender);
 
+    @NotNull String getDateText(@Nullable PlayerData sender);
+
     /**
      * Timestamp in milliseconds when the message was received.
      *

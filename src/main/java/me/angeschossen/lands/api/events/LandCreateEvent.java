@@ -8,10 +8,8 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Called whenever a land is being created. Lands won't have any ID at this stage.
- * If you need to lands ID ({@link Land#getId()}, listen to {@link me.angeschossen.lands.api.events.land.LandPostCreateEvent} instead.
- */
+import java.util.UUID;
+
 public class LandCreateEvent extends LandEvent implements Cancellable {
 
     public static HandlerList handlerList = new HandlerList();
@@ -26,6 +24,18 @@ public class LandCreateEvent extends LandEvent implements Cancellable {
     public LandCreateEvent(@Nullable LandPlayer landPlayer, @NotNull Land land) {
         super(land, landPlayer);
     }
+
+
+    /**
+     * Create an instance of this event.
+     *
+     * @param playerUUID The player that initiated the creation. If null, the creation wasn't initiated by a player.
+     * @param land       the land that is being created
+     */
+    public LandCreateEvent(@Nullable UUID playerUUID, @NotNull Land land) {
+        super(land, playerUUID);
+    }
+
 
     public static HandlerList getHandlerList() {
         return handlerList;
@@ -44,5 +54,12 @@ public class LandCreateEvent extends LandEvent implements Cancellable {
     @Override
     public @NotNull HandlerList getHandlers() {
         return handlerList;
+    }
+
+    @Override
+    public String toString() {
+        return "LandCreateEvent{" +
+                "land=" + land.toString() +
+                "}";
     }
 }

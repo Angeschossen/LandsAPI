@@ -51,18 +51,20 @@ tasks {
         archiveClassifier.set("") // replace default
         configurations = listOf(project.configurations.shadow.get())
         relocate("com.github.angeschossen.pluginframework.api", "me.angeschossen.lands.api.framework")
+        relocate("com.github.angeschossen.applicationframework.api", "me.angeschossen.lands.api.applicationframework")
     }
 }
 
 dependencies {
     //shadow(libs.applicationframework)
-    shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.8")
+    shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.22")
+    shadow("com.github.Angeschossen:ApplicationFrameworkAPI:1.0.1")
     compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
     compileOnly("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:1.7.0")
 }
 
 group = "com.github.angeschossen"
-version = "6.44.14"
+version = "7.0.1"
 description = "LandsAPI"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 

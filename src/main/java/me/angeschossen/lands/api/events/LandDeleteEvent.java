@@ -43,6 +43,7 @@ public class LandDeleteEvent extends LandEvent implements Cancellable {
 
     /**
      * Get the reason of the deletion.
+     *
      * @return reason of deletion
      */
     @NotNull
@@ -57,6 +58,7 @@ public class LandDeleteEvent extends LandEvent implements Cancellable {
 
     /**
      * Cancel this event.
+     *
      * @param cancelled true if you wish to cancel this event
      * @throws IllegalStateException if an administrator initiated the deletion
      */
@@ -76,4 +78,16 @@ public class LandDeleteEvent extends LandEvent implements Cancellable {
         builder.put("reason", reason);
     }
 
+    @Override
+    public @Nullable String getLogInfo() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "LandDeleteEvent{" +
+                "land=" + land.toString() +
+                ",reason=" + reason.toString() +
+                "}";
+    }
 }

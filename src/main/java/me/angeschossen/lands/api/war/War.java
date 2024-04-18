@@ -12,6 +12,7 @@ import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 
 public interface War extends ExpressionEntity, WarState {
@@ -104,7 +105,7 @@ public interface War extends ExpressionEntity, WarState {
      *
      * @return milliseconds when of date at which the war started
      */
-    long getStarted();
+    Timestamp getStarted();
 
     /**
      * Set started time. See {@link #getStarted()} for more info.

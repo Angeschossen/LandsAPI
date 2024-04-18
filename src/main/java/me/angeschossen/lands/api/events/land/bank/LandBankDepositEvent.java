@@ -5,6 +5,7 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Called whenever a player deposits money in the land bank.
@@ -30,5 +31,18 @@ public class LandBankDepositEvent extends BankEvent implements Cancellable {
     @Override
     public HandlerList getHandlers() {
         return handlerList;
+    }
+
+    @Override
+    public String toString() {
+        return "LandBankDepositEvent{" +
+                "land=" + land.toString() +
+                ",value=" + value +
+                "}";
+    }
+
+    @Override
+    public @Nullable String getLogInfo() {
+        return toString();
     }
 }

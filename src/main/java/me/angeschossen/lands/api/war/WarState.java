@@ -1,5 +1,7 @@
 package me.angeschossen.lands.api.war;
 
+import com.github.angeschossen.applicationframework.api.util.ULID;
+import com.github.angeschossen.pluginframework.api.holder.Changeable;
 import com.github.angeschossen.pluginframework.api.player.PlayerData;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -14,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 import java.util.function.Function;
 
-public interface WarState {
+public interface WarState extends Changeable {
 
     /**
      * Broadcast a message
@@ -63,7 +65,11 @@ public interface WarState {
      *
      * @return numerical ID
      */
+    @Deprecated
     int getId();
+
+    @NotNull
+    ULID getULID();
 
     /**
      * get the current state of the war or declaration
@@ -79,7 +85,6 @@ public interface WarState {
      * @return {@link WarTeam#NEUTRAL}, if not engaged in this war
      */
     @NotNull WarTeam getTeam(@NotNull MemberHolder entity);
-
 
     /**
      * Get the max tribute a team can set

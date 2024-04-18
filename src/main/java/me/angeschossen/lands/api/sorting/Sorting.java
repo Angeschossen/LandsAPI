@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 /**
  * A sorting evaluates the place of an land or nation on the leaderboard.
  * Default sortings: balance, chunks, members, level, ratio_kd (kills/deaths in wars ratio) or ratio_wl (won/lost wars ratio)
+ *
  * @param <T>
  */
 public abstract class Sorting<T> implements Comparator<T> {
@@ -24,6 +25,17 @@ public abstract class Sorting<T> implements Comparator<T> {
     public Sorting(@NotNull SortingContext<T> sortingContext, @NotNull String id) throws IllegalStateException {
         this.id = StringUtils.toLowerCase(id);
         this.sortingContext = sortingContext;
+    }
+
+    public final void replace(T prev, T updated) {
+        int curr = entries.indexOf(prev);
+        if (curr != -1) {
+            entries.set(curr, updated);
+        }
+    }
+
+    public final void remove(T t) {
+        entries.remove(t);
     }
 
     @Nullable
@@ -63,7 +75,7 @@ public abstract class Sorting<T> implements Comparator<T> {
     }
 
 
-    public final String[][] handleParseMenuItem(int place,@NotNull T t) {
+    public final String[][] handleParseMenuItem(int place, @NotNull T t) {
         String[][] s = getGUIPlaceholders(place, t);
         if (s.length < 2 || s[0].length != s[1].length) {
             throw new IllegalStateException("Placeholder and value array must be of the same length.");

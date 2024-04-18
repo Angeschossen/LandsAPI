@@ -7,6 +7,8 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.UUID;
+
 /**
  * Called whenever a player tries to create a nation.
  */
@@ -17,11 +19,22 @@ public class NationCreateEvent extends NationEditEvent implements Cancellable {
 
     /**
      * Create an instance of this event.
+     *
      * @param landPlayer null, if no player involved in creating this nation
-     * @param nation the nation being created
+     * @param nation     the nation being created
      */
     public NationCreateEvent(@Nullable LandPlayer landPlayer, @NotNull Nation nation) {
         super(nation, landPlayer);
+    }
+
+    /**
+     * Create an instance of this event.
+     *
+     * @param playerUUID null, if no player involved in creating this nation
+     * @param nation     the nation being created
+     */
+    public NationCreateEvent(@Nullable UUID playerUUID, @NotNull Nation nation) {
+        super(nation, playerUUID);
     }
 
     public static HandlerList getHandlerList() {
@@ -41,5 +54,17 @@ public class NationCreateEvent extends NationEditEvent implements Cancellable {
     @Override
     public void setCancelled(boolean cancelled) {
         this.cancelled = cancelled;
+    }
+
+    @Override
+    public @Nullable String getLogInfo() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "NationCreateEvent{" +
+                "nation=" + nation.toString() +
+                "}";
     }
 }

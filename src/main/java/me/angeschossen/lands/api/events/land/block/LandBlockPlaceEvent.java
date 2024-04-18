@@ -42,4 +42,16 @@ public class LandBlockPlaceEvent extends LandBlockEvent {
         }
         super.setCancelled(cancel);
     }
+
+    @Override
+    public String toString() {
+        return "LandBlockPlaceEvent{" +
+                "block=" + landBlock.toString() +
+                "}";
+    }
+
+    @Override
+    public @Nullable String getLogInfo() {
+        return toString();
+    }
 }

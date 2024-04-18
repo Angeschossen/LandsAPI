@@ -37,5 +37,4 @@ public class LandClaimSelectionEvent extends SelectionEvent {
     public @NotNull HandlerList getHandlers() {
         return handlerList;
     }
-
 }

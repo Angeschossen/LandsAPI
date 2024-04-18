@@ -51,6 +51,7 @@ public class NationDeleteEvent extends NationEditEvent implements Cancellable {
 
     /**
      * Get the reason of the deletion.
+     *
      * @return reason of deletion
      */
     @NotNull
@@ -65,6 +66,7 @@ public class NationDeleteEvent extends NationEditEvent implements Cancellable {
 
     /**
      * Cancel this event.
+     *
      * @param cancelled true if you wish to cancel this event
      * @throws IllegalStateException if this nation is forcefully deleted by an administrator ({@link DeleteReason#ADMIN})
      */
@@ -82,4 +84,16 @@ public class NationDeleteEvent extends NationEditEvent implements Cancellable {
         return handlerList;
     }
 
+    @Override
+    public @Nullable String getLogInfo() {
+        return toString();
+    }
+
+    @Override
+    public String toString() {
+        return "NationCreateEvent{" +
+                "nation=" + nation.toString() +
+                ",reason=" + reason.toString() +
+                "}";
+    }
 }

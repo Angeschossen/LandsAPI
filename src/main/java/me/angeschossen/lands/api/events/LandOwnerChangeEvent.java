@@ -107,6 +107,10 @@ public class LandOwnerChangeEvent extends LandEditMemberCancellableEvent {
          */
         DEFAULT,
         /**
+         * Owner was offline too long and is replaced by another land member.
+         */
+        LAND_EXPIRATION,
+        /**
          * Ownership transfer was initiated by an server administrator.
          */
         ADMIN,

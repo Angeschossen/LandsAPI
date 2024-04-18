@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.land;
 
+import com.github.angeschossen.applicationframework.api.util.ULID;
 import com.github.angeschossen.pluginframework.api.blockutil.impl.Position;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.PlayerUntrustedException;
@@ -287,6 +288,14 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      * @throws IllegalArgumentException If the target player is the owner of this area
      */
     boolean trustPlayer(@NotNull UUID playerUID) throws IllegalArgumentException;
+
+    /**
+     * Get the globally unique ID.
+     *
+     * @return Universally unique lexicographically sortable identifier
+     */
+    @NotNull
+    ULID getULID();
 
     /**
      * Get the current rental or purchase offer.

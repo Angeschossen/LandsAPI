@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.memberholder;
 
+import com.github.angeschossen.applicationframework.api.util.ULID;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.NameAlreadyTakenException;
 import com.github.angeschossen.pluginframework.api.player.PlayerData;
@@ -17,6 +18,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +31,14 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      * @param seconds If negative, the seconds will be subtracted from the warshield
      */
     void addWarshield(long seconds);
+
+    /**
+     * Get the globally unique ID.
+     *
+     * @return Universally unique lexicographically sortable identifier
+     */
+    @NotNull
+    ULID getULID();
 
     @NotNull
     MemberHolderInfo buildInfo();
@@ -73,6 +83,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
 
     /**
      * Get time of last capture flag placement.
+     *
      * @return time in milliseconds
      */
     long getLastCaptureFlagPlacement();
@@ -91,6 +102,8 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      * @return Time in milliseconds
      */
     long getCreationTime();
+
+    @NotNull Timestamp getCreatedAt();
 
     /**
      * Get all enemies.
