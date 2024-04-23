@@ -11,5 +11,5 @@ public interface LandMemberShipRequest {
      * @return UUID of the requester
      */
     @NotNull
-    UUID getUID();
+    UUID getPlayerUUID();
 }
