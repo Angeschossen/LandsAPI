@@ -2,8 +2,6 @@ package me.angeschossen.lands.api.land.block;
 
 import com.github.angeschossen.pluginframework.api.blockutil.impl.BlockPosition;
 import me.angeschossen.lands.api.land.Container;
-import me.angeschossen.lands.api.land.block.removalreason.LandBlockRemovalReason;
-import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -58,5 +56,5 @@ public interface LandBlock {
      *                   consists of 5 blocks it will take 5 * x ticks to remove the complete landblock.
      * @return false, if a 3rd party plugin cancelled the removal of the landblock
      */
-    boolean remove(@Nullable LandPlayer landPlayer, @NotNull LandBlockRemovalReason reason, @Nullable Runnable done, int delayTicks);
+    boolean remove(@Nullable Runnable done, int delayTicks);
 }

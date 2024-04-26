@@ -1,11 +1,12 @@
 package me.angeschossen.lands.api.nation.invite;
 
+import com.github.angeschossen.pluginframework.api.holder.Changeable;
 import me.angeschossen.lands.api.exceptions.LandAlreadyInNationException;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.nation.Nation;
 import org.jetbrains.annotations.NotNull;
 
-public interface NationInvite {
+public interface NationInvite extends Changeable {
 
     /**
      * Get the nation that sent this invite.

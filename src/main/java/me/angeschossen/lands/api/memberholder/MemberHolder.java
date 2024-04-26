@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.memberholder;
 import com.github.angeschossen.applicationframework.api.util.ULID;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.NameAlreadyTakenException;
+import com.github.angeschossen.pluginframework.api.holder.Changeable;
 import com.github.angeschossen.pluginframework.api.player.PlayerData;
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.holders.BalanceHolder;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget {
+public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget, Changeable {
     /**
      * Add an amount of seconds to the warshiled.
      *
@@ -44,8 +45,9 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      * Calculate the level.
      *
      * @param executeCmds Execute level-up or level-down configured "reward" commands?
+     * @return the new level. Result of completeablefuture will be null, if level didn't change
      */
-    void calculateLevel(boolean executeCmds);
+    CompletableFuture<? extends Level> calculateLevel(boolean executeCmds);
 
     /**
      * Check if it still exists.
@@ -358,11 +360,6 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     boolean leaveWar();
 
     /**
-     * Mark this land or nation to be recalculate its level soon.
-     */
-    void markLevelUpdate();
-
-    /**
      * Update the progress of a cached level requirement.
      *
      * @param requirement   The identification of the requirement
@@ -409,8 +406,18 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      *
      * @param requirement Identification of the requirement
      * @param val         The new value
+     * @throws IllegalArgumentException If this requirement doesn't exist
+     */
+    void updateRequirementCache(@NotNull String requirement, float val) throws IllegalArgumentException;
+
+    /**
+     * Update the level requirement progress
+     *
+     * @param requirement Identification of the requirement
+     * @param val         The new value
      * @param levelCalc   If the level should be recalculated after updating this requirement
      * @throws IllegalArgumentException If this requirement doesn't exist
      */
+    @Deprecated
     void updateRequirementCache(@NotNull String requirement, float val, boolean levelCalc) throws IllegalArgumentException;
 }

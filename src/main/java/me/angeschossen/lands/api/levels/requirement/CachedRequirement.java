@@ -33,7 +33,7 @@ public abstract class CachedRequirement extends Requirement {
     public final float getValue(@NotNull MemberHolder memberHolder) {
         if (!memberHolder.isRequirementCached(name)) {
             float val = retrieveValue(memberHolder);
-            memberHolder.updateRequirementCache(name, val, false);
+            memberHolder.updateRequirementCache(name, val);
             return val;
         } else {
             return memberHolder.getCachedRequirement(name);
