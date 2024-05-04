@@ -13,11 +13,20 @@ import java.util.UUID;
 public interface OfflinePlayer {
 
     /**
+     * Get the last known name.
+     *
+     * @return might not be up to date with the player's current name. Is null, if no data about this player in the database.
+     */
+    @Nullable
+    String getName();
+
+    /**
      * Get a players /lands edit land. Commands are executed for this land.
      *
      * @return The current /lands edit land
      */
-    @Nullable Land getEditLand();
+    @Nullable
+    Land getEditLand();
 
     /**
      * Get all lands the player owns or is a member of.

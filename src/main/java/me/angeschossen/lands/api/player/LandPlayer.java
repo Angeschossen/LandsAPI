@@ -31,7 +31,8 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
      *
      * @return null, if none
      */
-    @Nullable ChatMode getChatMode();
+    @Nullable
+    ChatMode getChatMode();
 
     /**
      * Toggle a personal flag for this player.
@@ -58,12 +59,14 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
     CombatTag getCombatTag();
 
     /**
-     * Get a players /lands edit land. Commands are executed for this land.
+     * Get a players edit land, while respecting the server's config. Depending on the server's config,
+     * this is either the /lands edit land or the land in which the player is currently standing.
      *
-     * @param sendMessage If true, the player will receive a message, if they're not part of any land.
-     * @return The current /lands edit land
+     * @param sendMessage if true, the player will receive a message, if they're not part of any land or if the land at their current position isn't claimed
+     * @return null, if has no edit land selected or no land at the players current position
      */
-    @Nullable Land getEditLand(boolean sendMessage);
+    @Nullable
+    Land getEditLand(boolean sendMessage);
 
     /**
      * Use {@link #getInvite(Land)} instead.
@@ -82,14 +85,16 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
      * @param land The land that sent the invite to this player
      * @return null, if the land didn't send any invite to this player
      */
-    @Nullable Invite getInvite(@NotNull Land land);
+    @Nullable
+    Invite getInvite(@NotNull Land land);
 
     /**
      * Get all received invites.
      *
      * @return All received invites
      */
-    @NotNull Collection<? extends Invite> getInvites();
+    @NotNull
+    Collection<? extends Invite> getInvites();
 
     /**
      * Use {@link #getLands()} instead.
@@ -139,7 +144,8 @@ public interface LandPlayer extends OfflinePlayer, ExpressionEntity, PlayerData 
      *
      * @return All wars the player is currently engaged in.
      */
-    @NotNull Set<? extends War> getWars();
+    @NotNull
+    Set<? extends War> getWars();
 
     /**
      * Use {@link #getInvite(Land)} instead.
