@@ -31,6 +31,7 @@ public abstract class PlayerNullableEvent extends LandsEvent implements PlayerEv
 
     /**
      * Get the affected online player.
+     *
      * @return if null and {@link #getPlayerUID()} is null as well, no player is involved in this event
      */
     public @Nullable LandPlayer getLandPlayer() {
@@ -39,8 +40,21 @@ public abstract class PlayerNullableEvent extends LandsEvent implements PlayerEv
 
     /**
      * Get the affected player, which might be offline.
+     *
      * @return if null, no player is involved in this event
      */
+    @Nullable
+    public UUID getPlayerUUID() {
+        return playerUUID;
+    }
+
+    /**
+     * Get the affected player, which might be offline.
+     *
+     * @return if null, no player is involved in this event
+     * @deprecated Use {{@link #getPlayerUUID()}} instead.
+     */
+    @Deprecated
     @Nullable
     public UUID getPlayerUID() {
         return playerUUID;
@@ -50,7 +64,7 @@ public abstract class PlayerNullableEvent extends LandsEvent implements PlayerEv
     public void setAffectedPlayers(ImmutableMap.@NotNull Builder<String, Collection<UUID>> builder) {
         if (landPlayer != null) {
             landPlayer.setAffectedPlayers("player_", builder);
-        }else if(playerUUID != null){
+        } else if (playerUUID != null) {
             builder.put("player_self", Collections.singleton(playerUUID));
         }
     }

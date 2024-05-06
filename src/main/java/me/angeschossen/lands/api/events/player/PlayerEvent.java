@@ -14,6 +14,7 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
 
     /**
      * Constructor
+     *
      * @param landPlayer the player that is online
      */
     public PlayerEvent(@NotNull LandPlayer landPlayer) {
@@ -24,6 +25,7 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
 
     /**
      * Constructor
+     *
      * @param playerUUID UUID of the player, that might be offline
      */
     public PlayerEvent(@NotNull UUID playerUUID) {
@@ -34,7 +36,8 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
 
     /**
      * Get the player that is online
-     * @return the affected player that is online
+     *
+     * @return might be null, if player not online
      */
     @Override
     @Nullable
@@ -43,12 +46,27 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
     }
 
     /**
-     * Get the player's UUID.
-     * @return the player might be offline
+     * Get the player's UUID
+     *
+     * @return never null
      */
     @Override
-    @Nullable
+    @NotNull
+    public UUID getPlayerUUID() {
+        assert super.getPlayerUUID() != null;
+        return super.getPlayerUUID();
+    }
+
+    /**
+     * Get the player's UUID
+     *
+     * @return never null
+     * @deprecated Use {{@link #getPlayerUUID()}} instead.
+     */
+    @Override
+    @NotNull
     public UUID getPlayerUID() {
-        return playerUUID;
+        assert super.getPlayerUUID() != null;
+        return super.getPlayerUUID();
     }
 }
