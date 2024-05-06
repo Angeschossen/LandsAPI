@@ -5,6 +5,8 @@ import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 /**
  * Called once the player data of a player that just joined, is fully loaded.
  */
@@ -12,7 +14,7 @@ public class PlayerDataLoadedEvent extends PlayerEvent {
     public static final HandlerList handlerList = new HandlerList();
 
     /**
-     * Create instaince
+     * Create instance
      *
      * @param landPlayer the joined player
      */
@@ -27,8 +29,7 @@ public class PlayerDataLoadedEvent extends PlayerEvent {
      */
     @Override
     public @NotNull LandPlayer getLandPlayer() {
-        assert super.getLandPlayer() != null;
-        return super.getLandPlayer();
+        return Objects.requireNonNull(super.getLandPlayer(), "expected landPlayer");
     }
 
     @NotNull

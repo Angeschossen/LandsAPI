@@ -53,8 +53,7 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
     @Override
     @NotNull
     public UUID getPlayerUUID() {
-        assert super.getPlayerUUID() != null;
-        return super.getPlayerUUID();
+        return Objects.requireNonNull(super.getPlayerUUID(), "expected player UUID");
     }
 
     /**
@@ -66,7 +65,6 @@ public abstract class PlayerEvent extends PlayerNullableEvent {
     @Override
     @NotNull
     public UUID getPlayerUID() {
-        assert super.getPlayerUUID() != null;
-        return super.getPlayerUUID();
+        return getPlayerUUID();
     }
 }
