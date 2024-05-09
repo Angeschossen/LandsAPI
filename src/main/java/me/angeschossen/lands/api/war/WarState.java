@@ -14,9 +14,18 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 public interface WarState extends Changeable {
+
+    /**
+     * Called each time a land or nation object of this war needed to be recreated because of a Redis update.
+     *
+     * @param prev    the previous memberHolder object
+     * @param updated the new memberHolder object
+     */
+    void onMemberHolderUpdated(@NotNull MemberHolder prev, @NotNull MemberHolder updated);
 
     /**
      * Broadcast a message
@@ -33,7 +42,7 @@ public interface WarState extends Changeable {
      *
      * @return The attacker
      */
-    @NotNull MemberHolder getAttacker();
+    MemberHolder getAttacker();
 
     /**
      * Get the enemy of a player.
@@ -41,7 +50,8 @@ public interface WarState extends Changeable {
      * @param playerUID the player
      * @return null, if player not engaged in the war
      */
-    @Nullable MemberHolder getEnemy(UUID playerUID);
+    @Nullable
+    MemberHolder getEnemy(UUID playerUID);
 
     /**
      * Get the opposite team of the land or nation.
@@ -49,7 +59,8 @@ public interface WarState extends Changeable {
      * @param memberHolder Land or nation
      * @return the provided memberHolder if it's not part of any team
      */
-    @NotNull MemberHolder getEnemy(@NotNull MemberHolder memberHolder);
+    @NotNull
+    MemberHolder getEnemy(@NotNull MemberHolder memberHolder);
 
     /**
      * Get land or nation by opponent team
@@ -84,7 +95,8 @@ public interface WarState extends Changeable {
      * @param entity land or nation
      * @return {@link WarTeam#NEUTRAL}, if not engaged in this war
      */
-    @NotNull WarTeam getTeam(@NotNull MemberHolder entity);
+    @NotNull
+    WarTeam getTeam(@NotNull MemberHolder entity);
 
     /**
      * Get the max tribute a team can set
@@ -107,14 +119,16 @@ public interface WarState extends Changeable {
      * @param player The player
      * @return NEUTRAL, if the player is not related to any land or nation in this war
      */
-    @NotNull WarTeam getTeam(@NotNull LandPlayer player);
+    @NotNull
+    WarTeam getTeam(@NotNull LandPlayer player);
 
     /**
      * Get the land or nation that was declared war against by the attacker.
      *
      * @return The defender
      */
-    @NotNull MemberHolder getDefender();
+    @NotNull
+    MemberHolder getDefender();
 
     /**
      * If state represents:
@@ -180,9 +194,17 @@ public interface WarState extends Changeable {
     void sendCurrentInfo(@Nullable LandPlayer landPlayer);
 
     /**
-     * Forcefully end this war and delete it.
+     * Removes the war state from both the attacker and the defender.
      */
-    void delete();
+    void removeFromBothParties();
+
+    /**
+     * Forcefully end this war and delete it.
+     *
+     * @return never null
+     */
+    @NotNull
+    CompletableFuture<Void> delete();
 
     /**
      * Let a team surrender.
@@ -191,7 +213,7 @@ public interface WarState extends Changeable {
      * @param filter      don't the resulting inbox messages to this player
      * @return false, if the surrenderer doesn't have enough money to pay {@link #getTribute(MemberHolder)}
      */
-    boolean surrender(@NotNull MemberHolder surrenderer, @Nullable Player filter);
+    CompletableFuture<Boolean> surrender(@NotNull MemberHolder surrenderer, @Nullable Player filter);
 
     /**
      * Get attacker and defender.

@@ -5,6 +5,8 @@ import me.angeschossen.lands.api.war.WarState;
 import me.angeschossen.lands.api.war.enums.WarTeam;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface WarDeclaration extends WarState {
 
     /**
@@ -42,5 +44,5 @@ public interface WarDeclaration extends WarState {
      *
      * @return The war
      */
-    War start();
+    CompletableFuture<War> start();
 }

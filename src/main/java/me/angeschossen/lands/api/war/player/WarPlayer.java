@@ -30,4 +30,6 @@ public interface WarPlayer {
      * @return current set scoreboard
      */
     @Nullable Scoreboard getScoreboard();
+
+    void removeMenuAndScoreboard(@Nullable Scoreboard main);
 }

@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Called on level up and down of a land or nation.
  */
-public class LevelChangedEvent extends MemberHolderEvent {
+public class MemberHolderLevelChangedEvent extends MemberHolderEvent {
     public static final HandlerList handlerList = new HandlerList();
 
     private final @NotNull Level previous;
@@ -21,7 +21,7 @@ public class LevelChangedEvent extends MemberHolderEvent {
      * @param memberHolder land or nation
      * @param previous     the previous level
      */
-    public LevelChangedEvent(@NotNull MemberHolder memberHolder, @NotNull Level previous) {
+    public MemberHolderLevelChangedEvent(@NotNull MemberHolder memberHolder, @NotNull Level previous) {
         super(memberHolder);
 
         Checks.requireNonNull(previous, "previous level");

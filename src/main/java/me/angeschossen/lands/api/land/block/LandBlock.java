@@ -49,8 +49,6 @@ public interface LandBlock {
     @NotNull LandBlockType getType();
 
     /**
-     * @param landPlayer The player that initiated the removal. null, if no player involved.
-     * @param reason     The reason of the removal
      * @param done       will be executed once all blocks are removed
      * @param delayTicks remove a block each x ticks. So if the landblock
      *                   consists of 5 blocks it will take 5 * x ticks to remove the complete landblock.

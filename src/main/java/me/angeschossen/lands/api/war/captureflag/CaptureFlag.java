@@ -9,6 +9,8 @@ import me.angeschossen.lands.api.war.enums.WarTeam;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface CaptureFlag extends ExpressionEntity {
     /**
      * Get the position of this capture flag.
@@ -18,11 +20,11 @@ public interface CaptureFlag extends ExpressionEntity {
 
     WarTeam getTeam();
 
-    boolean breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured,
-                             boolean exlosion, CaptureFlagBreakEvent.BreakReason reason);
+    CompletableFuture<Void> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured,
+                                             boolean exlosion, CaptureFlagBreakEvent.BreakReason reason);
 
-    boolean breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured, boolean end,
-                             boolean explosion, CaptureFlagBreakEvent.BreakReason reason);
+    CompletableFuture<Void> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured, boolean end,
+                                             boolean explosion, CaptureFlagBreakEvent.BreakReason reason);
 
     void atUnload();
 

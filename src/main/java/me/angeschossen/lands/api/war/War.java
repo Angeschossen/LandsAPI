@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.concurrent.CompletableFuture;
 
 public interface War extends ExpressionEntity, WarState {
 
@@ -27,8 +28,11 @@ public interface War extends ExpressionEntity, WarState {
 
     /**
      * End this war.
+     *
+     * @return never null
      */
-    void end();
+    @NotNull
+    CompletableFuture<Void> end();
 
     /**
      * End this war.
@@ -37,7 +41,7 @@ public interface War extends ExpressionEntity, WarState {
      * @param surrendered If true, the other team surrendered
      * @param reward      If true and surrendered is false, rewards from wars.yml are given to the winner
      */
-    void end(@NotNull MemberHolder winner, boolean surrendered, double reward);
+    CompletableFuture<Void> end(@NotNull MemberHolder winner, boolean surrendered, double reward);
 
     /**
      * Get stats of this war for the attacker {@link #getAttacker()}.

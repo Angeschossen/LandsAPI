@@ -357,7 +357,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      *
      * @return false, they aren't engaged in a war and haven't received a war declaration
      */
-    boolean leaveWar();
+    CompletableFuture<Boolean> leaveWar();
 
     /**
      * Update the progress of a cached level requirement.
