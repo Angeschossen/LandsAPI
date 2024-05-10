@@ -18,6 +18,8 @@ import java.util.concurrent.CompletableFuture;
 
 public interface War extends ExpressionEntity, WarState {
 
+    void updateStats(ActiveWarStats statsAtt, ActiveWarStats statsDef);
+
     /**
      * Add an online player to this war.
      * This is called by Lands.
