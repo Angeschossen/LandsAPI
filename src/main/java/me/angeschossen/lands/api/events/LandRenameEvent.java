@@ -19,12 +19,13 @@ public class LandRenameEvent extends LandEvent implements Cancellable {
 
     /**
      * Create an instance of this event.
+     *
      * @param landPlayer the player that sets the new name. If null, no player initiated this action.
-     * @param land the land that is being renamed
-     * @param oldName the old name, including color
-     * @param newName the new name, including color
+     * @param land       the land that is being renamed
+     * @param oldName    the old name, including color
+     * @param newName    the new name, including color
      */
-    public LandRenameEvent(LandPlayer landPlayer,@NotNull  Land land,@NotNull  String oldName,@NotNull  String newName) {
+    public LandRenameEvent(LandPlayer landPlayer, @NotNull Land land, @NotNull String oldName, @NotNull String newName) {
         super(land, landPlayer);
 
         this.oldName = oldName;
@@ -37,6 +38,7 @@ public class LandRenameEvent extends LandEvent implements Cancellable {
 
     /**
      * Get the current name.
+     *
      * @return includes color
      */
     @NotNull
@@ -51,6 +53,7 @@ public class LandRenameEvent extends LandEvent implements Cancellable {
 
     /**
      * Get the new name.
+     *
      * @return includes color
      */
     @NotNull
@@ -74,5 +77,14 @@ public class LandRenameEvent extends LandEvent implements Cancellable {
 
         builder.put("name_old", oldName);
         builder.put("name_new", newName);
+    }
+
+    @Override
+    public String toString() {
+        return "LandRenameEvent{" +
+                "land=" + land.toString() +
+                ",currentName=" + oldName +
+                ",newName=" + newName +
+                "}";
     }
 }
