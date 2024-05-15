@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.land.spawn;
 
+import com.github.angeschossen.pluginframework.api.blockutil.UnloadedPosition;
 import me.angeschossen.lands.api.events.LandDeleteEvent;
 import me.angeschossen.lands.api.events.land.LandEvent;
 import me.angeschossen.lands.api.land.Land;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public class LandSpawnRemoveEvent extends LandEvent {
     public static HandlerList handlerList = new HandlerList();
-    private final Location current;
+    private final UnloadedPosition current;
 
     /**
      * Create an instance of this event.
@@ -27,7 +28,7 @@ public class LandSpawnRemoveEvent extends LandEvent {
      *                   If null, the spawn is being removed by the plugin itself.
      * @param current    current spawn that is being removed
      */
-    public LandSpawnRemoveEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull Location current) {
+    public LandSpawnRemoveEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull UnloadedPosition current) {
         super(land, landPlayer);
 
         this.current = current;
@@ -43,7 +44,7 @@ public class LandSpawnRemoveEvent extends LandEvent {
      * @return location of the spawn
      */
     @NotNull
-    public Location getCurrent() {
+    public UnloadedPosition getCurrent() {
         return current;
     }
 

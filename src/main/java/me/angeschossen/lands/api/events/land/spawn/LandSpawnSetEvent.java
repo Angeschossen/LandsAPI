@@ -1,5 +1,6 @@
 package me.angeschossen.lands.api.events.land.spawn;
 
+import com.github.angeschossen.pluginframework.api.blockutil.UnloadedPosition;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.land.LandCancellableEvent;
 import me.angeschossen.lands.api.land.Land;
@@ -16,7 +17,7 @@ import java.util.Objects;
  */
 public class LandSpawnSetEvent extends LandCancellableEvent {
     public static HandlerList handlerList = new HandlerList();
-    private final @NotNull Location location;
+    private final @NotNull UnloadedPosition location;
 
     /**
      * Create an instance of this event.
@@ -26,7 +27,7 @@ public class LandSpawnSetEvent extends LandCancellableEvent {
      *                   if null, the spawn is set by the plugin itself
      * @param location   the new spawn
      */
-    public LandSpawnSetEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull Location location) {
+    public LandSpawnSetEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull UnloadedPosition location) {
         super(land, landPlayer);
 
         Objects.requireNonNull(location, "spawn location can't be null");
@@ -39,7 +40,7 @@ public class LandSpawnSetEvent extends LandCancellableEvent {
      * @return the new spawn location
      */
     @NotNull
-    public Location getNew() {
+    public UnloadedPosition getNew() {
         return location;
     }
 
@@ -49,8 +50,8 @@ public class LandSpawnSetEvent extends LandCancellableEvent {
      * @return null, if previously none was set
      */
     @Nullable
-    public Location getCurrent() {
-        return land.getSpawn();
+    public UnloadedPosition getCurrent() {
+        return land.getSpawnPosition();
     }
 
     public static HandlerList getHandlerList() {
@@ -66,7 +67,7 @@ public class LandSpawnSetEvent extends LandCancellableEvent {
     public void setExpressionVariables(ImmutableMap.@NotNull Builder<String, Object> builder) {
         super.setExpressionVariables(builder);
 
-        builder.put("world", location.getWorld().getName())
+        builder.put("world", location.getWorldName())
                 .put("x", location.getBlockX())
                 .put("y", location.getBlockY())
                 .put("z", location.getBlockZ());

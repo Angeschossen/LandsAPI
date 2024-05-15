@@ -1,5 +1,7 @@
 package me.angeschossen.lands.api.land;
 
+import com.github.angeschossen.pluginframework.api.blockutil.UnloadedPosition;
+import com.github.angeschossen.pluginframework.api.blockutil.impl.OfflineBlockCoordinate;
 import me.angeschossen.lands.api.events.land.DeleteReason;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.land.enums.LandType;
@@ -43,14 +45,16 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
      * @param world The world
      * @return null, if there are no claims in the provided world
      */
-    @Nullable Container getContainer(@NotNull World world);
+    @Nullable
+    Container getContainer(@NotNull World world);
 
     /**
      * Get information about claims and sub areas in all worlds, that have at least one claim of this land.
      *
      * @return Collection of worlds that have claims of this land inside it
      */
-    @NotNull Collection<? extends Container> getContainers();
+    @NotNull
+    Collection<? extends Container> getContainers();
 
     /**
      * Get the default areas of this land. Parts of the land that aren't part of a sub areas, are automatically part of this area.
@@ -175,7 +179,8 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
      *
      * @return null, if the land doesn't belong to any nation
      */
-    @Nullable Nation getNation();
+    @Nullable
+    Nation getNation();
 
     /**
      * Get upkeep costs of this land.
@@ -219,10 +224,18 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
     /**
      * Get the spawn location.
      *
-     * @return null, if no spawn set
+     * @return null, if no spawn set, world isn't loaded or destination is on another server.
      */
     @Nullable
     Location getSpawn();
+
+    /**
+     * Get the spawn location.
+     *
+     * @return null, if no spawn set
+     */
+    @Nullable
+    UnloadedPosition getSpawnPosition();
 
     /**
      * Set spawn location.
@@ -347,7 +360,8 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
      *
      * @return null, if the land doesn't have any category set
      */
-    @Nullable LandCategory getCategory();
+    @Nullable
+    LandCategory getCategory();
 
     /**
      * Add or remove money from the bank.
