@@ -34,6 +34,14 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     void addWarshield(long seconds);
 
     /**
+     * Get the server name.
+     *
+     * @return server name, on which the land or nation was initially created
+     */
+    @NotNull
+    String getServerName();
+
+    /**
      * Get the globally unique ID. This ID is unique across all servers, similar to UUID.
      *
      * @return Universally unique lexicographically sortable identifier
@@ -102,7 +110,13 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      */
     long getCreationTime();
 
-    @NotNull Timestamp getCreatedAt();
+    /**
+     * Get the time of creation.
+     *
+     * @return timestamp of creation
+     */
+    @NotNull
+    Timestamp getCreatedAt();
 
     /**
      * Get all enemies.
@@ -198,7 +212,8 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      * @param playerUID The player
      * @return The relation of this player
      */
-    @NotNull Relation getRelation(@NotNull UUID playerUID);
+    @NotNull
+    Relation getRelation(@NotNull UUID playerUID);
 
     /**
      * Get stats of all previous wars.
@@ -357,6 +372,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      *
      * @return false, they aren't engaged in a war and haven't received a war declaration
      */
+    @NotNull
     CompletableFuture<Boolean> leaveWar();
 
     /**
@@ -367,6 +383,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      * @param allowNegative Allow the result to be negative?
      * @return The result / progress value
      */
+    @NotNull
     CompletableFuture<@Nullable Float> modifyRequirementCache(@NotNull String requirement, float modify, boolean allowNegative);
 
     /**
