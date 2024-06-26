@@ -164,7 +164,7 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
      * @return Messages with placeholders replaced with the values.
      */
     @NotNull
-    String getTitleMessage(@Nullable Player player);
+    String getTitleMessage(@Nullable LandPlayer player);
 
     /**
      * Get the current war the land is currently engaged in.
