@@ -19,14 +19,22 @@ public interface InboxMessage extends ExpressionEntity {
     InboxCategory getCategory();
 
     /**
-     * Get the message content {@link #getText()} with the messages date when it was received ({@link #getText()}).
+     * Get the message content {@link #getText(PlayerData)} with the messages date when it was received ({@link #getDateString(PlayerData)}).
      *
      * @param sender Used for per user language. If no player provided, uses default language.
-     * @return Format: time ({@link #getTime()}): content ({@link #getText()})
+     * @return Format: date ({@link #getDateString(PlayerData)} ()}): content ({@link {@link #getText(PlayerData)}})
      */
-    @NotNull String getTextWithDate(@Nullable PlayerData sender);
+    @NotNull
+    String getTextWithDate(@Nullable PlayerData sender);
 
-    @NotNull String getDateText(@Nullable PlayerData sender);
+    /**
+     * Get the date in text format.
+     *
+     * @param player will take the players locale
+     * @return formatted date
+     */
+    @NotNull
+    String getDateString(@Nullable PlayerData player);
 
     /**
      * Timestamp in milliseconds when the message was received.
@@ -36,12 +44,22 @@ public interface InboxMessage extends ExpressionEntity {
     long getTime();
 
     /**
-     * Get the message text
+     * Get the message text without the date.
      *
-     * @return Content of the message
+     * @return Content of the message without the date
+     * @deprecated Use {{@link #getText(PlayerData)}} instead.
      */
+    @Deprecated
     @NotNull
     String getText();
+
+    /**
+     * Get the message text without the date.
+     * @param player depends on players locale
+     * @return Content of the message without the date
+     */
+    @NotNull
+    String getText(@Nullable PlayerData player);
 
     /**
      * Use {@link #getTextWithDate(PlayerData)} instead.
