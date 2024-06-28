@@ -2,6 +2,7 @@ package me.angeschossen.lands.api.events;
 
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
+import me.angeschossen.lands.api.player.LandPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +21,8 @@ public class BroadcastEvent extends LandsEvent {
     public static HandlerList handlerList = new HandlerList();
 
     private final @Nullable String messageKey;
-    private final @NotNull Collection<Player> recipients;
-    private final @NotNull Function<@Nullable Player, String> parseMessage;
+    private final @NotNull Collection<? extends LandPlayer> recipients;
+    private final @NotNull Function<@Nullable LandPlayer, String> parseMessage;
 
     /**
      * Create an instance of this event.
@@ -30,7 +31,7 @@ public class BroadcastEvent extends LandsEvent {
      * @param messageKey   Message key in the Lands language file. Use null if the message isn't from Lands
      * @param parseMessage parses the message for a specific player. Lands supports per player language
      */
-    public BroadcastEvent(@NotNull Collection<Player> recipients, @Nullable String messageKey, @NotNull Function<@Nullable Player, String> parseMessage) {
+    public BroadcastEvent(@NotNull Collection<? extends LandPlayer> recipients, @Nullable String messageKey, @NotNull Function<@Nullable LandPlayer, String> parseMessage) {
         this.messageKey = messageKey;
         this.recipients = recipients;
         this.parseMessage = parseMessage;
@@ -57,7 +58,7 @@ public class BroadcastEvent extends LandsEvent {
     }
 
     @NotNull
-    public String parseMessage(@Nullable Player recipient) {
+    public String parseMessage(@Nullable LandPlayer recipient) {
         return parseMessage.apply(recipient);
     }
 
@@ -77,13 +78,13 @@ public class BroadcastEvent extends LandsEvent {
      * @return all recipients
      */
     @NotNull
-    public Collection<Player> getRecipients() {
+    public Collection<? extends LandPlayer> getRecipients() {
         return recipients;
     }
 
     @Override
     public void setAffectedPlayers(ImmutableMap.@NotNull Builder<String, Collection<UUID>> builder) {
-        builder.put("recipients", recipients.stream().map(Player::getUniqueId).collect(Collectors.toList()));
+        builder.put("recipients", recipients.stream().map(LandPlayer::getUUID).collect(Collectors.toList()));
     }
 
     @Override

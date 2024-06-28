@@ -35,7 +35,7 @@ public interface WarState extends Changeable {
      * @param v      placeholder values
      * @param filter if true, only send to players enganged in this war. If false, send to all players
      */
-    void broadcast(String key, String[] p, Function<Player, String[]> v, boolean filter);
+    void broadcast(String key, String[] p, Function<LandPlayer, String[]> v, boolean filter);
 
     /**
      * Get the land or nation that declared war initially.

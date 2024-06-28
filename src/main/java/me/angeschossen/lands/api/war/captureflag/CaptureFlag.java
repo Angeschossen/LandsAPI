@@ -20,11 +20,11 @@ public interface CaptureFlag extends ExpressionEntity {
 
     WarTeam getTeam();
 
-    CompletableFuture<Void> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured,
-                                             boolean exlosion, CaptureFlagBreakEvent.BreakReason reason);
+    CompletableFuture<Boolean> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured,
+                                                boolean exlosion, CaptureFlagBreakEvent.BreakReason reason);
 
-    CompletableFuture<Void> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured, boolean end,
-                                             boolean explosion, CaptureFlagBreakEvent.BreakReason reason);
+    CompletableFuture<Boolean> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured, boolean end,
+                                                boolean explosion, CaptureFlagBreakEvent.BreakReason reason);
 
     void atUnload();
 
