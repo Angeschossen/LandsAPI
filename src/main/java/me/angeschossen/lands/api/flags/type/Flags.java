@@ -62,6 +62,7 @@ public final class Flags {
     public static NaturalFlag PLANT_GROWTH;
     public static NaturalFlag SNOW_MELT;
     public static NaturalFlag WITHER_ATTACK_ANIMAL;
+    public static NaturalFlag BLOCK_SPREADING;
 
     // nation
     public static RoleFlag NATION_EDIT;
