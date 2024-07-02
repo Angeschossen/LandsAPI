@@ -33,7 +33,7 @@ public interface WarState extends Changeable {
      * @param key    message key of locale file
      * @param p      placeholders
      * @param v      placeholder values
-     * @param filter if true, only send to players enganged in this war. If false, send to all players
+     * @param filter if true, only send to players engaged in this war. If false, send to all players
      */
     void broadcast(String key, String[] p, Function<LandPlayer, String[]> v, boolean filter);
 
