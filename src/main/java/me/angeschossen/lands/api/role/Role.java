@@ -6,6 +6,7 @@ import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.role.enums.RoleType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 
 public interface Role extends ExpressionEntity {
@@ -26,6 +27,9 @@ public interface Role extends ExpressionEntity {
     @Deprecated
     boolean isVisitorRole();
 
+    @Nullable
+    Role getDemote(boolean allowVisitor, boolean onlyCanBeSet);
+
     /**
      * Get the icon of this role.
      *
@@ -41,6 +45,9 @@ public interface Role extends ExpressionEntity {
      * @param icon The icon to set
      */
     void setIcon(@NotNull ItemStack icon);
+
+    @Nullable
+    Role getPromote(boolean allowVisitor, boolean onlyCanBeSet);
 
     /**
      * Get the role type.
@@ -96,4 +103,6 @@ public interface Role extends ExpressionEntity {
      * @return A higher priority means that one role is above another in the hierarchy. Minimum value is 0
      */
     int getPriority();
+
+    void swapPriority(@NotNull Role from);
 }
