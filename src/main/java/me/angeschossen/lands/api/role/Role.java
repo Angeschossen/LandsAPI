@@ -27,8 +27,14 @@ public interface Role extends ExpressionEntity {
     @Deprecated
     boolean isVisitorRole();
 
+    /**
+     * Get the role with the lower priority.
+     * @param allowVisitor
+     * @param onlyCanBeSet
+     * @return null, if no role with lower priority exists
+     */
     @Nullable
-    Role getDemote(boolean allowVisitor, boolean onlyCanBeSet);
+    Role getLowerPriorityRole(boolean allowVisitor, boolean onlyCanBeSet);
 
     /**
      * Get the icon of this role.
