@@ -7,6 +7,7 @@ import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,6 +18,10 @@ public interface InboxMessage extends ExpressionEntity {
 
     /**
      * Add an inbox message to a land or nation.
+     * In order to create a inbox message, you must set a inbox message provider.
+     * The message provider needs to be registered, before Lands loads data. Therefore, you need to do that in your {@link Plugin#onLoad()} method of your plugins main class.
+     * You can use {@link LandsIntegration#onLoad(Runnable)} in combination with {@link LandsIntegration#setInboxMessageProvider(InboxMessageProvider)} to set the message provider.
+     * {@link LandsIntegration#onLoad(Runnable)} ensures that your code is called once Lands is loaded and before Lands loads data.
      *
      * @param landsIntegration  your integration
      * @param memberHolder      land or nation
