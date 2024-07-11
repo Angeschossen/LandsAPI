@@ -3,7 +3,7 @@ package me.angeschossen.lands.api.handler;
 import com.github.angeschossen.pluginframework.api.configuration.Configuration;
 import com.github.angeschossen.pluginframework.api.utils.StringUtils;
 import me.angeschossen.lands.api.LandsIntegration;
-import me.angeschossen.lands.api.configuration.ModuleConfig;
+import me.angeschossen.lands.api.configuration.modules.ModuleConfig;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.levels.LevelsHandler;
 import me.angeschossen.lands.api.utils.PlayerUtils;

@@ -213,7 +213,7 @@ public interface WarState extends Changeable {
      * @param filter      don't the resulting inbox messages to this player
      * @return false, if the surrenderer doesn't have enough money to pay {@link #getTribute(MemberHolder)}
      */
-    CompletableFuture<Boolean> surrender(@NotNull MemberHolder surrenderer, @Nullable Player filter);
+    CompletableFuture<Boolean> surrender(@NotNull MemberHolder surrenderer, @Nullable LandPlayer filter);
 
     /**
      * Get attacker and defender.

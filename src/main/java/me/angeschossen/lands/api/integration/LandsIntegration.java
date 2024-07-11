@@ -7,6 +7,7 @@ import me.angeschossen.lands.api.exceptions.FlagConflictException;
 import me.angeschossen.lands.api.flags.Flag;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.handler.APIHandler;
+import me.angeschossen.lands.api.inbox.InboxMessageProvider;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandArea;
@@ -77,7 +78,17 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    public @NotNull Configuration getConfig() {
+    public @Nullable InboxMessageProvider getInboxMessageProvider() {
+        return null;
+    }
+
+    @Override
+    public void setInboxMessages(@Nullable InboxMessageProvider inboxMessageProvider) {
+
+    }
+
+    @Override
+    public @NotNull Configuration getConfiguration() {
         return null;
     }
 

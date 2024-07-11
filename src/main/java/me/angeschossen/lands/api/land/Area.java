@@ -10,6 +10,7 @@ import me.angeschossen.lands.api.land.rental.RentalOffer;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.player.invite.Invite;
 import me.angeschossen.lands.api.role.Role;
+import me.angeschossen.lands.api.role.RoleHolder;
 import me.angeschossen.lands.api.role.system.SystemFlagStates;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -22,7 +23,7 @@ import java.util.UUID;
 /**
  * This might be a default area ({@link Land#getDefaultArea()} or a sub area ({@link LandArea}).
  */
-public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolder {
+public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolder, RoleHolder {
     /**
      * Get applied system flag states for player. See {@link SystemFlagStatesHolder#setSystemFlagStates(LandPlayer, SystemFlagStates)} for more info.
      *

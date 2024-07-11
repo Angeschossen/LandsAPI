@@ -3,6 +3,10 @@ package me.angeschossen.lands.api.inbox;
 
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.player.PlayerData;
+import me.angeschossen.lands.api.LandsIntegration;
+import me.angeschossen.lands.api.handler.APIHandler;
+import me.angeschossen.lands.api.memberholder.MemberHolder;
+import me.angeschossen.lands.api.player.LandPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,6 +14,26 @@ import org.jetbrains.annotations.Nullable;
  * Inbox messages notify the land about events, such as newly trusted players, paid upkeep etc.
  */
 public interface InboxMessage extends ExpressionEntity {
+
+    /**
+     * Add an inbox message to a land or nation.
+     *
+     * @param landsIntegration  your integration
+     * @param memberHolder      land or nation
+     * @param category          category of the message
+     * @param key               this is not the message. this is just an unique key that is later used to retrieve the raw message before parsing
+     * @param placeholders      placeholders for this message
+     * @param placeholderValues placeholder values for this message
+     * @param isAlert           should land members be alerted, in Discord, if DiscordBridge is installed?
+     * @param broadcast         broadcast to land members ingame?
+     * @param filterReceive     don't broadcast to this specific land member
+     * @return the added inbox message
+     * @throws IllegalArgumentException if the provided parameters are invalid
+     */
+    static InboxMessage of(@NotNull LandsIntegration landsIntegration, @NotNull MemberHolder memberHolder, @NotNull InboxCategory category, @NotNull String key, @Nullable String[] placeholders, String[] placeholderValues, boolean isAlert, boolean broadcast, @Nullable LandPlayer filterReceive) throws IllegalArgumentException {
+        return APIHandler.getLandsIntegrationFactory().inboxMessageOf(landsIntegration, memberHolder, category, key, placeholders, placeholderValues, isAlert, broadcast, filterReceive);
+    }
+
     /**
      * Get the category of this message.
      *
@@ -55,6 +79,7 @@ public interface InboxMessage extends ExpressionEntity {
 
     /**
      * Get the message text without the date.
+     *
      * @param player depends on players locale
      * @return Content of the message without the date
      */

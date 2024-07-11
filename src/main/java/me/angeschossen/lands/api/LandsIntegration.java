@@ -5,6 +5,7 @@ import me.angeschossen.lands.api.configuration.Configuration;
 import me.angeschossen.lands.api.events.player.teleportation.PlayerRandomTeleportEvent;
 import me.angeschossen.lands.api.flags.FlagRegistry;
 import me.angeschossen.lands.api.handler.APIHandler;
+import me.angeschossen.lands.api.inbox.InboxMessageProvider;
 import me.angeschossen.lands.api.land.Area;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.LandWorld;
@@ -49,12 +50,17 @@ public interface LandsIntegration {
      */
     void setWarHandler(@Nullable WarHandler warHandler);
 
+    @Nullable
+    InboxMessageProvider getInboxMessageProvider();
+
+    void setInboxMessages(@Nullable InboxMessageProvider inboxMessageProvider);
+
     /**
      * Get the configuration of Lands.
      *
      * @return never null
      */
-    @NotNull Configuration getConfig();
+    @NotNull Configuration getConfiguration();
 
     /**
      * Check if two players can attack each other at the given location.

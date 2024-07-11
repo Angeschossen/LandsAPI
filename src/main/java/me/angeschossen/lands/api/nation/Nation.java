@@ -21,7 +21,7 @@ public interface Nation extends MemberHolder {
      * @return false, if the land is already part of this nation
      * @throws LandAlreadyInNationException if the land is already part of a different nation
      */
-    boolean addLand(@NotNull Land land, @Nullable Player filter) throws LandAlreadyInNationException;
+    boolean addLand(@NotNull Land land, @Nullable LandPlayer filter) throws LandAlreadyInNationException;
 
     /**
      * Delete this nation.
@@ -51,7 +51,7 @@ public interface Nation extends MemberHolder {
      * Set the capital of this nation.
      *
      * @param land the new capital
-     * @throws IllegalStateException If the land isn't part of this nation. You need to add it first via {@link #addLand(Land, Player)}.
+     * @throws IllegalStateException If the land isn't part of this nation. You need to add it first via {@link #addLand(Land, LandPlayer)}.
      */
     void setCapital(@NotNull Land land) throws IllegalArgumentException;
 
@@ -71,5 +71,5 @@ public interface Nation extends MemberHolder {
      * @return false, if the land wasn't part of this nation
      * @throws IllegalStateException if the land is the capital of this nation
      */
-    boolean removeLand(@NotNull Land land, @Nullable Player filter) throws IllegalStateException;
+    boolean removeLand(@NotNull Land land, @Nullable LandPlayer filter) throws IllegalStateException;
 }

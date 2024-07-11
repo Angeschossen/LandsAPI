@@ -1,10 +1,13 @@
-package me.angeschossen.lands.api.configuration;
+package me.angeschossen.lands.api.configuration.modules;
 
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
+/**
+ * Config for nations.yml
+ */
 public interface WarsConfig extends ModuleConfig {
     /**
      * Get collection of placeable blocks during a war inside a land that is taking part in the war.

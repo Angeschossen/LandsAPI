@@ -3,13 +3,31 @@ package me.angeschossen.lands.api.role;
 import com.github.angeschossen.applicationframework.api.util.ULID;
 import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import me.angeschossen.lands.api.flags.type.RoleFlag;
+import me.angeschossen.lands.api.handler.APIHandler;
 import me.angeschossen.lands.api.role.enums.RoleType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.CompletableFuture;
+
 
 public interface Role extends ExpressionEntity {
+
+    /**
+     * Create a new role.
+     *
+     * @param roleHolder area to which the role should be added
+     * @param name       the name of the new role
+     * @return never null
+     * @throws IllegalArgumentException if the name is invalid
+     * @throws IllegalStateException    if a role with the name already exists
+     */
+    @NotNull
+    static Role of(@NotNull RoleHolder roleHolder, @NotNull String name) throws IllegalArgumentException, IllegalStateException {
+        return APIHandler.getLandsIntegrationFactory().roleOf(roleHolder, name);
+    }
+
     /**
      * Get the globally unique ID. This ID is unique across all lands and servers, similar to UUID.
      *
@@ -17,6 +35,14 @@ public interface Role extends ExpressionEntity {
      */
     @NotNull
     ULID getULID();
+
+    /**
+     * Some role types can't be deleted as they are required.
+     * You can check that, by viewing at the constructor of this enum: {@link RoleType}
+     *
+     * @return false, if role can't be deleted
+     */
+    boolean isDeleteable();
 
     /**
      * Check if this role is the visitor role.
@@ -29,8 +55,9 @@ public interface Role extends ExpressionEntity {
 
     /**
      * Get the role with the lower priority.
-     * @param allowVisitor
-     * @param onlyCanBeSet
+     *
+     * @param allowVisitor include visistor role?
+     * @param onlyCanBeSet only return roles that can be set?
      * @return null, if no role with lower priority exists
      */
     @Nullable
@@ -39,7 +66,7 @@ public interface Role extends ExpressionEntity {
     /**
      * Get the icon of this role.
      *
-     * @return Icon
+     * @return never null
      */
     @NotNull
     ItemStack getIcon();
@@ -48,12 +75,28 @@ public interface Role extends ExpressionEntity {
      * Set a new icon for this role.
      * This supports NBT data and custom heads.
      *
-     * @param icon The icon to set
+     * @param icon icon to set
      */
     void setIcon(@NotNull ItemStack icon);
 
+    /**
+     * Get the role with the higher priority.
+     *
+     * @param allowVisitor include visistor role?
+     * @param onlyCanBeSet only return roles that can be set?
+     * @return null, if no role with higher priority exists
+     */
     @Nullable
-    Role getPromote(boolean allowVisitor, boolean onlyCanBeSet);
+    Role getHigherPriorityRole(boolean allowVisitor, boolean onlyCanBeSet);
+
+    /**
+     * Delete a role.
+     *
+     * @return never null
+     * @throws IllegalStateException if {@link #isDeleteable()} returns false
+     */
+    @NotNull
+    CompletableFuture<Void> delete() throws IllegalStateException;
 
     /**
      * Get the role type.
@@ -110,5 +153,11 @@ public interface Role extends ExpressionEntity {
      */
     int getPriority();
 
+    /**
+     * Swap priority of two roles.
+     *
+     * @param from the priority of this role will be applied to the current role and the
+     *             parameter role will receive the priority of the current role
+     */
     void swapPriority(@NotNull Role from);
 }

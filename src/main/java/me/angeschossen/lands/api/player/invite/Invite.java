@@ -2,6 +2,7 @@ package me.angeschossen.lands.api.player.invite;
 
 import com.github.angeschossen.pluginframework.api.holder.Changeable;
 import me.angeschossen.lands.api.land.Land;
+import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.utils.TrustResult;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -46,7 +47,7 @@ public interface Invite extends Changeable {
      * @param player The player that should get a response in chat about this acceptance
      * @return false, if the invite fails because of max members permission (lands.members.number).
      */
-    TrustResult accept(@Nullable Player player);
+    TrustResult accept(@Nullable LandPlayer player);
 
     /**
      * Deny this invite.
