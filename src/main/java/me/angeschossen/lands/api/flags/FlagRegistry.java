@@ -9,6 +9,7 @@ import me.angeschossen.lands.api.flags.type.RoleFlag;
 import me.angeschossen.lands.api.flags.type.parent.Flag;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,7 +22,9 @@ import java.util.List;
 public interface FlagRegistry {
 
     /**
-     * Register a flag. Flags need to be registered before Lands enables, but after Lands was loaded.
+     * Register a flag. Flags need to be registered before Lands loads data.
+     * To make sure that the flag can be registered, call {@link me.angeschossen.lands.api.LandsIntegration#onLoad(Runnable)}
+     * in combination with this method in your {@link Plugin#onLoad()} method of your plugins main class.
      *
      * @param flag flag to register
      * @return same instance
@@ -56,7 +59,8 @@ public interface FlagRegistry {
      * @param name the unique name
      * @return null, if no role flag with this name exists
      */
-    @Nullable RoleFlag getRole(@NotNull String name);
+    @Nullable
+    RoleFlag getRole(@NotNull String name);
 
     /**
      * Get a natural flag by its name.
@@ -64,7 +68,8 @@ public interface FlagRegistry {
      * @param name the unique name
      * @return null, if no natural flag with this name exists
      */
-    @Nullable NaturalFlag getNatural(@NotNull String name);
+    @Nullable
+    NaturalFlag getNatural(@NotNull String name);
 
     /**
      * Get a flag by its name
@@ -72,7 +77,8 @@ public interface FlagRegistry {
      * @param name the unique name
      * @return null, if no flag with this name exists
      */
-    @Nullable Flag<?> get(@NotNull String name);
+    @Nullable
+    Flag<?> get(@NotNull String name);
 
     /**
      * Get all registered role flags.
@@ -106,7 +112,8 @@ public interface FlagRegistry {
      *
      * @return collection of flags that are used to toggle player's personal settings
      */
-    @NotNull Collection<PlayerFlag> getPlayerFlags();
+    @NotNull
+    Collection<PlayerFlag> getPlayerFlags();
 
     /**
      * Get player flag by its name.
@@ -114,7 +121,8 @@ public interface FlagRegistry {
      * @param name the unique name
      * @return null, if this player flag doesn't exist
      */
-    @Nullable PlayerFlag getPlayer(@NotNull String name);
+    @Nullable
+    PlayerFlag getPlayer(@NotNull String name);
 
     /**
      * Get all natural flags.
