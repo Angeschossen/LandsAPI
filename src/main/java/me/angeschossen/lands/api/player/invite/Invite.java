@@ -4,7 +4,6 @@ import com.github.angeschossen.pluginframework.api.holder.Changeable;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.utils.TrustResult;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

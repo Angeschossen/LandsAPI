@@ -83,7 +83,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
     }
 
     @Override
-    public void setInboxMessages(@Nullable InboxMessageProvider inboxMessageProvider) {
+    public void setInboxMessageProvider(@Nullable InboxMessageProvider inboxMessageProvider) {
 
     }
 

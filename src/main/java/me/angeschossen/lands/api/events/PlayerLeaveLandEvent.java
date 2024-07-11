@@ -8,8 +8,6 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.UUID;
-
 /**
  * Called whenver a land leaves the whole land.
  */

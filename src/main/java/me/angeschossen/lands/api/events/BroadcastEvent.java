@@ -3,7 +3,6 @@ package me.angeschossen.lands.api.events;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

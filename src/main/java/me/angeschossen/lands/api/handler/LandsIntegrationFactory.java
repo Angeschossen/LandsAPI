@@ -1,7 +1,6 @@
 package me.angeschossen.lands.api.handler;
 
 import com.github.angeschossen.pluginframework.api.blockutil.BlockPosition;
-import com.sun.org.apache.bcel.internal.generic.ATHROW;
 import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;

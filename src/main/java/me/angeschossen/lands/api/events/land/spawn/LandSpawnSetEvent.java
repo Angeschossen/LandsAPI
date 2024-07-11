@@ -5,7 +5,6 @@ import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.land.LandCancellableEvent;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.Location;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

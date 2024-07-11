@@ -50,17 +50,27 @@ public interface LandsIntegration {
      */
     void setWarHandler(@Nullable WarHandler warHandler);
 
+    /**
+     * Get the current provider for raw inbox messages
+     * @return if null, none set
+     */
     @Nullable
     InboxMessageProvider getInboxMessageProvider();
 
-    void setInboxMessages(@Nullable InboxMessageProvider inboxMessageProvider);
+    /**
+     * Set provider for raw inbox messages.
+     *
+     * @param inboxMessageProvider if null, current provider will be removed
+     */
+    void setInboxMessageProvider(@Nullable InboxMessageProvider inboxMessageProvider);
 
     /**
      * Get the configuration of Lands.
      *
      * @return never null
      */
-    @NotNull Configuration getConfiguration();
+    @NotNull
+    Configuration getConfiguration();
 
     /**
      * Check if two players can attack each other at the given location.
@@ -95,14 +105,16 @@ public interface LandsIntegration {
      * @param location The location
      * @return null, if the target chunk isn't claimed
      */
-    @Nullable Area getUnloadedArea(@NotNull Location location);
+    @Nullable
+    Area getUnloadedArea(@NotNull Location location);
 
     /**
      * The flag registry allows you to make some more specific actions than in the Flags class.
      *
      * @return The flag registry with more advanced methods for flag management
      */
-    @NotNull FlagRegistry getFlagRegistry();
+    @NotNull
+    FlagRegistry getFlagRegistry();
 
     /**
      * Get land claimed land from a loaded chunk.
@@ -201,7 +213,8 @@ public interface LandsIntegration {
      * @return LevelsHandler
      * @since 5.14.0
      */
-    @NotNull LevelsHandler getLevelsHandler();
+    @NotNull
+    LevelsHandler getLevelsHandler();
 
     /**
      * Get the last time a cooldown was set for a player.
@@ -229,7 +242,8 @@ public interface LandsIntegration {
      * @return null, if no nation with this id exists
      * @deprecated Use {@link #getNationByULID(ULID)} instead
      */
-    @Nullable Nation getNationById(int id);
+    @Nullable
+    Nation getNationById(int id);
 
     /**
      * Get nation by its ULID.
@@ -246,14 +260,16 @@ public interface LandsIntegration {
      * @param name The name of the nation without color codes. Not case sensitive
      * @return null, if no nation with this name exists
      */
-    @Nullable Nation getNationByName(@NotNull String name);
+    @Nullable
+    Nation getNationByName(@NotNull String name);
 
     /**
      * Get all nations
      *
      * @return Includes nations owned by an admin land
      */
-    @NotNull Collection<Nation> getNations();
+    @NotNull
+    Collection<Nation> getNations();
 
     /**
      * Get reduced data for an player that is offline or online.
@@ -278,7 +294,8 @@ public interface LandsIntegration {
      * @param id The context id. Default: land, nation
      * @return null, if the sorting context does not exist.
      */
-    @Nullable SortingContext<?> getSortingContext(@NotNull String id);
+    @Nullable
+    SortingContext<?> getSortingContext(@NotNull String id);
 
     /**
      * Execute actions once Lands is fully loaded.

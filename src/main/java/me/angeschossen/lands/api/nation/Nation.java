@@ -4,7 +4,6 @@ import me.angeschossen.lands.api.exceptions.LandAlreadyInNationException;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

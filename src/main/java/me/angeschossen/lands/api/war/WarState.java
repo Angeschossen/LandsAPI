@@ -9,7 +9,6 @@ import me.angeschossen.lands.api.war.declaration.WarDeclaration;
 import me.angeschossen.lands.api.war.enums.WarSetting;
 import me.angeschossen.lands.api.war.enums.WarStatus;
 import me.angeschossen.lands.api.war.enums.WarTeam;
-import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
