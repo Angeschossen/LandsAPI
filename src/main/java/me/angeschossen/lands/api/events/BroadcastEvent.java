@@ -1,5 +1,7 @@
 package me.angeschossen.lands.api.events;
 
+import com.github.angeschossen.pluginframework.api.locale.Environment;
+import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
 import me.angeschossen.lands.api.player.LandPlayer;
@@ -20,8 +22,9 @@ public class BroadcastEvent extends LandsEvent {
     public static HandlerList handlerList = new HandlerList();
 
     private final @Nullable String messageKey;
+    private final @NotNull Category category;
     private final @NotNull Collection<? extends LandPlayer> recipients;
-    private final @NotNull Function<@Nullable LandPlayer, String> parseMessage;
+    private final @NotNull Function<@NotNull MessageParseRequest, String> parseMessage;
 
     /**
      * Create an instance of this event.
@@ -30,8 +33,9 @@ public class BroadcastEvent extends LandsEvent {
      * @param messageKey   Message key in the Lands language file. Use null if the message isn't from Lands
      * @param parseMessage parses the message for a specific player. Lands supports per player language
      */
-    public BroadcastEvent(@NotNull Collection<? extends LandPlayer> recipients, @Nullable String messageKey, @NotNull Function<@Nullable LandPlayer, String> parseMessage) {
+    public BroadcastEvent(@NotNull Collection<? extends LandPlayer> recipients,@NotNull Category category, @Nullable String messageKey, @NotNull Function<@NotNull MessageParseRequest, String> parseMessage) {
         this.messageKey = messageKey;
+        this.category = category;
         this.recipients = recipients;
         this.parseMessage = parseMessage;
     }
@@ -56,9 +60,45 @@ public class BroadcastEvent extends LandsEvent {
         return "deprecated";
     }
 
+    public @NotNull Category getCategory() {
+        return category;
+    }
+
+    public enum Category {
+        LAND_CREATED,
+        LAND_DELETED,
+        RELATION_CHANGED,
+        WAR_STATE_CHANGED,
+        UPKEEP_COLLECTED
+    }
+
+    public static final class MessageParseRequest {
+        private final @NotNull Environment environment;
+        private final @Nullable LandPlayer recipient;
+
+        public MessageParseRequest(@NotNull Environment environment, @Nullable LandPlayer recipient) {
+            this.environment = Checks.requireNonNull(environment, "environment");
+            this.recipient = recipient;
+        }
+
+        public @NotNull Environment getEnvironment() {
+            return environment;
+        }
+
+        public @Nullable LandPlayer getRecipient() {
+            return recipient;
+        }
+    }
+
+    /**
+     * Parse the message.
+     *
+     * @param messageParseRequest parameters
+     * @return never null
+     */
     @NotNull
-    public String parseMessage(@Nullable LandPlayer recipient) {
-        return parseMessage.apply(recipient);
+    public String parseMessage(@NotNull MessageParseRequest messageParseRequest) {
+        return parseMessage.apply(Checks.requireNonNull(messageParseRequest, "messageParseRequest"));
     }
 
     /**
