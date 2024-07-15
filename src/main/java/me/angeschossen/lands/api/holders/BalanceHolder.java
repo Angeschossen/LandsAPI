@@ -23,7 +23,7 @@ public interface BalanceHolder {
      * @return The new balance will never go below 0
      */
     boolean modifyBalance(double modify);
-
+    boolean modifyBalance(double modify, boolean save);
     /**
      * Get the balance in a formatted display.
      * @return Formatted view of the balance. Depends on the server's config
