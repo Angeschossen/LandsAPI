@@ -6,6 +6,10 @@ public enum LandBlockType {
      */
     MAIN,
     /**
+     * The mainblock for camps.
+     */
+    MAIN_CAMP,
+    /**
      * Capture flag during war.
      */
     CAPTURE_FLAG,

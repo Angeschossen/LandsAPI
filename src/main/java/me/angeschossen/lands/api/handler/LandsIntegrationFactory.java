@@ -4,6 +4,7 @@ import com.github.angeschossen.pluginframework.api.blockutil.BlockPosition;
 import me.angeschossen.lands.api.LandsIntegration;
 import me.angeschossen.lands.api.inbox.InboxCategory;
 import me.angeschossen.lands.api.inbox.InboxMessage;
+import me.angeschossen.lands.api.items.ItemType;
 import me.angeschossen.lands.api.land.Land;
 import me.angeschossen.lands.api.land.block.LandMainBlock;
 import me.angeschossen.lands.api.land.enums.LandType;
@@ -14,6 +15,7 @@ import me.angeschossen.lands.api.player.combat.CombatTag;
 import me.angeschossen.lands.api.role.Role;
 import me.angeschossen.lands.api.role.RoleHolder;
 import org.bukkit.Location;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -27,6 +29,10 @@ public interface LandsIntegrationFactory {
 
     @NotNull
     LandsIntegration of(@NotNull Plugin plugin);
+
+    ItemStack buildItemStack(@NotNull ItemType itemType, @Nullable LandPlayer landPlayer);
+
+    ItemStack buildCampItem(@Nullable LandPlayer landPlayer, int radius);
 
     @NotNull
     CombatTag combatTagOf(@NotNull LandsIntegration landsIntegration, @NotNull LandPlayer attacker, LandPlayer target, long duration, boolean showMessage);
