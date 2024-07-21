@@ -33,7 +33,7 @@ public class BroadcastEvent extends LandsEvent {
      * @param messageKey   Message key in the Lands language file. Use null if the message isn't from Lands
      * @param parseMessage parses the message for a specific player. Lands supports per player language
      */
-    public BroadcastEvent(@NotNull Collection<? extends LandPlayer> recipients,@NotNull Category category, @Nullable String messageKey, @NotNull Function<@NotNull MessageParseRequest, String> parseMessage) {
+    public BroadcastEvent(@NotNull Collection<? extends LandPlayer> recipients, @NotNull Category category, @Nullable String messageKey, @NotNull Function<@NotNull MessageParseRequest, String> parseMessage) {
         this.messageKey = messageKey;
         this.category = category;
         this.recipients = recipients;
@@ -65,10 +65,29 @@ public class BroadcastEvent extends LandsEvent {
     }
 
     public enum Category {
+        /**
+         * Sent when a land was deleted.
+         */
         LAND_CREATED,
+        /**
+         * A land was created.
+         */
         LAND_DELETED,
+        /**
+         * A relation between lands and/or nations changed.
+         */
         RELATION_CHANGED,
+        /**
+         * Events such as war start and end.
+         */
         WAR_STATE_CHANGED,
+        /**
+         * Global reminder that upkeep will be collected soon.
+         */
+        UPKEEP_REMINDER,
+        /**
+         * Upkeep was collected.
+         */
         UPKEEP_COLLECTED
     }
 
