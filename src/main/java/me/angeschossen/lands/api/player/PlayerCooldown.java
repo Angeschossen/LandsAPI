@@ -11,11 +11,11 @@ public enum PlayerCooldown {
     /**
      * Cooldown for /lands rename.
      */
-    RENAME_LAND("land.rename.rename-cooldown"),
+    RENAME_LAND("land.name.rename.cooldown_rename"),
     /**
      * Cooldown for /nations rename.
      */
-    RENAME_NATION("rename.cooldown_rename", ConfigType.NATIONS),
+    RENAME_NATION("nation.name.rename.cooldown_rename", ConfigType.NATIONS),
     /**
      * Cooldown for land spawn teleportation.
      */
@@ -115,6 +115,6 @@ public enum PlayerCooldown {
      */
     @NotNull
     public String getBypass() {
-        return "lands.bypass.cooldown." + toString();
+        return getConfigType().toString() + ".bypass.cooldown." + toString();
     }
 }
