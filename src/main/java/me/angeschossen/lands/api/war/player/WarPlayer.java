@@ -29,7 +29,13 @@ public interface WarPlayer {
      *
      * @return current set scoreboard
      */
-    @Nullable Scoreboard getScoreboard();
+    @Nullable
+    Scoreboard getScoreboard();
 
+    /**
+     * Close their current war menu and set the scoreboard to the parameter.
+     *
+     * @param main the scoreboard to set - this will remove the current scoreboard for the nametags
+     */
     void removeMenuAndScoreboard(@Nullable Scoreboard main);
 }
