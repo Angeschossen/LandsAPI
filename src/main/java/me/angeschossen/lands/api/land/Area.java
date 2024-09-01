@@ -76,6 +76,13 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
     @Nullable
     Position getSpawn();
 
+
+    /**
+     * Get the tenant.
+     *
+     * @return player which rented or bought this area. If null, no player rented or bought this area.
+     * Will always be null for the default area of a land ({@link #isDefault()} = true).
+     */
     @Nullable
     UUID getTenant();
 
