@@ -18,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -30,7 +31,8 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      * @param player the player to look for
      * @return null, if none set or the player is trusted in this area
      */
-    @Nullable SystemFlagStates getSystemFlagStates(@NotNull Player player);
+    @Nullable
+    SystemFlagStates getSystemFlagStates(@NotNull Player player);
 
     /**
      * Ban a player.
@@ -71,9 +73,11 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      *
      * @return null, if area isn't setup yet or no spawn set manually ({@link #setSpawn(Position)}) for the default area.
      */
-    @Nullable Position getSpawn();
+    @Nullable
+    Position getSpawn();
 
-    @Nullable UUID getTenant();
+    @Nullable
+    UUID getTenant();
 
     /**
      * Get the entry role.
@@ -82,6 +86,14 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      */
     @NotNull
     Role getEntryRole();
+
+    /**
+     * Get all natural flags.
+     *
+     * @return active natural flags
+     */
+    @NotNull
+    Set<NaturalFlag> getNaturalFlags();
 
     /**
      * Get the numerical ID of this area.
@@ -156,7 +168,8 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      *
      * @return Collection of trusted players, including owner
      */
-    @NotNull Collection<UUID> getTrustedPlayers();
+    @NotNull
+    Collection<UUID> getTrustedPlayers();
 
     /**
      * Get the visitor role.
@@ -305,7 +318,8 @@ public interface Area extends ExpressionEntity, TaxHolder, SystemFlagStatesHolde
      *
      * @return null, if area isn't setup to be rented or sold
      */
-    @Nullable RentalOffer getRentalOffer();
+    @Nullable
+    RentalOffer getRentalOffer();
 
     /**
      * Set role for a trusted player.

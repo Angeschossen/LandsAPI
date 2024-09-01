@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -64,6 +65,13 @@ public interface Role extends ExpressionEntity {
     Role getLowerPriorityRole(boolean allowVisitor, boolean onlyCanBeSet);
 
     /**
+     * Get all management flags.
+     * @return active flags with {@link me.angeschossen.lands.api.flags.enums.RoleFlagCategory#MANAGEMENT}
+     */
+    @NotNull
+    Set<RoleFlag> getManagementFlags();
+
+    /**
      * Get the icon of this role.
      *
      * @return never null
@@ -88,6 +96,13 @@ public interface Role extends ExpressionEntity {
      */
     @Nullable
     Role getHigherPriorityRole(boolean allowVisitor, boolean onlyCanBeSet);
+
+    /**
+     * Get all management flags.
+     * @return active flags with {@link me.angeschossen.lands.api.flags.enums.RoleFlagCategory#ACTION}
+     */
+    @NotNull
+    Set<RoleFlag> getActionFlags();
 
     /**
      * Delete a role.
