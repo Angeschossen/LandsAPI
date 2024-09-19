@@ -1,6 +1,10 @@
+group = "com.github.angeschossen"
+version = "7.8.10"
+description = "LandsAPI"
+
 plugins {
     `java-library`
-    id("com.github.johnrengelman.shadow").version("7.1.2")
+    id("io.github.goooler.shadow").version("8.1.8")
     `maven-publish`
 }
 
@@ -37,6 +41,10 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
+
 tasks {
     java {
         withJavadocJar()
@@ -44,7 +52,6 @@ tasks {
 
     build {
         dependsOn(shadowJar)
-        //dependsOn(javadoc)
     }
 
     shadowJar {
@@ -58,14 +65,9 @@ tasks {
 dependencies {
     shadow("com.github.Angeschossen:PluginFrameworkAPI:1.0.26")
     shadow("com.github.Angeschossen:ApplicationFrameworkAPI:1.0.2")
-    compileOnly("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.21.1-R0.1-SNAPSHOT")
     compileOnly("org.realityforge.org.jetbrains.annotations:org.jetbrains.annotations:1.7.0")
 }
-
-group = "com.github.angeschossen"
-version = "7.8.10"
-description = "LandsAPI"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
     publications {
