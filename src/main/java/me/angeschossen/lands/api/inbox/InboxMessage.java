@@ -51,7 +51,7 @@ public interface InboxMessage extends ExpressionEntity {
      * Get the message content {@link #getText(PlayerData)} with the messages date when it was received ({@link #getDateString(PlayerData)}).
      *
      * @param sender Used for per user language. If no player provided, uses default language.
-     * @return Format: date ({@link #getDateString(PlayerData)} ()}): content ({@link {@link #getText(PlayerData)}})
+     * @return Format: date ({@link #getDateString(PlayerData)} ()}): content ({@link #getText(PlayerData)})
      */
     @NotNull
     String getTextWithDate(@Nullable PlayerData sender);
