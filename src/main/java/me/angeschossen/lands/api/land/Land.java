@@ -213,6 +213,18 @@ public interface Land extends MemberHolder, SystemFlagStatesHolder {
     UUID getOwnerUID();
 
     /**
+     * Unclaim a specific chunk.
+     *
+     * @param landPlayer null, if no player initiated this action
+     * @param reason     why is it being unclaimed
+     * @param world      world in which the chunk is located
+     * @param x          Chunk x
+     * @param z          Chunk z
+     * @return null, if the land didn't claim this chunk or a 3rd party plugin cancels the {@link me.angeschossen.lands.api.events.ChunkDeleteEvent}
+     */
+    @NotNull CompletableFuture<ChunkCoordinate> unclaimChunk(@NotNull World world, int x, int z, @NotNull DeleteReason reason, @Nullable LandPlayer landPlayer);
+
+    /**
      * Untrust a player in the whole land.
      *
      * @param playerUID The player to untrust
