@@ -37,7 +37,11 @@ public enum InboxCategory {
     /**
      * Messages posted by land members to inform other land members.
      */
-    POSTS(5, 5);
+    POSTS(5, 5),
+    /**
+     * Logs information about removed items etc.
+     */
+    STORAGE(6, 6);
 
     private static final Map<Integer, InboxCategory> categories = new HashMap<>();
 
