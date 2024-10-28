@@ -3,6 +3,7 @@ package me.angeschossen.lands.api.war;
 import com.github.angeschossen.applicationframework.api.util.ULID;
 import com.github.angeschossen.pluginframework.api.holder.Changeable;
 import com.github.angeschossen.pluginframework.api.player.PlayerData;
+import com.github.angeschossen.pluginframework.api.player.PlayerDataBase;
 import me.angeschossen.lands.api.memberholder.MemberHolder;
 import me.angeschossen.lands.api.player.LandPlayer;
 import me.angeschossen.lands.api.war.declaration.WarDeclaration;
@@ -34,7 +35,7 @@ public interface WarState extends Changeable {
      * @param v      placeholder values
      * @param filter if true, only send to players engaged in this war. If false, send to all players
      */
-    void broadcast(String key, String[] p, Function<LandPlayer, String[]> v, boolean filter);
+    void broadcast(String key, String[] p, Function<PlayerDataBase, String[]> v, boolean filter);
 
     /**
      * Get the land or nation that declared war initially.
@@ -145,7 +146,7 @@ public interface WarState extends Changeable {
      * @param sender for per player locale support
      * @return may depend on the player's locale
      */
-    String getTimeLeftFormatted(@Nullable PlayerData sender);
+    String getTimeLeftFormatted(@Nullable PlayerDataBase sender);
 
     /**
      * Check if this war has a specific flag set. They're configured in the config.

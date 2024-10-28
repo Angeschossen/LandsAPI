@@ -1,6 +1,8 @@
 package me.angeschossen.lands.api.events;
 
 import com.github.angeschossen.pluginframework.api.locale.Environment;
+import com.github.angeschossen.pluginframework.api.player.PlayerData;
+import com.github.angeschossen.pluginframework.api.player.PlayerDataBase;
 import com.github.angeschossen.pluginframework.api.utils.Checks;
 import com.google.common.collect.ImmutableMap;
 import me.angeschossen.lands.api.events.plugin.LandsEvent;
@@ -23,7 +25,7 @@ public class BroadcastEvent extends LandsEvent {
 
     private final @Nullable String messageKey;
     private final @NotNull Category category;
-    private final @NotNull Collection<? extends LandPlayer> recipients;
+    private final @NotNull Collection<? extends PlayerDataBase> recipients;
     private final @NotNull Function<@NotNull MessageParseRequest, String> parseMessage;
 
     /**
@@ -33,7 +35,7 @@ public class BroadcastEvent extends LandsEvent {
      * @param messageKey   Message key in the Lands language file. Use null if the message isn't from Lands
      * @param parseMessage parses the message for a specific player. Lands supports per player language
      */
-    public BroadcastEvent(@NotNull Collection<? extends LandPlayer> recipients, @NotNull Category category, @Nullable String messageKey, @NotNull Function<@NotNull MessageParseRequest, String> parseMessage) {
+    public BroadcastEvent(@NotNull Collection<? extends PlayerDataBase> recipients, @NotNull Category category, @Nullable String messageKey, @NotNull Function<@NotNull MessageParseRequest, String> parseMessage) {
         this.messageKey = messageKey;
         this.category = category;
         this.recipients = recipients;
@@ -93,9 +95,9 @@ public class BroadcastEvent extends LandsEvent {
 
     public static final class MessageParseRequest {
         private final @NotNull Environment environment;
-        private final @Nullable LandPlayer recipient;
+        private final @Nullable PlayerData recipient;
 
-        public MessageParseRequest(@NotNull Environment environment, @Nullable LandPlayer recipient) {
+        public MessageParseRequest(@NotNull Environment environment, @Nullable PlayerData recipient) {
             this.environment = Checks.requireNonNull(environment, "environment");
             this.recipient = recipient;
         }
@@ -104,7 +106,7 @@ public class BroadcastEvent extends LandsEvent {
             return environment;
         }
 
-        public @Nullable LandPlayer getRecipient() {
+        public @Nullable PlayerData getRecipient() {
             return recipient;
         }
     }
@@ -136,13 +138,13 @@ public class BroadcastEvent extends LandsEvent {
      * @return all recipients
      */
     @NotNull
-    public Collection<? extends LandPlayer> getRecipients() {
+    public Collection<? extends PlayerDataBase> getRecipients() {
         return recipients;
     }
 
     @Override
     public void setAffectedPlayers(ImmutableMap.@NotNull Builder<String, Collection<UUID>> builder) {
-        builder.put("recipients", recipients.stream().map(LandPlayer::getUUID).collect(Collectors.toList()));
+        builder.put("recipients", recipients.stream().map(PlayerDataBase::getUUID).collect(Collectors.toList()));
     }
 
     @Override

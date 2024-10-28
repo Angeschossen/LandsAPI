@@ -5,6 +5,7 @@ import com.github.angeschossen.pluginframework.api.events.ExpressionEntity;
 import com.github.angeschossen.pluginframework.api.exceptions.NameAlreadyTakenException;
 import com.github.angeschossen.pluginframework.api.holder.Changeable;
 import com.github.angeschossen.pluginframework.api.player.PlayerData;
+import com.github.angeschossen.pluginframework.api.player.PlayerDataBase;
 import me.angeschossen.lands.api.events.LandChatEvent;
 import me.angeschossen.lands.api.holders.BalanceHolder;
 import me.angeschossen.lands.api.inbox.InboxCategory;
@@ -248,7 +249,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     War getWar();
 
     /**
-     * Use {@link #getWarName(PlayerData)} instead.
+     * Use {@link #getWarName(PlayerDataBase)} instead.
      *
      * @return The colored name with prefix
      */
@@ -262,7 +263,7 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
      * @param landPlayer returned value may depend on the locale of the player
      * @return The colored name with prefix
      */
-    String getWarName(@Nullable PlayerData landPlayer);
+    String getWarName(@Nullable PlayerDataBase landPlayer);
 
     /**
      * Get the team of the current war.
