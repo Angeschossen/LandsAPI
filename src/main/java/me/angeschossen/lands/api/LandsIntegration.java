@@ -52,6 +52,7 @@ public interface LandsIntegration {
 
     /**
      * Get the current provider for raw inbox messages
+     *
      * @return if null, none set
      */
     @Nullable
@@ -81,6 +82,7 @@ public interface LandsIntegration {
      * @param location     Location of the fight
      * @param setCombatTag Should Lands set a combat tag at these two players, if they are allowed to fight at the given location?
      *                     Depending on the servers configuration this will result in players beeing allowed to fight for a configured period, even if they move into a safe claim.
+     *                     The tag will only be set if the world is configured to be a combat tag world in the config file.
      *                     This prevents players running away into their claim to escape a fight, which they have started.
      * @param sendMessage  Should Lands send a deny message if result is false?
      * @return true, if the world is not a Lands world or the players are allowed to fight at the given location
