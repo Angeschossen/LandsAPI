@@ -7,6 +7,10 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Called when a land block is placed. This will also be fired for the auto placed mainblock at land creation.
+ * Landblock types: {@link me.angeschossen.lands.api.land.block.LandBlockType}
+ */
 public class LandBlockPlaceEvent extends LandBlockEvent {
     public static final HandlerList handlerList = new HandlerList();
 

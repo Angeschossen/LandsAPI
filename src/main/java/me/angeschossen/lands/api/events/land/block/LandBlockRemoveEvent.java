@@ -9,6 +9,10 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Called when a land block is removed. This is called for blocks such as capture flags or mainblocks.
+ * Landblock types: {@link me.angeschossen.lands.api.land.block.LandBlockType}
+ */
 public class LandBlockRemoveEvent extends LandBlockEvent {
     public static final HandlerList handlerList = new HandlerList();
     private final @NotNull LandBlockRemovalReason reason;

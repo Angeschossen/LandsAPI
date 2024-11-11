@@ -329,6 +329,14 @@ public interface MemberHolder extends BalanceHolder, ExpressionEntity, CMDTarget
     boolean isEnemy(@NotNull MemberHolder memberHolder);
 
     /**
+     * Get the relationship between lands or nations.
+     *
+     * @param memberHolder the other land or nation
+     * @return never null
+     */
+    @NotNull Relation getRelation(@NotNull MemberHolder memberHolder);
+
+    /**
      * Check if they're in an active war.
      *
      * @return false, if they're not engaged in a war or the war hasn't started yet

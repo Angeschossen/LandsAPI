@@ -12,6 +12,7 @@ public class ChunkCoordinate implements me.angeschossen.lands.api.land.ChunkCoor
         this.z = z;
         this.hashcode = Objects.hash(x, z);
     }
+
     @Override
     public boolean equals(Object object) {
         if (!(object instanceof me.angeschossen.lands.api.land.ChunkCoordinate)) {
