@@ -68,7 +68,7 @@ public class LandsIntegration implements LandsIntegrator, me.angeschossen.lands.
                 throw new IllegalStateException("[Lands] Lands isn't enabled yet. Plugin " + getName() + " needs to be enabled after Lands.", e);
             }
 
-            Bukkit.getLogger().info("[Lands] Nag author(s) of plugin " + plugin.getName() + ". It uses the deprecated LandsIntegration of Lands: https://github.com/Angeschossen/LandsAPI/wiki/API-Update");
+            Bukkit.getLogger().info("[Lands] Nag author(s) of plugin " + plugin.getName() + ". It uses the deprecated LandsIntegration of Lands: https://github.com/IncrediblePlugins/LandsAPI/wiki/API-Update");
         });
     }
 

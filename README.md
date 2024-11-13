@@ -1,1 +1,1 @@
-### Wiki: https://github.com/Angeschossen/LandsAPI/wiki
+### Wiki: https://github.com/IncrediblePlugins/LandsAPI/wiki
