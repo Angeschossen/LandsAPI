@@ -1,1 +1,2 @@
-### Wiki: https://github.com/IncrediblePlugins/LandsAPI/wiki
+# Wiki
+https://wiki.incredibleplugins.com/lands/developer-api/api
