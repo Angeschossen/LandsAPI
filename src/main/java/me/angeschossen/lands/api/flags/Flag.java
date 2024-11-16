@@ -51,7 +51,7 @@ public abstract class Flag<T> implements me.angeschossen.lands.api.flags.type.pa
         this.plugin = plugin;
 
         if (!plugin.equals(APIHandler.getInstance().getPlugin())) {
-            Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses a deprecated flag of Lands: https://github.com/IncrediblePlugins/LandsAPI/wiki/API-Update");
+            Bukkit.getLogger().warning("[Lands] Plugin " + plugin.getName() + " uses a deprecated flag of Lands: https://wiki.incredibleplugins.com/lands/developers/update");
         }
     }
 
