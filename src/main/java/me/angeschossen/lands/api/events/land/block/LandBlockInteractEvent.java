@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
  * Called whenever a player interacts with a mainblock or caputeflag etc.
  * Landblock types: {@link me.angeschossen.lands.api.land.block.LandBlockType}
  */
-public class LandBlockInteractEvent extends LandBlockEvent{
+public class LandBlockInteractEvent extends LandBlockEvent {
     public static final HandlerList handlerList = new HandlerList();
 
     public LandBlockInteractEvent(@NotNull Land land, @Nullable LandPlayer landPlayer, @NotNull LandBlock landBlock) {
