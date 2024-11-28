@@ -20,6 +20,20 @@ public interface CaptureFlag extends ExpressionEntity {
     @NotNull BlockPosition getPosition();
 
     /**
+     * Set the seconds between each firework spawned. This is an approximate value as fireworks only spawn when the flag is ticked.
+     *
+     * @param interval if smaller than 1, disabled firework spawning
+     */
+    void setFireworkSpawnInterval(long interval);
+
+    /**
+     * Get the seconds between each firework spawned. This is an approximate value as fireworks only spawn when the flag is ticked.
+     *
+     * @return if smaller than 1, firework spawning is disabled
+     */
+    long getLastFireworkSpawned();
+
+    /**
      * Get the team that placed the flag.
      *
      * @return either {@link WarTeam#ATTACKER} or {@link WarTeam#DEFENDER}
