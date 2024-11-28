@@ -24,14 +24,14 @@ public interface CaptureFlag extends ExpressionEntity {
     /**
      * Get amount of seconds that the flag must be hold.
      *
-     * @return never smaller than 0
+     * @return never smaller than 1
      */
     long getSecondsToHold();
 
     /**
      * Set the amount of seconds that the flag must be hold.
      *
-     * @param secondsToHold can't be smaller than 0
+     * @param secondsToHold can't be smaller than 1
      */
     void setSecondsToHold(long secondsToHold);
 
