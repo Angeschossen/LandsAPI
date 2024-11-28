@@ -14,11 +14,26 @@ import java.util.concurrent.CompletableFuture;
 public interface CaptureFlag extends ExpressionEntity {
     /**
      * Get the position of this capture flag.
+     *
      * @return Coordinates of the capture flag
      */
     @NotNull BlockPosition getPosition();
 
     WarTeam getTeam();
+
+    /**
+     * Get amount of seconds that the flag must be hold.
+     *
+     * @return never smaller than 0
+     */
+    long getSecondsToHold();
+
+    /**
+     * Set the amount of seconds that the flag must be hold.
+     *
+     * @param secondsToHold can't be smaller than 0
+     */
+    void setSecondsToHold(long secondsToHold);
 
     CompletableFuture<Boolean> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured,
                                                 boolean exlosion, CaptureFlagBreakEvent.BreakReason reason);
@@ -30,6 +45,7 @@ public interface CaptureFlag extends ExpressionEntity {
 
     /**
      * Get the war to which this capture flag belongs.
+     *
      * @return The war to which this capture flag belongs
      */
     @NotNull War getWar();
