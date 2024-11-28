@@ -19,6 +19,12 @@ public interface CaptureFlag extends ExpressionEntity {
      */
     @NotNull BlockPosition getPosition();
 
+    /**
+     * Get the team that placed the flag.
+     *
+     * @return either {@link WarTeam#ATTACKER} or {@link WarTeam#DEFENDER}
+     */
+    @NotNull
     WarTeam getTeam();
 
     /**
@@ -35,12 +41,35 @@ public interface CaptureFlag extends ExpressionEntity {
      */
     void setSecondsToHold(long secondsToHold);
 
+    /**
+     * Break this flag.
+     *
+     * @param player   if a player broke that flag
+     * @param reward   should the team be rewarded
+     * @param captured was it captured?
+     * @param exlosion create any explosion?
+     * @param reason   reason of removal
+     * @return false, if a 3rd party plugin cancelled the removal
+     */
     CompletableFuture<Boolean> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured,
                                                 boolean exlosion, CaptureFlagBreakEvent.BreakReason reason);
 
+    /**
+     * Break this flag.
+     *
+     * @param player   if a player broke that flag
+     * @param reward   should the team be rewarded
+     * @param captured was it captured?
+     * @param reason   reason of removal
+     * @return false, if a 3rd party plugin cancelled the removal
+     */
     CompletableFuture<Boolean> breakCaptureFlag(@Nullable LandPlayer player, boolean reward, boolean captured, boolean end,
                                                 boolean explosion, CaptureFlagBreakEvent.BreakReason reason);
 
+    /**
+     * Trigger code execution whenever the flag is unloaded.
+     * This is only relevant, if you implement your own capture flag.
+     */
     void atUnload();
 
     /**
